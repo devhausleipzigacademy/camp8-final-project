@@ -8,6 +8,8 @@ The idea is a shopping list App with catagorizations depending on type.
 
 Link to the Figma file:
 
+https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=DtQdRXnNpxqWqUqN-1
+
 ## Install
 
 `pnpm install`
