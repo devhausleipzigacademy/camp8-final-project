@@ -19,27 +19,31 @@ export default function SignIn() {
 			>
 				<label> Sign up with email</label>
 				<input
-					className="w-30 h-10 "
+					className="w-30 h-10 border-slate-500 border-2 rounded-md px-2
+                    "
 					type="email"
 					name="email"
 					placeholder="email"
 				/>
 				<input
-					className="w-30 h-10"
+					className="w-30 h-10 border-slate-500 border-2 rounded-md px-2"
 					type="password"
 					name="password"
 					placeholder="password"
 				/>
-				<button className="bg-blue-500 w-20 self-center" type="submit">
+				<button
+					className="bg-blue-500 w-20 self-center rounded-md"
+					type="submit"
+				>
 					Submit
 				</button>
 				<div className="gap-3">
 					<button>Sign up with gmail</button>
-					<div className="flex">
-						<p>already have an accout? </p>
+					<div className="flex justify-center">
+						<p>already have an account?&nbsp;</p>
 						<a href="">log in here</a>
 					</div>
-					<a href="">continue without accout</a>
+					<a href="">continue without account</a>
 				</div>
 			</form>
 		</>
