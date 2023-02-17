@@ -11,9 +11,9 @@ model User {
   indentifier String @id @unique @default(uuid())
   name        String
   email       String
-  saltAndHash String
 }
 
 model Lists {
   indentifier String @id @unique @default(uuid())
+  type        String
 }
