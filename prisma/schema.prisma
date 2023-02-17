@@ -8,12 +8,28 @@ datasource db {
 }
 
 model User {
-  indentifier String @id @unique @default(uuid())
-  name        String
-  email       String
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+  lists List[]
 }
 
-model Lists {
-  indentifier String @id @unique @default(uuid())
-  type        String
+model List {
+  id         Int          @id @default(autoincrement())
+  items      User         @relation(fields: [itemsId], references: [id])
+  itemsId    Int
+  Items      Items[]
+  Categories Categories[]
+}
+
+model Items {
+  id         Int  @id @default(autoincrement())
+  Category   List @relation(fields: [CategoryID], references: [id])
+  CategoryID Int
+}
+
+model Categories {
+  id     Int  @id @default(autoincrement())
+  name   List @relation(fields: [NameID], references: [id])
+  NameID Int
 }
