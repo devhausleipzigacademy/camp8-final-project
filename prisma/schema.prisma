@@ -33,6 +33,6 @@ model Items {
   name               String
   Linked_to_List     List?       @relation(fields: [ListID], references: [id])
   ListID             String?
-  Linked_to_Category Categories? @relation(fields: [CategoryID], references: [id])
-  CategoryID         String?
+  Linked_to_Category Categories @relation(fields: [CategoryID], references: [id])
+  CategoryID         String
 }
