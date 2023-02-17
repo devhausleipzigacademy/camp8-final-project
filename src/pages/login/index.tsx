@@ -17,25 +17,49 @@ export default function Login() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
+			<h1 className="text-red-300 text-4xl font-bold flex justify-center pb-10">
 				Login Page
 			</h1>
+			{/* Logo section */}
 			{/* <Image src={logopicture} alt="logo for shopping list">
 				<p>logo</p>
 			</Image> */}
-			<div className="flex flex-col items-center justify-center pt-3 gap-3">
+
+			{/* <a href="#">continue without account</a> */}
+
+			<form
+				action="/send-data-here"
+				method="post"
+				className="flex flex-col items-center justify-center pt-3 gap-5"
+			>
 				<input
 					type="text"
-					placeholder="e-mail"
-					className=" w-50 h-10  rounded-md border border-slate-400 hover:border-slate-600"
+					id="email"
+					name="email"
+					placeholder="E-mail"
+					className=" w-60 h-10 text-center rounded-md border border-slate-400 hover:border-slate-600"
 				/>
+
 				<input
-					type="text"
+					type="password"
+					id="password"
+					name="password"
 					placeholder="password"
-					className="w-50 h-10 py-5 rounded-md border border-slate-400 hover:border-slate-600"
+					className=" w-60 h-10 text-center rounded-md border border-slate-400 hover:border-slate-600"
 				/>
-				<a href="#">continue without account</a>
-			</div>
+				<button
+					type="submit"
+					className=" w-32 h-10 bg-gray-300 rounded-md border border-slate-400 hover:border-slate-600"
+				>
+					Go
+				</button>
+				<button
+					type="submit"
+					className=" w-32 h-10 bg-gray-300 rounded-md border border-slate-400 hover:border-slate-600"
+				>
+					Register
+				</button>
+			</form>
 		</>
 	);
 }
