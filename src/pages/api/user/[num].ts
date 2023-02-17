@@ -9,7 +9,8 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method == "GET") {
-    const user = await prisma.user.findMany({});
+    const number = request.query.num as String;
+    const user = await prisma.user.findMany({ take: Number(number) });
 
     response.status(200).json(user);
     return;
