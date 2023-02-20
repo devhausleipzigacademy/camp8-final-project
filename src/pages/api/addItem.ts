@@ -66,6 +66,11 @@ export default async function handler(
       // If products found, sort them by length
       products.sort((a, b) => a.name.length - b.name.length);
 
+      // Check that Item hasn't already been added to a List
+      if (products[0].ListID) {
+        response.status(405).send("Item already added to List");
+      }
+
       await prisma.list.update({
         where: {
           name: inputList,
