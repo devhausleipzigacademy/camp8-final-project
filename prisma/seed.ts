@@ -1,14 +1,25 @@
-import data from "data.json";
+import data from "../data.json";
 import { PrismaClient } from "@prisma/client";
+type Data = Record<string, Array<string>>;
 const prisma = new PrismaClient();
 async function main() {
-  const alice = await prisma.user.create({
-    data: {
-      email: "elsa@prisma.io",
-      name: "Elsab Prisma",
-    },
-  });
+  const bigData: Data = data;
+  for (let category in bigData) {
+    const alice = await prisma.categories.create({
+      data: {
+        name: category,
+        Items: {
+          createMany: {
+            data: bigData[category].map((x) => ({
+              name: x,
+            })),
+          },
+        },
+      },
+    });
+  }
 }
+
 main()
   .then(async () => {
     await prisma.$disconnect();

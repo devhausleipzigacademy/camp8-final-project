@@ -1,5 +1,7 @@
 generator client {
   provider = "prisma-client-js"
+    previewFeatures = ["fullTextSearch"]
+
 }
 
 datasource db {
@@ -16,7 +18,7 @@ model User {
 
 model List {
   id     String  @id @default(uuid())
-  name   String
+  name   String @unique
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
   items  Items[]
@@ -24,7 +26,7 @@ model List {
 
 model Categories {
   id    String  @id @default(uuid())
-  name  String
+  name  String  @unique
   Items Items[]
 }
 
