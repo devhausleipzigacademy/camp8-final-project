@@ -1,12 +1,6 @@
 import Head from "next/head";
-import axios from "axios";
-import { useEffect } from "react";
-import data from "data.json";
 
 export default function Home() {
-  const bla = data;
-  console.log(bla);
-
   return (
     <>
       <Head>
