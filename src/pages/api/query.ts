@@ -66,6 +66,19 @@ export default async function handler(
       // If products found, sort them by length
       products.sort((a, b) => a.name.length - b.name.length);
 
+      await prisma.list.update({
+        where: {
+          name: inputList,
+        },
+        data: {
+          items: {
+            connect: {
+              id: products[0].id,
+            },
+          },
+        },
+      });
+
       response.status(200).send(products[0]);
       return;
     } catch (err) {
