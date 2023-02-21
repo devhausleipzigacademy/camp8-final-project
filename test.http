@@ -13,3 +13,12 @@ Content-Type: application/json
   "query":"pear",
   "inputList":"Hello"
 }
+
+###
+PATCH http://localhost:3000/api/deleteItem/
+Content-Type: application/json
+
+{
+  "id":"1",
+  
+}
