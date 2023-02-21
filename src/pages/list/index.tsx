@@ -1,32 +1,42 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { clsx } from "clsx";
-import { sortByAlphabet } from "@/components/sortBy";
+import { sortByAlphabet, sortByCategory } from "@/components/sortBy";
 
 export type List = Array<{
   item: string;
-  date: string;
   quantity: number;
   category: string;
 }>;
 export type Categories = Array<{ id: number; name: string; quantity: number }>;
 
 const listItems: List = [
-  { item: "tomatoes", date: "", quantity: 1, category: "vegetables" },
-  { item: "pepper", date: "", quantity: 1, category: "spices" },
-  { item: "onion", date: "", quantity: 1, category: "vegetables" },
-  { item: "apple", date: "", quantity: 1, category: "fruit" },
-  { item: "kiwi", date: "", quantity: 1, category: "fruit" },
-  { item: "pork", date: "", quantity: 1, category: "meat" },
+  { item: "tomatoes", quantity: 1, category: "vegetables" },
+  { item: "pepper", quantity: 1, category: "spices" },
+  { item: "onion", quantity: 1, category: "vegetables" },
+  { item: "apple", quantity: 1, category: "fruit" },
+  { item: "kiwi", quantity: 1, category: "fruit" },
+  { item: "pork", quantity: 1, category: "meat" },
+  { item: "toothpaste", quantity: 1, category: "hygiene" },
+  { item: "kurkuma", quantity: 1, category: "spices" },
+  { item: "pumpkin", quantity: 1, category: "vegetables" },
+  { item: "deodorant", quantity: 1, category: "hygiene" },
+  { item: "shampoo", quantity: 1, category: "hygiene" },
+  { item: "crocodile", quantity: 1, category: "meat" },
+  { item: "alman", quantity: 1, category: "vegetables" },
+  { item: "cinnamon", quantity: 1, category: "spices" },
+  { item: "cabbage", quantity: 1, category: "vegetables" },
 ];
 
 export default function List() {
   const [sortBy, setSortBy] = useState("date");
+  let sectionName = "";
 
   switch (sortBy) {
     case "date":
       break;
     case "category":
+      sortByCategory(listItems);
       break;
     case "alphabetical":
       sortByAlphabet(listItems);
@@ -79,9 +89,22 @@ export default function List() {
             )}
           </RadioGroup.Option>
         </RadioGroup>
-        {listItems.map((product) => (
-          <p className="bg-slate-300 rounded-2xl">{product.item}</p>
-        ))}
+        {listItems.map((product) => {
+          let nameSection = false;
+
+          if (sortBy === "category") {
+            if (product.category !== sectionName) {
+              sectionName = product.category;
+              nameSection = true;
+            }
+          }
+          return (
+            <div>
+              {nameSection ? <p>{sectionName + ":"}</p> : <p></p>}
+              <p className="bg-slate-300 rounded-2xl">{product.item}</p>
+            </div>
+          );
+        })}
       </div>
     </>
   );
