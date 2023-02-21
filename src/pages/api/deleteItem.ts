@@ -17,7 +17,6 @@ export default async function handler(
   if (request.method === "PATCH") {
     try {
       const { id } = inputQueryTest.parse(request.body);
-      let products: Items[] = [];
 
       const listToBe = await prisma.items.update({
         where: {
