@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { Items, List, Prisma, PrismaClient } from "@prisma/client";
+import { Items, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
