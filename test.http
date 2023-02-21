@@ -19,6 +19,5 @@ PATCH http://localhost:3000/api/deleteItem/
 Content-Type: application/json
 
 {
-  "id":"1",
-  
+  "id":"000b86e2-0098-460b-9dcb-469394069d85"
 }

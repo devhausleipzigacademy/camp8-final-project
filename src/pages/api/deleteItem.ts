@@ -16,7 +16,7 @@ export default async function handler(
 ) {
   if (request.method === "PATCH") {
     try {
-      const { id, inputList } = inputQueryTest.parse(request.body);
+      const { id } = inputQueryTest.parse(request.body);
       let products: Items[] = [];
 
       const listToBe = await prisma.items.update({
@@ -24,7 +24,7 @@ export default async function handler(
           id: id,
         },
         data: {
-          ListID: "",
+          ListID: null,
         },
       });
       response.status(201).send("Removed Items");
@@ -41,5 +41,4 @@ export default async function handler(
 
 const inputQueryTest = z.object({
   id: z.string(),
-  inputList: z.string(),
 });
