@@ -1,6 +1,28 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Home() {
+  const [text, setText] = useState("");
+  async function getImage(text: string) {
+    const id: String = await axios
+      .get(
+        `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2c7a43fdbca6f7f47006aebd817ac688&format=json&nojsoncallback=1&text=${text}&extras=url_l`
+      )
+      .then((res) => {
+        console.log(res.data.photos.photo[0]);
+        return res.data.photos.photo[0].id;
+      });
+    const link = await axios
+      .get(
+        `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=2c7a43fdbca6f7f47006aebd817ac688&format=json&nojsoncallback=1&photo_id=${id}`
+        // "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2c7a43fdbca6f7f47006aebd817ac688&format=json&nojsoncallback=1&text=apple_cider_vinegar&extras=url_l"
+      )
+      .then((res) => setText(res.data.sizes.size[2].source));
+  }
+  useEffect(() => {
+    getImage("soybean_paste");
+  }, []);
   return (
     <>
       <Head>
@@ -12,6 +34,7 @@ export default function Home() {
       <h1 className="text-red-600 text-4xl font-bold flex justify-center">
         Landing Page
       </h1>
+      <img src={text} alt="" />
     </>
   );
 }
