@@ -1,7 +1,8 @@
 import { List } from "@/pages/list";
 
 export function sortByAlphabet(input: List) {
-  input.sort((a, b) => {
+  const sorted = [...input];
+  sorted.sort((a, b) => {
     const nameA = a.item.toUpperCase();
     const nameB = b.item.toUpperCase();
     if (nameA < nameB) {
@@ -12,9 +13,11 @@ export function sortByAlphabet(input: List) {
     }
     return 0;
   });
+  return sorted;
 }
-export function sortByCategory(input: List) {
-  input.sort((a, b) => {
+export function sortByCategory(input: List): List {
+  const sorted = [...input];
+  sorted.sort((a, b) => {
     const categoryA = a.category.toUpperCase();
     const categoryB = b.category.toUpperCase();
 
@@ -39,6 +42,7 @@ export function sortByCategory(input: List) {
     }
     return 0;
   });
+  return sorted;
 }
 
 export function sortByDate() {}

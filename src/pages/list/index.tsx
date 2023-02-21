@@ -23,7 +23,6 @@ const listItems: List = [
   { item: "deodorant", quantity: 1, category: "hygiene" },
   { item: "shampoo", quantity: 1, category: "hygiene" },
   { item: "crocodile", quantity: 1, category: "meat" },
-  { item: "alman", quantity: 1, category: "vegetables" },
   { item: "cinnamon", quantity: 1, category: "spices" },
   { item: "cabbage", quantity: 1, category: "vegetables" },
 ];
@@ -31,15 +30,16 @@ const listItems: List = [
 export default function List() {
   const [sortBy, setSortBy] = useState("date");
   let sectionName = "";
+  let sorted: List = [];
 
   switch (sortBy) {
     case "date":
       break;
     case "category":
-      sortByCategory(listItems);
+      sorted = sortByCategory(listItems);
       break;
     case "alphabetical":
-      sortByAlphabet(listItems);
+      sorted = sortByAlphabet(listItems);
       break;
   }
 
@@ -89,7 +89,7 @@ export default function List() {
             )}
           </RadioGroup.Option>
         </RadioGroup>
-        {listItems.map((product) => {
+        {sorted.map((product) => {
           let nameSection = false;
 
           if (sortBy === "category") {
