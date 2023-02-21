@@ -3,9 +3,4 @@ GET http://localhost:3000/api/test
 
 ###
 
-GET http://localhost:3000/api/seeLists
-
-# {
-#   "name": "William"
-# }
-
+http://localhost:3000/api/seeLists?user=752df3ec-29e4-489f-8aac-a862976b10da
