@@ -1,15 +1,3 @@
-GET http://localhost:3000/api/user
 
-###
+GET http://localhost:3000/api/test
 
-POST http://localhost:3000/api/user
-
-
-###
-POST http://localhost:3000/api/query/
-Content-Type: application/json
-
-{
-  "query":"pear",
-  "inputList":"Hello"
-}
