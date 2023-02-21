@@ -4,30 +4,21 @@ import axios from "axios";
 import * as fs from "fs";
 const bigData: Data = data;
 const bigNewData: NewData = newData;
-type NewData = Record<string, Array<Temp>>;
-type Temp = {
-  name: string;
-  image: string;
-};
-type Data = Record<string, Array<string>>;
+
 let i = 0;
 async function run() {
-  for (const type in bigData) {
-    bigData[type].map(async (vegetable) => {
-      const temp: string = await getLinks(vegetable);
-      if (i < 10) {
-        setTimeout(() => {
-          if (!bigNewData[type] && i < 10) {
-            bigNewData[type] = [];
-          }
-          if (i < 10) {
-            bigNewData[type].push({ name: vegetable, image: String(temp) });
-            console.log(i, "Added");
-            i++;
-          }
-        }, 100);
-      }
-    });
+  for (let i = 0; i < bigData.items.length && i < 5; i++) {
+    const realString = bigData.items[i].split(" ").join("_");
+    const temp: string = await axios
+      .get(
+        `https://api.spoonacular.com/food/ingredients/search?apiKey=94121dbecc2042ef8a2e5a3dd1873010&query=${realString}`
+      )
+      .then((res) => {
+        console.log(res.data.results[0].image);
+        return res.data.results[0].image;
+      })
+      .catch(() => "unknown");
+    bigNewData.Other.push({ image: temp, name: bigData.items[i] });
   }
 }
 run();
@@ -49,3 +40,11 @@ async function getLinks(vegetable: string) {
     })
     .catch(() => "unknown");
 }
+type NewData = {
+  Other: Temp[];
+};
+type Temp = {
+  name: string;
+  image: string;
+};
+type Data = Record<string, Array<string>>;

@@ -1,5 +1,5 @@
 {
-  "fruits-and-vegetables": [
+  "items": [
     "apples",
     "pears",
     "bananas",
@@ -125,9 +125,7 @@
     "butternut squash",
     "pumpkin",
     "acorn squash",
-    "spaghetti squash"
-  ],
-  "meats": [
+    "spaghetti squash",
     "beef",
     "sausage",
     "frankfurt",
@@ -146,9 +144,7 @@
     "boar",
     "veal",
     "ostrich",
-    "emu"
-  ],
-  "baking": [
+    "emu",
     "all-purpose flour",
     "whole wheat flour",
     "baking powder",
@@ -236,9 +232,7 @@
     "cream of tartar",
     "citric acid",
     "malt syrup",
-    "molasses"
-  ],
-  "personal hygiene": [
+    "molasses",
     "pads",
     "tampons",
     "shampoo",
@@ -342,9 +336,7 @@
     "makeup setting spray",
     "makeup sponges",
     "cuticle oil",
-    "heat protectant spray"
-  ],
-  "condiments and dressings": [
+    "heat protectant spray",
     "ketchup",
     "mayonnaise",
     "mustard",
@@ -446,9 +438,7 @@
     "cilantro",
     "onion powder",
     "turmeric",
-    "nutmeg"
-  ],
-  "dairy": [
+    "nutmeg",
     "milk",
     "butter",
     "cheese",
@@ -564,9 +554,7 @@
     "danish blue cheese",
     "doppelrahm cheese",
     "feta-style cheese",
-    "gjet"
-  ],
-  "frozen foods": [
+    "gjet",
     "frozen pizza",
     "frozen vegetables",
     "frozen fruits",
@@ -678,9 +666,7 @@
     "frozen meatloaf",
     "frozen crab cakes",
     "frozen lobster bisque",
-    "frozen pizza pockets"
-  ],
-  "grains and pasta": [
+    "frozen pizza pockets",
     "spaghetti",
     "macaroni",
     "penne",
@@ -746,9 +732,7 @@
     "tortellini",
     "spaghetti squash",
     "zucchini noodles",
-    "soba noodle stir fry kit"
-  ],
-  "household and cleaning": [
+    "soba noodle stir fry kit",
     "all-purpose cleaner",
     "bathroom cleaner",
     "carpet cleaner",
@@ -873,9 +857,7 @@
     "sweeper",
     "tile brush",
     "trash can liners",
-    "vacuum bags"
-  ],
-  "pet supplies": [
+    "vacuum bags",
     "dry dog food",
     "wet cat food",
     "rawhide chews",
@@ -926,9 +908,7 @@
     "portable pet ramp",
     "pet ramp for car",
     "pet stairs",
-    "pet gate"
-  ],
-  "seafood": [
+    "pet gate",
     "salmon",
     "tuna",
     "shrimp",
@@ -1047,9 +1027,7 @@
     "crab soup",
     "lobster soup",
     "shrimp soup",
-    "mussels marinara"
-  ],
-  "snacks": [
+    "mussels marinara",
     "potato chips",
     "tortilla chips",
     "pretzels",
@@ -1146,9 +1124,7 @@
     "hummus chips",
     "kale chips",
     "quinoa chips",
-    "pita crackers"
-  ],
-  "soups and canned goods": [
+    "pita crackers",
     "chicken noodle soup",
     "tomato soup",
     "beef vegetable soup",
@@ -1229,9 +1205,7 @@
     "canned spaghetti and meatballs",
     "canned ravioli",
     "canned beefaroni",
-    "canned"
-  ],
-  "alcohol": [
+    "canned",
     "whiskey",
     "tequila",
     "vodka",
@@ -1256,9 +1230,7 @@
     "chambord",
     "chartreuse",
     "cointreau",
-    "curacao"
-  ],
-  "beverages": [
+    "curacao",
     "water",
     "carbonated water",
     "tonic water",
@@ -1345,6 +1317,5 @@
     "turmeric latte mix",
     "peppermint hot chocolate",
     "butterfly pea flower tea"
-  ],
-  "other": []
+  ]
 }
