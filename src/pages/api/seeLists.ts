@@ -9,21 +9,18 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method === "GET") {
-    const { name, user } = inputQueryTest.parse(request.body);
+    const { user } = inputQueryTest.parse(request.query);
 
-    const listToBe = await prisma.list.findFirst({
-      data: {
-        name: "test",
-      },
+    const lists = await prisma.list.findMany({
+      // where: { user: user },
     });
 
-    response.status(200).json({ message: "List added successfully" });
+    response.status(200).json(lists);
   } else {
     response.status(405).json({ message: "Method not allowed" });
   }
 }
 
 const inputQueryTest = z.object({
-  name: z.string(),
   user: z.string(),
 });
