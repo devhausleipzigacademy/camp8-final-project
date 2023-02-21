@@ -4,12 +4,8 @@ import { Items, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-/* The point of this endpoint is to add an item to a list (someone has typed in and pressed enter).
-First check the name given against the database.
-Since there are multiple ways to spell something we are trying to remove 
-a couple of letters at a time and see if there is a match
-When shorter than 3 letters we just put it in the Other list
-*/
+/*
+ */
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
