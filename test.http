@@ -1,27 +1,9 @@
-GET http://localhost:3000/api/user
 
-###
+GET http://localhost:3000/api/test
 
-POST http://localhost:3000/api/user
-
-
-###
-POST http://localhost:3000/api/query/
-Content-Type: application/json
-
-{
-  "query":"pear",
-  "inputList":"Hello"
-}
-
-###
+### Git hub issue #42 "Add List"
 POST http://localhost:3000/api/addList/
 Content-Type: application/json
 
-{"id":"766ef8ea-79e6-44eb-813c-763b5e8038b",
-"name":"shopping list for rewe",
-"items":[{"name":"Beer",
-          "id":"0924824"}, 
-          {"name":"Banana", 
-          "id":"0989038"}],
+{"name":"new list",
 "user":"e5f91db7-16ba-44e6-bbb5-9cebce17f12b"}

@@ -9,12 +9,12 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method === "POST") {
-    const { id, name, items, user } = inputQueryTest.parse(request.body);
+    const { name, user } = inputQueryTest.parse(request.body);
 
     const listToBe = await prisma.list.create({
       data: {
         name: name,
-        items: { create: items },
+        items: { create: [] },
         user: { connect: { id: user } },
       },
     });
@@ -26,15 +26,6 @@ export default async function handler(
 }
 
 const inputQueryTest = z.object({
-  id: z.string(),
   name: z.string(),
-  items: z.array(
-    z.object({
-      // id: z.string(),
-      name: z.string(),
-      ListID: z.string().optional(),
-      CategoryID: z.string().optional(),
-    })
-  ),
   user: z.string(),
 });
