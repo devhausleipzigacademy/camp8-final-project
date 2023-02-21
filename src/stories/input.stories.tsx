@@ -8,7 +8,9 @@ const meta: Meta<typeof Input> = {
 
 export default meta;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+type Story = StoryObj<typeof Input>;
+
+const Template: StoryObj<typeof Input> = (args: any) => <Input {...args} />;
 
 export const Email = Template.bind({});
 Email.args = {
@@ -18,7 +20,5 @@ export const Password = Template.bind({});
 Password.args = {
 	type: "password",
 };
-
-type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {};
