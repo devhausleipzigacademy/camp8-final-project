@@ -48,7 +48,7 @@ export default function SearchBar() {
 					<div className="relative w-full cursor-default overflow-hidden rounded-full bg-white text-end">
 						<Combobox.Input
 							className=" border  border-indigo-300 rounded-full w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-indigo-700"
-							displayValue={(i) => i.name}
+							displayValue={(person) => person.name}
 							onChange={(event) => setQuery(event.target.value)}
 							placeholder={"Search"}
 						/>
