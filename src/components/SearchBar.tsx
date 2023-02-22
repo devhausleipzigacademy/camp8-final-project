@@ -1,24 +1,13 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { Combobox } from "@headlessui/react";
-import clsx from "clsx";
 
-{
-	/* <div className="flex  items-center justify-between border border-solid w-32 h-12 p-2 ">
-				<input type="text" placeholder="Search" />
-
-				<div>
-					<Image
-						src="/SearchNormal.png"
-						alt="search"
-						width={18}
-						height={18}
-					/>
-				</div>
-			</div> */
-}
-
-const items = [
+type Items = Array<Item>;
+type Item = {
+	id: number;
+	name: string;
+};
+const items: Items = [
 	{ id: 1, name: "Apple" },
 	{ id: 2, name: "Beverages" },
 	{ id: 3, name: "Cheese" },
@@ -47,8 +36,8 @@ export default function SearchBar() {
 				<div className=" relative mt-1">
 					<div className="relative w-full cursor-default overflow-hidden rounded-full bg-white text-end">
 						<Combobox.Input
-							className=" border  border-indigo-300 rounded-full w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-indigo-700"
-							displayValue={(person) => person.name}
+							className=" border  border-purple-300 rounded-full w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-purple-700"
+							displayValue={(i: Item) => i.name}
 							onChange={(event) => setQuery(event.target.value)}
 							placeholder={"Search"}
 						/>
@@ -64,10 +53,10 @@ export default function SearchBar() {
 					</div>
 
 					<Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base">
-						{filteredItems.map((person) => (
+						{filteredItems.map((list) => (
 							<Combobox.Option
-								key={person.id}
-								value={person}
+								key={list.id}
+								value={list}
 								className={({ active }) =>
 									`relative cursor-default select-none py-2 pl-10 pr-4 ${
 										active ? "bg-teal-600 text-white" : " "
@@ -83,7 +72,7 @@ export default function SearchBar() {
 													: "font-normal"
 											}`}
 										>
-											{person.name}
+											{list.name}
 										</span>
 										{selected ? (
 											<span
@@ -103,35 +92,4 @@ export default function SearchBar() {
 			</Combobox>
 		</div>
 	);
-}
-
-{
-	/* <li
-									className={clsx(
-										"bg-white-200 text-black",
-										active ? " bg-white" : " "
-									)}
-								>
-									{/* {
-										selected && 
-										// <Image
-										// 	src="/SearchNormal.png"
-										// 	alt="search"
-										// 	width={18}
-										// 	height={18}
-										// />
-									} */
-}
-{
-	/* {person.name}
-								</li>
-							)}
-						
-					))}
-				
-			</Combobox>
-		</div>
-	);
-}
-<div className=" flex flex-row"></div>; */
 }
