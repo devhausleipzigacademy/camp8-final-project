@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import { FormEvent } from "react";
 
 export default function Login() {
 	return (
@@ -20,12 +18,6 @@ export default function Login() {
 			<h1 className="text-red-300 text-4xl font-bold flex justify-center pb-10">
 				Login Page
 			</h1>
-			{/* Logo section */}
-			{/* <Image src={logopicture} alt="logo for shopping list">
-				<p>logo</p>
-			</Image> */}
-
-			{/* <a href="#">continue without account</a> */}
 
 			<form
 				action="/send-data-here"
@@ -47,17 +39,18 @@ export default function Login() {
 					placeholder="password"
 					className=" w-60 h-10 text-center rounded-md border border-slate-400 hover:border-slate-600"
 				/>
+				<input
+					type="text"
+					id="text"
+					name="username"
+					placeholder="Please enter username"
+					className=" w-64 h-10 mt-10 text-center rounded-md border border-slate-400 hover:border-slate-600"
+				/>
 				<button
 					type="submit"
-					className=" w-32 h-10 bg-gray-300 rounded-md border border-slate-400 hover:border-slate-600"
+					className=" w-52 h-10 mt-3 rounded-md border border-slate-400 hover:border-slate-600 bg-indigo-500"
 				>
-					Go
-				</button>
-				<button
-					type="submit"
-					className=" w-32 h-10 bg-gray-300 rounded-md border border-slate-400 hover:border-slate-600"
-				>
-					Register
+					Create an account
 				</button>
 			</form>
 		</>
