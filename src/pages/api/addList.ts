@@ -9,19 +9,25 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method === "POST") {
-    const { name, user } = inputQueryTest.parse(request.body);
+    try {
+      const { name, user } = inputQueryTest.parse(request.body);
 
-    const listToBe = await prisma.list.create({
-      data: {
-        name: name,
-        items: { create: [] },
-        user: { connect: { id: user } },
-      },
-    });
-
-    response.status(200).json({ message: "List added successfully" });
-  } else {
-    response.status(405).json({ message: "Method not allowed" });
+      const listToBe = await prisma.list.create({
+        data: {
+          name: name,
+          items: { create: [] },
+          user: { connect: { id: user } },
+        },
+      });
+      response.status(200).send("Added List");
+    } catch (err) {
+      if (err instanceof ZodError) {
+        response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
+      } else {
+        response.status(418).send("Something is wrong");
+      }
+    }
+    response.status(404).send(`Invalid method, need PATCH: ${request.method}`);
   }
 }
 
