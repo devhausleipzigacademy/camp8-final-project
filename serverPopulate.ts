@@ -4,12 +4,12 @@ import axios from "axios";
 import * as fs from "fs";
 const bigData: Data = data;
 const bigNewData: NewData = newData;
-let i = 501;
+let i = 801;
 const bla = setInterval(async function () {
-  const realString = bigData.items[i].split(" ").join("_");
+  const realString = bigData.items[i].split(" ").join("-");
   const temp: string = await axios
     .get(
-      `https://api.spoonacular.com/food/ingredients/search?apiKey=cc8178729cb044a7a89e20f3f05b1c28&query=${realString}`
+      `https://api.spoonacular.com/food/ingredients/search?apiKey=a1de63b49c1343bfafe86d5124eeb915&query=${realString}`
     )
     .then((res) => {
       return res.data.results[0].image;
@@ -22,7 +22,7 @@ const bla = setInterval(async function () {
   });
   console.log("added item:", bigData.items[i], "link:", temp);
   i++;
-  if (i === 650) {
+  if (i === 950) {
     const holder = JSON.stringify(bigNewData);
     fs.writeFileSync("./newData.json", holder);
     clearInterval(bla);
