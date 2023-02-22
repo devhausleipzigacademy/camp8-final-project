@@ -121,9 +121,11 @@ Link to the Figma file:## Color Reference
 
 Possible responses from system:
 
--201 Item was added to list in category Other
--405 Item was already added to list
--200 Item added to list correctly
+-201 Item was added to list in category Other.
+
+-405 Item was already added to list.
+
+-200 Item added to list correctly.
 
 #### add(num1, num2)
 
