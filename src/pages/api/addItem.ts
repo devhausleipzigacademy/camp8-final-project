@@ -21,7 +21,7 @@ export default async function handler(
         },
         update: {},
         where: {
-          name: inputList,
+          id: inputList,
         },
       });
 
@@ -44,9 +44,15 @@ export default async function handler(
       }
       if (!products[0]) {
         // If after three loops no match found.  Add to other
-        await prisma.categories.update({
+        const other = await prisma.categories.findFirst({
           where: {
             name: "other",
+          },
+        });
+
+        await prisma.categories.update({
+          where: {
+            id: other?.id as string,
           },
           data: {
             Items: {
@@ -69,7 +75,7 @@ export default async function handler(
 
       await prisma.list.update({
         where: {
-          name: inputList,
+          id: inputList,
         },
         data: {
           items: {

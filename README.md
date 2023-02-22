@@ -71,6 +71,20 @@ Link to the Figma file:## Color Reference
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Required**. Your API key |
 
+```http
+  POST /api/addItem
+```
+
+| Body                 | Type               | Description                                                                                        |
+| :------------------- | :----------------- | :------------------------------------------------------------------------------------------------- |
+| `query`, `inputList` | `string`, `string` | query is the item you want to add to a list. inputList is the ID of the list you want to add it to |
+
+Possible responses from system:
+
+-201 Item was added to list in category Other
+-405 Item was already added to list
+-200 Item added to list correctly
+
 #### add(num1, num2)
 
 Takes two numbers and returns the sum.
