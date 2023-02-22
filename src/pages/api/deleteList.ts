@@ -23,7 +23,7 @@ export default async function handler(
           name: name,
         },
       });
-      response.status(201).send("Removed List");
+      response.status(200).send("Removed List");
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
