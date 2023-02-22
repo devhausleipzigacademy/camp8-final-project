@@ -1,21 +1,55 @@
-# Final project
+# FINAL PROJECT
 
 This is our final project.
 
 The idea is a shopping list App with catagorizations depending on type.
 
-## Figma File
+## FIGMA FILE
 
 Link to the Figma file:
 
 https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=DtQdRXnNpxqWqUqN-1
 
-## Install
+## INSTALLATION
 
 `pnpm install`
 `pnpm run dev`
 
-## Figma File
+## BACK_END
+
+0. Make sure You have an .env file in root-Folder * (!)
+
+1. Stop other projects in Docker, if any are running.
+
+2. Docker (requires to start the docker Application)
+```docker compose up -d```
+
+3. Prototype your schema according to :
+```pnpx prisma db push```
+
+4. To run .ts files (Endpoints) do nothing, next.js runs server.ts automatically due to the folder structure.
+
+5. To run prisma browser-interface :
+```pnpx prisma studio```
+
+6. To add JSON data to prisma db run:
+```pnpm prisma db seed```
+This will run the seed.ts script
+
+
+* .env must contain:
+
+```POSTGRES_USER=local_admin
+POSTGRES_PASSWORD=unsafeLocalPassword_final!
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=main
+DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public&connect_timeout=300
+SECRET_KEY = da2d646070a3ac8b9f01d5c645845bfc10203ca8eb7f0bb5780107bb8cdf31d108348aaa1b422ea3d39e3028bbddc9e9```
+
+
+
+## COLOR REFERENCES (FIGMA)
 
 Link to the Figma file:## Color Reference
 
@@ -26,7 +60,7 @@ Link to the Figma file:## Color Reference
 | Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
 | Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
 
-## API Reference
+## API REFERENCE
 
 #### Example API backend
 
@@ -37,6 +71,7 @@ Link to the Figma file:## Color Reference
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Required**. Your API key |
+
 
 #### add(num1, num2)
 
