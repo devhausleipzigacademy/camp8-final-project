@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { Combobox } from "@headlessui/react";
+import clsx from "clsx";
 
 {
 	/* <div className="flex  items-center justify-between border border-solid w-32 h-12 p-2 ">
@@ -41,13 +42,13 @@ export default function SearchBar() {
 			  );
 
 	return (
-		<div className=" fixed top-16 w-52">
+		<div className=" fixed top-16">
 			<Combobox value={selectedItems} onChange={setSelectedItems}>
 				<div className=" relative mt-1">
 					<div className="relative w-full cursor-default overflow-hidden rounded-full bg-white text-end">
 						<Combobox.Input
-							className=" border border-indigo-600 rounded-full w-34 h-12 p-2 "
-							displayValue={(value) => value.name}
+							className=" border  border-indigo-300 rounded-full w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-indigo-700"
+							displayValue={(i) => i.name}
 							onChange={(event) => setQuery(event.target.value)}
 							placeholder={"Search"}
 						/>
@@ -62,55 +63,48 @@ export default function SearchBar() {
 						</Combobox.Button>
 					</div>
 
-					<Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base">
-						{filteredItems.length === 0 && query !== "" ? (
-							<div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-								Nothing found.
-							</div>
-						) : (
-							filteredItems.map((person) => (
-								<Combobox.Option
-									key={person.id}
-									value={person}
-									className={({ active }) =>
-										`relative cursor-default select-none py-2 pl-10 pr-4 ${
-											active
-												? "bg-teal-600 text-white"
-												: "text-gray-900"
-										}`
-									}
-								>
-									{({ selected, active }) => (
-										<>
+					<Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base">
+						{filteredItems.map((person) => (
+							<Combobox.Option
+								key={person.id}
+								value={person}
+								className={({ active }) =>
+									`relative cursor-default select-none py-2 pl-10 pr-4 ${
+										active ? "bg-teal-600 text-white" : " "
+									}`
+								}
+							>
+								{({ selected, active }) => (
+									<>
+										<span
+											className={`block truncate ${
+												selected
+													? "font-medium"
+													: "font-normal"
+											}`}
+										>
+											{person.name}
+										</span>
+										{selected ? (
 											<span
-												className={`block truncate ${
-													selected
-														? "font-medium"
-														: "font-normal"
+												className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+													active
+														? "text-white"
+														: "text-teal-600"
 												}`}
-											>
-												{person.name}
-											</span>
-											{selected ? (
-												<span
-													className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-														active
-															? "text-white"
-															: "text-teal-600"
-													}`}
-												></span>
-											) : null}
-										</>
-									)}
-								</Combobox.Option>
-							))
-						)}
+											></span>
+										) : null}
+									</>
+								)}
+							</Combobox.Option>
+						))}
 					</Combobox.Options>
 				</div>
 			</Combobox>
 		</div>
 	);
 }
+
 {
 	/* <li
 									className={clsx(
