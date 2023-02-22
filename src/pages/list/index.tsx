@@ -56,8 +56,8 @@ export default function List() {
             {({ checked }) => (
               <span
                 className={clsx(
-                  "bg-slate-300 rounded-2xl",
-                  checked ? "bg-green-300" : ""
+                  "rounded-2xl",
+                  checked ? "bg-green-300" : "bg-slate-300 "
                 )}
               >
                 Date
@@ -68,8 +68,8 @@ export default function List() {
             {({ checked }) => (
               <span
                 className={clsx(
-                  "bg-slate-300 rounded-2xl",
-                  checked ? "bg-green-300" : ""
+                  "rounded-2xl",
+                  checked ? "bg-green-300" : "bg-slate-300 "
                 )}
               >
                 Category
@@ -80,8 +80,8 @@ export default function List() {
             {({ checked }) => (
               <span
                 className={clsx(
-                  "bg-slate-300 rounded-2xl",
-                  checked ? "bg-green-300" : ""
+                  " rounded-2xl",
+                  checked ? "bg-green-300" : "bg-slate-300"
                 )}
               >
                 Alphabetical
