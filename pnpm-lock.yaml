@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@heroicons/react': ^2.0.16
   '@next/font': 13.1.6
   '@types/node': 18.13.0
   '@types/react': 18.0.28
@@ -16,6 +17,7 @@ specifiers:
   typescript: 4.9.5
 
 dependencies:
+  '@heroicons/react': 2.0.16_react@18.2.0
   '@next/font': 13.1.6
   '@types/node': 18.13.0
   '@types/react': 18.0.28
@@ -56,6 +58,14 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@heroicons/react/2.0.16_react@18.2.0:
+    resolution: {integrity: sha512-x89rFxH3SRdYaA+JCXwfe+RkE1SFTo9GcOkZettHer71Y3T7V+ogKmfw5CjTazgS3d0ClJ7p1NA+SP7VQLQcLw==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:

@@ -18,12 +18,16 @@ export default function Home() {
 			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
 				Home page
 			</h1>
-			<div className=" w-screen bg-slate-200 flex fle-row items-center justify-around">
-				<h3 className="  flex flex-row text-center">Hey, beautiful</h3>
-				<button className=" rounded-xxl text-xs bg-slate-400">1</button>
+			<div className=" w-414px h-82px flex flex-row items-center justify-space-between p-4">
+				<h3>HEY, BEAUTIFUL</h3>
+				
 			</div>
-			<div className=" w-25 h-6 bg-slate-300 rounded-lg mt-4 mx-14 p-1">
-				<h4 className=" text-xs">Search</h4>
+			<div className=" w-25 h-6  rounded-lg mt-4 mx-14 p-1">
+				<input
+					type="text"
+					placeholder="Search"
+					className=" border border-slate-300 rounded-full w-52 h-8"
+				/>
 			</div>
 		</>
 	);
