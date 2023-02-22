@@ -1,0 +1,9 @@
+
+GET http://localhost:3000/api/test
+
+### Git hub issue #42 "Add List"
+POST http://localhost:3000/api/addList/
+Content-Type: application/json
+
+{"name":"peelerz",
+"user":"a9fe295f-4900-49f8-9341-2607fe1bd2a8"}
