@@ -18,15 +18,14 @@ export default function Home() {
 			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
 				Home page
 			</h1>
-			<div className=" w-414px h-82px flex flex-row items-center justify-space-between p-4">
+			<div className=" w-414px h-82px flex flex-row justify-space-between p-4">
 				<h3>HEY, BEAUTIFUL</h3>
-				
 			</div>
-			<div className=" w-25 h-6  rounded-lg mt-4 mx-14 p-1">
+			<div className=" w-screen">
 				<input
 					type="text"
 					placeholder="Search"
-					className=" border border-slate-300 rounded-full w-52 h-8"
+					className=" border border-slate-300 rounded-lg w-full ml-4 mr-10 p-3"
 				/>
 			</div>
 		</>
