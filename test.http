@@ -5,5 +5,5 @@ GET http://localhost:3000/api/test
 POST http://localhost:3000/api/addList/
 Content-Type: application/json
 
-{"name":"newlist",
-"user":"1a02929b-d3a8-4c51-9c8c-7e75451d987a"}
+{"name":"peelerz",
+"user":"a9fe295f-4900-49f8-9341-2607fe1bd2a8"}
