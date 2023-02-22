@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { z, ZodError } from "zod";
+import { boolean, tuple, z, ZodError } from "zod";
 import { Items, List, Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -17,17 +17,18 @@ export default async function handler(
   if (request.method === "PATCH") {
     try {
       const { id } = inputQueryTest.parse(request.body);
-      let products: Items[] = [];
 
       const listToBe = await prisma.items.update({
         where: {
           id: id,
         },
         data: {
-          ListID: null,
+          Linked_to_List: {
+            disconnect: true,
+          },
         },
       });
-      response.status(201).send("Removed Items");
+      response.status(200).send("Removed Items");
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
