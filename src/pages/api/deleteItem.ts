@@ -32,7 +32,9 @@ export default async function handler(
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
       } else {
-        response.status(418).send("Something is wrong");
+        response
+          .status(418)
+          .send("Something is wrong, you may or may not be a teapot");
       }
     }
     response.status(404).send(`Invalid method, need PATCH: ${request.method}`);
