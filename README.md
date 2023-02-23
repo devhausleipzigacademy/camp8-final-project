@@ -6,9 +6,13 @@ The idea is a shopping list App with catagorizations depending on type.
 
 ## FIGMA FILE
 
+## FIGMA FILE
+
 Link to the Figma file:
 
 https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=DtQdRXnNpxqWqUqN-1
+
+## INSTALLATION
 
 ## INSTALLATION
 
@@ -59,6 +63,7 @@ Link to the Figma file:## Color Reference
 | Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
 | Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
 
+## API REFERENCE
 ## API REFERENCE
 
 #### Example API backend
