@@ -1,3 +1,4 @@
+import { PlusButton } from "@/components/PlusButton";
 import Head from "next/head";
 
 export default function Login() {
