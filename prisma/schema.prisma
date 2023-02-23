@@ -37,4 +37,6 @@ model Items {
   ListID             String?
   Linked_to_Category Categories? @relation(fields: [CategoryID], references: [id])
   CategoryID         String?
+  quantity           Int?
+  unit               String?
 }

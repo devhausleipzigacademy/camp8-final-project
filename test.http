@@ -1,8 +1,14 @@
-GET http://localhost:3000/api/user
+GET http://localhost:3000/api/test
 
 ###
 
-POST http://localhost:3000/api/user
+POST http://localhost:3000/api/changeQuantity
+Content-Type: application/json
+
+{
+  "quantity": 4,
+  "unit": "L"
+}
 
 
 ###
