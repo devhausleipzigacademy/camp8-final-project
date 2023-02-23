@@ -74,7 +74,7 @@ export default function SearchBar() {
 										>
 											{list.name}
 										</span>
-										{selected ? (
+										{selected && (
 											<span
 												className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
 													active
@@ -82,7 +82,7 @@ export default function SearchBar() {
 														: "text-teal-600"
 												}`}
 											></span>
-										) : null}
+										)}
 									</>
 								)}
 							</Combobox.Option>
