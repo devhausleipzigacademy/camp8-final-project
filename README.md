@@ -67,7 +67,7 @@ https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=Dt
 3. Prototype your schema according to :
    `pnpx prisma db push`
 
-4. To run .ts files (Endpoints) do nothing, next.js runs server.ts automatically due to the folder structure.
+4. To run .ts files (Endpoints) do nothing, next.js runs server.ts automatically due to the folder structure. All Zod filters should be at the bottom of their respective endpoints since each one is unique (or al least nearly)
 
 5. To run prisma browser-interface :
    `pnpx prisma studio`
