@@ -1,6 +1,9 @@
 import Head from "next/head";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
+	const date = new Date();
+	const year = date.getFullYear();
 	return (
 		<>
 			<Head>
@@ -18,15 +21,20 @@ export default function Home() {
 			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
 				Home page
 			</h1>
-			<div className=" w-414px h-82px flex flex-row justify-space-between p-4">
+			<div className=" w-414px h-82px flex flex-row justify-between mx-6 p-4">
 				<h3>HEY, BEAUTIFUL</h3>
+				<UserCircleIcon className="w-6 h-6" />
 			</div>
-			<div className=" w-screen">
+			<div className=" mx-6 mt-4">
 				<input
 					type="text"
 					placeholder="Search"
-					className=" border border-slate-300 rounded-lg w-full ml-4 mr-10 p-3"
+					className=" border border-indigo-700 rounded-lg w-full p-3"
 				/>
+			</div>
+			<div className=" flex  flex-col w-80 h-56 bg-indigo-700 rounded-lg mt-4 mx-6">
+				<h4 className=" text-white mt-8 p-3">18/19 items</h4>
+				<h3 className=" text-white p-2 text-3xl ">WEIHNACHTEN</h3>
 			</div>
 		</>
 	);
