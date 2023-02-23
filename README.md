@@ -22,18 +22,18 @@ https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=Dt
 1. Stop other projects in Docker, if any are running.
 
 2. Docker (requires to start the docker Application)
-```docker compose up -d```
+`docker compose up -d`
 
 3. Prototype your schema according to :
-```pnpx prisma db push```
+`pnpx prisma db push`
 
 4. To run .ts files (Endpoints) do nothing, next.js runs server.ts automatically due to the folder structure.
 
 5. To run prisma browser-interface :
-```pnpx prisma studio```
+`pnpx prisma studio`
 
 6. To add JSON data to prisma db run:
-```pnpm prisma db seed```
+`pnpm prisma db seed`
 This will run the seed.ts script
 
 
