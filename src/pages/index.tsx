@@ -14,6 +14,9 @@ export default function Home() {
       <h1 className="text-red-600 text-4xl font-bold flex justify-center">
         Landing Page
       </h1>
+      <div className="h-96 aspect-square bg-primary-default-background"></div>
+      <div className="h-96 aspect-square border-4 border-primary-default-Solid"></div>
+      <div className="h-96 aspect-square bg-primary-default-background"></div>
     </>
   );
 }
