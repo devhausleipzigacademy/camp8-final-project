@@ -33,8 +33,8 @@ model Categories {
 model Items {
   Id                 String      @id @default(uuid())
   Name               String
-  In_List     List?       @relation(fields: [ListId], references: [Id])
+  InList     List?       @relation(fields: [ListId], references: [Id])
   ListId             String?
-  Has_Category Categories? @relation(fields: [CategoryId], references: [Id])
+  HasCategory Categories? @relation(fields: [CategoryId], references: [Id])
   CategoryId         String?
 }
