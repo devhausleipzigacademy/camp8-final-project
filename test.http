@@ -1,0 +1,25 @@
+GET http://localhost:3000/api/user
+
+###
+
+POST http://localhost:3000/api/user
+
+
+###
+
+POST http://localhost:3000/api/query/
+Content-Type: application/json
+
+{
+  "query":"pear",
+  "inputList":"Hello"
+}
+
+###
+
+DELETE http://localhost:3000/api/deleteList
+Content-Type: application/json
+
+{
+  "name": "listest1"
+}
