@@ -33,6 +33,7 @@ model Categories {
 model Items {
   id                 String      @id @default(uuid())
   name               String
+  image               String
   Linked_to_List     List?       @relation(fields: [ListID], references: [id])
   ListID             String?
   Linked_to_Category Categories? @relation(fields: [CategoryID], references: [id])

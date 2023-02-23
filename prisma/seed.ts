@@ -1,6 +1,10 @@
 import data from "../data.json";
 import { PrismaClient } from "@prisma/client";
-type Data = Record<string, Array<string>>;
+type Input = {
+  image: string;
+  name: string;
+};
+type Data = Record<string, Array<Input>>;
 const prisma = new PrismaClient();
 async function main() {
   const bigData: Data = data;
@@ -11,7 +15,8 @@ async function main() {
         Items: {
           createMany: {
             data: bigData[category].map((x) => ({
-              name: x,
+              name: x.name,
+              image: x.image,
             })),
           },
         },
