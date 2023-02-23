@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { RadioGroup } from "@headlessui/react";
-import { clsx } from "clsx";
-import { sortByAlphabet, sortByCategory } from "@/components/sortBy";
+import { ItemListMapper } from "@/components/List/ItemListMapper";
+import { SortBySwitches } from "@/components/List/SortBySwitches";
 
 export type List = Array<{
   item: string;
@@ -29,82 +28,12 @@ const listItems: List = [
 
 export default function List() {
   const [sortBy, setSortBy] = useState("date");
-  let sectionName = "";
-  let sorted: List = [];
-
-  switch (sortBy) {
-    case "date":
-      break;
-    case "category":
-      sorted = sortByCategory(listItems);
-      break;
-    case "alphabetical":
-      sorted = sortByAlphabet(listItems);
-      break;
-  }
 
   return (
     <>
       <div className="flex flex-col gap-2 m-6">
-        <RadioGroup
-          className="flex flex-row gap-4"
-          value={sortBy}
-          onChange={setSortBy}
-        >
-          <RadioGroup.Label>Sort by:</RadioGroup.Label>
-          <RadioGroup.Option value="date">
-            {({ checked }) => (
-              <span
-                className={clsx(
-                  "rounded-2xl",
-                  checked ? "bg-green-300" : "bg-slate-300 "
-                )}
-              >
-                Date
-              </span>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option value="category">
-            {({ checked }) => (
-              <span
-                className={clsx(
-                  "rounded-2xl",
-                  checked ? "bg-green-300" : "bg-slate-300 "
-                )}
-              >
-                Category
-              </span>
-            )}
-          </RadioGroup.Option>
-          <RadioGroup.Option value="alphabetical">
-            {({ checked }) => (
-              <span
-                className={clsx(
-                  " rounded-2xl",
-                  checked ? "bg-green-300" : "bg-slate-300"
-                )}
-              >
-                Alphabetical
-              </span>
-            )}
-          </RadioGroup.Option>
-        </RadioGroup>
-        {sorted.map((product) => {
-          let nameSection = false;
-
-          if (sortBy === "category") {
-            if (product.category !== sectionName) {
-              sectionName = product.category;
-              nameSection = true;
-            }
-          }
-          return (
-            <div>
-              {nameSection ? <p>{sectionName + ":"}</p> : <p></p>}
-              <p className="bg-slate-300 rounded-2xl">{product.item}</p>
-            </div>
-          );
-        })}
+        <SortBySwitches sortBy={sortBy} setSortBy={setSortBy}></SortBySwitches>
+        <ItemListMapper itemList={listItems} sortBy={sortBy} />
       </div>
     </>
   );
