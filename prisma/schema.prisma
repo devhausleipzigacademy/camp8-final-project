@@ -10,31 +10,31 @@ datasource db {
 }
 
 model User {
-  Id    String @id @default(uuid())
-  Name  String
-  Email String
-  List  List[]
+  id    String @id @default(uuid())
+  name  String
+  email String
+  list  List[]
 }
 
 model List {
-  Id     String  @id @default(uuid())
-  Name   String
-  User   User?   @relation(fields: [UserId], references: [Id])
-  UserId String?
-  Items  Items[]
+  id     String  @id @default(uuid())
+  name   String
+  user   User?   @relation(fields: [UserId], references: [Id])
+  userId String?
+  items  Items[]
 }
 
 model Categories {
-  Id    String  @id @default(uuid())
-  Name  String  @unique
-  Items Items[]
+  id    String  @id @default(uuid())
+  name  String  @unique
+  items Items[]
 }
 
 model Items {
-  Id                 String      @id @default(uuid())
-  Name               String
-  InList     List?       @relation(fields: [ListId], references: [Id])
-  ListId             String?
-  HasCategory Categories? @relation(fields: [CategoryId], references: [Id])
-  CategoryId         String?
+  id                 String      @id @default(uuid())
+  name               String
+  inList     List?       @relation(fields: [ListId], references: [Id])
+  listId             String?
+  category Categories? @relation(fields: [CategoryId], references: [Id])
+  categoryId         String?
 }
