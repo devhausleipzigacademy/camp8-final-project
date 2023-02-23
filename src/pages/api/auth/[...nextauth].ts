@@ -3,6 +3,8 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
 	// Configure one or more authentication providers
 	providers: [
+		//would like to start with Email provider
+		
 		// ...add more providers here
 	],
 };
