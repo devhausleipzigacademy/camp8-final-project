@@ -1,17 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    colors: {
-      primary: {
-        default: {
-          Solid: "#7751c7",
-          background: "#7751c7",
-        },
-      },
-    },
-  },
-  plugins: [],
+	content: ["./src/**/*.{js,ts,jsx,tsx}"],
+	theme: {
+		colors: {
+			primary: {
+				default: {
+					Solid: "#5F62C7",
+					background: "#7751c7",
+				},
+				trans: "#4211A9",
+				frame: "#E6E8FF",
+			},
+			secondary: {
+				default: "#BEDCFA",
+				trans: "",
+			},
+			text: {
+				typo: "#453C57",
+				white: "#FFFFFF",
+				whitetrans: "#FFFFFF",
+			},
+			ux: {
+				error: "#EC1C00",
+				inactive: "#BEBEBE",
+				success: "#B4E747",
+			},
+		},
+	},
+	plugins: [],
 };
 
 // /** @type {import('tailwindcss').Config}
