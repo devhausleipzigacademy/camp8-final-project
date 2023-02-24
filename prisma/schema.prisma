@@ -1,3 +1,17 @@
+//About this Schema:
+
+// MasterItems:  contain all "prototype" Items. Are defined by id, name, img-url and a default category for this item.
+// Categories:   contain all Categories. Are definied by id and Name
+// UserItems:    contain all Items used by a User. Are definied by id, a user they belong to, lists they found on, masterItemId and a custom Category (which is optional)
+// Lists:        contain all Lists. Are defined by id, the user they belong to, and Items related to this list.
+// User:         all User. Are defined by id, name, and lists that are related to this specific user.
+
+//Workflow: choose an Item to add to the List:
+////pick listId, pick an masterItemId from MasterItems & add a record to UserItems
+//Workflow: disply Items on a list: display all UserItems filtered by listId. Only listIds that the user has acceess to are displayd.
+////
+
+
 generator client {
   provider = "prisma-client-js"
     previewFeatures = ["fullTextSearch"]
@@ -9,17 +23,17 @@ datasource db {
 }
 
 model User {
-  userId            String @id @default(uuid())
+  userId              String @id @default(uuid())
 
-  userName          String
-  userEmail         String
-  userLists         List[] //opposite relation one-to-many
+  userName            String
+  userEmail           String
+  userLists           Lists[] //opposite relation one-to-many
 
-  //should take all UserItems with fitting userIdentifier
-  userItems         UserItems[] //opposite relation one-to-many
+  //should take all   UserItems with fitting userIdentifier
+  userItems           UserItems[] //opposite relation one-to-many
 }
 
-model List {
+model Lists {
   listId              String  @id @default(uuid())
 
   listName            String? // As default Name whenever created should be the date
@@ -27,18 +41,7 @@ model List {
   userIdentifier      String //entering correct identifier will Link to user
   belongsTo           User @relation(fields: [userIdentifier], references: [userId])
 
-  userItems           UserItems[] //only take items with a specific identifier in field x
-}
-
-model MasterItems {
-  masterItemId        String @id @default(uuid())
-  masterItemName      String @unique
-  imageUrl            String?
-
-  categoryName        String
-  defaultCategory     Category @relation(fields: [categoryName], references: [categoryName])
-
-  userItems           UserItems[] //opposite Relation
+  userItems           UserItems[] ///opposite relation to userItems related to this List.
 }
 
 model UserItems {
@@ -51,20 +54,31 @@ model UserItems {
   //entering correct identifier will Link to a list
   //after deleting the list -> userItem remains in DB
   listIdentifier      String?
-  inLists             List?   @relation(fields: [listIdentifier], references: [listId])
+  inLists             Lists?   @relation(fields: [listIdentifier], references: [listId])
   //or -> inLists             List[] //opposite relation for in
 
   //this userItem is based on
-  masterItemId        String
-  masterItem          MasterItems? @relation(fields: [masterItemId], references: [masterItemId])
+  masterItemName      String
+  masterItem          MasterItems @relation(fields: [masterItemName], references: [masterItemName])
 
   customCategoryId    String?
-  customCategory      Category? @relation(fields: [customCategoryId], references: [categoryId])
+  customCategory      Categories? @relation(fields: [customCategoryId], references: [categoryId])
 }
 
-model Category {
+model MasterItems {
+  masterItemId        String @id @default(uuid())
+  masterItemName      String @unique
+  imageUrl            String?
+
+  categoryName        String?
+  defaultCategory     Categories? @relation(fields: [categoryName], references: [categoryName])
+
+  userItems           UserItems[] //opposite Relation
+}
+
+model Categories {
   categoryId          String  @id @default(uuid())
   categoryName        String  @unique
   masterItems         MasterItems[] //opposite relation to defaultCategory in MasterItems
-  userItems           UserItems[] //opposite relation to
+  userItems           UserItems[] //opposite relation to customCategory in userItems
 }
