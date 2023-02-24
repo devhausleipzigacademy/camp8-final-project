@@ -1,7 +1,6 @@
 generator client {
   provider = "prisma-client-js"
     previewFeatures = ["fullTextSearch"]
-
 }
 
 datasource db {
@@ -10,31 +9,62 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String
-  list  List[]
+  userId            String @id @default(uuid())
+
+  userName          String
+  userEmail         String
+  userLists         List[] //opposite relation one-to-many
+
+  //should take all UserItems with fitting userIdentifier
+  userItems         UserItems[] //opposite relation one-to-many
 }
 
 model List {
-  id     String  @id @default(uuid())
-  name   String
-  user   User?   @relation(fields: [UserId], references: [Id])
-  userId String?
-  items  Items[]
+  listId              String  @id @default(uuid())
+
+  listName            String? // As default Name whenever created should be the date
+
+  userIdentifier      String //entering correct identifier will Link to user
+  belongsTo           User @relation(fields: [userIdentifier], references: [userId])
+
+  userItems           UserItems[] //only take items with a specific identifier in field x
 }
 
-model Categories {
-  id    String  @id @default(uuid())
-  name  String  @unique
-  items Items[]
+model MasterItems {
+  masterItemId        String @id @default(uuid())
+  masterItemName      String @unique
+  imageUrl            String?
+
+  categoryName        String
+  defaultCategory     Category @relation(fields: [categoryName], references: [categoryName])
+
+  userItems           UserItems[] //opposite Relation
 }
 
-model Items {
-  id                 String      @id @default(uuid())
-  name               String
-  inList     List?       @relation(fields: [ListId], references: [Id])
-  listId             String?
-  category Categories? @relation(fields: [CategoryId], references: [Id])
-  categoryId         String?
+model UserItems {
+  userItemId          String  @id @default(uuid())
+
+  //entering correct identifier will Link to user
+  userIdentifier      String
+  belongsTo           User   @relation(fields: [userIdentifier], references: [userId])
+
+  //entering correct identifier will Link to a list
+  //after deleting the list -> userItem remains in DB
+  listIdentifier      String?
+  inLists             List?   @relation(fields: [listIdentifier], references: [listId])
+  //or -> inLists             List[] //opposite relation for in
+
+  //this userItem is based on
+  masterItemId        String
+  masterItem          MasterItems? @relation(fields: [masterItemId], references: [masterItemId])
+
+  customCategoryId    String?
+  customCategory      Category? @relation(fields: [customCategoryId], references: [categoryId])
+}
+
+model Category {
+  categoryId          String  @id @default(uuid())
+  categoryName        String  @unique
+  masterItems         MasterItems[] //opposite relation to defaultCategory in MasterItems
+  userItems           UserItems[] //opposite relation to
 }
