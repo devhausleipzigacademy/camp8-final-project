@@ -5,7 +5,7 @@
       "name": "apples"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/apple.jpg",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pears-bosc.jpg",
       "name": "pears"
     },
     {
@@ -4144,15 +4144,15 @@
       "name": "snyder's pretzels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tortilla-chips.jpg",
       "name": "herrs chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tortilla-chips.jpg",
       "name": "lays chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tortilla-chips.jpg",
       "name": "pringles"
     },
     {
@@ -4188,29 +4188,29 @@
       "name": "hazelnuts"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/nuts-mixed.jpg",
       "name": "mixed nuts"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tortilla-chips.jpg",
       "name": "hummus chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/kale.jpg",
       "name": "kale chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tortilla-chips.jpg",
       "name": "quinoa chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pita-chips.jpg",
       "name": "pita crackers"
     }
   ],
   "soups-and-canned-goods": [
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-chicken-soup.jpg",
       "name": "chicken noodle soup"
     },
     {
@@ -4218,23 +4218,23 @@
       "name": "tomato soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/beef-soup-bone.jpg",
       "name": "beef vegetable soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-celery-soup.jpg",
       "name": "split pea soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-celery-soup.jpg",
       "name": "minestrone soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-celery-soup.jpg",
       "name": "vegetable soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-mushroom-soup.png",
       "name": "corn chowder"
     },
     {
@@ -4246,19 +4246,19 @@
       "name": "cream of chicken soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-mushroom-soup.png",
       "name": "lentil soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-mushroom-soup.png",
       "name": "black bean soup"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/no.jpg",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/kidney-beans.jpg",
       "name": "chili with beans"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/beef-cubes-raw.png",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/beef-soup-bone.jpg",
       "name": "beef stew"
     },
     {
@@ -4266,7 +4266,7 @@
       "name": "spaghettios"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/ravioli.png",
       "name": "chef boyardee ravioli"
     },
     {
@@ -4314,7 +4314,7 @@
       "name": "tomato juice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-celery-soup.jpg",
       "name": "v8 vegetable juice"
     },
     {
@@ -4338,10 +4338,6 @@
       "name": "alfredo sauce"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "vodka sauce"
-    },
-    {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/artichoke-hearts.png",
       "name": "artichoke hearts"
     },
@@ -4350,11 +4346,11 @@
       "name": "hearts of palm"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/peach.png",
       "name": "canned peaches"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pears-bosc.jpg",
       "name": "canned pears"
     },
     {
@@ -4366,7 +4362,7 @@
       "name": "canned pumpkin"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/edamame.png",
       "name": "canned green beans"
     },
     {
@@ -4382,11 +4378,11 @@
       "name": "canned peas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/spinach-frozen.jpg",
       "name": "canned spinach"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/peas-and-carrots.jpg",
       "name": "canned mixed vegetables"
     },
     {
@@ -4410,7 +4406,7 @@
       "name": "canned white beans"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/kidney-beans.jpg",
       "name": "canned refried beans"
     },
     {
@@ -4418,55 +4414,55 @@
       "name": "canned beets"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/sauerkraut.jpg",
       "name": "canned sauerkraut"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tomato-juice.jpg",
       "name": "canned diced tomatoes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tomato-juice.jpg",
       "name": "canned crushed tomatoes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tomato-juice.jpg",
       "name": "canned tomato sauce"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tomato-paste.jpg",
       "name": "canned tomato puree"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tomatoes-canned.png",
       "name": "canned whole tomatoes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/salmon.png",
       "name": "canned salmon"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/canned-tuna.png",
       "name": "canned tuna"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "canned crab meat"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/clam-juice.png",
       "name": "canned clams"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/oysters.jpg",
       "name": "canned oysters"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/chicken-breasts.png",
       "name": "canned chicken"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/beef-cubes-raw.png",
       "name": "canned beef"
     },
     {
