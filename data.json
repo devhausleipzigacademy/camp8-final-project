@@ -1804,7 +1804,7 @@
       "name": "provolone cheese"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/Swiss-cheese.jpg",
       "name": "swiss cheese"
     },
     {
@@ -1904,7 +1904,7 @@
       "name": "ghee"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/white-cream-fluffy.jpg",
       "name": "clotted cream"
     },
     {
@@ -1932,12 +1932,8 @@
       "name": "queso blanco"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/vinegar-(white).jpg",
       "name": "rennet"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "smetana"
     },
     {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/plain-protein-powder.png",
@@ -1948,11 +1944,11 @@
       "name": "quark"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/white-cream-fluffy.jpg",
       "name": "fromage blanc"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/caramel-sauce.jpg",
       "name": "cajeta"
     },
     {
@@ -1960,7 +1956,7 @@
       "name": "burrata"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/white-cream-fluffy.jpg",
       "name": "ricotta salata"
     },
     {
@@ -1968,7 +1964,7 @@
       "name": "taleggio"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fontina.jpg",
       "name": "fontina cheese"
     },
     {
@@ -1976,7 +1972,7 @@
       "name": "edam cheese"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cheddar-cheese.png",
       "name": "colby cheese"
     },
     {
@@ -2178,31 +2174,31 @@
       "name": "frozen fish"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shrimp.png",
       "name": "frozen shrimp"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/sliced-beef-shank.png",
       "name": "frozen beef"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pork-loin.jpg",
       "name": "frozen pork"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fresh-ground-beef.jpg",
       "name": "frozen burgers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/meatballs.png",
       "name": "frozen meatballs"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/wonton-wrappers.jpg",
       "name": "frozen dumplings"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/chinese-dumplings-or-gyoza.jpg",
       "name": "frozen egg rolls"
     },
     {
@@ -2218,23 +2214,23 @@
       "name": "frozen hash browns"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-onion.png",
       "name": "frozen onion rings"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mozzarella.png",
       "name": "frozen mozzarella sticks"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/dill-pickles.jpg",
       "name": "frozen corn dogs"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/flour-tortilla.jpg",
       "name": "frozen burritos"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen taquitos"
     },
     {
@@ -2242,11 +2238,11 @@
       "name": "frozen waffles"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pancakes-isolated.jpg",
       "name": "frozen pancakes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/sandwich-thins.png",
       "name": "frozen breakfast sandwiches"
     },
     {
@@ -2262,115 +2258,107 @@
       "name": "frozen chicken wings"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pie-crust.jpg",
       "name": "frozen pot pies"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lasagna-noodles.jpg",
       "name": "frozen lasagna"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen dinners"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/vegetable-juice.jpg",
       "name": "frozen fruits for smoothies"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/vegetable-juice.jpg",
       "name": "frozen juice concentrate"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/berries-mixed.jpg",
       "name": "frozen berries"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/vanilla-ice-cream.png",
       "name": "frozen ice cream"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/coconut-cream.jpg",
       "name": "frozen whipped cream"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/puff-pastry.png",
       "name": "frozen puff pastry"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pie-crust.jpg",
       "name": "frozen pie crusts"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/dough.jpg",
       "name": "frozen bread dough"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/bread-sticks.jpg",
       "name": "frozen garlic bread"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/croissants.jpg",
       "name": "frozen croissants"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/bagels.jpg",
       "name": "frozen bagels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/English-muffins.jpg",
       "name": "frozen english muffins"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cookie-dough.jpg",
       "name": "frozen cookie dough"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pound-cake.jpg",
       "name": "frozen cake layers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pie-crust.jpg",
       "name": "frozen pie shells"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pie-crust.jpg",
       "name": "frozen fruit pies"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pie-crust.jpg",
       "name": "frozen cream pies"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen turnovers"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pie-crust.jpg",
       "name": "frozen danishes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cinnamon-roll.jpg",
       "name": "frozen cinnamon rolls"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/soft-pretzel.jpg",
       "name": "frozen pretzels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/chinese-dumplings-or-gyoza.jpg",
       "name": "frozen potstickers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/rice-paper.jpg",
       "name": "frozen spring rolls"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/filo-dough.png",
       "name": "frozen samosas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/filo-dough.png",
       "name": "frozen pierogies"
     },
     {
@@ -2378,67 +2366,63 @@
       "name": "frozen chicken cordon bleu"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen corn on the cob"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/spinach.jpg",
       "name": "frozen chopped spinach"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/spinach.jpg",
       "name": "frozen creamed spinach"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/spinach.jpg",
       "name": "frozen spinach dip"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-onion.png",
       "name": "frozen chopped onions"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/green-pepper.jpg",
       "name": "frozen sliced peppers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-vegetables.png",
       "name": "frozen mixed vegetables"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-vegetables.png",
       "name": "frozen stir fry vegetables"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shelled-edamame.jpg",
       "name": "frozen edamame"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/hash-brown-potatoes.png",
       "name": "frozen hash brown patties"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/meat-ground.jpg",
       "name": "frozen turkey burgers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/salmon.png",
       "name": "frozen salmon"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/calamari-or-squid.jpg",
       "name": "frozen calamari"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mussels.jpg",
       "name": "frozen mussels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "frozen crab legs"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lobster.png",
       "name": "frozen lobster tails"
     },
     {
@@ -2470,63 +2454,55 @@
       "name": "frozen teriyaki chicken"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "frozen fried rice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/sliced-beef-shank.png",
       "name": "frozen stir fry beef"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pork-chops.jpg",
       "name": "frozen stir fry pork"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/dough.jpg",
       "name": "frozen breakfast pastries"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fruit-slices.jpg",
       "name": "frozen fruit bars"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/plain-yogurt.jpg",
       "name": "frozen yogurt bars"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/vegetable-juice.jpg",
       "name": "frozen smoothie packs"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pizza-dough.jpg",
       "name": "frozen gluten-free bread"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pizza-isolated.png",
       "name": "frozen gluten-free pizza"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/frozen-waffles.png",
       "name": "frozen gluten-free waffles"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen gluten-free meals"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/veggie-burger-patty.png",
       "name": "frozen veggie burgers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lasagna-noodles.jpg",
       "name": "frozen vegetarian lasagna"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen vegetarian dinners"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/meatballs.png",
       "name": "frozen veggie meatballs"
     },
     {
@@ -2534,71 +2510,63 @@
       "name": "frozen veggie chicken nuggets"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/breakfast-sausage-links.jpg",
       "name": "frozen veggie sausage"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/spinach-frozen.jpg",
       "name": "frozen spinach and feta phyllo triangles"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen potato skins"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "frozen jalapeno poppers"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen chicken fajitas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen beef fajitas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen chicken quesadillas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen beef quesadillas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen chicken enchiladas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen beef enchiladas"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "frozen tamales"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lasagna-noodles.jpg",
       "name": "frozen pierogi lasagna"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/spaghetti.jpg",
       "name": "frozen spaghetti and meatballs"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/meat-ground.jpg",
       "name": "frozen meatloaf"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "frozen crab cakes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "frozen lobster bisque"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pizza-isolated.png",
       "name": "frozen pizza pockets"
     }
   ],
@@ -2652,27 +2620,27 @@
       "name": "quinoa"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "brown rice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "white rice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "jasmine rice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "basmati rice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "wild rice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/uncooked-white-rice.png",
       "name": "arborio rice"
     },
     {
@@ -2748,15 +2716,15 @@
       "name": "instant mac and cheese"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/instant-potatoes.png",
       "name": "instant mashed potatoes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/stuffing-mix.png",
       "name": "instant stuffing mix"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/rolled-oats.jpg",
       "name": "instant oatmeal packets"
     },
     {
@@ -2768,7 +2736,7 @@
       "name": "rice vermicelli"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/rice-paper.jpg",
       "name": "rice paper"
     },
     {
@@ -2824,11 +2792,11 @@
       "name": "manicotti shells"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shell-pasta.jpg",
       "name": "stuffed pasta shells"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shell-pasta.jpg",
       "name": "angel hair pasta"
     },
     {
@@ -3670,7 +3638,7 @@
       "name": "cuttlefish"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/calamari-or-squid.jpg",
       "name": "sea urchin"
     },
     {
@@ -3682,11 +3650,11 @@
       "name": "crawfish"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mackerel-fresh.jpg",
       "name": "krill"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mackerel-fresh.jpg",
       "name": "abalone"
     },
     {
@@ -3694,11 +3662,11 @@
       "name": "mackerel"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cod-fillet.jpg",
       "name": "barramundi"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cod-fillet.jpg",
       "name": "cobia"
     },
     {
@@ -3706,7 +3674,7 @@
       "name": "rainbow trout"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/trout.png",
       "name": "arctic char"
     },
     {
@@ -3734,7 +3702,7 @@
       "name": "whitefish"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "surimi"
     },
     {
@@ -3750,23 +3718,23 @@
       "name": "sushi"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/salmon.png",
       "name": "sashimi"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shrimp-dried.jpg",
       "name": "ceviche"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shrimp-dried.jpg",
       "name": "fish sticks"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "fish cakes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "crab cakes"
     },
     {
@@ -3774,43 +3742,35 @@
       "name": "fish fillets"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/halibut-fillet.jpg",
       "name": "fish and chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/taco-shells.jpg",
       "name": "fish tacos"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/shrimp-dried.jpg",
       "name": "paella"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cream-of-chicken-soup.jpg",
       "name": "seafood gumbo"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/clams.jpg",
       "name": "clam chowder"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lobster-tails.jpg",
       "name": "lobster bisque"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "crab bisque"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "cioppino"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "bouillabaisse"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/nori.jpg",
       "name": "sushi rolls"
     },
     {
@@ -3818,48 +3778,28 @@
       "name": "lobster tail"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "clam bake"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/spices.jpg",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "crab boil"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/oysters.jpg",
       "name": "oyster roast"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/green-curry-paste.png",
       "name": "fish curry"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cod-fillet.jpg",
       "name": "fish stew"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "sardine sandwich"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "anchovy pizza"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "smoked oysters"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "smoked mussels"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "smoked clams"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish jerky"
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/hamburger-bun.jpg",
+      "name": "steamed clams"
     },
     {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/shrimp-dried.jpg",
@@ -3882,38 +3822,6 @@
       "name": "fish roe"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "sardine pate"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "crab dip"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "shrimp cocktail"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "oyster shooters"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish and seafood seasonings"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish marinades"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish breading"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "seafood paella mix"
-    },
-    {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/clam-juice.png",
       "name": "clam juice"
     },
@@ -3926,124 +3834,16 @@
       "name": "seafood stock"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crabmeat.jpg",
       "name": "crab stock"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lobster-tails.jpg",
       "name": "lobster stock"
     },
     {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/chicken-broth.png",
       "name": "shrimp stock"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "clamato juice"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "tuna salad"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "shrimp salad"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "crab salad"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "lobster salad"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "tuna melt"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "tuna casserole"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "shrimp scampi"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "lobster roll"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "crab cake sandwich"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish pie"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish sandwich"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish kebabs"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fried calamari"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "stuffed clams"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "shrimp alfredo"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "lobster thermidor"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "crab imperial"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish and seafood soups"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "sardine salad"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "anchovy salad"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "fish and seafood stir-fry"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "shrimp gumbo"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "crab soup"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "lobster soup"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "shrimp soup"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "mussels marinara"
     }
   ],
   "snacks": [
@@ -4064,7 +3864,7 @@
       "name": "popcorn"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/nuts-mixed.jpgnknown",
       "name": "trail mix"
     },
     {
@@ -4072,7 +3872,7 @@
       "name": "nuts"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/nuts-mixed.jpg",
       "name": "granola bars"
     },
     {
@@ -4092,7 +3892,7 @@
       "name": "dried fruit"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/dried-fruit-mixed.jpg",
       "name": "fruit snacks"
     },
     {
@@ -4100,7 +3900,7 @@
       "name": "candy bars"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/gummy-worms.jpg",
       "name": "chewing gum"
     },
     {
@@ -4112,11 +3912,11 @@
       "name": "cookies"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/granola.jpg",
       "name": "cereal bars"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crackers.jpg",
       "name": "cheese crackers"
     },
     {
@@ -4124,7 +3924,7 @@
       "name": "raisins"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/beef-jerky.jpg",
       "name": "beef sticks"
     },
     {
@@ -4132,7 +3932,7 @@
       "name": "cheese puffs"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crackers.jpg",
       "name": "animal crackers"
     },
     {
@@ -4140,43 +3940,43 @@
       "name": "graham crackers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/normal-marshmallows.jpg",
       "name": "s'mores ingredients"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-fresh-fruit.jpg",
       "name": "fruit leather"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crackers.jpg",
       "name": "peanut butter crackers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fruit-slices.jpg",
       "name": "pop tarts"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fruit-slices.jpg",
       "name": "toaster pastries"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/soft-pretzel.jpg",
       "name": "chocolate-covered pretzels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/soft-pretzel.jpg",
       "name": "yogurt-covered pretzels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/popcorn-kernels.jpg",
       "name": "popcorn seasoning"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/salsa.png",
       "name": "chips and salsa"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/salsa.png",
       "name": "chips and dip"
     },
     {
@@ -4200,11 +4000,11 @@
       "name": "salsa"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/pita-chips.jpg",
       "name": "veggie chips"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-fresh-fruit.jpg",
       "name": "fruit cups"
     },
     {
@@ -4212,7 +4012,7 @@
       "name": "fruit cocktail"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/ice-cream-cone.jpg",
       "name": "fruit popsicles"
     },
     {
@@ -4220,63 +4020,63 @@
       "name": "fruit juice"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/vegetable-juice.jpg",
       "name": "fruit smoothies"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/plain-yogurt.jpg",
       "name": "fruit yogurt"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-fresh-fruit.jpg",
       "name": "fruit parfait"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-fresh-fruit.jpg",
       "name": "fruit salad"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/granola.jpg",
       "name": "energy bars"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/granola.jpg",
       "name": "protein bars"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/white-powder.jpg",
       "name": "protein shakes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/apple-juice.jpg",
       "name": "sports drinks"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/apple-juice.jpg",
       "name": "juice boxes"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/popcorn-kernels.jpg",
       "name": "popcorn balls"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fruit-slices.jpg",
       "name": "rice krispies treats"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/nuts-mixed.jpg",
       "name": "fruit and nut mix"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crackers.jpg",
       "name": "cheese and cracker snacks"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crackers.jpg",
       "name": "rice crackers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/bananas.jpg",
       "name": "plantain chips"
     },
     {
@@ -4288,30 +4088,6 @@
       "name": "popcorn kernels"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "snack cakes"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "twinkies"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "ding dongs"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "ho hos"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "zingers"
-    },
-    {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
-      "name": "chips ahoy"
-    },
-    {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/oreos.png",
       "name": "oreos"
     },
@@ -4320,7 +4096,7 @@
       "name": "nutter butters"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/crackers.jpg",
       "name": "teddy grahams"
     },
     {
@@ -4328,7 +4104,7 @@
       "name": "goldfish crackers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cheesy-tortilla-chips.jpg",
       "name": "cheez-its"
     },
     {
@@ -4336,11 +4112,11 @@
       "name": "ritz crackers"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fritos-or-corn-chips.jpg",
       "name": "triscuits"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fritos-or-corn-chips.jpg",
       "name": "sun chips"
     },
     {
@@ -4348,7 +4124,7 @@
       "name": "fritos"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/fritos-or-corn-chips.jpg",
       "name": "cheetos"
     },
     {
@@ -4356,15 +4132,15 @@
       "name": "doritos"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tortilla-chips.jpg",
       "name": "takis"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/cheddar-cheese.png",
       "name": "combos"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/soft-pretzel.jpg",
       "name": "snyder's pretzels"
     },
     {
