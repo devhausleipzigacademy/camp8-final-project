@@ -2,23 +2,27 @@
 module.exports = {
 	content: ["./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
+		fontFamily: {
+			sans: ["Inter", "sans-serif"],
+			heading: ["Staatliches", "sans-serif"],
+		},
 		colors: {
 			primary: {
 				default: {
 					Solid: "#5F62C7",
 					background: "#7751c7",
 				},
-				trans: "#4211A9",
+				transparent: "rgba(66, 17, 169, 0.1)",
 				frame: "#E6E8FF",
 			},
 			secondary: {
 				default: "#BEDCFA",
-				trans: "",
+				transparent: "rgba(190, 223, 255, 0.25)",
 			},
 			text: {
 				typo: "#453C57",
 				white: "#FFFFFF",
-				whitetrans: "#FFFFFF",
+				white_transparent: "rgba(255, 255, 255, 0.2)",
 			},
 			ux: {
 				error: "#EC1C00",

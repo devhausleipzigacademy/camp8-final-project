@@ -1,13 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Staatliches&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .bg-primary-default-background {
 	background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
-}
-
-.bg-primary-trans {
-	background: rgba(66, 17, 169, 0.1);
 }
 
 .bg-primary-frame {
@@ -22,14 +20,6 @@
 	);
 }
 
-.bg-secondary-trans {
-	background: rgba(190, 223, 255, 0.25);
-}
-
-.bg-text-whitetrans {
-	background: rgba(255, 255, 255, 0.2);
-}
-
 .bg-ux-inactive {
 	background: linear-gradient(
 			114.19deg,
@@ -37,4 +27,50 @@
 			rgba(81, 107, 199, 0.2) 135.54%
 		),
 		rgba(190, 190, 190, 0.8);
+}
+
+/* Setting default text colour */
+@layer base {
+	html {
+		@apply text-text-typo;
+	}
+}
+
+@layer components {
+	.text-title {
+		font-size: 58pt;
+		line-height: 72px;
+		@apply font-heading;
+	}
+	.text-primary {
+		font-size: 18pt;
+		line-height: 22px;
+	}
+
+	.text-links {
+		font-size: 14pt;
+		font-weight: 600;
+		line-height: 17px;
+	}
+	.text-secondary {
+		font-size: 14pt;
+		line-height: 17px;
+	}
+
+	.cards-title {
+		font-size: 40pt;
+		line-height: 50px;
+		@apply font-heading;
+	}
+
+	.button-bold {
+		font-size: 20pt;
+		font-weight: bold;
+		line-height: 24px;
+	}
+
+	.button-large {
+		font-size: 24pt;
+		line-height: 29px;
+	}
 }

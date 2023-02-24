@@ -17,13 +17,23 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
-				Landing Page
-			</h1>
+			<h1 className="text-title">Landing Page</h1>
+
+			<h1 className="text-primary">Landing Page</h1>
+
+			<h1 className="text-links">Landing Page</h1>
+
+			<h1 className="text-secondary">Landing Page</h1>
+
+			<h1 className="cards-title">Landing Page</h1>
+
+			<h1 className="button-bold">Landing Page</h1>
+			<h1 className="button-large">Landing Page</h1>
+
 			<div className="flex flex-row">
 				<div className="h-96 aspect-square bg-primary-default-background"></div>
 				<div className="h-96 aspect-square bg-primary-default-Solid"></div>
-				<div className="h-96 aspect-square bg-primary-trans"></div>
+				<div className="h-96 aspect-square bg-primary-transparent"></div>
 				<div className="h-96 aspect-square bg-primary-frame"></div>
 			</div>
 
@@ -31,7 +41,7 @@ export default function Home() {
 
 			<div className="flex flex-row">
 				<div className="h-96 aspect-square bg-secondary-default"></div>
-				<div className="h-96 aspect-square bg-secondary-trans"></div>
+				<div className="h-96 aspect-square bg-secondary-transparent"></div>
 			</div>
 
 			<hr />
@@ -39,7 +49,7 @@ export default function Home() {
 			<div className="flex flex-row">
 				<div className="h-96 aspect-square bg-text-typo"></div>
 				<div className="h-96 aspect-square border-4 border-primary-default-Solid bg-text-white"></div>
-				<div className="h-96 aspect-square border-4 border-primary-default-Solid bg-text-whitetrans"></div>
+				<div className="h-96 aspect-square border-4 border-primary-default-Solid bg-text-white_transparent"></div>
 			</div>
 
 			<hr />
