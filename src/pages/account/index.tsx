@@ -18,6 +18,7 @@ export default function Settings() {
             Account vs settings
           </div>
           <div className="flex w-full flex-col items-center gap-5">
+            {/* This section will change depending on the account status of the User */}
             <div className="bg-slate-400 h-10 w-10">Profile pic</div>
             <div className="w-full flex flex-col gap-5">
               <div className="bg-slate-400 h-20 w-full">Username</div>
