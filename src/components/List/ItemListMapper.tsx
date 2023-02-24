@@ -12,6 +12,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
 
   switch (props.sortBy) {
     case "date":
+      sorted = props.itemList;
       break;
     case "category":
       sorted = sortByCategory(props.itemList);
@@ -22,7 +23,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
   }
   return (
     <>
-      {props.itemList.map((product) => {
+      {sorted.map((product) => {
         let nameSection = false;
 
         if (props.sortBy === "category") {
