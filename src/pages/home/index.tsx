@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
 	const date = new Date();
@@ -20,22 +20,25 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className="w-[414]px h-[736]px flex flex-col">
-				<div className=" flex flex-row justify-between h-12 mx-6 mt-4">
+				<div className=" flex flex-row justify-between h-12 mt-4">
 					<h3 className=" text-4xl text-indigo-600">
 						HEY, BEAUTIFUL!
 					</h3>
 					<UserCircleIcon className="w-6 h-6 mt-2" />
 				</div>
 
-				<div className=" flex w-screen mt-2 mx-6">
+				<div className="relative w-screen mt-3">
 					<input
 						type="text"
 						placeholder="Search"
-						className=" border border-indigo-700 rounded-lg p-3"
+						className=" border border-indigo-700 rounded-lg w-full p-3"
 					/>
+					<div className=" absolute top-0 right-0 p-3">
+						<MagnifyingGlassIcon className="w-6 h-6" />
+					</div>
 				</div>
 
-				<div className="flex flex-col  bg-indigo-700 rounded-2xl h-60  mx-4 mt-4">
+				<div className="flex flex-col bg-indigo-700 rounded-3xl h-60 mt-4">
 					<h5 className="text-white mt-10 ml-6">18/19 items</h5>
 					<h3 className=" text-white text-3xl  ml-6 mt-6">
 						WEIHNACHTEN
@@ -44,7 +47,7 @@ export default function Home() {
 						12.23.2023
 					</p>
 				</div>
-				<div className="flex flex-col  bg-indigo-700 rounded-2xl h-60  mx-4 mt-4">
+				<div className="flex flex-col  bg-indigo-700 rounded-3xl h-60 mt-4">
 					<h5 className="text-white mt-10 ml-6">18/19 items</h5>
 					<h3 className=" text-white text-3xl  ml-6 mt-6">
 						WEIHNACHTEN
@@ -54,7 +57,7 @@ export default function Home() {
 					</p>
 				</div>
 				<div className=" flex items-center justify-center mt-3">
-					<button className="border rounded-full w-20 h-20 text-lg text-white bg-indigo-800">
+					<button className="border rounded-full w-20 h-20 text-4xl text-white bg-indigo-800">
 						+
 					</button>
 				</div>
