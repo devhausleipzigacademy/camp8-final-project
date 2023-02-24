@@ -27,11 +27,11 @@ export default function Home() {
 					<UserCircleIcon className="w-6 h-6 mt-2" />
 				</div>
 
-				<div className=" flex mt-2 mx-6">
+				<div className=" flex w-screen mt-2 mx-6">
 					<input
 						type="text"
 						placeholder="Search"
-						className=" border border-indigo-700 rounded-lg w-full p-3"
+						className=" border border-indigo-700 rounded-lg p-3"
 					/>
 				</div>
 
@@ -49,7 +49,9 @@ export default function Home() {
 					<h3 className=" text-white text-3xl  ml-6 mt-6">
 						WEIHNACHTEN
 					</h3>
-					<p className="text-white text-end mt-10 mr-20">12.23.2023</p>
+					<p className="text-white text-end mt-10 mr-20">
+						12.23.2023
+					</p>
 				</div>
 				<div className=" flex items-center justify-center mt-3">
 					<button className="border rounded-full w-20 h-20 text-lg text-white bg-indigo-800">
