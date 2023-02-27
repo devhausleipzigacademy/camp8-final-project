@@ -33,9 +33,9 @@ export function ItemListMapper(props: ItemListMapperProps) {
           }
         }
         return (
-          <div>
+          <div className=" py-1">
             {nameSection ? <p>{sectionName + ":"}</p> : <p></p>}
-            <p className="bg-slate-300 rounded-2xl">{product.item}</p>
+            <p className="px-4 bg-slate-300 rounded-2xl">{product.item}</p>
           </div>
         );
       })}
