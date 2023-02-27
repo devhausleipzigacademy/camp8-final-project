@@ -1,7 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import EmailProvider from "next-auth/providers/email";
-
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -18,7 +17,13 @@ export const authOptions: NextAuthOptions = {
 
 		// ...add more providers here
 	],
+	session: {
+		strategy: "jwt",
+	},
 	secret: process.env.SECRET,
+	jwt: {
+		secret: process.env.SECRET,
+	},
 };
 
 export default NextAuth(authOptions);
