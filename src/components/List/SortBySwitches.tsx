@@ -59,7 +59,7 @@ export function SortBySwitches(props: SortByProps) {
   return (
     <>
       <RadioGroup
-        className="flex flex-row justify-center items-center bg-[#BEDFFF40] h-7 gap-2 rounded-[10px]"
+        className="font-sans flex flex-row justify-center items-center bg-secondary-transparent text-sm h-7 gap-2 rounded-[10px]"
         value={props.sortBy}
         onChange={props.setSort}
       >
@@ -67,8 +67,8 @@ export function SortBySwitches(props: SortByProps) {
           {({ checked }) => (
             <p
               className={clsx(
-                "h-full  flex justify-center items-center rounded-[10px] text-sm",
-                checked ? "bg-[#7751C7] text-white" : ""
+                "h-full  flex justify-center items-center rounded-[10px] ",
+                checked ? "bg-primary-default-background text-text-white" : ""
               )}
             >
               Date
@@ -79,8 +79,8 @@ export function SortBySwitches(props: SortByProps) {
           {({ checked }) => (
             <p
               className={clsx(
-                "h-full  flex justify-center items-center rounded-[10px] text-sm",
-                checked ? "bg-[#7751C7] text-white" : ""
+                "h-full  flex justify-center items-center rounded-[10px] ",
+                checked ? "bg-primary-default-background text-text-white" : ""
               )}
             >
               Category
@@ -91,8 +91,8 @@ export function SortBySwitches(props: SortByProps) {
           {({ checked }) => (
             <p
               className={clsx(
-                "h-full  flex justify-center items-center rounded-[10px] text-sm",
-                checked ? "bg-[#7751C7] text-white" : ""
+                "h-full  flex justify-center items-center rounded-[10px] ",
+                checked ? "bg-primary-default-background text-text-white" : ""
               )}
             >
               Alphabetical

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ItemListMapper } from "@/components/List/ItemListMapper";
+import { ItemListMapper } from "../components/List/ItemListMapper";
 
 const meta: Meta<typeof ItemListMapper> = {
   title: "components/ItemListMapper",
