@@ -2,6 +2,9 @@
   "name": "final-project",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "resolutions": {
     "webpack5": "5^"
   },
