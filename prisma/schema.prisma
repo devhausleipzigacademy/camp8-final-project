@@ -12,10 +12,7 @@
 
 //Workflow: disply Item on a list: display all UserItem filtered by listId. Only listIds that the user has acceess to are displayd.
 
-///Optional, bit important:
-//in Front there are two options
-//There is a msterItem, of no, customName to be added to Items
-//Alternative: moderationsworkflow: all new entries are added to masterItems but only approved one are shown to other users
+///Optional, bit important: moderationsworkflow: all new entries are added to masterItems but only approved one are shown to other users
 
 
 generator client {
