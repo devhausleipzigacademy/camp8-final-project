@@ -1,15 +1,19 @@
 //About this Schema:
 
-// MasterItems:  contain all "prototype" Items. Are defined by id, name, img-url and a default category for this item.
-// Categories:   contain all Categories. Are definied by id and Name
-// UserItems:    contain all Items used by a User. Are definied by id, a user they belong to, lists they found on, masterItemId and a custom Category (which is optional)
-// Lists:        contain all Lists. Are defined by id, the user they belong to, and Items related to this list.
-// User:         all User. Are defined by id, name, and lists that are related to this specific user.
+// MasterItem:  contain all "prototype" Item. Are defined by id, name, img-url and a default category for this item.
+// Category:   contain all Category. Are definied by id and Name
+// UserItem:    contain all Item used by a User. Are definied by id, a user they belong to, List they found on, masterItemId and a custom Category (which is optional)
+// List:        contain all List. Are defined by id, the user they belong to, and Item related to this list.
+// User:         all User. Are defined by id, name, and List that are related to this specific user.
 
 //Workflow: choose an Item to add to the List:
-////pick listId, pick an masterItemId from MasterItems & add a record to UserItems
-//Workflow: disply Items on a list: display all UserItems filtered by listId. Only listIds that the user has acceess to are displayd.
-////
+////pick listId, pick a masterItemId from MasterItem & add a record to Items
+//Workflow: disply Item on a list: display all UserItem filtered by listId. Only listIds that the user has acceess to are displayd.
+
+///Optional, bit important:
+//in Front there are two options
+//There is a msterItem, of no, custonName to be added to Items
+//Alternative: moderationsworkflow: all new entries are added to masterItems but only approved one are shown to other users
 
 
 generator client {
@@ -26,59 +30,67 @@ model User {
   userId              String @id @default(uuid())
 
   userName            String
-  userEmail           String
-  userLists           Lists[] //opposite relation one-to-many
+  userEmail           String @unique
+  userLists            List[] //opposite relation one-to-many
 
-  //should take all   UserItems with fitting userIdentifier
-  userItems           UserItems[] //opposite relation one-to-many
+  @@map("Users")
 }
 
-model Lists {
-  listId              String  @id @default(uuid())
+model List {
+  listId              String @id @default(uuid())
 
-  listName            String? // As default Name whenever created should be the date
+  listName            String? @default("new list")
 
   userIdentifier      String //entering correct identifier will Link to user
   belongsTo           User @relation(fields: [userIdentifier], references: [userId])
 
-  userItems           UserItems[] ///opposite relation to userItems related to this List.
+  items               Item[] ///opposite relation to userItem related to this List.
+
+  @@map("List")
 }
 
-model UserItems {
-  userItemId          String  @id @default(uuid())
+model Item {
+  itemId              String  @id @default(uuid())
 
-  //entering correct identifier will Link to user
-  userIdentifier      String
-  belongsTo           User   @relation(fields: [userIdentifier], references: [userId])
+  customItemName      String?
+
+  quantity            Float?
+  unit                String?
 
   //entering correct identifier will Link to a list
-  //after deleting the list -> userItem remains in DB
   listIdentifier      String?
-  inLists             Lists?   @relation(fields: [listIdentifier], references: [listId])
-  //or -> inLists             List[] //opposite relation for in
+  inList              List?   @relation(fields: [listIdentifier], references: [listId])
 
   //this userItem is based on
-  masterItemName      String
-  masterItem          MasterItems @relation(fields: [masterItemName], references: [masterItemName])
+  masterItemId        String
+  masterItem          MasterItem @relation(fields: [masterItemId], references: [masterItemId])
 
   customCategoryId    String?
-  customCategory      Categories? @relation(fields: [customCategoryId], references: [categoryId])
+  customCategory      Category? @relation(fields: [customCategoryId], references: [categoryId])
+
+  @@map("Items")
 }
 
-model MasterItems {
+model MasterItem {
   masterItemId        String @id @default(uuid())
   masterItemName      String @unique
   imageUrl            String?
 
   categoryName        String?
-  defaultCategory     Categories? @relation(fields: [categoryName], references: [categoryName])
+  defaultCategory     Category? @relation(fields: [categoryName], references: [categoryName])
 
-  userItems           UserItems[] //opposite Relation
+  Item                Item[] //opposite Relation
+
+  @@map("MasterItems")
 }
 
-model Categories {
+model Category {
   categoryId          String  @id @default(uuid())
   categoryName        String  @unique
-  masterItems         MasterItems[] //opposite relation to defaultCategory in MasterItems
-  userItems           UserItems[] //opposite relation to customCategory in userItems
+  MasterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
+  userItem            Item[] //opposite relation to customCategory in userItem
+
+  @@map("Categories")
 }
+
+//INAM ANLEGEN FÜR UNITS
