@@ -8,11 +8,13 @@
 
 //Workflow: choose an Item to add to the List:
 ////pick listId, pick a masterItemId from MasterItem & add a record to Items
+////if You typed in
+
 //Workflow: disply Item on a list: display all UserItem filtered by listId. Only listIds that the user has acceess to are displayd.
 
 ///Optional, bit important:
 //in Front there are two options
-//There is a msterItem, of no, custonName to be added to Items
+//There is a msterItem, of no, customName to be added to Items
 //Alternative: moderationsworkflow: all new entries are added to masterItems but only approved one are shown to other users
 
 
@@ -78,6 +80,8 @@ model MasterItem {
 
   categoryName        String?
   defaultCategory     Category? @relation(fields: [categoryName], references: [categoryName])
+
+  approved            Boolean
 
   Item                Item[] //opposite Relation
 
