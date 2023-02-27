@@ -16,7 +16,7 @@ const items: Items = [
 	{ id: 6, name: "Fish" },
 ];
 
-export default function SearchBar() {
+export function SearchBar() {
 	const [selectedItems, setSelectedItems] = useState(items[0]);
 	const [query, setQuery] = useState("");
 
