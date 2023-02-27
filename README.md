@@ -4,8 +4,6 @@ This is our final project.
 
 The idea is a shopping list App with catagorizations depending on type.
 
-## FIGMA FILE
-
 Link to the Figma file:
 
 https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=DtQdRXnNpxqWqUqN-1
@@ -43,8 +41,6 @@ Link to the Figma file:## Color Reference
 This is our final project.
 
 The idea is a shopping list App with catagorizations depending on type.
-
-## FIGMA FILE
 
 Link to the Figma file:
 
@@ -100,6 +96,7 @@ Link to the Figma file:## Color Reference
 | Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
 
 ## API REFERENCE
+## API REFERENCE
 
 #### Example API backend
 
@@ -130,7 +127,5 @@ Possible responses from system:
 #### add(num1, num2)
 
 Takes two numbers and returns the sum.
-
-#### add(num1, num2)
 
 Takes two numbers and returns the sum.
