@@ -1,4 +1,3 @@
-import ListItem from "@/components/ListItem";
 import Head from "next/head";
 
 export default function Home() {
