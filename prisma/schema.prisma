@@ -1,18 +1,30 @@
 //About this Schema:
 
-// MasterItem:  contain all "prototype" Item. Are defined by id, name, img-url and a default category for this item.
-// Category:   contain all Category. Are definied by id and Name
-// UserItem:    contain all Item used by a User. Are definied by id, a user they belong to, List they found on, masterItemId and a custom Category (which is optional)
-// List:        contain all List. Are defined by id, the user they belong to, and Item related to this list.
-// User:         all User. Are defined by id, name, and List that are related to this specific user.
+// MasterItems:  "prototype" Items. Are defined by id, name, img-url and a default category for this item and a list, and a boolean, to indivate, if it has been approved..
+// Categories:   Categories. Are definied by id and Name.
+// Items:        Items used in Lists. Are definied by id, List they are found in, masterItemId and a custom Category (which is optional)
+// Lists:        Lists. Are defined by id, the user they belong to, and Items related to this list.
+// Users:        Users. Are defined by id, name, and List that are related to this specific user.
 
-//Workflow: choose an Item to add to the List:
-////pick listId, pick a masterItemId from MasterItem & add a record to Items
-////if You typed in
+//WORKFLOWS:
 
-//Workflow: disply Item on a list: display all UserItem filtered by listId. Only listIds that the user has acceess to are displayd.
+//1. add Item to the List:
+////pick listId, start typing
+////Input already in MasterItems: simply add Item to the list, add listId as listIdentifier
+////Input not in Category yet: add Item to MasterItems, add Item to list, add listId as listIdentifier
 
-///Optional, bit important: moderationsworkflow: all new entries are added to masterItems but only approved one are shown to other users
+//2. disply Lists for a specific user:
+////Only listIds that the user has acceess to are displayd.
+
+//3. show List content:
+////display all Items filtered by listId.
+
+//4. change Category:
+//// take Item by ItemId, take targeted Category, store as custom Category
+
+//5. delete List:
+////delete all Items form Items linked listId, delete List by listId
+
 
 
 generator client {
@@ -94,4 +106,4 @@ model Category {
   @@map("Categories")
 }
 
-//INAM ANLEGEN FÜR UNITS
+//Additional: Inam for units
