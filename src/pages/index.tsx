@@ -1,9 +1,19 @@
 import Head from "next/head";
+import EditModal from "./list";
 
 export default function Home() {
 	return (
 		<>
-			<Head>
+			<div className="bg-primary-frame">
+				<Head>
+					<h1 className="font-heading text-primary-default-background">
+						List
+					</h1>
+				</Head>
+				<EditModal />
+			</div>
+
+			{/* <Head>
 				<title>Create Next App</title>
 				<meta
 					name="description"
@@ -17,7 +27,7 @@ export default function Home() {
 			</Head>
 			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
 				Landing Page
-			</h1>
+			</h1> */}
 		</>
 	);
 }
