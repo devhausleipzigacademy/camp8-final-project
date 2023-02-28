@@ -29,7 +29,7 @@ model List {
 
 model Categories {
   id    String  @id @default(uuid())
-  name  String  @unique
+  name  String  
   Items Items[]
 }
 
