@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import clsx from "clsx";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import { MdOutlineLock } from "react-icons/md";
 
-interface LargeButtonProps
+export interface LargeButtonProps
 	extends DetailedHTMLProps<
 		ButtonHTMLAttributes<HTMLButtonElement>,
 		HTMLButtonElement
@@ -13,6 +14,9 @@ interface LargeButtonProps
 	disabled?: boolean;
 }
 
+// Need to add the onPress state for both primary and secondary.
+// first must research how to do this on css
+
 export default function LargeButton({
 	variant,
 	label,
@@ -21,9 +25,16 @@ export default function LargeButton({
 }: LargeButtonProps) {
 	return (
 		<button
-			className={
-				clsx(/* "text-center rounded-lg w-full",  variant === "primary" && !disabled ? */)
-			}
+			className={clsx(
+				"text-center rounded-lg w-full h-12 disabled:cursor-not-allowed",
+				variant == "primary" && !disabled
+					? "bg-primary-default-background text-text-white active:shadow-buttonShadow"
+					: variant == "primary" && disabled
+					? "bg-ux-inactive text-text-white"
+					: variant == "secondary" && !disabled
+					? "bg-text-white text-primary-default-Solid active:shadow-buttonShadow"
+					: "bg-ux-inactive text-ux-inactive"
+			)}
 			{...props}
 		>
 			{label}

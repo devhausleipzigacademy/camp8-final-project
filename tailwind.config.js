@@ -30,6 +30,9 @@ module.exports = {
 				success: "#B4E747",
 			},
 		},
+		boxShadow: {
+			buttonShadow: "inset 3px 4px 0px rgba(134, 100, 196, 0.3);",
+		},
 	},
 	plugins: [],
 };
