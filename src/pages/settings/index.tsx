@@ -1,4 +1,5 @@
 import Head from "next/head";
+import TabAccountSetting from "@/components/TabAccountSetting";
 
 export default function Settings() {
   return (
@@ -12,6 +13,7 @@ export default function Settings() {
       <h1 className="text-red-600 text-4xl font-bold flex justify-center">
         Settings{" "}
       </h1>
+      <TabAccountSetting />
     </>
   );
 }
