@@ -1,14 +1,24 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import LargeButton from "@/components/LargeButton";
-import { LargeButtonProps } from "@/components/LargeButton";
+import {
+	ComponentMeta,
+	ComponentStory,
+	Meta,
+	StoryObj,
+} from "@storybook/react";
+import { LargeButton } from "../components/LargeButton";
 
 export default {
-	title: "Example/largeButton",
+	title: "components/LargeButton",
 	component: LargeButton,
 	argTypes: {
-		variant: "primary" | "secondary",
+		type: {
+			options: ["primary", "secondary"],
+			control: { type: "radio" },
+		},
 	},
-};
+} as ComponentMeta<typeof LargeButton>;
 
-e;
+const Template: ComponentStory<typeof LargeButton> = (args: any) => (
+	<LargeButton {...args} />
+);
+
+export const largeButton = Template.bind({});

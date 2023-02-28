@@ -17,7 +17,7 @@ export interface LargeButtonProps
 // Need to add the onPress state for both primary and secondary.
 // first must research how to do this on css
 
-export default function LargeButton({
+export function LargeButton({
 	variant,
 	label,
 	disabled,
@@ -38,6 +38,9 @@ export default function LargeButton({
 			{...props}
 		>
 			{label}
+			{"primary" && (
+				<MdOutlineLock className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square" />
+			)}
 		</button>
 	);
 }
