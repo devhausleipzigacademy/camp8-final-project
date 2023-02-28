@@ -31,6 +31,14 @@ export const authOptions: NextAuthOptions = {
 	jwt: {
 		secret: process.env.SECRET,
 	},
+
+	pages: {
+		signIn: "/auth/email-ssignin",
+		signOut: "/auth/signout",
+		error: "/auth/error", // Error code passed in query string as ?error=
+		verifyRequest: "/auth/verify-request", // (used for check email message)
+		newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
+	},
 };
 
 export default NextAuth(authOptions);
