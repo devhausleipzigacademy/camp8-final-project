@@ -57,9 +57,9 @@ model List {
   listIdentifier      String //entering correct listIdentifier will Link to user
   belongsTo           User @relation(fields: [listIdentifier], references: [id])
 
-  items               Item[] ///opposite relation to userItem related to this List.
+  items               Item[] ///opposite relation to Items related to this List.
 
-  @@map("List")
+  @@map("Lists")
 }
 
 model Item {
