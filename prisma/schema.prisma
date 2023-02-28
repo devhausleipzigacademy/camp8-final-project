@@ -1,3 +1,5 @@
+//to be done: date&time for Items and Lists
+
 //About this Schema:
 
 // MasterItems:  "prototype" Items. Are defined by id, name, img-url and a default category for this item and a list, and a boolean, to indivate, if it has been approved..
