@@ -11,21 +11,21 @@
 //WORKFLOWS:
 
 //1. add Item to the List:
-////pick listId, start typing
-////Input already in MasterItems: simply add Item to the list, add listId as listIdentifier
-////Input not in Category yet: add Item to MasterItems, add Item to list, add listId as listIdentifier
+////pick id, start typing
+////Input already in MasterItems: simply add Item to the list, add id as listIdentifier
+////Input not in Category yet: add Item to MasterItems, add Item to list, add id as listIdentifier
 
 //2. disply Lists for a specific user:
-////Only listIds that the user has acceess to are displayd.
+////Only ids that the user has acceess to are displayd.
 
 //3. show List content:
-////display all Items filtered by listId.
+////display all Items filtered by id.
 
 //4. change Category:
 //// take Item by ItemId, take targeted Category, store as custom Category
 
 //5. delete List:
-////delete all Items form Items linked listId, delete List by listId
+////delete all Items form Items linked id, delete List by id
 
 
 
@@ -40,22 +40,22 @@ datasource db {
 }
 
 model User {
-  userId              String @id @default(uuid())
+  id              String @id @default(uuid())
 
-  userName            String
-  userEmail           String @unique
-  userLists            List[] //opposite relation one-to-many
+  name            String
+  email           String @unique
+  lists           List[] //opposite relation one-to-many
 
   @@map("Users")
 }
 
 model List {
-  listId              String @id @default(uuid())
+  id              String @id @default(uuid())
 
   listName            String? @default("new list")
 
-  userIdentifier      String //entering correct identifier will Link to user
-  belongsTo           User @relation(fields: [userIdentifier], references: [userId])
+  listIdentifier      String //entering correct listIdentifier will Link to user
+  belongsTo           User @relation(fields: [listIdentifier], references: [id])
 
   items               Item[] ///opposite relation to userItem related to this List.
 
@@ -63,46 +63,46 @@ model List {
 }
 
 model Item {
-  itemId              String  @id @default(uuid())
+  id                  String  @id @default(uuid())
 
   customItemName      String?
 
   quantity            Float?
   unit                String?
 
-  //entering correct identifier will Link to a list
+  //entering correct listIdentifier will Link to a list
   listIdentifier      String?
-  inList              List?   @relation(fields: [listIdentifier], references: [listId])
+  inList              List?   @relation(fields: [listIdentifier], references: [id])
 
   //this userItem is based on
   masterItemId        String
-  masterItem          MasterItem @relation(fields: [masterItemId], references: [masterItemId])
+  masterItem          MasterItem @relation(fields: [masterItemId], references: [id])
 
   customCategoryId    String?
-  customCategory      Category? @relation(fields: [customCategoryId], references: [categoryId])
+  customCategory      Category? @relation(fields: [customCategoryId], references: [id])
 
   @@map("Items")
 }
 
 model MasterItem {
-  masterItemId        String @id @default(uuid())
-  masterItemName      String @unique
+  id                  String @id @default(uuid())
+  name                String @unique
   imageUrl            String?
 
-  categoryName        String?
-  defaultCategory     Category? @relation(fields: [categoryName], references: [categoryName])
+  category            String?
+  defaultCategory     Category? @relation(fields: [category], references: [category])
 
   approved            Boolean
 
-  Item                Item[] //opposite Relation
+  item                Item[] //opposite Relation
 
   @@map("MasterItems")
 }
 
 model Category {
-  categoryId          String  @id @default(uuid())
-  categoryName        String  @unique
-  MasterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
+  id          String  @id @default(uuid())
+  category            String  @unique
+  masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
   userItem            Item[] //opposite relation to customCategory in userItem
 
   @@map("Categories")
