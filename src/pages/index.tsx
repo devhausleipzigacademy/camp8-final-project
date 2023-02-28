@@ -13,12 +13,6 @@ export default function Home() {
       <h1 className="text-red-600 text-4xl font-bold flex justify-center">
         Landing Page
       </h1>
-      <ListItem
-        checked={true}
-        image="https://spoonacular.com/cdn/ingredients_100x100/bananas.jpg"
-        name="Bananas"
-        onTick={() => console.log("Hello")}
-      />
     </>
   );
 }
