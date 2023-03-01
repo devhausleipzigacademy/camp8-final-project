@@ -5,72 +5,72 @@
 @tailwind utilities;
 
 .bg-primary-default-background {
-	background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
+  background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
 }
 
 .bg-primary-frame {
-	background: linear-gradient(
-		179.79deg,
-		#e6e8ff 0.18%,
-		#eae7ff 18.44%,
-		#ebecff 40.25%,
-		#ebf4ff 60.18%,
-		#edf8ff 81.34%,
-		#f4fdfb 99.82%
-	);
+  background: linear-gradient(
+    179.79deg,
+    #e6e8ff 0.18%,
+    #eae7ff 18.44%,
+    #ebecff 40.25%,
+    #ebf4ff 60.18%,
+    #edf8ff 81.34%,
+    #f4fdfb 99.82%
+  );
 }
 
 .bg-ux-inactive {
-	background: linear-gradient(
-			114.19deg,
-			rgba(119, 81, 199, 0.2) 26.22%,
-			rgba(81, 107, 199, 0.2) 135.54%
-		),
-		rgba(190, 190, 190, 0.8);
+  background: linear-gradient(
+      114.19deg,
+      rgba(119, 81, 199, 0.2) 26.22%,
+      rgba(81, 107, 199, 0.2) 135.54%
+    ),
+    rgba(190, 190, 190, 0.8);
 }
 
 /* Setting default text colour */
 @layer base {
-	html {
-		@apply text-text-typo;
-	}
+  html {
+    @apply text-text-typo;
+  }
 }
 
 @layer components {
-	.text-title {
-		font-size: 58pt;
-		line-height: 72px;
-		@apply font-heading;
-	}
-	.text-primary {
-		font-size: 18pt;
-		line-height: 22px;
-	}
+  .text-title {
+    font-size: 58pt;
+    line-height: 72px;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 18pt;
+    line-height: 22px;
+  }
 
-	.text-links {
-		font-size: 14pt;
-		font-weight: 600;
-		line-height: 17px;
-	}
-	.text-secondary {
-		font-size: 14pt;
-		line-height: 17px;
-	}
+  .text-links {
+    font-size: 14pt;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14pt;
+    line-height: 17px;
+  }
 
-	.cards-title {
-		font-size: 40pt;
-		line-height: 50px;
-		@apply font-heading;
-	}
+  .cards-title {
+    font-size: 40pt;
+    line-height: 50px;
+    @apply font-heading;
+  }
 
-	.button-bold {
-		font-size: 20pt;
-		font-weight: bold;
-		line-height: 24px;
-	}
+  .button-bold {
+    font-size: 20pt;
+    font-weight: bold;
+    line-height: 24px;
+  }
 
-	.button-large {
-		font-size: 24pt;
-		line-height: 29px;
-	}
+  .button-large {
+    font-size: 24pt;
+    line-height: 29px;
+  }
 }

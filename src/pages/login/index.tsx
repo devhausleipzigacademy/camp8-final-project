@@ -1,4 +1,3 @@
-import { IconButton } from "@/components/IconButton";
 import Head from "next/head";
 
 export default function Login() {
