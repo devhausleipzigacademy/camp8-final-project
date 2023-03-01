@@ -10,11 +10,8 @@ export interface LargeButtonProps
 	> {
 	variant: "primary" | "secondary";
 	label: string;
-	disabled?: boolean;
+	disabled: boolean;
 }
-
-// Need to add the onPress state for both primary and secondary.
-// first must research how to do this on css
 
 export function LargeButton({
 	variant,
@@ -25,10 +22,10 @@ export function LargeButton({
 	return (
 		<button
 			className={clsx(
-				"flex items-center text-center border-box rounded-lg w-full h-12 disabled:cursor-not-allowed",
+				"flex items-center text-center border-box rounded-md w-full h-12 disabled:cursor-not-allowed",
 				variant == "primary"
-					? "bg-gradient-bl-primary-background button-large justify-around text-text-white disabled:bg-ux-inactive active:shadow-primaryButtonShadow"
-					: "bg-text-white border-2 button-bold justify-center text-primary-default-Solid disabled:text-ux-inactive active:shadow-secondaryButtonShadow"
+					? "enabled:bg-gradient-bl-primary-background button-large justify-around text-text-white disabled:bg-ux-inactive enabled:active:shadow-primaryButtonShadow"
+					: "bg-text-white border-2 button-bold justify-center text-primary-default-Solid  disabled:text-ux-inactive enabled:active:shadow-secondaryButtonShadow"
 			)}
 			disabled={disabled}
 			{...props}
