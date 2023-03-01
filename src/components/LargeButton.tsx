@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import clsx from "clsx";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
