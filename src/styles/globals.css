@@ -55,6 +55,7 @@
   .text-secondary {
     font-size: 14pt;
     line-height: 17px;
+    font-weight: lighter;
   }
 
   .cards-title {
@@ -72,5 +73,10 @@
   .button-large {
     font-size: 24pt;
     line-height: 29px;
+  }
+  
+  #Delete_Action,
+  #Tick_Action {
+    justify-content: center;
   }
 }
