@@ -4,10 +4,10 @@ import EditModal from "./list";
 export default function Home() {
 	return (
 		<>
-			<div className="bg-primary-frame">
+			<div className="h-screen bg-primary-frame">
 				<Head>
 					<h1 className="font-heading text-primary-default-background">
-						List
+						go back Header List Name
 					</h1>
 				</Head>
 				<EditModal />

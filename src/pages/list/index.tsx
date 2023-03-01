@@ -29,50 +29,57 @@ export default function EditModal() {
 				title: "Category D",
 			},
 		],
-		Quantity: [
-			{
-				id: 1,
-				title: "enter quantity",
-			},
-		],
-		Units: [
-			{
-				id: 1,
-				title: "ml Mililiters)",
-			},
-			{
-				id: 2,
-				title: "l (Liters)",
-			},
-			{
-				id: 3,
-				title: "g (Grams)",
-			},
-			{
-				id: 4,
-				title: "kg (Kilograms)",
-			},
-			{
-				id: 5,
-				title: "kg (Kilograms)",
-			},
-		],
+		Quantity:
+			// this will be an input field
+			//NEW INPUT COMPONENT
+			[
+				{
+					id: 1,
+					title: "enter quantity",
+				},
+			],
+		Units:
+			// this will have 5 fixed ids
+			[
+				{
+					id: 1,
+					title: "ml Mililiters)",
+				},
+				{
+					id: 2,
+					title: "l (Liters)",
+				},
+				{
+					id: 3,
+					title: "g (Grams)",
+				},
+				{
+					id: 4,
+					title: "kg (Kilograms)",
+				},
+				{
+					id: 5,
+					title: "kg (Kilograms)",
+				},
+			],
 	});
 
 	return (
-		<div className="w-full max-w-md px-2 py-16 sm:px-0 outline-1 outline-primary-default-background">
+		// LIST ITEM COMPONENT goes here
+		// empty reusable TABS COMPONENT goes here
+		<div className="w-full max-w-md px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
 			<Tab.Group>
-				<Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1 ">
+				<Tab.List className="flex space-x-1 rounded-xl p-1 ">
 					{Object.keys(categories).map((category) => (
 						<Tab
 							key={category}
 							className={({ selected }) =>
 								classNames(
-									"w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+									"w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-text-white",
 									"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
 									selected
-										? "bg-primary-default-background"
-										: "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+										? "bg-primary-default-background text-text-white"
+										: "text-text-typo hover:bg-white/[0.12] hover:text-white"
 								)
 							}
 						>
@@ -80,39 +87,32 @@ export default function EditModal() {
 						</Tab>
 					))}
 				</Tab.List>
+				{/* IMPLEMENT FUNCTIONALITY */}
 				<Tab.Panels className="mt-2">
-					{Object.values(categories).map((posts, idx, id) => (
+					{Object.values(categories).map((options, idx) => (
 						<Tab.Panel
 							key={idx}
 							className={classNames(
-								"rounded-xl bg-white p-3 ",
+								"rounded-xl bg-white p-3 outline-1 outline-primary-default-background font-sans text-text-typo",
 								"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
 							)}
 						>
-							<ul>
-								{posts.map((post) => (
+							<ul className="rounded-xl outline outline-offset-2 outline-primary-default-background">
+								{options.map((option) => (
 									<li
-										key={post.id}
-										className={({ selected }) =>
-											classNames(
-												"relative rounded-md p-3 outline-1 outline-primary-default-background",
-										selected
-												? "bg-primary-default-background opacity-10",
-												: "bg-white",
-											)}
+										key={option.id}
+										className="relative rounded-md p-3"
+										//bg-primary-default-background opacity-10
 									>
 										<h3 className="text-sm font-medium leading-5">
-											{post.title}
+											{option.title}
 										</h3>
 
 										<a
 											href="#"
-										
-											className={
-												classNames(
+											className={classNames(
 												"absolute inset-0 rounded-md",
-												"ring-blue-400 focus:z-10 focus:outline-none focus:ring-2",
-												
+												"focus:z-10 focus:outline-none focus:bg-primary-default-background focus:opacity-10"
 											)}
 										/>
 									</li>
