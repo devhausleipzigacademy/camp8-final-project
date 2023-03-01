@@ -10,7 +10,7 @@ export default {
 	title: "components/LargeButton",
 	component: LargeButton,
 	argTypes: {
-		type: {
+		variant: {
 			options: ["primary", "secondary"],
 			control: { type: "radio" },
 		},

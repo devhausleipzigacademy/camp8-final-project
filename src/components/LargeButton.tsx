@@ -25,20 +25,21 @@ export function LargeButton({
 	return (
 		<button
 			className={clsx(
-				"text-center rounded-lg w-full h-12 disabled:cursor-not-allowed",
+				"flex items-center text-center border-box rounded-lg w-full h-12 disabled:cursor-not-allowed",
 				variant == "primary" && !disabled
-					? "bg-primary-default-background text-text-white active:shadow-buttonShadow"
+					? "bg-primary-default-background button-large justify-around text-text-white active:shadow-buttonShadow"
 					: variant == "primary" && disabled
-					? "bg-ux-inactive text-text-white"
+					? "bg-ux-inactive justify-around button-large text-text-white"
 					: variant == "secondary" && !disabled
-					? "bg-text-white text-primary-default-Solid active:shadow-buttonShadow"
-					: "bg-ux-inactive text-ux-inactive"
+					? "bg-text-white border-2 button-bold justify-center text-primary-default-Solid active:shadow-buttonShadow"
+					: "text-ux-inactive border-2 button-bold justify-center"
 			)}
 			{...props}
 		>
+			<div></div>
 			{label}
-			{"primary" && (
-				<MdOutlineLock className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square" />
+			{variant === "primary" && (
+				<MdOutlineLock className="button-large aspect-square" />
 			)}
 		</button>
 	);
