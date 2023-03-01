@@ -24,8 +24,8 @@ export function LargeButton({
 }: LargeButtonProps) {
 	return (
 		<button
-			className={clsx(
-				"flex items-center text-center border-box rounded-lg w-full h-12 disabled:cursor-not-allowed",
+			/* 		className={clsx(
+				"flex items-center text-center border-box rounded-lg w-full h-12",
 				variant == "primary" && !disabled
 					? "bg-primary-default-background button-large justify-around text-text-white active:shadow-buttonShadow"
 					: variant == "primary" && disabled
@@ -34,6 +34,14 @@ export function LargeButton({
 					? "bg-text-white border-2 button-bold justify-center text-primary-default-Solid active:shadow-buttonShadow"
 					: "text-ux-inactive border-2 button-bold justify-center"
 			)}
+			{...props} */
+			className={clsx(
+				"flex items-center text-center border-box rounded-lg w-full h-12 active:shadow-buttonShadow disabled:cursor-not-allowed",
+				variant == "primary"
+					? "bg-text-white button-large justify-around text-text-white disabled:bg-ux-inactive"
+					: "bg-text-white border-2 button-bold justify-center text-primary-default-Solid disabled:text-ux-inactive"
+			)}
+			disabled={disabled}
 			{...props}
 		>
 			<div></div>
