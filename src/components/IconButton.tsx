@@ -9,7 +9,7 @@ type IconButton = {
 export function IconButton(props: IconButton) {
   return (
     <Link href="/account">
-      <CgProfile className="w-32 h-32 text-primary-default-Solid" />
+      <CgProfile className="w-6 h-6 text-primary-default-Solid" />
     </Link>
   );
 }
