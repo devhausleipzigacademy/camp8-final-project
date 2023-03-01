@@ -51,7 +51,6 @@ export default function Card({
   );
 
   return (
-    <SwipeableList fullSwipe={true}>
       <Transition
         show={swiped}
         appear={true}
@@ -97,7 +96,6 @@ export default function Card({
           </div>
         </SwipeableListItem>
       </Transition>
-    </SwipeableList>
   );
 }
 
