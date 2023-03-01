@@ -17,6 +17,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.12",
     "@next/font": "13.1.6",
     "@prisma/client": "^4.10.1",
     "@types/react": "18.0.28",
@@ -33,6 +34,7 @@
     "postcss-loader": "^7.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
     "react-swipeable-list": "^1.7.2",
     "zod": "^3.20.6"
   },
