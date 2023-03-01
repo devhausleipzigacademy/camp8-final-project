@@ -21,3 +21,6 @@ Content-Type: application/json
 {
   "name": "listest1"
 }
+
+###
+GET http://localhost:3000/api/getItemsOfList?id=123456789
