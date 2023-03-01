@@ -14,6 +14,10 @@ export default {
 			options: ["primary", "secondary"],
 			control: { type: "radio" },
 		},
+		disabled: {
+			options: [true, false],
+			control: { type: "radio" },
+		},
 	},
 } as ComponentMeta<typeof LargeButton>;
 
