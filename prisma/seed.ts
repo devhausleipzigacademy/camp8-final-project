@@ -8,19 +8,23 @@ type Data = Record<string, Array<Input>>;
 const prisma = new PrismaClient();
 async function main() {
   const bigData: Data = data;
-  for (let category in bigData) {
-    const alice = await prisma.categories.create({
+  for (let categoryName in bigData) {
+    await prisma.category.create({
       data: {
-        name: category,
-        Items: {
+        category: categoryName,
+        masterItem: {
           createMany: {
-            data: bigData[category].map((x) => ({
-              name: x.name,
-              image: x.image,
-            })),
+            data: bigData[categoryName].map((x) => {
+              return {
+                name: x.name,
+                imageUrl: x.image,
+                approved: true,
+              };
+            }),
           },
         },
       },
     });
   }
 }
+main();
