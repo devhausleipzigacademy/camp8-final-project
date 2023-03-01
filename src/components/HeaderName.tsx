@@ -1,11 +1,9 @@
 import React from "react";
 
-type Header = {
-  name: "string";
+type HeadTitle = {
+  name: string;
 };
 
-export function HeaderTitle(props: Header) {
-  return (
-    <h1 className="font-heading bg-primary-default-Solid">Hey,{props.name}!</h1>
-  );
+export function HeaderTitle(props: HeadTitle) {
+  return <h1 className="text-title ">Hey, beautiful {props.name}!</h1>;
 }
