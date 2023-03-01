@@ -1,6 +1,5 @@
 import { PlusButton } from "@/components/PlusButton";
 import Head from "next/head";
-import { MouseEvent } from "react";
 
 export default function Login() {
   return (
