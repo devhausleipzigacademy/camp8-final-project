@@ -11,14 +11,7 @@ export const authOptions: NextAuthOptions = {
 	providers: [
 		//would like to start with Email provider
 		EmailProvider({
-			server: {
-				host: process.env.EMAIL_SERVER_HOST,
-				port: process.env.EMAIL_SERVER_PORT,
-				auth: {
-					user: process.env.EMAIL_SERVER_USER,
-					pass: process.env.EMAIL_SERVER_PASSWORD,
-				},
-			},
+			server: process.env.EMAIL_SERVER,
 			from: process.env.EMAIL_FROM,
 		}),
 
@@ -33,7 +26,7 @@ export const authOptions: NextAuthOptions = {
 	},
 
 	pages: {
-		signIn: "/auth/email-ssignin",
+		signIn: "/auth/signIn",
 		signOut: "/auth/signout",
 		error: "/auth/error", // Error code passed in query string as ?error=
 		verifyRequest: "/auth/verify-request", // (used for check email message)

@@ -12,7 +12,7 @@ datasource db {
 model User {
   id    String @id @default(uuid())
   name  String
-  email String
+  email String @unique
   List  List[]
   accounts      Account[]
   sessions      Session[]
