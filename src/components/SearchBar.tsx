@@ -9,16 +9,13 @@ type Item = {
 	name: string;
 };
 const items: Items = [
-	{ id: 1, name: "Apple" },
-	{ id: 2, name: "Beverages" },
-	{ id: 3, name: "Cheese" },
-	{ id: 4, name: "Dairy Products" },
-	{ id: 5, name: "Egg" },
-	{ id: 6, name: "Fish" },
+	{ id: 1, name: "B..." },
+	{ id: 2, name: "Back" },
+	{ id: 3, name: "Backe..." },
 ];
 
 export function SearchBar() {
-	const [selectedItems, setSelectedItems] = useState(items[0]);
+	const [selectedItems, setSelectedItems] = useState();
 	const [query, setQuery] = useState("");
 
 	const filteredItems =
@@ -35,9 +32,9 @@ export function SearchBar() {
 		<div className=" fixed top-16">
 			<Combobox value={selectedItems} onChange={setSelectedItems}>
 				<div className=" relative mt-1">
-					<div className="relative w-full cursor-default overflow-hidden rounded-full">
+					<div className="relative w-full cursor-default overflow-hidden rounded-lg">
 						<Combobox.Input
-							className=" border border-primary-transparent rounded-full w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-primary-default-Solid"
+							className=" border border-primary-transparent rounded-lg w-80 h-14 p-3 focus:outline-none focus-visible  focus:border-primary-default-Solid"
 							displayValue={(i: Item) => i.name}
 							onChange={(event) => setQuery(event.target.value)}
 							placeholder={"Search"}
@@ -48,15 +45,15 @@ export function SearchBar() {
 						</Combobox.Button>
 					</div>
 
-					<Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-secondary-transparent py-1 from-text-white_transparent">
+					<Combobox.Options className="ui-absolute mt-3 max-h-60 rounded-lg border border-primary-default-background">
 						{filteredItems.map((list) => (
 							<Combobox.Option
 								key={list.id}
 								value={list}
 								className={({ active }) =>
-									`relative cursor-default select-none py-2 pl-10 pr-4 ${
+									`relative cursor-default py-2 pl-4 ${
 										active
-											? " bg-primary-default-Solid text-text-white"
+											? "text-primary-default-background"
 											: " "
 									}`
 								}
@@ -74,7 +71,7 @@ export function SearchBar() {
 										</span>
 										{selected && (
 											<span
-												className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+												className={`absolute inset-y-0 left-0 flex items-center ${
 													active
 														? "text-text-white"
 														: "text-primary-transparent"
