@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { z, ZodError } from "zod";
-import { Items, List, Prisma, PrismaClient } from "@prisma/client";
+import { z } from "zod";
+import { PrismaClient } from "@prisma/client";
 
 const inputQuerySchema = z.object({
-  user: z.string(),
+  id: z.string(),
 });
 
 const prisma = new PrismaClient();
@@ -15,12 +15,12 @@ export default async function handler(
   if (request.method === "GET") {
     // Parse the user ID from the query parameters
 
-    const { user } = inputQuerySchema.parse(request.query);
+    const { id } = inputQuerySchema.parse(request.query);
 
     // Find all lists that belong to the user
     const lists = await prisma.list.findMany({
       where: {
-        userId: user,
+        listIdentifier: id,
       },
     });
 
