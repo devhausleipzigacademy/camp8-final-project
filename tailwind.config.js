@@ -28,6 +28,7 @@ module.exports = {
 				success: "#B4E747",
 			},
 		},
+		/* Add the below as backgrounds via bg-gradinent-[Tailwind direction]-[colour background] ie "bg-gradient-bl-primary-background " */
 		linearGradientColors: {
 			primary: {
 				background: ["#7751C7", "#5f62C7"],
