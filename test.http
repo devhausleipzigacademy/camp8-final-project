@@ -1,23 +1,34 @@
 
-GET http://localhost:3000/api/test
+# GET http://localhost:3000/api/test
 
 ###
 
-http://localhost:3000/api/seeLists?user=752df3ec-29e4-489f-8aac-a862976b10da
-
-POST http://localhost:3000/api/query/
-Content-Type: application/json
+PATCH http://localhost:3000/api/changeCategory
+Content-Type: text/plain; charset=UTF-8
 
 {
-  "query":"pear",
-  "inputList":"Hello"
+  "item_id": "4d8a558f-82c2-4e87-ae85-c783d5201ca5",
+  "category_id":  "7b76141f-39c9-45db-8c17-df2e4fc738c9"
 }
+
 
 ###
 
-DELETE http://localhost:3000/api/deleteList
-Content-Type: application/json
+# http://localhost:3000/api/seeLists?user=752df3ec-29e4-489f-8aac-a862976b10da
 
-{
-  "name": "listest1"
-}
+# POST http://localhost:3000/api/query/
+# Content-Type: application/json
+
+# {
+#   "query":"pear",
+#   "inputList":"Hello"
+# }
+
+# ###
+
+# DELETE http://localhost:3000/api/deleteList
+# Content-Type: application/json
+
+# {
+#   "name": "listest1"
+# }
