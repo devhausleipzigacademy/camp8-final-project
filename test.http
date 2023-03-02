@@ -3,13 +3,17 @@
 
 ###
 
+
+//meat : 080db3fa-2158-4e7d-adef-88ae61de4c5e
+//vegetables: 7b76141f-39c9-45db-8c17-df2e4fc738c9
 PATCH http://localhost:3000/api/changeCategory
 Content-Type: application/json
 
 {
   "item_id": "4d8a558f-82c2-4e87-ae85-c783d5201ca5",
-  "category_id":  "7b76141f-39c9-45db-8c17-df2e4fc738c9"
+  "category_id":  "080db3fa-2158-4e7d-adef-88ae61de4c5e"
 }
+
 
 
 ###
