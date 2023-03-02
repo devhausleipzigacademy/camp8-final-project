@@ -10,10 +10,8 @@ module.exports = {
 			primary: {
 				default: {
 					Solid: "#5F62C7",
-					background: "#7751c7",
 				},
 				transparent: "rgba(66, 17, 169, 0.1)",
-				frame: "#E6E8FF",
 			},
 			secondary: {
 				default: "#BEDCFA",
@@ -30,8 +28,27 @@ module.exports = {
 				success: "#B4E747",
 			},
 		},
+		/* Add the below as backgrounds via bg-gradinent-[Tailwind direction]-[colour background] ie "bg-gradient-bl-primary-background " */
+		linearGradientColors: {
+			primary: {
+				background: ["#7751C7", "#5f62C7"],
+				frame: [
+					"#E6E8FF",
+					"#EAE7FF",
+					"#EBECFF",
+					"#EBF4FF",
+					"#EDF8FF",
+					"#F4FDFB",
+				],
+			},
+		},
+		boxShadow: {
+			primaryButtonShadow: "inset 3px 4px 0px rgba(54, 38, 83, 0.5);",
+			secondaryButtonShadow:
+				"inset 3px 4px 0px rgba(134, 100, 196, 0.3);",
+		},
 	},
-	plugins: [],
+	plugins: [require("tailwindcss-gradients")],
 };
 
 // /** @type {import('tailwindcss').Config}
