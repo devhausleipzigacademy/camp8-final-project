@@ -7,9 +7,9 @@ const prisma = new PrismaClient();
 /*
 The point must receive:
   item_id
-  target_category_name
-It will then pick the right category by name and give back the category id
-It will update the Item
+  target_category_id
+as request-body.
+It will then pick then update the  customCategoryId of Item
 */
 
 /* ids are stored in value-tags*/
