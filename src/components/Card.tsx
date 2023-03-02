@@ -1,6 +1,4 @@
 import {
-  LeadingActions,
-  SwipeableList,
   SwipeableListItem,
   SwipeAction,
   TrailingActions,
@@ -30,79 +28,94 @@ export default function Card({
   onRemove,
 }: Props) {
   const [swiped, setSwiped] = useState(true);
-  const [swiping, setSwiping] = useState(false);
+  const [inDeletion, setIndDeletion] = useState(false);
+
+  const [cardBackgroundSwipe, setCardBackgroundSwipe] = useState("");
 
   function deleteListItem() {
-    setSwiping((prev) => !prev);
+    setIndDeletion(true);
     setSwiped(false);
     onRemove();
   }
 
-  const leadingActions = () => (
-    <LeadingActions>
-      <SwipeAction onClick={() => deleteListItem()}>{deleteList()}</SwipeAction>
-    </LeadingActions>
-  );
-
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => deleteListItem()}>{deleteList()}</SwipeAction>
+      <SwipeAction onClick={() => deleteListItem()}>
+        <DeleteList />
+      </SwipeAction>
     </TrailingActions>
   );
 
+  function styleSwipe(direction: string) {
+    setCardBackgroundSwipe(direction);
+  }
+
+  const basicCardStyle =
+    "rounded-2xl border-purple-300 p-5 flex flex-col w-full h-44 justify-between";
+
   return (
-      <Transition
-        show={swiped}
-        appear={true}
-        enter="transform transition duration-[400ms]"
-        enterFrom="opacity-0 scale-y-0"
-        enterTo="opacity-100 scale-y-100"
-        leave="transform duration-[400ms] transition ease-in-out"
-        leaveFrom="opacity-100 scale-y-100"
-        leaveTo="opacity-0 scale-y-0"
+    <Transition
+      show={swiped}
+      appear={true}
+      enter="transform transition duration-[400ms]"
+      enterFrom="opacity-0 scale-y-0"
+      enterTo="opacity-100 scale-y-100"
+      leave="transform duration-[400ms] transition ease-in-out"
+      leaveFrom="opacity-100 scale-y-100"
+      leaveTo="opacity-0 scale-y-0"
+    >
+      <div
+        className={clsx(
+          basicCardStyle,
+          "-z-10 absolute",
+          cardBackgroundSwipe === "left" ? "bg-ux-error" : "bg-ux-success"
+        )}
+        id="swipe-bg"
+      ></div>
+      <SwipeableListItem
+        threshold={0.5}
+        trailingActions={trailingActions()}
+        onSwipeStart={styleSwipe}
+        className="flex"
       >
-        <SwipeableListItem
-          threshold={0.5}
-          leadingActions={leadingActions()}
-          trailingActions={trailingActions()}
-          className="flex"
+        <div
+          className={clsx(
+            basicCardStyle,
+            createNewCard ? "text-secondary-transparent" : "text-text-white",
+            inDeletion
+              ? "bg-secondary-default"
+              : "bg-primary-default-background"
+          )}
         >
-          <div
-            className={clsx(
-              "border rounded-2xl border-purple-300 p-5 flex flex-col w-full h-44 justify-between",
-              createNewCard ? "text-secondary-transparent" : "text-text-white",
-              swiping ? "bg-secondary-default" : "bg-primary-default-Solid"
-            )}
-          >
-            <div className="flex flex-col gap-3">
-              <p className="text-2xl font-semibold">
-                {checkedItems}/{totalItems} Items
-              </p>
-              {createNewCard ? (
-                <input
-                  type="text"
-                  placeholder="new list"
-                  className="text-4xl uppercase font-heading bg-[transparent] placeholder:text-secondary-transparent text-text-white focus:outline-none"
-                />
-              ) : (
-                <p className="text-4xl uppercase font-heading ">{title}</p>
-              )}
-            </div>
-            <p className="text-xl self-end">
-              {isToday(dateCreated)
-                ? "today"
-                : format(dateCreated, "P", { locale: de })}
+          <div className="flex flex-col gap-3">
+            <p className="text-2xl font-semibold">
+              {checkedItems}/{totalItems} Items
             </p>
+            {createNewCard ? (
+              <input
+                type="text"
+                placeholder="new list"
+                className="text-4xl uppercase font-heading bg-[transparent] placeholder:text-secondary-transparent text-text-white focus:outline-none"
+              />
+            ) : (
+              <p className="text-4xl uppercase font-heading ">{title}</p>
+            )}
           </div>
-        </SwipeableListItem>
-      </Transition>
+          <p className="text-xl self-end">
+            {isToday(dateCreated)
+              ? "today"
+              : format(dateCreated, "P", { locale: de })}
+          </p>
+        </div>
+      </SwipeableListItem>
+    </Transition>
   );
 }
 
-function deleteList() {
+function DeleteList() {
   return (
-    <div className="bg-ux-error justify-center items-center flex pl-4 my-3">
-      <HiOutlineTrash className="h-10 w-10 m-10" />
+    <div className="justify-center items-center flex pl-4 my-3">
+      <HiOutlineTrash className="h-10 w-10 m-10 text-text-white" />
     </div>
   );
 }
