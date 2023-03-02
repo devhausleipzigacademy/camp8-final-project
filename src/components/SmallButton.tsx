@@ -15,7 +15,7 @@ export function SmallButton({ label, disabled, ...props }: SmallButtonProps) {
 	return (
 		<button
 			className={
-				"text-center text-text-white text-button-small rounded-md w-16 h-11 disabled:cursor-not-allowed bg-gradient-bl-primary-background disabled:bg-ux-inactive"
+				"enabled:bg-grad-default text-center text-text-white text-button-small rounded-md w-16 h-11 disabled:cursor-not-allowed disabled:bg-ux-inactive"
 			}
 			disabled={disabled}
 			{...props}

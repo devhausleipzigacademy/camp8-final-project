@@ -11,21 +11,19 @@
 	}
 }
 
-/* Gradient colours moved to Tailwind Config under "linearGradientColours" */
-
 @layer components {
 	.text-title {
-		font-size: 58px;
+		font-size: 58pt;
 		line-height: 72px;
 		@apply font-heading;
 	}
 	.text-primary {
-		font-size: 18px;
+		font-size: 18pt;
 		line-height: 22px;
 	}
 
 	.text-links {
-		font-size: 14px;
+		font-size: 14pt;
 		font-weight: 600;
 		line-height: 17px;
 	}
@@ -35,19 +33,19 @@
 	}
 
 	.cards-title {
-		font-size: 40px;
+		font-size: 40pt;
 		line-height: 50px;
 		@apply font-heading;
 	}
 
 	.button-bold {
-		font-size: 20px;
+		font-size: 20pt;
 		font-weight: bold;
 		line-height: 24px;
 	}
 
 	.button-large {
-		font-size: 24px;
+		font-size: 24pt;
 		line-height: 29px;
 	}
 }
