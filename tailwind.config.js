@@ -47,7 +47,7 @@ module.exports = {
 				"inset 3px 4px 0px rgba(134, 100, 196, 0.3);",
 		},
 	},
-	plugins: [require("tailwindcss-gradients")],
+	plugins: [],
 };
 
 // /** @type {import('tailwindcss').Config}
