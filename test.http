@@ -4,7 +4,7 @@
 ###
 
 PATCH http://localhost:3000/api/changeCategory
-Content-Type: text/plain; charset=UTF-8
+Content-Type: application/json
 
 {
   "item_id": "4d8a558f-82c2-4e87-ae85-c783d5201ca5",

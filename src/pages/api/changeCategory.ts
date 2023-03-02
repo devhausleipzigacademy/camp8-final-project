@@ -18,6 +18,7 @@ const bodySchema = z.object({
   item_id: z.string(),
   category_id: z.string(),
 });
+
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
