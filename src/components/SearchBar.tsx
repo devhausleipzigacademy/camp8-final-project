@@ -34,27 +34,30 @@ export function SearchBar() {
 				<div className=" relative mt-1">
 					<div className="relative w-full cursor-default overflow-hidden rounded-lg">
 						<Combobox.Input
-							className=" border border-primary-transparent rounded-lg w-80 h-14 p-3 focus:outline-none focus-visible  focus:border-primary-default-Solid"
+							className="border border-primary-transparent rounded-lg w-80 h-14 p-3 focus:outline-none focus-visible  focus:border-primary-default-Solid"
 							displayValue={(i: Item) => i.name}
 							onChange={(event) => setQuery(event.target.value)}
 							placeholder={"Search"}
 						/>
 
 						<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-8">
-							<MagnifyingGlassIcon width={18} height={18} />
+							<MagnifyingGlassIcon
+								className="w-6 h-6"
+								aria-hidden="true"
+								auto-fill="none"
+							/>
 						</Combobox.Button>
 					</div>
 
-					<Combobox.Options className="ui-absolute mt-3 max-h-60 rounded-lg border border-primary-default-background">
+					<Combobox.Options className="ui-absolute mt-3 max-h-60 overflow-hidden rounded-lg border-primary-default-background">
 						{filteredItems.map((list) => (
 							<Combobox.Option
 								key={list.id}
 								value={list}
 								className={({ active }) =>
 									`relative cursor-default py-2 pl-4 ${
-										active
-											? "text-primary-default-background"
-											: " "
+										active &&
+										"text-primary-default-background"
 									}`
 								}
 							>
@@ -62,9 +65,7 @@ export function SearchBar() {
 									<>
 										<span
 											className={`block truncate ${
-												selected
-													? "font-sans"
-													: "font-thin"
+												selected && "font-sans"
 											}`}
 										>
 											{list.name}
@@ -72,9 +73,7 @@ export function SearchBar() {
 										{selected && (
 											<span
 												className={`absolute inset-y-0 left-0 flex items-center ${
-													active
-														? "text-text-white"
-														: "text-primary-transparent"
+													active && "text-text-white"
 												}`}
 											></span>
 										)}
