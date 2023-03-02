@@ -68,7 +68,7 @@ export function SortBySwitches(props: SortByProps) {
             <p
               className={clsx(
                 "h-full  flex justify-center items-center rounded-[10px] ",
-                checked ? "bg-primary-default-background text-text-white" : ""
+                checked && "bg-primary-default-background text-text-white"
               )}
             >
               Date
@@ -80,7 +80,7 @@ export function SortBySwitches(props: SortByProps) {
             <p
               className={clsx(
                 "h-full  flex justify-center items-center rounded-[10px] ",
-                checked ? "bg-primary-default-background text-text-white" : ""
+                checked && "bg-primary-default-background text-text-white"
               )}
             >
               Category
@@ -92,7 +92,7 @@ export function SortBySwitches(props: SortByProps) {
             <p
               className={clsx(
                 "h-full  flex justify-center items-center rounded-[10px] ",
-                checked ? "bg-primary-default-background text-text-white" : ""
+                checked && "bg-primary-default-background text-text-white"
               )}
             >
               Alphabetical
