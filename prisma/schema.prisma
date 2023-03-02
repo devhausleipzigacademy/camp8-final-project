@@ -90,7 +90,7 @@ model MasterItem {
   imageUrl            String?
 
   category            String?
-  defaultCategory     Category? @relation(fields: [category], references: [category])
+  defaultCategory     Category? @relation(fields: [category], references: [name])
 
   approved            Boolean
 
@@ -100,8 +100,8 @@ model MasterItem {
 }
 
 model Category {
-  id          String  @id @default(uuid())
-  category            String  @unique
+  id                  String  @id @default(uuid())
+  name                String  @unique
   masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
   userItem            Item[] //opposite relation to customCategory in userItem
 
