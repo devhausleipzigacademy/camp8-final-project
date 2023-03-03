@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { MasterItem, List, Prisma, PrismaClient } from "@prisma/client";
+import { prisma } from "..";
 var stringSimilarity = require("string-similarity");
 
 export function sortByRating(input: Array<{ target: string; rating: number }>) {
@@ -18,8 +19,6 @@ export function sortByRating(input: Array<{ target: string; rating: number }>) {
   return sorted;
 }
 
-const prisma = new PrismaClient();
-
 const inputQuerySchema = z.object({
   name: z.string(),
 });
@@ -30,9 +29,13 @@ export default async function handler(
 ) {
   if (request.method == "GET") {
     const { name } = inputQuerySchema.parse(request.query);
+
     const list = await prisma.masterItem.findMany({});
+
     const item_names = list.map((item) => item.name);
+
     const matches = stringSimilarity.findBestMatch(name, item_names);
+
     const sorted_matches = sortByRating(matches.ratings);
     const result = [];
 
@@ -47,6 +50,3 @@ export default async function handler(
   }
   response.status(404).send(`Invalid method: ${request.method}`);
 }
-
-// const Query = inputQuerySchema.parse(request.query); // "healed, in our case"
-// const db = prisma.item.findMany({}); // get all strings in items
