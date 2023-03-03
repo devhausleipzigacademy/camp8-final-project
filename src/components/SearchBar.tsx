@@ -34,13 +34,13 @@ export function SearchBar() {
 				<div className=" relative mt-1">
 					<div className="relative w-full cursor-default overflow-hidden rounded-lg">
 						<Combobox.Input
-							className="border border-primary-transparent rounded-lg w-80 h-14 p-3 focus:outline-none focus-visible  focus:border-primary-default-Solid"
+							className=" border-2 pr-10 border-primary-transparent focus:outline-none focus-visible  hover:border-primary-default-background active:border-primary-default-Solid rounded-lg w-80 h-14 p-3"
 							displayValue={(i: Item) => i.name}
 							onChange={(event) => setQuery(event.target.value)}
 							placeholder={"Search"}
 						/>
 
-						<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-8">
+						<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-3">
 							<MagnifyingGlassIcon
 								className="w-6 h-6"
 								aria-hidden="true"
