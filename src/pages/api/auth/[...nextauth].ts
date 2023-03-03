@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import EmailProvider from "next-auth/providers/email";
 import { PrismaClient } from "@prisma/client";
+import GoogleProvider from "next-auth/providers/google";
 
 const prisma = new PrismaClient();
 
@@ -15,7 +16,18 @@ export const authOptions: NextAuthOptions = {
 			server: process.env.EMAIL_SERVER,
 			from: process.env.EMAIL_FROM,
 		}),
-
+		GoogleProvider({
+			clientId:
+				"992633208513-jusn57h876taso6q1o2tv0ntnbk4g0q5.apps.googleusercontent.com",
+			clientSecret: "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",
+			authorization: {
+				params: {
+					prompt: "consent",
+					access_type: "offline",
+					response_type: "code",
+				},
+			},
+		}),
 		// ...add more providers here
 	],
 	session: {
@@ -31,7 +43,7 @@ export const authOptions: NextAuthOptions = {
 		signOut: "/auth/signout",
 		error: "/auth/error", // Error code passed in query string as ?error=
 		verifyRequest: "/auth/verify-request", // (used for check email message)
-		newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
+		newUser: "src/pages/launch/index.tsx", // New users will be directed here on first sign in (leave the property out if not of interest)
 	},
 };
 
