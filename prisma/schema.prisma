@@ -54,8 +54,8 @@ model List {
 
   listName            String? @default("new list")
 
-  listIdentifier      String //entering correct listIdentifier will Link to user
-  belongsTo           User @relation(fields: [listIdentifier], references: [id])
+  userIdentifier      String //entering correct listIdentifier will Link to user
+  belongsTo           User @relation(fields: [userIdentifier], references: [id])
 
   items               Item[] ///opposite relation to Items related to this List.
 
@@ -71,8 +71,8 @@ model Item {
   unit                String?
 
   //entering correct listIdentifier will Link to a list
-  userIdentifier      String?
-  inList              List?   @relation(fields: [userIdentifier], references: [id])
+  listIdentifier      String?
+  inList              List?   @relation(fields: [listIdentifier], references: [id])
 
   //this userItem is based on
   masterItemId        String
