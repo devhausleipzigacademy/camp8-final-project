@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { boolean, tuple, z, ZodError } from "zod";
-import { Items, List, Prisma, PrismaClient } from "@prisma/client";
+import { z, ZodError } from "zod";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -14,18 +14,14 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  if (request.method === "PATCH") {
+  // I think with this new schema, that this should become a DELETE request.
+  if (request.method === "DELETE") {
     try {
       const { id } = inputQueryTest.parse(request.body);
 
-      const listToBe = await prisma.items.update({
+      const listToBe = await prisma.item.delete({
         where: {
           id: id,
-        },
-        data: {
-          Linked_to_List: {
-            disconnect: true,
-          },
         },
       });
       response.status(200).send("Removed Items");

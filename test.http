@@ -15,18 +15,13 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/deleteList
-Content-Type: application/json
-
-{
-  "name": "listest1"
-}
+DELETE http://localhost:3000/api/deleteList?id=123456789
 
 
 ###
-PATCH http://localhost:3000/api/deleteItem/
+DELETE http://localhost:3000/api/deleteItem
 Content-Type: application/json
 
 {
-  "id":"a169f9ec-78de-48ed-9e4a-7ca3e42a52be"
+  "id":"123456789"
 }
