@@ -71,8 +71,8 @@ model Item {
   unit                String?
 
   //entering correct listIdentifier will Link to a list
-  listIdentifier      String?
-  inList              List?   @relation(fields: [listIdentifier], references: [id])
+  userIdentifier      String?
+  inList              List?   @relation(fields: [userIdentifier], references: [id])
 
   //this userItem is based on
   masterItemId        String
