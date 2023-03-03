@@ -1,4 +1,7 @@
 import Head from "next/head";
+import { PrismaClient } from "@prisma/client";
+
+export const prisma = new PrismaClient();
 
 export default function Home() {
   return (
