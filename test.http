@@ -14,3 +14,13 @@ Content-Type: application/json
 {
   "name": "listest1"
 }
+
+###
+
+POST http://localhost:3000/api/addItem
+Content-Type: application/json
+
+{
+  "query": "bla",
+  "inputList": "1232"
+}

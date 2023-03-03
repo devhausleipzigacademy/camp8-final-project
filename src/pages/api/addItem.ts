@@ -1,8 +1,7 @@
+import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { MasterItem, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "..";
 
 /*
  */
@@ -16,13 +15,12 @@ export default async function handler(
       // Getting ID of list we will add product to.  If none there create one
 
       let product: MasterItem;
-      try {
-        await prisma.list.findFirst({
-          where: {
-            id: inputList,
-          },
-        });
-      } catch (err) {
+      const list = await prisma.list.findFirst({
+        where: {
+          id: inputList,
+        },
+      });
+      if (!list) {
         response.status(404).send("List not found");
       }
 
