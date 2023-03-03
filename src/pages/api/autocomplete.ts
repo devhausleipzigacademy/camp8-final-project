@@ -34,15 +34,24 @@ export default async function handler(
     const item_names = list.map((item) => item.name);
     const matches = stringSimilarity.findBestMatch(name, item_names);
     const sorted_matches = sortByRating(matches.ratings);
-    const result = [];
+    const result: MasterItem[] = await prisma.masterItem.findMany({
+      where: {
+        name: {
+          in: sorted_matches
+            .filter((x, i) => x.rating > 0 && i < 5)
+            .map((x) => x.target),
+        },
+      },
+    });
+    result.sort(
+      (a, b) =>
+        sorted_matches.map((x) => x.target).indexOf(a.name) -
+        sorted_matches.map((x) => x.target).indexOf(b.name)
+    );
 
-    for (let entry of sorted_matches) {
-      if (entry.rating > 0) {
-        result.push(entry.target);
-      }
-    }
-
-    response.status(200).json(result.slice(0, 5));
+    response
+      .status(200)
+      .json({ ...result, top_rating: sorted_matches[0].rating });
     return;
   }
   response.status(404).send(`Invalid method: ${request.method}`);
