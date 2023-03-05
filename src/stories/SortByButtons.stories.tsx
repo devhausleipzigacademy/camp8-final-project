@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import SortByButton from "../components/SortByButton";
+import { SortByButton } from "../components/SortByButton";
 
 const meta: Meta<typeof SortByButton> = {
 	title: "components/SortByButton",
