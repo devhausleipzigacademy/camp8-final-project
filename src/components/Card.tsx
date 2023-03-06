@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import "react-swipeable-list/dist/styles.css";
-import { HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash, HiBookmark } from "react-icons/hi";
 
 type Props = {
   data: {
@@ -19,12 +19,14 @@ type Props = {
     totalItems: number;
   };
   createNewCard?: Boolean;
+  favorite?: Boolean;
   onRemove: Function;
 };
 
 export default function Card({
   data: { dateCreated, checkedItems, totalItems, title },
   createNewCard,
+  favorite,
   onRemove,
 }: Props) {
   const [swiped, setSwiped] = useState(true);
@@ -68,7 +70,8 @@ export default function Card({
         className={clsx(
           basicCardStyle,
           "-z-10 absolute",
-          cardBackgroundSwipe === "left" ? "bg-ux-error" : "bg-ux-success"
+          cardBackgroundSwipe === "left" && "bg-ux-error",
+          cardBackgroundSwipe === "right" && "bg-ux-success"
         )}
         id="swipe-bg"
       ></div>
@@ -81,10 +84,10 @@ export default function Card({
         <div
           className={clsx(
             basicCardStyle,
-            createNewCard ? "text-secondary-transparent" : "text-text-white",
-            inDeletion
-              ? "bg-secondary-default"
-              : "bg-primary-default-background"
+            createNewCard
+              ? "text-primary-transparent"
+              : "text-primary-default-Solid",
+            inDeletion ? "bg-secondary-default" : "bg-secondary-transparent"
           )}
         >
           <div className="flex flex-col gap-3">
@@ -95,17 +98,20 @@ export default function Card({
               <input
                 type="text"
                 placeholder="new list"
-                className="text-4xl uppercase font-heading bg-[transparent] placeholder:text-secondary-transparent text-text-white focus:outline-none"
+                className="text-4xl uppercase font-heading bg-[transparent] placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
               />
             ) : (
               <p className="text-4xl uppercase font-heading ">{title}</p>
             )}
           </div>
-          <p className="text-xl self-end">
-            {isToday(dateCreated)
-              ? "today"
-              : format(dateCreated, "P", { locale: de })}
-          </p>
+          <div className="flex justify-between items-center">
+            <div>{favorite && <HiBookmark className="h-6 w-6"/>}</div>
+            <p className="text-xl">
+              {isToday(dateCreated)
+                ? "today"
+                : format(dateCreated, "P", { locale: de })}
+            </p>
+          </div>
         </div>
       </SwipeableListItem>
     </Transition>
