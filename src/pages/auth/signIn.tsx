@@ -2,10 +2,14 @@ import type {
 	GetServerSidePropsContext,
 	InferGetServerSidePropsType,
 } from "next";
-import { getCsrfToken } from "next-auth/react";
+import { getProviders, signIn, getCsrfToken } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../api/auth/[...nextauth]";
 import Head from "next/head";
+import { signOut } from "next-auth/react";
 
 export default function SignIn({
+	providers,
 	csrfToken,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	return (
@@ -24,13 +28,36 @@ export default function SignIn({
 				</label>
 				<button type="submit">Sign in with Email</button>
 			</form>
+
+			{Object.values(providers).map((provider) => {
+				if (provider.name === "Email") {
+					return;
+				} else {
+					return (
+						<div key={provider.name}>
+							<button onClick={() => signIn(provider.id)}>
+								Sign in with {provider.name}
+							</button>
+						</div>
+					);
+				}
+			})}
 		</>
 	);
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+	const session = await getServerSession(context.req, context.res, authOptions);
 	const csrfToken = await getCsrfToken(context);
+
+	// If the user is already logged in, redirect.
+	if (session) {
+		return { redirect: { destination: "/" } };
+	}
+
+	const providers = await getProviders();
+
 	return {
-		props: { csrfToken },
+		props: { providers: providers ?? [], csrfToken },
 	};
 }
