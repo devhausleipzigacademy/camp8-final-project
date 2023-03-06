@@ -36,11 +36,3 @@ function ImpAddNewItem() {
 }
 
 export default ImpAddNewItem;
-
-type ListItemProps = {
-	name: string;
-	image: string;
-	quantity?: string;
-	checked: boolean;
-	onRemove: () => void;
-};
