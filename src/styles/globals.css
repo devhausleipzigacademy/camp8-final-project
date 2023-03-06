@@ -6,9 +6,9 @@
 
 /* Setting default text colour */
 @layer base {
-	html {
-		@apply text-text-typo;
-	}
+  html {
+    @apply text-text-typo;
+  }
 }
 
 @layer components {
@@ -48,4 +48,8 @@
 		font-size: 24px;
 		line-height: 29px;
 	}
+  #Delete_Action,
+  #Tick_Action {
+    justify-content: center;
+  }
 }
