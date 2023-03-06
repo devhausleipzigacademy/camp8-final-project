@@ -67,7 +67,7 @@ export function SortBySwitches(props: SortByProps) {
           {({ checked }) => (
             <p
               className={clsx(
-                "h-full  flex justify-center items-center rounded-[10px] ",
+                "h-full  flex justify-center items-center rounded-listitem",
                 checked && "bg-primary-default-background text-text-white"
               )}
             >
@@ -79,7 +79,7 @@ export function SortBySwitches(props: SortByProps) {
           {({ checked }) => (
             <p
               className={clsx(
-                "h-full  flex justify-center items-center rounded-[10px] ",
+                "h-full  flex justify-center items-center rounded-listitem",
                 checked && "bg-primary-default-background text-text-white"
               )}
             >
@@ -91,7 +91,7 @@ export function SortBySwitches(props: SortByProps) {
           {({ checked }) => (
             <p
               className={clsx(
-                "h-full  flex justify-center items-center rounded-[10px] ",
+                "h-full  flex justify-center items-center rounded-listitem",
                 checked && "bg-primary-default-background text-text-white"
               )}
             >

@@ -30,11 +30,9 @@ export default function List() {
   const [sortBy, setSortBy] = useState("date");
 
   return (
-    <>
-      <div className="flex flex-col m-6">
-        <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
-        <ItemListMapper itemList={listItems} sortBy={sortBy}></ItemListMapper>
-      </div>
-    </>
+    <div className="m-6">
+      <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
+      <ItemListMapper itemList={listItems} sortBy={sortBy}></ItemListMapper>
+    </div>
   );
 }
