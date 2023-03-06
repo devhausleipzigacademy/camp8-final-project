@@ -1,5 +1,5 @@
 import Head from "next/head";
-import EditModal from "./list";
+import EditModal from "./list/EditModal";
 
 export default function Home() {
 	return (
