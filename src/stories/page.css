@@ -1,5 +1,5 @@
 section {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 24px;
   padding: 48px 20px;
@@ -66,4 +66,41 @@ section .tip-wrapper svg {
 
 section .tip-wrapper svg path {
   fill: #1ea7fd;
+}
+
+#button-3 .knobs:before {
+  content: "YES";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before {
+  width: 46px;
+  border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before {
+  margin-left: -26px;
+}
+
+#button-3 .checkbox:checked + .knobs:before {
+  content: "NO";
+  left: 42px;
+  background-color: #f44336;
+}
+
+#button-3 .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
 }

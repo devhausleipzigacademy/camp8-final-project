@@ -10,10 +10,10 @@ export default function Settings() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-red-600 text-4xl font-bold flex justify-center">
-        Settings{" "}
-      </h1>
-      <TabAccountSetting />
+      <h1 className="text-4xl font-bold flex justify-center">Settings </h1>
+      <div className="flex justify-center">
+        <TabAccountSetting />
+      </div>
     </>
   );
 }
