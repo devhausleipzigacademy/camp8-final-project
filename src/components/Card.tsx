@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import "react-swipeable-list/dist/styles.css";
-import { HiOutlineTrash, HiBookmark } from "react-icons/hi";
+import { Trash, Bookmark } from "react-feather";
 
 type Props = {
   data: {
@@ -52,8 +52,7 @@ export default function Card({
     setCardBackgroundSwipe(direction);
   }
 
-  const basicCardStyle =
-    "rounded-2xl  w-full h-44 ";
+  const basicCardStyle = "rounded-2xl  w-full h-44 ";
 
   return (
     <Transition
@@ -84,7 +83,7 @@ export default function Card({
         <div
           className={clsx(
             basicCardStyle,
-            'border p-5 border-secondary-transparent flex flex-col justify-between',
+            "border p-5 border-secondary-transparent flex flex-col justify-between",
             createNewCard
               ? "text-primary-transparent"
               : "text-primary-default-Solid",
@@ -106,7 +105,7 @@ export default function Card({
             )}
           </div>
           <div className="flex justify-between items-center">
-            <div>{favorite && <HiBookmark className="h-6 w-6"/>}</div>
+            <div>{favorite && <Bookmark className="h-6 w-6" />}</div>
             <p className="text-xl">
               {isToday(dateCreated)
                 ? "today"
@@ -122,7 +121,7 @@ export default function Card({
 function DeleteList() {
   return (
     <div className="justify-center items-center flex pl-4 my-3">
-      <HiOutlineTrash className="h-10 w-10 m-10 text-text-white" />
+      <Trash className="h-10 w-10 m-10 text-text-white" />
     </div>
   );
 }
