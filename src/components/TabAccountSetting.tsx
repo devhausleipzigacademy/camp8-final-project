@@ -4,7 +4,7 @@ import { Tab } from "@headlessui/react";
 import { Switch } from "@headlessui/react";
 import { TabComponentStupid } from "./StupidToggle";
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -17,38 +17,31 @@ export function MyToggle() {
           checked={enabled}
           onChange={setEnabled}
           className={`${
-            enabled ? "bg-secondary-default" : "bg-secondary-default"
+            enabled
+              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
+              : "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
           }
-          relative inline-flex pt-1 pl-1 h-10 w-full shrink-0 cursor-pointer rounded-lg border-1  border-secondary-default `}
+          relative inline-flex h-full w-full rounded-lg `}
         >
           <span className="sr-only ">Use setting</span>
           <span
-            aria-label="text"
             aria-hidden="true"
             className={`${
               enabled
                 ? "translate-x-full after:content-['Darkmode'] text-text-white content-center"
                 : "translate-x-0 after:content-['Lightmode'] text-text-white content-center"
             }
-            pointer-events-none inline-block h-[34px] w-[50%] transform rounded-md bg-primary-default-Solid  transition duration-200 ease-in-out `}
+            pointer-events-none inline-block h-full w-[50%] py-2 transform rounded-md bg-primary-default-Solid  transition duration-200 ease-in-out `}
           />
         </Switch>
       </Switch.Group>
     </div>
   );
 }
-
-export function TabComponent() {
-  return <div></div>;
-}
-
 function Setting() {
   return (
     <div>
       Setting
-      <TabComponent />
-      <MyToggle />
-      <MyToggle />
       <MyToggle />
     </div>
   );
