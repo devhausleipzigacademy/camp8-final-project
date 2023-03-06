@@ -53,7 +53,7 @@ export default function Card({
   }
 
   const basicCardStyle =
-    "rounded-2xl border-purple-300 p-5 flex flex-col w-full h-44 justify-between";
+    "rounded-2xl  w-full h-44 ";
 
   return (
     <Transition
@@ -84,10 +84,11 @@ export default function Card({
         <div
           className={clsx(
             basicCardStyle,
+            'border p-5 border-secondary-transparent flex flex-col justify-between',
             createNewCard
               ? "text-primary-transparent"
               : "text-primary-default-Solid",
-            inDeletion ? "bg-secondary-default" : "bg-secondary-transparent"
+            inDeletion ? "bg-secondary-default" : "bg-card"
           )}
         >
           <div className="flex flex-col gap-3">

@@ -19,6 +19,7 @@ module.exports = {
 				default: "#BEDCFA",
 				transparent: "rgba(190, 223, 255, 0.25)",
 			},
+                        card: {DEFAULT: "#eff7ff"},
 			text: {
 				typo: "#453C57",
 				white: "#FFFFFF",
