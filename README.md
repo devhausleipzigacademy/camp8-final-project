@@ -43,21 +43,7 @@ Link to the Figma file: https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocer
    `pnpm prisma db seed`
    This will run the seed.ts script
 
-- .env must contain:
-
-````
-POSTGRES_USER=local_admin
-POSTGRES_PASSWORD=unsafeLocalPassword0!
-
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-
-POSTGRES_DB=main
-
-DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public&connect_timeout=300
-
-SECRET_KEY=44fc12b9ef6f22f18ae6507e33ebc52e77f745fef6422a44a654886557ce015fef605917f919db105e63353388becd09
-````
+- ask a team member for .env file contents.
 
 ## API REFERENCE
 
