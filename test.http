@@ -3,7 +3,7 @@ GET http://localhost:3000/api/test
 
 ###
 
-GET http://localhost:3000/api/autocomplete?name=Bana
+GET http://localhost:3000/api/autocomplete?name=pear
 
 
 ###

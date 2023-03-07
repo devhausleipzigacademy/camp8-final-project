@@ -21,6 +21,7 @@ async function main() {
                 approved: true,
               };
             }),
+            skipDuplicates: true,
           },
         },
       },
