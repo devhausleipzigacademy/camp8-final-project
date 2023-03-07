@@ -23,7 +23,8 @@ import { Trash, Bookmark } from "react-feather";
 //onSwipeEnd={resetCardBackgroundSwip}
 //to define what happens when swip-Action stops
 //use 'resetCardBackgroundSwip' after the list Item snaps back
-
+//3.
+////Date will be automatically generated in the back-end
 
 type Props = {
   data: {
@@ -54,14 +55,14 @@ export default function Card({
     setIndDeletion(true);
     setSwiped(false);
     onRemove();
-    setCardBackgroundSwipe("left")
+    setCardBackgroundSwipe("left");
   }
 
   function pinList() {
     setWhileSwiping(true);
     setSwiped(false);
     onPin();
-    setCardBackgroundSwipe("right")
+    setCardBackgroundSwipe("right");
   }
 
   const trailingActions = () => (
@@ -87,7 +88,7 @@ export default function Card({
     setCardBackgroundSwipe("");
   }
 
-  const basicCardStyle = "rounded-2xl  w-full h-44 ";
+  const basicCardStyle = "rounded-2xl w-full h-44";
 
   return (
     <Transition
@@ -104,8 +105,8 @@ export default function Card({
         className={clsx(
           basicCardStyle,
           "-z-10 absolute",
-          (cardBackgroundSwipe === "left" && "bg-ux-error"),
-          (cardBackgroundSwipe === "right" && "bg-primary-default-Solid"),
+          cardBackgroundSwipe === "left" && "bg-ux-error",
+          cardBackgroundSwipe === "right" && "bg-primary-default-Solid"
         )}
         id="swipe-bg"
       ></div>
@@ -119,11 +120,11 @@ export default function Card({
         <div
           className={clsx(
             basicCardStyle,
-            "border p-5 border-secondary-transparent flex flex-col justify-between",
+            "border p-5 border-secondary-transparent flex flex-col justify-between bg-card",
             createNewCard
               ? "text-primary-transparent"
               : "text-primary-default-Solid",
-            inDeletion ? "bg-secondary-default" : "bg-card"
+
           )}
         >
           <div className="flex flex-col gap-3">
@@ -158,6 +159,9 @@ function DeleteList() {
   return (
     <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
       <p className="text-links">delete</p>
+      {
+        //needs follow.up actions?
+      }
       <Trash className="h-10 w-10 mr-10" />
     </div>
   );
@@ -167,6 +171,9 @@ function PinList() {
   return (
     <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
       <p className="text-primary">pin</p>
+      {
+        //needs follow.up actions?
+      }
       <Bookmark className="h-10 w-10 mr-10" />
     </div>
   );
