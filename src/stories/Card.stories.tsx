@@ -10,7 +10,7 @@ export default meta;
 
 type Story = StoryObj<typeof Card>;
 
-// construct a date 3 days ago and today to check in the component
+// construct a date in the past and today to check its behavior in the component
 const today = new Date();
 let christmasDay = new Date(2022, 11, 23);
 
