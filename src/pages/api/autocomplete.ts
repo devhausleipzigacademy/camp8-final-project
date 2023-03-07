@@ -1,3 +1,4 @@
+import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { prisma } from "..";
@@ -57,7 +58,6 @@ export default async function handler(
     response
       .status(200)
       .json({ ...result, top_rating: sorted_matches[0].rating });
-    return;
   }
   response.status(404).send(`Invalid method: ${request.method}`);
 }
