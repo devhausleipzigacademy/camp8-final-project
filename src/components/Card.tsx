@@ -51,7 +51,7 @@ export default function Card({
     <Transition
       show={swiped}
       appear={true}
-      enter="transform transition duration-[400ms]"
+      enter="transform transition duration-400"
       enterFrom="opacity-0 scale-y-0"
       enterTo="opacity-100 scale-y-100"
       leave="transform duration-[400ms] transition ease-in-out"
@@ -91,7 +91,7 @@ export default function Card({
               <input
                 type="text"
                 placeholder="new list"
-                className="text-4xl uppercase font-heading bg-[transparent] placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+                className="text-4xl uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
               />
             ) : (
               <p className="text-4xl uppercase font-heading ">{title}</p>
