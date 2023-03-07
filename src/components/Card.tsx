@@ -3,8 +3,7 @@ import {
   Type,
   SwipeAction,
   TrailingActions,
-  LeadingActions,
-} from "react-swipeable-list";
+  LeadingActions} from "react-swipeable-list";
 import { format, isToday } from "date-fns";
 import { de } from "date-fns/locale";
 import clsx from "clsx";
@@ -23,6 +22,7 @@ import { Trash, Bookmark } from "react-feather";
 //onSwipeEnd={resetCardBackgroundSwip}
 //to define what happens when swip-Action stops
 //use 'resetCardBackgroundSwip' after the list Item snaps back
+//Idea: use blockSwipe={true} till the Component is reset to the original state
 //3.
 ////Date will be automatically generated in the back-end
 
@@ -67,7 +67,7 @@ export default function Card({
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => deleteList()}>
+      <SwipeAction destructive={true} onClick={() => deleteList()}>
         <DeleteList />
       </SwipeAction>
     </TrailingActions>
@@ -84,7 +84,7 @@ export default function Card({
   function styleSwipe(direction: string) {
     setCardBackgroundSwipe(direction);
   }
-  function resetCardBackgroundSwip(direction: string) {
+  function reset() {
     setCardBackgroundSwipe("");
   }
 
@@ -97,7 +97,7 @@ export default function Card({
       enter="transform transition duration-[400ms]"
       enterFrom="opacity-0 scale-x-0"
       enterTo="opacity-100 scale-x-100"
-      leave="transform duration-[300ms] transition ease-in-out"
+      leave="transform duration-[100ms] transition ease-in-out"
       leaveFrom="opacity-100 scale-x-100"
       leaveTo="opacity-0 scale-x-0"
     >
@@ -115,7 +115,12 @@ export default function Card({
         trailingActions={trailingActions()}
         leadingActions={leadingActions()}
         onSwipeStart={styleSwipe}
+        onSwipeEnd={()=>{console.log("FUCK")}}
+        scrollStartThreshold={1000} //How far in pixels scroll needs to be done to block swiping. After scrolling is started and goes beyond the threshold, swiping is blocked.
+        swipeStartThreshold={50} //unneccessary
+        destructiveCallbackDelay={2000} // time before deletion
         className="flex"
+
       >
         <div
           className={clsx(
@@ -123,8 +128,7 @@ export default function Card({
             "border p-5 border-secondary-transparent flex flex-col justify-between bg-card",
             createNewCard
               ? "text-primary-transparent"
-              : "text-primary-default-Solid",
-
+              : "text-primary-default-Solid"
           )}
         >
           <div className="flex flex-col gap-3">
