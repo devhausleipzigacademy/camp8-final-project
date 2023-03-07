@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { MasterItem, List, Prisma, PrismaClient } from "@prisma/client";
-import { prisma } from "..";
 var stringSimilarity = require("string-similarity");
+export const prisma = new PrismaClient();
 
 export function sortByRating(input: Array<{ target: string; rating: number }>) {
   const sorted = [...input];
