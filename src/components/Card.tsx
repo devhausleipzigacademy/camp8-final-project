@@ -13,6 +13,17 @@ import { useState } from "react";
 import "react-swipeable-list/dist/styles.css";
 import { Trash, Bookmark } from "react-feather";
 
+////TO-DO
+//1.
+//ADD to change the optics:
+//onSwipeProgress
+//Type: (progress: number, dragDirection: string) => void
+//Fired every time swipe progress changes. The reported progress value is always an integer in range 0 to 100 inclusive. dragDirection can have value of left or right.
+//2.
+//onSwipeEnd={resetCardBackgroundSwip}
+//to define what happens when swip-Action stops
+
+
 type Props = {
   data: {
     title?: string;
@@ -71,6 +82,9 @@ export default function Card({
   function styleSwipe(direction: string) {
     setCardBackgroundSwipe(direction);
   }
+  function resetCardBackgroundSwip(direction: string) {
+    setCardBackgroundSwipe("");
+  }
 
   const basicCardStyle = "rounded-2xl  w-full h-44 ";
 
@@ -79,11 +93,11 @@ export default function Card({
       show={swiped}
       appear={true}
       enter="transform transition duration-[400ms]"
-      enterFrom="opacity-0 scale-y-0"
-      enterTo="opacity-100 scale-y-100"
-      leave="transform duration-[400ms] transition ease-in-out"
-      leaveFrom="opacity-100 scale-y-100"
-      leaveTo="opacity-0 scale-y-0"
+      enterFrom="opacity-0 scale-x-0"
+      enterTo="opacity-100 scale-x-100"
+      leave="transform duration-[300ms] transition ease-in-out"
+      leaveFrom="opacity-100 scale-x-100"
+      leaveTo="opacity-0 scale-x-0"
     >
       <div
         className={clsx(
