@@ -12,5 +12,10 @@ DELETE http://localhost:3000/api/deleteList
 Content-Type: application/json
 
 {
-  "name": "listest1"
+  "id": "123456789"
 }
+
+###
+
+GET http://localhost:3000/api/seeLists?id=123456789
+
