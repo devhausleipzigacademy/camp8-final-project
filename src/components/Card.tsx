@@ -22,6 +22,7 @@ import { Trash, Bookmark } from "react-feather";
 //2.
 //onSwipeEnd={resetCardBackgroundSwip}
 //to define what happens when swip-Action stops
+//use 'resetCardBackgroundSwip' after the list Item snaps back
 
 
 type Props = {
