@@ -77,8 +77,8 @@ model Item {
   inList              List?   @relation(fields: [listIdentifier], references: [id])
 
   //this userItem is based on
-  masterItemId        String
-  masterItem          MasterItem @relation(fields: [masterItemId], references: [id])
+  masterItemId        String ?
+  masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])
 
   customCategoryId    String?
   customCategory      Category? @relation(fields: [customCategoryId], references: [id])
