@@ -51,7 +51,7 @@ Link to the Figma file: https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocer
 
 ```http
   GET /api/items
-````
+```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
