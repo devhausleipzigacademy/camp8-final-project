@@ -25,6 +25,7 @@ type Props = {
 };
 
 export default function Card({
+
   data: { dateCreated, checkedItems, totalItems, title },
   createNewCard,
   favorite,
@@ -39,14 +40,6 @@ export default function Card({
     setSwiped(false);
     onRemove();
   }
-
-  const trailingActions = () => (
-    <TrailingActions>
-      <SwipeAction onClick={() => deleteListItem()}>
-        <DeleteList />
-      </SwipeAction>
-    </TrailingActions>
-  );
 
   function styleSwipe(direction: string) {
     setCardBackgroundSwipe(direction);
@@ -76,7 +69,7 @@ export default function Card({
       ></div>
       <SwipeableListItem
         listType={Type.IOS}
-        trailingActions={trailingActions()}
+        trailingActions=<DeleteList onDelete={deleteListItem} />
         onSwipeStart={styleSwipe}
         className="flex"
       >
@@ -118,11 +111,18 @@ export default function Card({
   );
 }
 
-function DeleteList() {
-  return (
-    <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
-      <p className="text-xl underline">delete</p>
-      <Trash className="h-10 w-10 mr-10" />
-    </div>
-  );
+
+type DeleteListProps = { onDelete: () => void }
+
+function DeleteList({onDelete}: DeleteListProps) {
+   return   (
+   <TrailingActions>
+      <SwipeAction onClick={onDelete} >
+        <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
+          <p className="text-xl underline">delete</p>
+          <Trash className="h-10 w-10 mr-10" />
+        </div>
+      </SwipeAction>
+    </TrailingActions>
+  )
 }
