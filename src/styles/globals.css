@@ -45,11 +45,12 @@
   .text-primary {
     font-size: 18pt;
     line-height: 22px;
+    font-weight: lighter;
   }
 
   .text-links {
     font-size: 14pt;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 17px;
   }
   .text-secondary {
@@ -74,7 +75,7 @@
     font-size: 24pt;
     line-height: 29px;
   }
-  
+
   #Delete_Action,
   #Tick_Action {
     justify-content: center;

@@ -3,6 +3,7 @@ import {
   Type,
   SwipeAction,
   TrailingActions,
+  LeadingActions,
 } from "react-swipeable-list";
 import { format, isToday } from "date-fns";
 import { de } from "date-fns/locale";
@@ -22,6 +23,7 @@ type Props = {
   createNewCard?: Boolean;
   favorite?: Boolean;
   onRemove: Function;
+  onPin: Function;
 };
 
 export default function Card({
@@ -29,23 +31,41 @@ export default function Card({
   createNewCard,
   favorite,
   onRemove,
+  onPin,
 }: Props) {
   const [swiped, setSwiped] = useState(true);
   const [inDeletion, setIndDeletion] = useState(false);
+  const [whileSwiping, setWhileSwiping] = useState(false);
   const [cardBackgroundSwipe, setCardBackgroundSwipe] = useState("");
 
-  function deleteListItem() {
+  function deleteList() {
     setIndDeletion(true);
     setSwiped(false);
     onRemove();
+    setCardBackgroundSwipe("left")
+  }
+
+  function pinList() {
+    setWhileSwiping(true);
+    setSwiped(false);
+    onPin();
+    setCardBackgroundSwipe("right")
   }
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => deleteListItem()}>
+      <SwipeAction onClick={() => deleteList()}>
         <DeleteList />
       </SwipeAction>
     </TrailingActions>
+  );
+
+  const leadingActions = () => (
+    <LeadingActions>
+      <SwipeAction onClick={() => pinList()}>
+        <PinList />
+      </SwipeAction>
+    </LeadingActions>
   );
 
   function styleSwipe(direction: string) {
@@ -69,14 +89,15 @@ export default function Card({
         className={clsx(
           basicCardStyle,
           "-z-10 absolute",
-          cardBackgroundSwipe === "left" && "bg-ux-error",
-          cardBackgroundSwipe === "right" && "bg-ux-success"
+          (cardBackgroundSwipe === "left" && "bg-ux-error"),
+          (cardBackgroundSwipe === "right" && "bg-primary-default-Solid"),
         )}
         id="swipe-bg"
       ></div>
       <SwipeableListItem
         listType={Type.IOS}
         trailingActions={trailingActions()}
+        leadingActions={leadingActions()}
         onSwipeStart={styleSwipe}
         className="flex"
       >
@@ -121,8 +142,17 @@ export default function Card({
 function DeleteList() {
   return (
     <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
-      <p className="text-xl underline">delete</p>
+      <p className="text-links">delete</p>
       <Trash className="h-10 w-10 mr-10" />
+    </div>
+  );
+}
+
+function PinList() {
+  return (
+    <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
+      <p className="text-primary">pin</p>
+      <Bookmark className="h-10 w-10 mr-10" />
     </div>
   );
 }
