@@ -54,7 +54,7 @@ export default function Card({
       enter="transform transition duration-400"
       enterFrom="opacity-0 scale-y-0"
       enterTo="opacity-100 scale-y-100"
-      leave="transform duration-[400ms] transition ease-in-out"
+      leave="transform duration-400 transition ease-in-out"
       leaveFrom="opacity-100 scale-y-100"
       leaveTo="opacity-0 scale-y-0"
     >
