@@ -19,7 +19,12 @@ type ListItemProps = {
 	onRemove: () => void;
 };
 // onRemove is added so higher level page can trigger a function when an item is removed.
-export default function ListItem(props: ListItemProps) {
+export default function ListItem({
+	name,
+	image,
+	quantity,
+	onRemove,
+}: ListItemProps) {
 	const [checked, setChecked] = useState(false);
 	const [swiped, setSwiped] = useState(true);
 	const onCheck = () => {
@@ -27,7 +32,7 @@ export default function ListItem(props: ListItemProps) {
 	};
 	const onDelete = () => {
 		setSwiped(false);
-		props.onRemove();
+		onRemove();
 	};
 	const leadingActions = () => (
 		<LeadingActions>
@@ -74,15 +79,15 @@ export default function ListItem(props: ListItemProps) {
 				<img
 					className="h-full aspect-square"
 					src={
-						props.image
-							? props.image
+						image
+							? image
 							: "http://cdn.onlinewebfonts.com/svg/img_275679.png"
 					}
 					alt="http://cdn.onlinewebfonts.com/svg/img_275679.png"
 				/>
 				<div className="flex p-2 justify-between items-center flex-grow">
-					<p className="text-text-typo text-primary">{props.name}</p>
-					<p className="text-secondary font-thin">{props.quantity}</p>
+					<p className="text-text-typo text-primary">{name}</p>
+					<p className="text-secondary font-thin">{quantity}</p>
 					<div
 						onClick={onCheck}
 						className="h-10 w-10 bg-text-white border-primary-default-Solid rounded-2xl border-2 flex justify-center items-center"
