@@ -120,8 +120,9 @@ export default function Card({
 
 function DeleteList() {
   return (
-    <div className="justify-center items-center flex pl-4 my-3">
-      <Trash className="h-10 w-10 m-10 text-text-white" />
+    <div className="justify-center items-center flex pl-4 my-3 text-text-white">
+      <p className="text-xl underline">delete</p>
+      <Trash className="h-10 w-10 m-10" />
     </div>
   );
 }
