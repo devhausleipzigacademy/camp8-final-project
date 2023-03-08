@@ -3,15 +3,8 @@ GET http://localhost:3000/api/test
 
 ###
 
-http://localhost:3000/api/seeLists?user=752df3ec-29e4-489f-8aac-a862976b10da
+GET http://localhost:3000/api/autocomplete?name=pear
 
-POST http://localhost:3000/api/query/
-Content-Type: application/json
-
-{
-  "query":"pear",
-  "inputList":"Hello"
-}
 
 ###
 
@@ -19,5 +12,17 @@ DELETE http://localhost:3000/api/deleteList
 Content-Type: application/json
 
 {
-  "name": "listest1"
+  "id": "123456789"
 }
+
+###
+
+POST http://localhost:3000/api/addItem
+Content-Type: application/json
+
+{
+  "query": "bla",
+  "inputList": "1232"
+}
+
+GET http://localhost:3000/api/seeLists?id=123456789
