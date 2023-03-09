@@ -32,8 +32,10 @@ specifiers:
   eslint-config-next: 13.1.6
   fastify: ^4.13.0
   fastify-zod: ^1.2.0
+  feather-icons: ^4.29.0
   headlessui: ^0.0.0
   next: 13.1.6
+  next-auth: ^4.20.1
   nodemailer: ^6.9.1
   postcss: ^8.4.21
   postcss-loader: ^7.0.2
@@ -65,7 +67,9 @@ dependencies:
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
   fastify: 4.13.0
   fastify-zod: 1.2.0_fastify@4.13.0
+  feather-icons: 4.29.0
   next: 13.1.6_pjwopsidmaokadturxaafygjp4
+  next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
   nodemailer: 6.9.1
   postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
   react: 18.2.0
@@ -5596,6 +5600,10 @@ packages:
       static-extend: 0.1.2
     dev: true
 
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
+
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
     engines: {node: '>= 4.0'}
@@ -5912,7 +5920,6 @@ packages:
   /core-js/3.28.0:
     resolution: {integrity: sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw==}
     requiresBuild: true
-    dev: true
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -7334,6 +7341,13 @@ packages:
     dependencies:
       pend: 1.2.0
     dev: true
+
+  /feather-icons/4.29.0:
+    resolution: {integrity: sha512-Y7VqN9FYb8KdaSF0qD1081HCkm0v4Eq/fpfQYQnubpqi0hXx14k+gF9iqtRys1SIcTEi97xDi/fmsPFZ8xo0GQ==}
+    dependencies:
+      classnames: 2.3.2
+      core-js: 3.28.0
+    dev: false
 
   /fetch-retry/5.0.3:
     resolution: {integrity: sha512-uJQyMrX5IJZkhoEUBQ3EjxkeiZkppBd5jS/fMTJmfZxLSiaQjv2zD0kTvuvkSH89uFvgSlB6ueGpjD3HWN7Bxw==}
