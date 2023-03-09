@@ -30,7 +30,6 @@ export default function EditModal() {
 			},
 		],
 		Quantity:
-			// this will be an input field
 			//NEW INPUT COMPONENT
 			[
 				{
@@ -38,30 +37,28 @@ export default function EditModal() {
 					title: "enter quantity",
 				},
 			],
-		Units:
-			// this will have 5 fixed ids
-			[
-				{
-					id: 1,
-					title: "ml Mililiters)",
-				},
-				{
-					id: 2,
-					title: "l (Liters)",
-				},
-				{
-					id: 3,
-					title: "g (Grams)",
-				},
-				{
-					id: 4,
-					title: "kg (Kilograms)",
-				},
-				{
-					id: 5,
-					title: "kg (Kilograms)",
-				},
-			],
+		Units: [
+			{
+				id: 1,
+				title: "ml Mililiters)",
+			},
+			{
+				id: 2,
+				title: "l (Liters)",
+			},
+			{
+				id: 3,
+				title: "g (Grams)",
+			},
+			{
+				id: 4,
+				title: "kg (Kilograms)",
+			},
+			{
+				id: 5,
+				title: "kg (Kilograms)",
+			},
+		],
 	});
 
 	return (
@@ -69,6 +66,7 @@ export default function EditModal() {
 		// empty reusable TABS COMPONENT goes here
 		<div className="w-full max-w-md px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
 			<Tab.Group>
+				{/* ///////// TABS START */}
 				<Tab.List className="flex space-x-1 rounded-xl p-1 ">
 					{Object.keys(categories).map((category) => (
 						<Tab
@@ -76,7 +74,7 @@ export default function EditModal() {
 							className={({ selected }) =>
 								classNames(
 									"w-full rounded-lg py-2.5 text-sm font-medium leading-5",
-									"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+									"ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2",
 									selected
 										? "bg-primary-default-background text-text-white"
 										: "text-text-typo hover:bg-white/[0.12] hover:text-white"
@@ -87,6 +85,8 @@ export default function EditModal() {
 						</Tab>
 					))}
 				</Tab.List>
+				{/* //////// TABS END */}
+
 				{/* IMPLEMENT FUNCTIONALITY */}
 				<Tab.Panels className="mt-2">
 					{Object.values(categories).map((options, idx) => (
@@ -102,7 +102,6 @@ export default function EditModal() {
 									<li
 										key={option.id}
 										className="relative rounded-md p-3"
-										//bg-primary-default-background opacity-10
 									>
 										<h3 className="text-sm font-medium leading-5">
 											{option.title}
