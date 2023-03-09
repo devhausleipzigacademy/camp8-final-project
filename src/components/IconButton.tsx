@@ -1,15 +1,18 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 import Link from "next/link";
+import clsx from "clsx";
 
 type IconButton = {
-  icon: string;
+  classes: string;
 };
 
 export function IconButton(props: IconButton) {
   return (
     <Link href="/account">
-      <CgProfile className="w-12 h-12 text-primary-default-Solid" />
+      <CgProfile
+        className={clsx(" text-primary-default-Solid", props.classes)}
+      />
     </Link>
   );
 }

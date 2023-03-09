@@ -1,3 +1,4 @@
+import Card from "@/components/Card";
 import Head from "next/head";
 
 export default function Login() {
@@ -12,7 +13,6 @@ export default function Login() {
       <h1 className="text-red-300 text-4xl font-bold flex justify-center pb-10">
         Login Page
       </h1>
-
       <form
         action="/send-data-here"
         method="post"
