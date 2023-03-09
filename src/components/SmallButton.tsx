@@ -19,7 +19,6 @@ export function SmallButton({ label, disabled, ...props }: SmallButtonProps) {
 			disabled={disabled}
 			{...props}
 		>
-			<div></div>
 			{label}
 		</button>
 	);
