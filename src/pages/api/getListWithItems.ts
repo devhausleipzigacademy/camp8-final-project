@@ -1,12 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { Item, List, Prisma, PrismaClient } from "@prisma/client";
+import { prisma } from "./prisma";
 
 const inputQuerySchema = z.object({
   id: z.string(),
 });
-
-const prisma = new PrismaClient();
 
 export default async function handler(
   request: NextApiRequest,
