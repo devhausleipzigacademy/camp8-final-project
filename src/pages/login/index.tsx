@@ -1,4 +1,3 @@
-import { HeaderTitle } from "@/components/HeaderTitle";
 import Head from "next/head";
 
 export default function Login() {
