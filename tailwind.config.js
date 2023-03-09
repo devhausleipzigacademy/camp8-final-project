@@ -34,6 +34,9 @@ module.exports = {
     },
     extend: {
       transitionDuration: { 400: "400ms" },
+      borderRadius: {
+        listitem: ".5rem",
+      },
     },
   },
   plugins: [],
