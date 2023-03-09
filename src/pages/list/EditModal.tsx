@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
+import ListItem from "@/components/ListItem";
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
@@ -62,9 +63,16 @@ export default function EditModal() {
 	});
 
 	return (
-		// LIST ITEM COMPONENT goes here
-		// empty reusable TABS COMPONENT goes here
 		<div className="w-full max-w-md px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
+			<ListItem
+				name={""}
+				image={""}
+				checked={false}
+				onRemove={function (): void {
+					throw new Error("Function not implemented.");
+				}}
+			/>
+			{/* empty reusable TABS COMPONENT goes here */}
 			<Tab.Group>
 				{/* ///////// TABS START */}
 				<Tab.List className="flex space-x-1 rounded-xl p-1 ">
