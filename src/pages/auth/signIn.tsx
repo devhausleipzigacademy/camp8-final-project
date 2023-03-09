@@ -1,16 +1,22 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const { data: session } = useSession();
+  const { push } = useRouter();
 
   const handleSignInGoogle = () => signIn("google");
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const emailCheck = new RegExp(`[A-z]*@[a-z]+.com`);
+  const emailCheck = new RegExp(`[A-z]+@[a-z]+.com`);
   console.log(session);
+
+  if (session) {
+    push("/");
+  }
 
   return (
     <div className="h-screen flex flex-col justify-around items-centers">

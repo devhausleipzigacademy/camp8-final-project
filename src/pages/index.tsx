@@ -7,7 +7,7 @@ export default function Home() {
   const { data: session } = useSession();
   const { push, asPath } = useRouter();
   const handleSignOut = () => {
-    signOut({ redirect: true, callbackUrl: "/homepage" });
+    signOut({ redirect: true, callbackUrl: "/auth/signIn" });
   };
   const handleSignIn = () => push(`/auth/signIn?callbackURL=${asPath}`);
   return (
