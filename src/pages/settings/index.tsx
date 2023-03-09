@@ -11,7 +11,7 @@ export default function Settings() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-4xl font-bold flex justify-center">Settings </h1>
-      <div className="flex justify-center">
+      <div className="flex justify-center bg-primary-default-background text-text-white">
         <TabAccountSetting />
       </div>
     </>

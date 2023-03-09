@@ -1,12 +1,17 @@
-import React from "react";
+import React, { use } from "react";
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import { Switch } from "@headlessui/react";
 import { TabComponentStupid } from "./StupidToggle";
+import css from "styled-jsx/css";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+
+// export function changeTheme() {
+//   if(MyToggle())
+// }
 
 export function MyToggle() {
   const [enabled, setEnabled] = useState(false);
@@ -15,10 +20,11 @@ export function MyToggle() {
       <Switch.Group>
         <Switch
           checked={enabled}
+          // Hier () => setTheme(theme === 'dark' ? 'light' : 'dark')
           onChange={setEnabled}
           className={`${
             enabled
-              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default "
+              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
               : "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
           }
           relative inline-flex h-full w-full rounded-lg `}
