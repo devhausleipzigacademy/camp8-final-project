@@ -18,7 +18,7 @@ export function MyToggle() {
           onChange={setEnabled}
           className={`${
             enabled
-              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
+              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default "
               : "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
           }
           relative inline-flex h-full w-full rounded-lg `}
