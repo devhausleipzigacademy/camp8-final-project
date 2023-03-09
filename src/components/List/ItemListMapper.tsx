@@ -26,11 +26,9 @@ export function ItemListMapper(props: ItemListMapperProps) {
       {sorted.map((product) => {
         let nameSection = false;
 
-        if (props.sortBy === "category") {
-          if (product.category !== sectionName) {
-            sectionName = product.category;
-            nameSection = true;
-          }
+        if (props.sortBy === "category" && product.category !== sectionName) {
+          sectionName = product.category;
+          nameSection = true;
         }
         return (
           <div className=" py-1">
