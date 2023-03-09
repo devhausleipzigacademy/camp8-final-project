@@ -26,3 +26,16 @@ Content-Type: application/json
 }
 
 GET http://localhost:3000/api/seeLists?id=123456789
+
+###
+POST http://localhost:3000/api/createUser
+Content-Type: application/json
+
+{
+	"expired": "",
+	"user": {
+		"jgh": "bob.gmail.com",
+    "image": "bigboi",
+    "name":"bla"
+}
+}

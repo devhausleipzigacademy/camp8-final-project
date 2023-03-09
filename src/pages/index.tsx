@@ -1,4 +1,4 @@
-import Head from "next/head";
+im§ort Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
