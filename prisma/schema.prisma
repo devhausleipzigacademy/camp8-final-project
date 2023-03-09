@@ -4,7 +4,7 @@
 
 // MasterItems:  "prototype" Items. Are defined by id, name, img-url and a default category for this item and a list, and a boolean, to indivate, if it has been approved..
 // Categories:   Categories. Are definied by id and Name.
-// Items:        Items used in Lists. Are definied by id, List they are found in, masterItemId and a custom Category (which is optional)
+// Items:        Items used in Lists. Are definied by id, List they are found in, masterItemId and a custom Category and customItemName (which are optional).
 // Lists:        Lists. Are defined by id, the user they belong to, and Items related to this list.
 // Users:        Users. Are defined by id, name, and List that are related to this specific user.
 
@@ -50,12 +50,13 @@ model User {
 }
 
 model List {
-  id              String @id @default(uuid())
+  id                  String @id @default(uuid())
 
-  listName            String? @default("new list")
+  listName            String?    @default("new list")
+  createdAt           DateTime   @default(now())
 
-  listIdentifier      String //entering correct listIdentifier will Link to user
-  belongsTo           User @relation(fields: [listIdentifier], references: [id])
+  userIdentifier      String //entering correct listIdentifier will Link to user
+  belongsTo           User @relation(fields: [userIdentifier], references: [id])
 
   items               Item[] ///opposite relation to Items related to this List.
 
@@ -65,7 +66,8 @@ model List {
 model Item {
   id                  String  @id @default(uuid())
 
-  customItemName      String?
+  customName          String?
+  createdAt           DateTime   @default(now())
 
   quantity            Float?
   unit                String?
@@ -75,8 +77,8 @@ model Item {
   inList              List?   @relation(fields: [listIdentifier], references: [id])
 
   //this userItem is based on
-  masterItemId        String
-  masterItem          MasterItem @relation(fields: [masterItemId], references: [id])
+  masterItemId        String ?
+  masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])
 
   customCategoryId    String?
   customCategory      Category? @relation(fields: [customCategoryId], references: [id])
@@ -90,7 +92,7 @@ model MasterItem {
   imageUrl            String?
 
   category            String?
-  defaultCategory     Category? @relation(fields: [category], references: [category])
+  defaultCategory     Category? @relation(fields: [category], references: [name])
 
   approved            Boolean
 
@@ -100,8 +102,8 @@ model MasterItem {
 }
 
 model Category {
-  id          String  @id @default(uuid())
-  category            String  @unique
+  id                  String  @id @default(uuid())
+  name                String  @unique
   masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
   userItem            Item[] //opposite relation to customCategory in userItem
 
