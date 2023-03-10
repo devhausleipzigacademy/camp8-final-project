@@ -1,4 +1,3 @@
-import { useAuthStore } from "@/stores/authStore";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
@@ -17,10 +16,8 @@ export default function SignIn() {
 	const emailCheck = new RegExp(`[A-z]+@[a-z]+.com`);
 	console.log(session);
 
-	const { infos, setInfos } = useAuthStore();
-
 	if (session) {
-		setInfos(session), push("/");
+		push("/");
 	}
 
 	return (

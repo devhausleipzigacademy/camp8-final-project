@@ -1,14 +1,16 @@
 import Head from "next/head";
-import { useAuthStore } from "@/stores/authStore";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
+import axios from "axios";
+
+async function checkOrCreateUser() {
+	await axios.post("http://localhost:3000/api/createUser");
+}
 
 export default function Home() {
 	const { data: session } = useSession();
 	const { push, asPath } = useRouter();
-	const { infos } = useAuthStore();
-	console.log(infos);
 
 	const handleSignOut = () => {
 		signOut({ redirect: true, callbackUrl: "/auth/signIn" });
