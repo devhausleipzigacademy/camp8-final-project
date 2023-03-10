@@ -3,6 +3,16 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
+import axios from "axios";
+import { object } from "zod";
+import { AuthType } from "./api/createUser";
+import { Session } from "next-auth";
+
+async function checkOrCreateUser(object: Session) {
+  await axios
+    .post("http://localhost:3000/api/createUser", object)
+    .then((respuesta) => console.log(respuesta));
+}
 
 export default function Home() {
   const { push } = useRouter();
@@ -11,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     if (!session) {
       push("/auth/signIn");
-    }
+    } else checkOrCreateUser(session);
   }, [session]);
 
   const handleSignOut = () => {

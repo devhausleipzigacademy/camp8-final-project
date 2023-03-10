@@ -3,6 +3,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
+
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const { data: session } = useSession();
