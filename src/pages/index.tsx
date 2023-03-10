@@ -2,11 +2,22 @@ import Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { push } = useRouter();
+
   const { data: session } = useSession();
-  const { push, asPath } = useRouter();
-  if (!session) redirect(`/auth/signIn`);
+  useEffect(() => {
+    if (!session) {
+      push("/auth/signIn");
+    }
+  }, [session]);
+
+  const handleSignOut = () => {
+    signOut({ redirect: true, callbackUrl: "/auth/signIn" });
+  };
+
   return (
     <>
       <Head>
@@ -18,6 +29,8 @@ export default function Home() {
       <h1 className="text-red-600 text-4xl font-bold flex justify-center">
         Landing Page
       </h1>
+      <button onClick={() => push("/auth/signIn")}>Sign In</button>
+      <button onClick={handleSignOut}>Sign Out</button>
     </>
   );
 }
