@@ -18,12 +18,18 @@ export default async function handler(
     // Find all lists that belong to the user
     const lists = await prisma.list.findMany({
       where: {
-        listIdentifier: id,
+        userIdentifier: id,
+      },
+
+      include: {
+        _count: {
+          select: { items: true },
+        },
       },
     });
 
     response.status(200).json(lists);
-    return;
+    return lists
   }
   response.status(405).send("not ok");
 }

@@ -1,28 +1,24 @@
 
-GET http://localhost:3000/api/test
+# GET http://localhost:3000/api/test
 
-###
+# ###
 
-GET http://localhost:3000/api/autocomplete?name=pear
+# GET http://localhost:3000/api/autocomplete?name=pear
 
 
-###
+# ###
 
-DELETE http://localhost:3000/api/deleteList
-Content-Type: application/json
+GET http://localhost:3000/api/seeLists?id=3c34daba-20e9-4a99-b3fb-204406a63c37
 
-{
-  "id": "123456789"
-}
 
-###
+# ###
 
-POST http://localhost:3000/api/addItem
-Content-Type: application/json
+# POST http://localhost:3000/api/addItem
+# Content-Type: application/json
 
-{
-  "query": "bla",
-  "inputList": "1232"
-}
+# {
+#   "query": "bla",
+#   "inputList": "1232"
+# }
 
-GET http://localhost:3000/api/seeLists?id=123456789
+# GET http://localhost:3000/api/seeLists?id=123456789
