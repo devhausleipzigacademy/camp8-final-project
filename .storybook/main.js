@@ -49,11 +49,8 @@ module.exports = {
 			path.resolve(__dirname, "../public"),
 			"node_modules",
 		];
-
-		return config;
-	},
-	webpackFinal: async (config) => {
-		config.module.rules.push({
+    
+    config.module.rules.push({
 			test: /\.css$/i,
 			use: [
 				{
@@ -63,7 +60,7 @@ module.exports = {
 			],
 			include: path.resolve(__dirname, "../"),
 		});
-		// Return the altered config
+
 		return config;
 	},
 };
