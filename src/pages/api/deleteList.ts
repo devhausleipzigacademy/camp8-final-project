@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { Items, List, Prisma, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "./prisma";
 
 /* The point of this endpoint is to delete an item to a list.
 First check the name given against the database.
@@ -16,11 +14,11 @@ export default async function handler(
 ) {
   if (request.method === "DELETE") {
     try {
-      const { name } = inputQueryTest.parse(request.body);
+      const { id } = inputQueryTest.parse(request.body);
 
-      const listToBe = await prisma.list.delete({
+      await prisma.list.delete({
         where: {
-          name: name,
+          id: id,
         },
       });
       response.status(200).send("Removed List");
@@ -36,5 +34,5 @@ export default async function handler(
 }
 
 const inputQueryTest = z.object({
-  name: z.string(),
+  id: z.string(),
 });
