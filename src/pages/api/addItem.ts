@@ -31,25 +31,34 @@ export default async function handler(
           },
         })) as MasterItem;
 
-        await prisma.item.create({
+        await prisma.category.update({
+          where: {
+            name: product.category!,
+          },
           data: {
-            masterItemId: product.id,
-            listIdentifier: inputList,
+            item: {
+              create: {
+                imageUrl: product.imageUrl,
+                listIdentifier: list?.id,
+                name: product.name,
+              },
+            },
           },
         });
 
         response.status(200).send(product);
       } catch (err) {
-        const other = await prisma.category.findFirst({
+        await prisma.category.update({
           where: {
-            category: "other",
+            name: "other",
           },
-        });
-        await prisma.item.create({
           data: {
-            customItemName: query,
-            listIdentifier: inputList,
-            customCategoryId: other?.id,
+            item: {
+              create: {
+                listIdentifier: list?.id,
+                name: query,
+              },
+            },
           },
         });
         response.status(201).send("New User created in Other");

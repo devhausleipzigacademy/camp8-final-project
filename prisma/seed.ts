@@ -9,22 +9,16 @@ const prisma = new PrismaClient();
 async function main() {
   const bigData: Data = data;
   for (let categoryName in bigData) {
-    await prisma.category.create({
-      data: {
-        category: categoryName,
-        masterItem: {
-          createMany: {
-            data: bigData[categoryName].map((x) => {
-              return {
-                name: x.name,
-                imageUrl: x.image,
-                approved: true,
-              };
-            }),
-            skipDuplicates: true,
-          },
-        },
-      },
+    await prisma.masterItem.createMany({
+      data: bigData[categoryName].map((x) => {
+        return {
+          approved: true,
+          imageUrl: x.image,
+          name: x.name,
+          category: categoryName,
+        };
+      }),
+      skipDuplicates: true,
     });
   }
 }
