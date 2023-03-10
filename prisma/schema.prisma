@@ -57,6 +57,8 @@ model List {
 
   userIdentifier      String //entering correct listIdentifier will Link to user
   belongsTo           User @relation(fields: [userIdentifier], references: [id])
+  
+  favorite            Boolean?
 
   items               Item[] ///opposite relation to Items related to this List.
 
