@@ -11,6 +11,7 @@ module.exports = {
 		"@storybook/addon-links",
 		"@storybook/addon-essentials",
 		"@storybook/addon-interactions",
+		"@storybook-addon-pseudo-states",
 		{
 			/**
 			 * Fix Storybook issue with PostCSS@8
@@ -48,6 +49,17 @@ module.exports = {
 			path.resolve(__dirname, "../public"),
 			"node_modules",
 		];
+    
+    config.module.rules.push({
+			test: /\.css$/i,
+			use: [
+				{
+					loader: "postcss-loader",
+					options: { implementation: require.resolve("postcss") },
+				},
+			],
+			include: path.resolve(__dirname, "../"),
+		});
 
 		return config;
 	},
