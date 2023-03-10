@@ -33,6 +33,7 @@ specifiers:
   fastify: ^4.13.0
   fastify-zod: ^1.2.0
   feather-icons: ^4.29.0
+  feather-icons-react: ^0.6.2
   headlessui: ^0.0.0
   next: 13.1.6
   next-auth: ^4.20.1
@@ -69,6 +70,7 @@ dependencies:
   fastify: 4.13.0
   fastify-zod: 1.2.0_fastify@4.13.0
   feather-icons: 4.29.0
+  feather-icons-react: 0.6.2_react@18.2.0
   next: 13.1.6_pjwopsidmaokadturxaafygjp4
   next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
   nodemailer: 6.9.1
@@ -7343,6 +7345,14 @@ packages:
     dependencies:
       pend: 1.2.0
     dev: true
+
+  /feather-icons-react/0.6.2_react@18.2.0:
+    resolution: {integrity: sha512-G677Y5nc3HzP1f5NNb5LJuZwKrI58BK4+/9O8Bl4naF9JixC+YL4trVom1F2ajnilq/EbU8JETPTNqvCzwH1qA==}
+    peerDependencies:
+      react: '>= 16.8.4'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /feather-icons/4.29.0:
     resolution: {integrity: sha512-Y7VqN9FYb8KdaSF0qD1081HCkm0v4Eq/fpfQYQnubpqi0hXx14k+gF9iqtRys1SIcTEi97xDi/fmsPFZ8xo0GQ==}

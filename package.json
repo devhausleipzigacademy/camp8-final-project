@@ -31,6 +31,7 @@
     "fastify": "^4.13.0",
     "fastify-zod": "^1.2.0",
     "feather-icons": "^4.29.0",
+    "feather-icons-react": "^0.6.2",
     "next": "13.1.6",
     "next-auth": "^4.20.1",
     "nodemailer": "^6.9.1",
