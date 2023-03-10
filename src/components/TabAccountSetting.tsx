@@ -1,17 +1,69 @@
-import React, { use } from "react";
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { Switch } from "@headlessui/react";
-import { TabComponentStupid } from "./StupidToggle";
-import css from "styled-jsx/css";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-// export function changeTheme() {
-//   if(MyToggle())
+// function Theme() {
+//   const [theme, setTheme] = useState("light");
+
+//   useEffect(() => {
+//     if (theme === "dark") {
+//       document.documentElement.classList.add("dark");
+//     } else {
+//       document.documentElement.classList.remove("dark");
+//     }
+//   }, [theme]);
+//   const handleThemeSwitch = () => {
+//     setTheme(theme === "dark" ? "light" : "dark");
+//   };
 // }
+
+export function ToggleView() {
+  const [enabled, setEnabled] = useState(false);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+  return (
+    <div className="py-2">
+      <Switch.Group>
+        <Switch
+          checked={enabled}
+          onChange={setEnabled}
+          className={`${
+            enabled
+              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
+              : "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
+          }
+            relative inline-flex h-full w-full rounded-lg `}
+        >
+          <span className="sr-only dark">Use setting</span>
+          <span
+            aria-hidden="true"
+            className={`${
+              enabled
+                ? "translate-x-full after:content-['Big'] text-text-white content-center"
+                : "translate-x-0 after:content-['Normal'] text-text-white content-center"
+            }
+              pointer-events-none inline-block h-full w-[50%] py-2 transform rounded-md bg-primary-default-Solid  transition duration-200 ease-in-out `}
+          />
+        </Switch>
+      </Switch.Group>
+    </div>
+  );
+}
 
 export function MyToggle() {
   const [enabled, setEnabled] = useState(false);
@@ -49,6 +101,7 @@ function Setting() {
     <div>
       Setting
       <MyToggle />
+      <ToggleView />
     </div>
   );
 }
