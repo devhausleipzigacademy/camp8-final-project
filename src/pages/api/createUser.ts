@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { prisma } from "src/pages/api/prisma";
+import { type } from "os";
 
 /*
  */
@@ -43,10 +44,12 @@ export default async function handler(
 				});
 			}
 
-			response.status(200).send(temp);
+			response.status(200);
 		} catch (err) {
 			if (err instanceof ZodError) {
-				response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
+				response
+					.status(400)
+					.send(`Wrong Data type Sent =>${JSON.stringify(err)}`);
 			} else {
 				response.status(418).send(JSON.stringify(err));
 			}
@@ -61,3 +64,5 @@ const createUserTest = z.object({
 		name: z.optional(z.string()),
 	}),
 });
+
+export type AuthType = z.infer<typeof createUserTest>;
