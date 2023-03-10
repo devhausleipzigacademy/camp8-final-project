@@ -1,11 +1,8 @@
 import Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import axios from "axios";
-import { object } from "zod";
-import { AuthType } from "./api/createUser";
 import { Session } from "next-auth";
 
 async function checkOrCreateUser(object: Session) {
