@@ -8,30 +8,32 @@ import {
 import clsx from "clsx";
 import "react-swipeable-list/dist/styles.css";
 import { Trash, Bookmark } from "react-feather";
+import { CardProps } from "./Cards";
 
-export default function SingleCard({ ...CardProps }) {
+export default function SingleCard({ data, createNewCard}: CardProps) {
 
   //rewrite so that data gets fed in only ONCE (?)
   return (
     <SwipeableListItem
     listType={Type.IOS}
     className="flex"
-    leadingActions={leadingActions(CardProps.data.id)}
-    trailingActions={trailingActions(CardProps.data.id)}
+    leadingActions={leadingActions(data.id)}
+    trailingActions={trailingActions(data.id)}
+    key={data.id}
     >
       <div
         className={clsx(
           "border border-secondary-transparent rounded-2xl flex flex-col gap-[10px] w-full h-44gap-[10px] p-5 justify-between bg-secondary-transparent",
-          CardProps.createNewCard
+          createNewCard
             ? "text-primary-transparent"
             : "text-primary-default-Solid "
         )}
       >
         <div className="flex flex-col gap-3 rounded-[14px]">
           <p className="button-bold font-semibold">
-            {`${CardProps.data.itemsChecked}/${CardProps.data.itemsTotal} Items`}
+            {`${data.itemsChecked}/${data.itemsTotal} Items`}
           </p>
-          {CardProps.createNewCard ? (
+          {createNewCard ? (
             <input
               type="text"
               placeholder="new list"
@@ -40,15 +42,15 @@ export default function SingleCard({ ...CardProps }) {
             />
           ) : (
             <p className="text-title uppercase font-heading ">
-              {CardProps.data.listName}
+              {data.listName}
             </p>
           )}
         </div>
         <div className="flex justify-between">
           <div className="text-primary">
-            {CardProps.data.favorite && <Bookmark className="h-6 w-6" />}
+            {data.favorite && <Bookmark className="h-6 w-6" />}
           </div>
-          <p>{CardProps.data.createdAt}</p>
+          <p>{data.createdAt}</p>
         </div>
       </div>
     </SwipeableListItem>

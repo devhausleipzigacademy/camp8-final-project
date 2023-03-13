@@ -21,10 +21,9 @@ export default async function handler(
         userIdentifier: id,
       },
       include: {
-        _count: {
-          select: {
-            items: true,
-           },
+         items: true,
+         _count: {
+          select: { items: true }
         },
       },
     });
@@ -34,3 +33,5 @@ export default async function handler(
   }
   response.status(405).send("not ok");
 }
+
+

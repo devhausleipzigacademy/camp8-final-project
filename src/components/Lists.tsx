@@ -1,4 +1,4 @@
-//THIS DATA ARE SAMPLE DATA TO IMITATE HTTP-RESPOND
+//THIS DATA ARE SAMPLE DATA TO IMITATE HTTP-RESPOND // they dont reflect the http-respont structure very well yet, though
 //GET http://localhost:3000/api/seeLists?id=3c34daba-20e9-4a99-b3fb-204406a63c37
 
 import { CardProps, listProps, userLists } from "./Cards";

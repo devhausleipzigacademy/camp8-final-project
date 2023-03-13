@@ -3,15 +3,15 @@ import React, { Key } from "react";
 import { LeadingActions, TrailingActions } from "react-swipeable-list";
 import { example_card } from "./Lists";
 import SingleCard from "./Card";
+import {user_lists} from "./Lists"
 
 // without the just created list
 // color definition for Bookmark missing
-// chech Date type, Date has too many characters
-// where do CardComponentProps go?
+// check Date type, Date has too many characters
 
 //for incoming Data
 export type listProps = {
-  id: string | number;
+  id: string;
   listName: string;
   createdAt: String;
   itemsTotal: Number;
@@ -28,18 +28,11 @@ export type userLists = Array<listProps>;
 export default function Cards() {
   return(
   <div className="flex flex-col gap-[10px] overflow-hidden pt-[160px]">
-    <SingleCard {...example_card}/>
-    {/* {
-        lists.map((element: listProps) => {
-          <SwipeableListItem
+  </div>
+  )}
 
-          createNewCard = {false}
 
-          data={element.data}
-          key={data.id}
-          leadingActions={LeadingActions(element.id)}
-          trailingActions={TrailingActions(element.id)} />
-        })
-      }*/}
-  </div>)
-}
+  user_lists.map((element: listProps) => {
+    <SingleCard
+      data={element}
+    />})
