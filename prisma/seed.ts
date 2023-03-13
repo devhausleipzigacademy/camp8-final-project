@@ -11,7 +11,7 @@ async function main() {
   for (let categoryName in bigData) {
     await prisma.category.create({
       data: {
-        category: categoryName,
+        name: categoryName,
         masterItem: {
           createMany: {
             data: bigData[categoryName].map((x) => {

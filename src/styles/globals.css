@@ -8,6 +8,10 @@
   background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
 }
 
+.bar-text {
+  pointer-events: none;
+}
+
 .bg-primary-frame {
   background: linear-gradient(
     179.79deg,
@@ -74,7 +78,7 @@
     font-size: 24pt;
     line-height: 29px;
   }
-  
+
   #Delete_Action,
   #Tick_Action {
     justify-content: center;
