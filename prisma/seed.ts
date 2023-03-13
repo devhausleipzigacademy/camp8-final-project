@@ -20,6 +20,11 @@ async function main() {
       }),
       skipDuplicates: true,
     });
+    await prisma.category.create({
+      data: {
+        name: categoryName,
+      },
+    });
   }
 }
 main();
