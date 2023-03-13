@@ -1,4 +1,3 @@
-import { ToggleView } from "@/components/ToggleView";
 import Head from "next/head";
 
 export default function Login() {
@@ -14,7 +13,7 @@ export default function Login() {
         Login Page
       </h1>
       
-<ToggleView></ToggleView>
+
       <form
         action="/send-data-here"
         method="post"
