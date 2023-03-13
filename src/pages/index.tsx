@@ -1,7 +1,7 @@
+import SingleCard from "@/components/Card";
 import Head from "next/head";
-import { PrismaClient } from "@prisma/client";
-
-export const prisma = new PrismaClient();
+import { example_card } from "@/components/Lists";
+import Cards from "@/components/Cards";
 
 export default function Home() {
   return (
@@ -12,9 +12,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-red-600 text-4xl font-bold flex justify-center">
-        Landing Page
-      </h1>
+
+
+        <div className="max-w-screen-sm h-screen flex flex-col gap-2 justify-self-center">
+          <h1 className="text-text-typo text-title">
+            Landing Page
+          </h1>
+          <SingleCard {...example_card} />
+          <Cards />
+        </div>
     </>
   );
 }

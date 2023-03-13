@@ -20,16 +20,17 @@ export default async function handler(
       where: {
         userIdentifier: id,
       },
-
       include: {
         _count: {
-          select: { items: true },
+          select: {
+            items: true,
+           },
         },
       },
     });
 
     response.status(200).json(lists);
-    return lists
+    return lists;
   }
   response.status(405).send("not ok");
 }

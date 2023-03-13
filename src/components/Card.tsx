@@ -3,126 +3,92 @@ import {
   Type,
   SwipeAction,
   TrailingActions,
+  LeadingActions,
 } from "react-swipeable-list";
-import { format, isToday } from "date-fns";
-import { de } from "date-fns/locale";
 import clsx from "clsx";
-import { Transition } from "@headlessui/react";
-import { useState } from "react";
 import "react-swipeable-list/dist/styles.css";
 import { Trash, Bookmark } from "react-feather";
 
-type Props = {
-  data: {
-    title?: string;
-    dateCreated: Date;
-    checkedItems: number;
-    totalItems: number;
-  };
-  createNewCard?: Boolean;
-  favorite?: Boolean;
-  onRemove: Function;
-};
+export default function SingleCard({ ...CardProps }) {
 
-export default function Card({
-
-  data: { dateCreated, checkedItems, totalItems, title },
-  createNewCard,
-  favorite,
-  onRemove,
-}: Props) {
-  const [swiped, setSwiped] = useState(true);
-  const [inDeletion, setIndDeletion] = useState(false);
-  const [cardBackgroundSwipe, setCardBackgroundSwipe] = useState("");
-
-  function deleteListItem() {
-    setIndDeletion(true);
-    setSwiped(false);
-    onRemove();
-  }
-
-  function styleSwipe(direction: string) {
-    setCardBackgroundSwipe(direction);
-  }
-
-  const basicCardStyle = "rounded-2xl  w-full h-44 ";
-
+  //rewrite so that data gets fed in only ONCE (?)
   return (
-    <Transition
-      show={swiped}
-      appear={true}
-      enter="transform transition duration-400"
-      enterFrom="opacity-0 scale-y-0"
-      enterTo="opacity-100 scale-y-100"
-      leave="transform duration-400 transition ease-in-out"
-      leaveFrom="opacity-100 scale-y-100"
-      leaveTo="opacity-0 scale-y-0"
+    <SwipeableListItem
+    listType={Type.IOS}
+    className="flex"
+    leadingActions={leadingActions(CardProps.data.id)}
+    trailingActions={trailingActions(CardProps.data.id)}
     >
       <div
         className={clsx(
-          basicCardStyle,
-          "-z-10 absolute",
-          cardBackgroundSwipe === "left" && "bg-ux-error",
-          cardBackgroundSwipe === "right" && "bg-ux-success"
+          "border border-secondary-transparent rounded-2xl flex flex-col gap-[10px] w-full h-44gap-[10px] p-5 justify-between bg-secondary-transparent",
+          CardProps.createNewCard
+            ? "text-primary-transparent"
+            : "text-primary-default-Solid "
         )}
-        id="swipe-bg"
-      ></div>
-      <SwipeableListItem
-        listType={Type.IOS}
-        trailingActions=<DeleteList onDelete={deleteListItem} />
-        onSwipeStart={styleSwipe}
-        className="flex"
       >
-        <div
-          className={clsx(
-            basicCardStyle,
-            "border p-5 border-secondary-transparent flex flex-col justify-between",
-            createNewCard
-              ? "text-primary-transparent"
-              : "text-primary-default-Solid",
-            inDeletion ? "bg-secondary-default" : "bg-card"
+        <div className="flex flex-col gap-3 rounded-[14px]">
+          <p className="button-bold font-semibold">
+            {`${CardProps.data.itemsChecked}/${CardProps.data.itemsTotal} Items`}
+          </p>
+          {CardProps.createNewCard ? (
+            <input
+              type="text"
+              placeholder="new list"
+              className="text-title uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+              //onClick?
+            />
+          ) : (
+            <p className="text-title uppercase font-heading ">
+              {CardProps.data.listName}
+            </p>
           )}
-        >
-          <div className="flex flex-col gap-3">
-            <p className="text-2xl font-semibold">
-              {checkedItems}/{totalItems} Items
-            </p>
-            {createNewCard ? (
-              <input
-                type="text"
-                placeholder="new list"
-                className="text-4xl uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-              />
-            ) : (
-              <p className="text-4xl uppercase font-heading ">{title}</p>
-            )}
-          </div>
-          <div className="flex justify-between items-center">
-            <div>{favorite && <Bookmark className="h-6 w-6" />}</div>
-            <p className="text-xl">
-              {isToday(dateCreated)
-                ? "today"
-                : format(dateCreated, "P", { locale: de })}
-            </p>
-          </div>
         </div>
-      </SwipeableListItem>
-    </Transition>
+        <div className="flex justify-between">
+          <div className="text-primary">
+            {CardProps.data.favorite && <Bookmark className="h-6 w-6" />}
+          </div>
+          <p>{CardProps.data.createdAt}</p>
+        </div>
+      </div>
+    </SwipeableListItem>
   );
 }
 
+export const handleDelete = (id: string) => () => {
+  console.log("[Handle DELETE]", id);
+};
 
-type DeleteListProps = { onDelete: () => void }
+export const handlePin = (id: string) => () => {
+  console.log("[Handle PIN]", id);
+};
 
-function DeleteList({onDelete}: DeleteListProps) {
-   return   (
-   <TrailingActions>
-      <SwipeAction onClick={onDelete} >
-        <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
-          <p className="text-xl underline">delete</p>
-          <Trash className="h-10 w-10 mr-10" />
+export const leadingActions = (id: string) => (
+  <LeadingActions>
+    <SwipeAction onClick={handlePin(id)}>
+      <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
+        <div className="flex gap-8 ml-8 mr-7 m-0 content-center">
+          <span className="h-6 w-6 m-0">
+            <Bookmark />
+          </span>
+          <p className="bg-white text-primary">Pin</p>
         </div>
-      </SwipeAction>
-    </TrailingActions>
-  )
-}
+      </div>
+    </SwipeAction>
+  </LeadingActions>
+);
+
+export const trailingActions = (id: string) => (
+  <TrailingActions>
+    <SwipeAction onClick={handleDelete(id)}>
+      <div className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
+        <div className="flex gap-8 ml-6 mr-8 m-0 content-center">
+          <span className="h-6 w-6">
+            <Trash className="stroke-text-white"/>
+          </span>
+          <p className="bg-white text-primary">Pin</p>
+        </div>
+      </div>
+    </SwipeAction>
+  </TrailingActions>
+);
