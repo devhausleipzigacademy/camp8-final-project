@@ -13,23 +13,23 @@
 
 @layer components {
 	.text-title {
-		font-size: 58px;
-		line-height: 72px;
+		font-size: 3.625rem;
+		line-height: 4.5rem;
 		@apply font-heading;
 	}
 	.text-primary {
-		font-size: 18px;
-		line-height: 22px;
+		font-size: 1.125rem;
+		line-height: 1.375rem;
 	}
 
 	.text-links {
-		font-size: 14px;
+		font-size: 0.875rem;
 		font-weight: 600;
-		line-height: 17px;
+		line-height: 1.063rem;
 	}
 	.text-secondary {
-		font-size: 14px;
-		line-height: 17px;
+		font-size: 0.875rem;
+		line-height: 1.063rem;
 	}
 
 	.cards-title {
