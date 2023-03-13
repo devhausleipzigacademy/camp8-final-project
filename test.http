@@ -21,13 +21,14 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "corn chowder",
+  "query": "sage",
   "inputList": "d6e5005a-abdc-4478-b276-3c2f57e41ba8"
 }
 
 ###
 
-GET http://localhost:3000/api/seeLists?id=123456789
+GET http://localhost:3000/api/ListItems?inputList=d6e5005a-abdc-4478-b276-3c2f57e41ba8
+
 
 
 ###
