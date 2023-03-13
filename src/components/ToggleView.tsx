@@ -1,34 +1,43 @@
-import { Switch } from "@headlessui/react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { Switch } from "@headlessui/react";
 
 type ToggleView = {};
 
-
-
 export function ToggleView(props: ToggleView) {
-  const [enabled, setEnabled] = useState(false);
+  const [size, setSize] = useState(false);
+
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    if (size) {
+      htmlElement.classList.add("big");
+    } else {
+      htmlElement.classList.remove("big");
+    }
+  }, [size]);
+
   return (
     <div className="py-2">
       <Switch.Group>
         <Switch
-          checked={enabled}
-          onChange={setEnabled}
+          checked={size}
+          onChange={setSize}
           className={`${
-            enabled
-              ? "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
-              : "bg-secondary-default border-2 border-spacing-2 border-secondary-default"
+            size
+              ? " text-primary-default-Solid  bg-secondary-transparent border-secondary-default"
+              : "bg-secondary-transparent  text-primary-default-Solid  border-secondary-default"
           }
-            relative inline-flex h-full w-full rounded-lg `}
+          relative inline-flex h-full w-full content-center rounded-lg `}
         >
-          <span className="sr-only ">Use setting</span>
+          <span className="sr-only ">Toggle size of components</span>
           <span
             aria-hidden="true"
             className={`${
-              enabled
-                ? "translate-x-full after:content-['Big'] text-text-white content-center"
-                : "translate-x-0 after:content-['Normal'] text-text-white content-center"
+              size
+                ? "translate-x-full before:content-['Big'] text-text-white "
+                : "-translate-x-0 after:content-['Normal'] text-text-white "
             }
-              pointer-events-none inline-block h-full w-[50%] py-2 transform rounded-md bg-primary-default-Solid  transition duration-200 ease-in-out `}
+            pointer-events-none  inline-block h-full w-[50%] py-2 transform rounded-md bg-primary-default-Solid transition duration-300 ease-in-out `}
           />
         </Switch>
       </Switch.Group>

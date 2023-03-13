@@ -4,8 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ui-size: 14px;
+  font-size: var(--ui-size);
+}
+
 .bg-primary-default-background {
   background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
+}
+
+.big {
+  font-size: 22px;
 }
 
 .bg-primary-frame {
@@ -74,7 +83,7 @@
     font-size: 24pt;
     line-height: 29px;
   }
-  
+
   #Delete_Action,
   #Tick_Action {
     justify-content: center;
