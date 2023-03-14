@@ -63,7 +63,7 @@ export default function EditModal() {
 	});
 
 	return (
-		<div className="w-full max-w-md px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
+		<div className="w-full h-full px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
 			<ListItem
 				name={""}
 				image={""}
@@ -72,10 +72,10 @@ export default function EditModal() {
 					throw new Error("Function not implemented.");
 				}}
 			/>
-			{/* empty reusable TABS COMPONENT goes here */}
+
 			<Tab.Group>
 				{/* ///////// TABS START */}
-				<Tab.List className="flex space-x-1 rounded-xl p-1 ">
+				<Tab.List className="flex max-w-[334px] space-x-1 rounded-xl p-1 ">
 					{Object.keys(categories).map((category) => (
 						<Tab
 							key={category}
@@ -95,8 +95,7 @@ export default function EditModal() {
 				</Tab.List>
 				{/* //////// TABS END */}
 
-				{/* IMPLEMENT FUNCTIONALITY */}
-				<Tab.Panels className="mt-2">
+				<Tab.Panels className="mt-2 max-w-[334px]">
 					{Object.values(categories).map((options, idx) => (
 						<Tab.Panel
 							key={idx}
