@@ -10,6 +10,7 @@ import {
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import { FiCheckSquare, FiSquare } from "react-icons/fi";
 
 type ListItemProps = {
   name: string;
