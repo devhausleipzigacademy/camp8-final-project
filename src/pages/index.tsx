@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { PrismaClient } from "@prisma/client";
-import { Bubble } from "@/components/Bubble";
 
 export default function Home() {
   return (
@@ -14,7 +13,6 @@ export default function Home() {
       <h1 className="text-red-600 text-4xl font-bold flex justify-center">
         Landing Page
       </h1>
-      <Bubble />
     </>
   );
 }
