@@ -24,7 +24,7 @@ export function LargeButton({
 			className={clsx(
 				"flex items-center w-full text-center border-box rounded-md disabled:cursor-not-allowed",
 				variant == "primary"
-					? "enabled:bg-gradient-bl-primary-background text-button-large px-5 py-3 justify-around text-text-white disabled:bg-ux-inactive enabled:active:shadow-primaryButtonShadow"
+					? "enabled:bg-grad-default text-button-large px-5 py-3 justify-around text-text-white disabled:bg-ux-inactive enabled:active:shadow-primaryButtonShadow"
 					: "bg-text-white border-2 text-button-bold px-6 py-3.5 justify-center text-primary-default-Solid  disabled:text-ux-inactive enabled:active:shadow-secondaryButtonShadow"
 			)}
 			disabled={disabled}
