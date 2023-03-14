@@ -1,16 +1,11 @@
-import { SwipeableListItem } from "react-swipeable-list";
-import React, { Key } from "react";
-import { LeadingActions, TrailingActions } from "react-swipeable-list";
-import { example_card } from "./Lists";
 import SingleCard from "./Card";
-import {user_lists} from "./Lists"
+import { user_lists } from "./Lists";
 
 // without the just created list
-// color definition for Bookmark missing
 // check Date type, Date has too many characters
 
 //for incoming Data
-export type listProps = {
+export type UserList = {
   id: string;
   listName: string;
   createdAt: String;
@@ -19,20 +14,19 @@ export type listProps = {
   favorite?: boolean;
 };
 export type CardProps = {
-  data: listProps;
+  data: UserList;
   createNewCard?: Boolean;
 };
 
-export type userLists = Array<listProps>;
+export type UserLists = Array<UserList>;
 
+//should take a just created list as a prop
 export default function Cards() {
-  return(
-  <div className="flex flex-col gap-[10px] overflow-hidden pt-[160px]">
-  </div>
-  )}
+  return (
+    <div className="flex flex-col gap-[10px] overflow-hidden pt-[160px]"></div>
+  );
+}
 
-
-  user_lists.map((element: listProps) => {
-    <SingleCard
-      data={element}
-    />})
+user_lists.map((element: UserList) => {
+  <SingleCard data={element} />;
+});
