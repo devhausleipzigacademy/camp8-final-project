@@ -1,14 +1,14 @@
 export default function Input() {
 	return (
 		<>
-			<label className="relative">
+			<div className="relative">
 				<input
-					className="flex items-center text-center gap-3 pr-8 border border-primary-default-background focus:border-2 invalid:border-ux-error invalid:border-2
-					  rounded-md py-3 px-5 w-full"
+					className="w-80 h-14 px-4 flex text-center m-3 border valid:border-primary-default-Solid valid:border-2 invalid:border-ux-error invalid:border-2
+					  rounded-md "
 					type="email"
 					placeholder="Email"
 				/>
-			</label>
+			</div>
 		</>
 	);
 }
