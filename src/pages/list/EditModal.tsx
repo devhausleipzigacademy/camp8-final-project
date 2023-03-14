@@ -65,6 +65,9 @@ export default function EditModal() {
 	return (
 		<div className="w-full h-full px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
 			<ListItem
+				className={
+					"focus:z-10 focus:outline-none focus:bg-secondary-default"
+				}
 				name={""}
 				image={""}
 				checked={false}
