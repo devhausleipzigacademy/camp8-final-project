@@ -11,58 +11,28 @@ export default async function handler(
 ) {
   if (request.method === "GET") {
     try {
-      const { query, inputList } = inputQueryTest.parse(request.body);
-      // Getting ID of list we will add product to.  If none there create one
+      const { inputList } = inputQueryTest.parse(request.query);
 
-      let product: MasterItem;
       const list = await prisma.list.findFirst({
         where: {
           id: inputList,
         },
       });
-      if (!list) {
-        response.status(404).send("List not found");
-      }
 
-      try {
-        product = (await prisma.masterItem.findFirst({
-          where: {
-            name: query,
-          },
-        })) as MasterItem;
-
-        await prisma.category.update({
-          where: {
-            name: product.category!,
-          },
-          data: {
-            item: {
-              create: {
-                imageUrl: product.imageUrl,
-                listIdentifier: list?.id,
-                name: product.name,
-              },
+      const items = await prisma.category.findMany({
+        where: {
+          item: {
+            some: {
+              listIdentifier: inputList,
             },
           },
-        });
-
-        response.status(200).send(product);
-      } catch (err) {
-        await prisma.category.update({
-          where: {
-            name: "other",
-          },
-          data: {
-            item: {
-              create: {
-                listIdentifier: list?.id,
-                name: query,
-              },
-            },
-          },
-        });
-        response.status(201).send("New User created in Other");
-      }
+        },
+        include: {
+          item: true,
+        },
+      });
+      const whatever = { listName: list?.listName, list: items };
+      response.status(200).send(whatever);
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
@@ -75,6 +45,5 @@ export default async function handler(
 }
 
 const inputQueryTest = z.object({
-  query: z.string().regex(/[A-z]/, "No Numbers allowed"),
   inputList: z.string(),
 });

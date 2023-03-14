@@ -1,22 +1,31 @@
 import { GetServerSideProps } from "next";
-type Input = {
-  slug: string;
+import axios from "axios";
+import { Item } from "@prisma/client";
+
+type Category = {
+  id: string;
+  name: string;
+  item: Item[];
 };
-export default function Home({ slug }: Input) {
-  return (
-    <div>
-      <div>I am a list {slug}</div>
-    </div>
-  );
+
+type InputProps = {
+  listName: string;
+  list: Category[];
+};
+
+export default function Home(getData: InputProps) {
+  return <div></div>;
 }
 
 const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug;
-  const snail = params?.snail;
+  const slug = params?.slug; // slug = listId
+  const getData: InputProps = await axios
+    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
+    .then((res) => res.data);
 
   return {
     props: {
-      slug,
+      getData,
     },
   };
 };
