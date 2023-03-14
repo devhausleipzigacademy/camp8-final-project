@@ -68,8 +68,12 @@ model List {
 model Item {
   id                  String  @id @default(uuid())
 
-  customName          String?
+  name                String?
   createdAt           DateTime   @default(now())
+  imageUrl            String?
+  
+  category            String?
+  defaultCategory     Category? @relation(fields: [category], references: [name])
 
   quantity            Float?
   unit                String?
@@ -78,14 +82,8 @@ model Item {
   listIdentifier      String?
   inList              List?   @relation(fields: [listIdentifier], references: [id])
   
-  checked             Boolean?
+  checked             Boolean?  @default(true)
 
-  //this userItem is based on
-  masterItemId        String?
-  masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])
-
-  customCategoryId    String?
-  customCategory      Category? @relation(fields: [customCategoryId], references: [id])
 
   @@map("Items")
 }
@@ -96,11 +94,8 @@ model MasterItem {
   imageUrl            String?
 
   category            String?
-  defaultCategory     Category? @relation(fields: [category], references: [name])
 
-  approved            Boolean
-
-  item                Item[] //opposite Relation
+  approved            Boolean @default(true)
 
   @@map("MasterItems")
 }
@@ -108,10 +103,8 @@ model MasterItem {
 model Category {
   id                  String  @id @default(uuid())
   name                String  @unique
-  masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
-  userItem            Item[] //opposite relation to customCategory in userItem
+  item          Item[] //opposite relation to defaultCategory in MasterItem
 
   @@map("Categories")
 }
 
-//Additional: Inam for units
