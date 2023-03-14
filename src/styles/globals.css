@@ -11,6 +11,12 @@
   }
 }
 
+
+.bar-text {
+  pointer-events: none;
+}
+
+
 @layer components {
 	.text-title {
 		font-size: 58px;
