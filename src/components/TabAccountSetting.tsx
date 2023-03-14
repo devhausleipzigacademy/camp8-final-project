@@ -7,35 +7,20 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-// function Theme() {
-//   const [theme, setTheme] = useState("light");
-
-//   useEffect(() => {
-//     if (theme === "dark") {
-//       document.documentElement.classList.add("dark");
-//     } else {
-//       document.documentElement.classList.remove("dark");
-//     }
-//   }, [theme]);
-//   const handleThemeSwitch = () => {
-//     setTheme(theme === "dark" ? "light" : "dark");
-//   };
-// }
-
 export function ToggleView() {
   const [enabled, setEnabled] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(false);
 
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-  const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  // useEffect(() => {
+  //   if (theme === "dark") {
+  //     document.documentElement.classList.add("dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //   }
+  // }, [theme]);
+  // const handleThemeSwitch = () => {
+  //   setTheme(theme === "dark" ? "light" : "dark");
+  // };
   return (
     <div className="py-2">
       <Switch.Group>
@@ -72,7 +57,6 @@ export function MyToggle() {
       <Switch.Group>
         <Switch
           checked={enabled}
-          // Hier () => setTheme(theme === 'dark' ? 'light' : 'dark')
           onChange={setEnabled}
           className={`${
             enabled
@@ -81,7 +65,7 @@ export function MyToggle() {
           }
           relative inline-flex h-full w-full rounded-lg `}
         >
-          <span className="sr-only ">Use setting</span>
+          <span className="sr-only "></span>
           <span
             aria-hidden="true"
             className={`${
@@ -117,19 +101,19 @@ export default function TabAccountSetting() {
   });
 
   return (
-    <div className="w-full max-w-md px-2 py-16 sm:px-0">
+    <div className="w-full max-w-md px-2 py-16 ">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+        <Tab.List className="flex p-1 rounded-md bg-secondary-default ">
           {Object.keys(categories).map((category) => (
             <Tab
               key={category}
               className={({ selected }) =>
                 classNames(
-                  "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  "w-full py-2.5 text-sm font-medium leading-5 bg-secondary-default",
+                  "focus:bg-primary-default-Solid focus:rounded-md ",
                   selected
-                    ? "bg-white shadow"
-                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    ? "bg-primary-default-Solid"
+                    : "bg-primary-default-Solid"
                 )
               }
             >
