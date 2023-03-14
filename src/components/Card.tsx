@@ -16,14 +16,14 @@ export default function SingleCard({ data, createNewCard}: CardProps) {
   return (
     <SwipeableListItem
     listType={Type.IOS}
-    className="flex"
+    className="flex rounded-2xl"
     leadingActions={leadingActions(data.id)}
     trailingActions={trailingActions(data.id)}
     key={data.id}
     >
       <div
         className={clsx(
-          "border border-secondary-transparent rounded-2xl flex flex-col gap-[10px] w-full h-44gap-[10px] p-5 justify-between bg-secondary-transparent",
+          "border border-secondary-transparent flex flex-col gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
           createNewCard
             ? "text-primary-transparent"
             : "text-primary-default-Solid "
@@ -68,7 +68,7 @@ export const handlePin = (id: string) => () => {
 export const leadingActions = (id: string) => (
   <LeadingActions>
     <SwipeAction onClick={handlePin(id)}>
-      <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
+      <div onClick={()=>{}} className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
         <div className="flex gap-8 ml-8 mr-7 m-0 content-center">
           <span className="h-6 w-6 m-0">
             <Bookmark />
@@ -83,12 +83,12 @@ export const leadingActions = (id: string) => (
 export const trailingActions = (id: string) => (
   <TrailingActions>
     <SwipeAction onClick={handleDelete(id)}>
-      <div className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
+      <div onClick={()=>{}} className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
         <div className="flex gap-8 ml-6 mr-8 m-0 content-center">
           <span className="h-6 w-6">
             <Trash className="stroke-text-white"/>
           </span>
-          <p className="bg-white text-primary">Pin</p>
+          <p className="bg-white text-primary">Delete</p>
         </div>
       </div>
     </SwipeAction>
