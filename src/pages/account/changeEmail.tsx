@@ -1,12 +1,7 @@
 import { LargeButton } from "@/components/LargeButton";
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
-import axios from "axios";
-import { User } from "@prisma/client";
-import { signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 
 type buttonProps = {
 	variant: "primary";
@@ -15,27 +10,10 @@ type buttonProps = {
 };
 
 export default function Settings(props: buttonProps) {
-	const handleSignOut = () => {
-		signOut({ redirect: true, callbackUrl: "/auth/signIn" });
-	};
 	const router = useRouter();
 	const redirect = () => {
-		router.push("/account/changeEmail");
+		router.push("/changeEmail");
 	};
-	const { data: session } = useSession();
-	const [user, setUser] = useState<User>();
-	const getData = async () => {
-		const info: User = await axios
-			.get(`http://localhost:3000/api/userInfo?email=${session?.user?.email}`)
-			.then((res) => res.data);
-		console.log("Hello");
-		console.log(session);
-
-		setUser(info);
-	};
-	useEffect(() => {
-		getData();
-	}, []);
 
 	return (
 		<>
@@ -58,23 +36,15 @@ export default function Settings(props: buttonProps) {
 						<div>
 							<FiUser size={28} />
 						</div>
-						<div className="text-primary-default-Solid font-heading text-4xl">
-							{" "}
-							Hey, {user?.name}{" "}
-						</div>
+
 						<div className="w-full flex flex-col gap-5">
 							<LargeButton
 								variant="primary"
-								label="Change E-Mail"
-								onClick={redirect}
+								label="Get new link"
+								onClick={() => router.push("/account/changeEmail")}
 								disabled={false}
 							/>
-							<LargeButton
-								variant="secondary"
-								label="Log-Out"
-								onClick={handleSignOut}
-								disabled={false}
-							/>
+
 							<></>
 						</div>
 					</div>
