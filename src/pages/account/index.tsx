@@ -4,7 +4,7 @@ import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 type buttonProps = {
@@ -14,6 +14,9 @@ type buttonProps = {
 };
 
 export default function Settings(props: buttonProps) {
+	const handleSignOut = () => {
+		signOut({ redirect: true, callbackUrl: "/auth/signIn" });
+	};
 	const { data: session } = useSession();
 	const [user, setUser] = useState<User>();
 	const getData = async () => {
@@ -36,7 +39,7 @@ export default function Settings(props: buttonProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="px-8 h-screen flex flex-col bg-grad-frame">
+			<div className="px-8 flex flex-col bg-grad-frame">
 				<header className="w-full flex items-center h-10 pt-8">
 					<a href="">
 						<FiChevronLeft size={28} />
@@ -47,9 +50,12 @@ export default function Settings(props: buttonProps) {
 					<div className="flex w-full flex-col items-center gap-5">
 						{/* This section will change depending on the account status of the User */}
 						<div>
-							<FiUser size={40} />
+							<FiUser size={28} />
 						</div>
-						<div> Hey {user?.name} </div>
+						<div className="text-primary-default-Solid font-heading text-4xl">
+							{" "}
+							Hey, {user?.name}{" "}
+						</div>
 						<div className="w-full flex flex-col gap-5">
 							<LargeButton
 								variant="primary"
@@ -59,6 +65,7 @@ export default function Settings(props: buttonProps) {
 							<LargeButton
 								variant="secondary"
 								label="Log-Out"
+								onClick={handleSignOut}
 								disabled={false}
 							/>
 							<></>
