@@ -5,8 +5,8 @@ overrides:
 
 specifiers:
   '@babel/core': ^7.20.12
-  '@headlessui/react': ^1.7.13
-  '@heroicons/react': ^2.0.16
+  '@headlessui/react': ^1.7.12
+  '@next-auth/prisma-adapter': ^1.0.5
   '@next/font': 13.1.6
   '@prisma/client': ^4.10.1
   '@storybook/addon-actions': ^6.5.16
@@ -32,10 +32,18 @@ specifiers:
   eslint-config-next: 13.1.6
   fastify: ^4.13.0
   fastify-zod: ^1.2.0
+<<<<<<< HEAD
+=======
+  feather-icons: ^4.29.0
+>>>>>>> authTest
   feather-icons-react: ^0.6.2
   headlessui: ^0.0.0
   next: 13.1.6
   next-auth: ^4.20.1
+<<<<<<< HEAD
+=======
+  nodemailer: ^6.9.1
+>>>>>>> authTest
   postcss: ^8.4.21
   postcss-loader: ^7.0.2
   prisma: ^4.10.1
@@ -51,10 +59,15 @@ specifiers:
   ts-node-dev: ^2.0.0
   typescript: ^4.9.5
   zod: ^3.20.6
+  zustand: ^4.3.6
 
 dependencies:
+<<<<<<< HEAD
   '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.16_react@18.2.0
+=======
+  '@next-auth/prisma-adapter': 1.0.5_ouwcmbb7palpkwlagb7ozld3le
+>>>>>>> authTest
   '@next/font': 13.1.6
   '@prisma/client': 4.10.1_prisma@4.10.1
   '@types/react': 18.0.28
@@ -67,21 +80,34 @@ dependencies:
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
   fastify: 4.13.0
   fastify-zod: 1.2.0_fastify@4.13.0
+<<<<<<< HEAD
   feather-icons-react: 0.6.2_react@18.2.0
   headlessui: 0.0.0
   next: 13.1.6_pjwopsidmaokadturxaafygjp4
   next-auth: 4.20.1_3vryta7zmbcsw4rrqf4axjqggm
+=======
+  feather-icons: 4.29.0
+  feather-icons-react: 0.6.2_react@18.2.0
+  next: 13.1.6_pjwopsidmaokadturxaafygjp4
+  next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
+  nodemailer: 6.9.1
+>>>>>>> authTest
   postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-feather: 2.0.10_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
   react-swipeable-list: 1.7.2
+<<<<<<< HEAD
   string-similarity: 4.0.4
+=======
+>>>>>>> authTest
   zod: 3.20.6
+  zustand: 4.3.6_react@18.2.0
 
 devDependencies:
   '@babel/core': 7.20.12
+  '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-actions': 6.5.16_biqbaboplfbrettd7655fr4n2y
   '@storybook/addon-essentials': 6.5.16_g5hsdzyd7m2ulfrad4wwfj3vra
   '@storybook/addon-interactions': 6.5.16_yhjibtynzerqgnlzy2fatf5qta
@@ -95,9 +121,14 @@ devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.21
   axios: 1.3.4
   babel-loader: 8.3.0_la66t7xldg4uecmyawueag5wkm
+<<<<<<< HEAD
+=======
+  headlessui: 0.0.0
+>>>>>>> authTest
   postcss: 8.4.21
   prisma: 4.10.1
   storybook: 6.5.16_thg4xgkqzam43wvb4m4gitomxu
+  string-similarity: 4.0.4
   tailwindcss: 3.2.6_aesdjsunmf4wiehhujt67my7tu
   ts-node: 10.9.1_4bewfcp2iebiwuold25d6rgcsy
   ts-node-dev: 2.0.0_4bewfcp2iebiwuold25d6rgcsy
@@ -1721,6 +1752,7 @@ packages:
   /@headlessui/react/1.7.13_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==}
     engines: {node: '>=10'}
+<<<<<<< HEAD
     peerDependencies:
       react: ^16 || ^17 || ^18
       react-dom: ^16 || ^17 || ^18
@@ -1732,11 +1764,16 @@ packages:
 
   /@heroicons/react/2.0.16_react@18.2.0:
     resolution: {integrity: sha512-x89rFxH3SRdYaA+JCXwfe+RkE1SFTo9GcOkZettHer71Y3T7V+ogKmfw5CjTazgS3d0ClJ7p1NA+SP7VQLQcLw==}
+=======
+>>>>>>> authTest
     peerDependencies:
-      react: '>= 16'
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
     dependencies:
+      client-only: 0.0.1
       react: 18.2.0
-    dev: false
+      react-dom: 18.2.0_react@18.2.0
+    dev: true
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -1968,6 +2005,16 @@ packages:
       uuid: 8.3.2
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@next-auth/prisma-adapter/1.0.5_ouwcmbb7palpkwlagb7ozld3le:
+    resolution: {integrity: sha512-VqMS11IxPXrPGXw6Oul6jcyS/n8GLOWzRMrPr3EMdtD6eOalM6zz05j08PcNiis8QzkfuYnCv49OvufTuaEwYQ==}
+    peerDependencies:
+      '@prisma/client': '>=2.26.0 || >=3'
+      next-auth: ^4
+    dependencies:
+      '@prisma/client': 4.10.1_prisma@4.10.1
+      next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
     dev: false
 
   /@next/env/13.1.6:
@@ -5596,6 +5643,10 @@ packages:
       static-extend: 0.1.2
     dev: true
 
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
+
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
     engines: {node: '>= 4.0'}
@@ -5648,7 +5699,6 @@ packages:
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
-    dev: false
 
   /cliui/7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
@@ -5913,7 +5963,6 @@ packages:
   /core-js/3.28.0:
     resolution: {integrity: sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw==}
     requiresBuild: true
-    dev: true
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -7344,6 +7393,16 @@ packages:
       react: 18.2.0
     dev: false
 
+<<<<<<< HEAD
+=======
+  /feather-icons/4.29.0:
+    resolution: {integrity: sha512-Y7VqN9FYb8KdaSF0qD1081HCkm0v4Eq/fpfQYQnubpqi0hXx14k+gF9iqtRys1SIcTEi97xDi/fmsPFZ8xo0GQ==}
+    dependencies:
+      classnames: 2.3.2
+      core-js: 3.28.0
+    dev: false
+
+>>>>>>> authTest
   /fetch-retry/5.0.3:
     resolution: {integrity: sha512-uJQyMrX5IJZkhoEUBQ3EjxkeiZkppBd5jS/fMTJmfZxLSiaQjv2zD0kTvuvkSH89uFvgSlB6ueGpjD3HWN7Bxw==}
     dev: true
@@ -8215,7 +8274,11 @@ packages:
 
   /headlessui/0.0.0:
     resolution: {integrity: sha512-CHvacVPbl8AqIg2sBNKySUmumu7o15jSrCaTrIh9GW2Eq4y/krCN/vZFOsKCwlrhWQbO4267a8xvvP8bs+qREQ==}
+<<<<<<< HEAD
     dev: false
+=======
+    dev: true
+>>>>>>> authTest
 
   /hmac-drbg/1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
@@ -9838,7 +9901,11 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
+<<<<<<< HEAD
   /next-auth/4.20.1_3vryta7zmbcsw4rrqf4axjqggm:
+=======
+  /next-auth/4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei:
+>>>>>>> authTest
     resolution: {integrity: sha512-ZcTUN4qzzZ/zJYgOW0hMXccpheWtAol8QOMdMts+LYRcsPGsqf2hEityyaKyECQVw1cWInb9dF3wYwI5GZdEmQ==}
     peerDependencies:
       next: ^12.2.5 || ^13
@@ -9854,10 +9921,18 @@ packages:
       cookie: 0.5.0
       jose: 4.13.1
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
+<<<<<<< HEAD
       oauth: 0.9.15
       openid-client: 5.4.0
       preact: 10.13.1
       preact-render-to-string: 5.2.6_preact@10.13.1
+=======
+      nodemailer: 6.9.1
+      oauth: 0.9.15
+      openid-client: 5.4.0
+      preact: 10.13.0
+      preact-render-to-string: 5.2.6_preact@10.13.0
+>>>>>>> authTest
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
@@ -9969,6 +10044,11 @@ packages:
 
   /node-releases/2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
+
+  /nodemailer/6.9.1:
+    resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /normalize-package-data/2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
@@ -10871,17 +10951,30 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
+<<<<<<< HEAD
   /preact-render-to-string/5.2.6_preact@10.13.1:
+=======
+  /preact-render-to-string/5.2.6_preact@10.13.0:
+>>>>>>> authTest
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
     peerDependencies:
       preact: '>=10'
     dependencies:
+<<<<<<< HEAD
       preact: 10.13.1
       pretty-format: 3.8.0
     dev: false
 
   /preact/10.13.1:
     resolution: {integrity: sha512-KyoXVDU5OqTpG9LXlB3+y639JAGzl8JSBXLn1J9HTSB3gbKcuInga7bZnXLlxmK94ntTs1EFeZp0lrja2AuBYQ==}
+=======
+      preact: 10.13.0
+      pretty-format: 3.8.0
+    dev: false
+
+  /preact/10.13.0:
+    resolution: {integrity: sha512-ERdIdUpR6doqdaSIh80hvzebHB7O6JxycOhyzAeLEchqOq/4yueslQbfnPwXaNhAYacFTyCclhwkEbOumT0tHw==}
+>>>>>>> authTest
     dev: false
 
   /prelude-ls/1.1.2:
@@ -12280,7 +12373,11 @@ packages:
 
   /string-similarity/4.0.4:
     resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
+<<<<<<< HEAD
     dev: false
+=======
+    dev: true
+>>>>>>> authTest
 
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -13233,6 +13330,14 @@ packages:
       querystring: 0.2.0
     dev: true
 
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /use/3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
@@ -13754,6 +13859,22 @@ packages:
 
   /zod/3.20.6:
     resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
+    dev: false
+
+  /zustand/4.3.6_react@18.2.0:
+    resolution: {integrity: sha512-6J5zDxjxLE+yukC2XZWf/IyWVKnXT9b9HUv09VJ/bwGCpKNcaTqp7Ws28Xr8jnbvnZcdRaidztAPsXFBIqufiw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /zwitch/1.0.5:

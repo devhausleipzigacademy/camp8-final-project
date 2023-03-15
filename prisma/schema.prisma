@@ -1,37 +1,7 @@
-//to be done: date&time for Items and Lists
-
-//About this Schema:
-
-// MasterItems:  "prototype" Items. Are defined by id, name, img-url and a default category for this item and a list, and a boolean, to indivate, if it has been approved..
-// Categories:   Categories. Are definied by id and Name.
-// Items:        Items used in Lists. Are definied by id, List they are found in, masterItemId and a custom Category and customItemName (which are optional).
-// Lists:        Lists. Are defined by id, the user they belong to, and Items related to this list.
-// Users:        Users. Are defined by id, name, and List that are related to this specific user.
-
-//WORKFLOWS:
-
-//1. add Item to the List:
-////pick id, start typing
-////Input already in MasterItems: simply add Item to the list, add id as listIdentifier
-////Input not in Category yet: add Item to MasterItems, add Item to list, add id as listIdentifier
-
-//2. disply Lists for a specific user:
-////Only ids that the user has acceess to are displayd.
-
-//3. show List content:
-////display all Items filtered by id.
-
-//4. change Category:
-//// take Item by ItemId, take targeted Category, store as custom Category
-
-//5. delete List:
-////delete all Items form Items linked id, delete List by id
-
-
-
 generator client {
   provider = "prisma-client-js"
     previewFeatures = ["fullTextSearch"]
+
 }
 
 datasource db {
@@ -40,78 +10,34 @@ datasource db {
 }
 
 model User {
-  id              String @id @default(uuid())
+  id    String @id @default(uuid())
+  name  String?
+  email String @unique
+  image String?
+  List  List[]
 
-  name            String
-  email           String @unique
-  lists           List[] //opposite relation one-to-many
-
-  @@map("Users")
 }
+
 
 model List {
-  id                  String @id @default(uuid())
-
-  listName            String?    @default("new list")
-  createdAt           DateTime   @default(now())
-
-  userIdentifier      String //entering correct listIdentifier will Link to user
-  belongsTo           User @relation(fields: [userIdentifier], references: [id])
-  
-  favorite            Boolean?
-
-  items               Item[] ///opposite relation to Items related to this List.
-
-  @@map("Lists")
+  id     String  @id @default(uuid())
+  name   String 
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+  items  Items[]
 }
 
-model Item {
-  id                  String  @id @default(uuid())
-
-  customName          String?
-  createdAt           DateTime   @default(now())
-
-  quantity            Float?
-  unit                String?
-
-  //entering correct listIdentifier will Link to a list
-  listIdentifier      String?
-  inList              List?   @relation(fields: [listIdentifier], references: [id])
-  
-  checked             Boolean?
-
-  //this userItem is based on
-  masterItemId        String?
-  masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])
-
-  customCategoryId    String?
-  customCategory      Category? @relation(fields: [customCategoryId], references: [id])
-
-  @@map("Items")
+model Categories {
+  id    String  @id @default(uuid())
+  name  String  
+  Items Items[]
 }
 
-model MasterItem {
-  id                  String @id @default(uuid())
-  name                String @unique
-  imageUrl            String?
-
-  category            String?
-  defaultCategory     Category? @relation(fields: [category], references: [name])
-
-  approved            Boolean
-
-  item                Item[] //opposite Relation
-
-  @@map("MasterItems")
+model Items {
+  id                 String      @id @default(uuid())
+  name               String
+  Linked_to_List     List?       @relation(fields: [ListID], references: [id])
+  ListID             String?
+  Linked_to_Category Categories? @relation(fields: [CategoryID], references: [id])
+  CategoryID         String?
 }
-
-model Category {
-  id                  String  @id @default(uuid())
-  name                String  @unique
-  masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
-  userItem            Item[] //opposite relation to customCategory in userItem
-
-  @@map("Categories")
-}
-
-//Additional: Inam for units
