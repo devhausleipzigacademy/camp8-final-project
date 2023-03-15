@@ -21,7 +21,7 @@ export function ToggleDarkmode(props: ToggleView) {
   }, [theme]);
 
   return (
-    <div className="py-2">
+    <div className="py-2 ">
       <Switch.Group>
         <Switch
           checked={theme}

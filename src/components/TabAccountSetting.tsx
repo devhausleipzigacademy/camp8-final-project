@@ -20,7 +20,7 @@ export default function TabAccountSetting() {
           {Object.keys(categories).map((category) => (
             <Tab key={category}>
               {({ selected }) => (
-                <button
+                <label
                   className={classNames(
                     selected
                       ? "bg-primary-default-Solid rounded-md px-20"
@@ -28,7 +28,7 @@ export default function TabAccountSetting() {
                   )}
                 >
                   {category}
-                </button>
+                </label>
               )}
             </Tab>
           ))}
@@ -48,7 +48,7 @@ export default function TabAccountSetting() {
 
 function Setting() {
   return (
-    <div className="">
+    <div className="bg-primarydefault-Solid dark:bg-black">
       Setting
       <ToggleDarkmode />
     </div>
