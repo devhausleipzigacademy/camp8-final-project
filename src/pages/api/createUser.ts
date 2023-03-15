@@ -26,7 +26,7 @@ export default async function handler(
       if (!temp) {
         temp = await prisma.user.create({
           data: {
-            email: email
+            email: email,
           },
         });
       }
@@ -58,8 +58,8 @@ const createUserTest = z.object({
   expires: z.string(),
   user: z.object({
     email: z.string(),
-    image: z.optional(z.string()),
-    name: z.optional(z.string()),
+    image: z.nullable(z.optional(z.string())),
+    name: z.nullable(z.optional(z.string())),
   }),
 });
 
