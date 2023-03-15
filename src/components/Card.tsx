@@ -1,3 +1,4 @@
+import { ChangeEvent, useState } from "react";
 import {
   SwipeableListItem,
   Type,
@@ -6,20 +7,23 @@ import {
   LeadingActions,
 } from "react-swipeable-list";
 import clsx from "clsx";
-import "react-swipeable-list/dist/styles.css";
 import { Trash, Bookmark } from "react-feather";
-import { CardProps } from "./Cards";
 
-export default function SingleCard({ data, createNewCard}: CardProps) {
+import { setChangingName, CardProps, updateName } from "./CardsUtilities";
 
+export default function SingleCard({
+  data,
+  changingName,
+  createNewCard,
+}: CardProps) {
   //rewrite so that data gets fed in only ONCE (?)
   return (
     <SwipeableListItem
-    listType={Type.IOS}
-    className="flex rounded-2xl"
-    leadingActions={leadingActions(data.id)}
-    trailingActions={trailingActions(data.id)}
-    key={data.id}
+      listType={Type.IOS}
+      className="flex rounded-2xl"
+      leadingActions={leadingActions(data.id)}
+      trailingActions={trailingActions(data.id)}
+      key={data.id}
     >
       <div
         className={clsx(
@@ -33,15 +37,18 @@ export default function SingleCard({ data, createNewCard}: CardProps) {
           <p className="button-bold font-semibold">
             {`${data.itemsChecked}/${data.itemsTotal} Items`}
           </p>
-          {createNewCard ? (
+          {(changingName ==="true") ? (
             <input
               type="text"
               placeholder="new list"
               className="text-title uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-              //onClick?
+              onChange={updateName}
             />
           ) : (
-            <p className="text-title uppercase font-heading ">
+            <p
+              onClick={() => setChangingName(true)}
+              className="text-title uppercase font-heading "
+            >
               {data.listName}
             </p>
           )}
@@ -68,7 +75,10 @@ export const handlePin = (id: string) => () => {
 export const leadingActions = (id: string) => (
   <LeadingActions>
     <SwipeAction onClick={handlePin(id)}>
-      <div onClick={()=>{}} className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
+      <div
+        onClick={() => {}}
+        className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl"
+      >
         <div className="flex gap-8 ml-8 mr-7 m-0 content-center">
           <span className="h-6 w-6 m-0">
             <Bookmark />
@@ -83,10 +93,13 @@ export const leadingActions = (id: string) => (
 export const trailingActions = (id: string) => (
   <TrailingActions>
     <SwipeAction onClick={handleDelete(id)}>
-      <div onClick={()=>{}} className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
+      <div
+        onClick={() => {}}
+        className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl"
+      >
         <div className="flex gap-8 ml-6 mr-8 m-0 content-center">
           <span className="h-6 w-6">
-            <Trash className="stroke-text-white"/>
+            <Trash className="stroke-text-white" />
           </span>
           <p className="bg-white text-primary">Delete</p>
         </div>

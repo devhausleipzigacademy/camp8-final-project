@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { prisma } from "./prisma";
 
-
 const inputQuerySchema = z.object({
   id: z.string(),
 });
@@ -12,7 +11,6 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method === "GET") {
-
     // Parse the user ID from the query parameters
 
     const { id } = inputQuerySchema.parse(request.query);
@@ -35,23 +33,21 @@ export default async function handler(
       },
     });
 
-      userListsHttpRespond.forEach((element) => {
 
-      const itemsChecked = element.items.map((item) => {
-        item.checked === true
-      }).length
+    userListsHttpRespond.forEach((element) => {
+      element.itemsChecked = element.items.filter((i) => {
+        if (i.checked === true){
+          console.log("heyy, found one")
+          return true}
+      }).length;
+      element.itemsTotal = element.items.length
 
-      const itemsTotal = element.items.map((item)=>{}).length
-      element.itemsTotal = itemsTotal
-      element.itemsChecked = itemsChecked
       delete element.items
-
-      console.log({ ...element})
     }),
 
-    response.status(200).json(userListsHttpRespond)
-    console.log()
-    return userListsHttpRespond;
-  };
+    response.status(200).json(userListsHttpRespond);
+
+    return userListsHttpRespond
+  }
   response.status(405).send("not ok");
 }

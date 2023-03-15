@@ -1,32 +1,13 @@
 import SingleCard from "./Card";
-import { user_lists } from "./Lists";
+import { user_lists } from "./CardsUtilities";
+import axios from "axios";
 
-// without the just created list
-// check Date type, Date has too many characters
-
-//for incoming Data
-export type UserList = {
-  id: string;
-  listName: string;
-  createdAt: String;
-  itemsTotal: Number;
-  itemsChecked: Number;
-  favorite?: boolean;
-};
-export type CardProps = {
-  data: UserList;
-  createNewCard?: Boolean;
-};
-
-export type UserLists = Array<UserList>;
-
-//should take a just created list as a prop
-export default function Cards() {
+export default function CardsWrapper() {
   return (
-    <div className="flex flex-col gap-[10px] overflow-hidden pt-[160px]"></div>
+    <div className="flex flex-col gap-[10px] overflow-hidden pt-[160px]">
+      {user_lists.map((element: UserList) => {
+        <SingleCard data={element} changingName={"false"} />;
+      })}
+    </div>
   );
 }
-
-user_lists.map((element: UserList) => {
-  <SingleCard data={element} />;
-});
