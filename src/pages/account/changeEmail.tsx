@@ -4,6 +4,7 @@ import { FiChevronLeft, FiUser } from "react-icons/fi";
 import { Transition } from "@headlessui/react";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
+import router from "next/router";
 
 type buttonProps = {
 	variant: "primary";
@@ -17,6 +18,9 @@ export default function Settings(props: buttonProps) {
 		e.preventDefault();
 		signIn("email", { email });
 	};
+	const goBack = () => {
+		router.push("/account");
+	};
 	const emailCheck = new RegExp(`[A-z]+@[a-z]+.com`);
 
 	return (
@@ -29,7 +33,7 @@ export default function Settings(props: buttonProps) {
 			</Head>
 			<div className="px-8 flex flex-col bg-grad-frame">
 				<header className="w-full flex items-center h-10 pt-8">
-					<a href="">
+					<a href="" onClick={goBack}>
 						<FiChevronLeft size={28} />
 					</a>
 				</header>
