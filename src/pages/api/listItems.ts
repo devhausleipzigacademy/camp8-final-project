@@ -17,6 +17,9 @@ export default async function handler(
         where: {
           id: inputList,
         },
+        include: {
+          items: true,
+        },
       });
 
       const items = await prisma.category.findMany({
@@ -31,7 +34,7 @@ export default async function handler(
           item: true,
         },
       });
-      const whatever = { listName: list?.listName, list: items };
+      const whatever = { list: list, category: items };
       response.status(200).send(whatever);
     } catch (err) {
       if (err instanceof ZodError) {

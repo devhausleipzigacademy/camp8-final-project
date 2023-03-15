@@ -8,10 +8,14 @@ type Category = {
   name: string;
   item: Item[];
 };
+type List = {
+  listName: string;
+  items: Item[];
+};
 
 type InputProps = {
-  listName: string;
-  list: Category[];
+  list: List;
+  category: Category[];
 };
 
 export default function Home(getData: InputProps) {
