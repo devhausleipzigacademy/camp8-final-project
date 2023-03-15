@@ -3,7 +3,6 @@ import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import { Transition } from "@headlessui/react";
 import { FormEvent, useState } from "react";
-import email from "next-auth/providers/email";
 import { signIn } from "next-auth/react";
 
 type buttonProps = {
