@@ -26,9 +26,7 @@ export default async function handler(
       if (!temp) {
         temp = await prisma.user.create({
           data: {
-            email: email,
-            image: image,
-            name: name,
+            email: email
           },
         });
       }
