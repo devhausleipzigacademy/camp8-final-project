@@ -9,17 +9,17 @@ type ItemListMapperProps = {
 
 export function ItemListMapper(props: ItemListMapperProps) {
   let sectionName = "";
-  let sorted: Item[];
+  let sorted: Item[] = [];
 
   switch (props.sortBy) {
     case "date":
-      sorted = props.itemList;
+      sorted = props.itemList.item;
       break;
     case "category":
-      sorted = sortByCategory(props.itemList);
+      sorted = sortByCategory(props.itemList.item);
       break;
     case "alphabetical":
-      sorted = sortByAlphabet(props.itemList);
+      sorted = sortByAlphabet(props.itemList.item);
       break;
   }
   return (

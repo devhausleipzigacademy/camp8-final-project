@@ -5,14 +5,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
-import listItems from "@/pages/api/listItems";
 
 export type Category = {
   id: string;
   name: string;
   item: Item[];
 };
-type List = {
+export type List = {
   listName: string;
   items: Item[];
 };

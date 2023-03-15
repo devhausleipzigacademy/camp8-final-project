@@ -1,10 +1,10 @@
 import { RadioGroup } from "@headlessui/react";
 import { Dispatch, SetStateAction } from "react";
 import { clsx } from "clsx";
-import { Category } from "@/pages/list/[slug]";
+import { Category, List } from "@/pages/list/[slug]";
 
 export function sortByAlphabet(input: List) {
-  const sorted = [...input];
+  const sorted = [...input.item];
   sorted.sort((a, b) => {
     const nameA = a.item.toUpperCase();
     const nameB = b.item.toUpperCase();
@@ -18,8 +18,8 @@ export function sortByAlphabet(input: List) {
   });
   return sorted;
 }
-export function sortByCategory(input: Category): List {
-  const sorted: Array<object> = [];
+export function sortByCategory(input: Category) {
+  const sorted = [...input.item];
   sorted.sort((a, b) => {
     const categoryA = a.category.toUpperCase();
     const categoryB = b.category.toUpperCase();
@@ -48,7 +48,21 @@ export function sortByCategory(input: Category): List {
   return sorted;
 }
 
-export function sortByDate() {}
+export function sortByDate() {
+  const sorted = [...input];
+  sorted.sort((a, b) => {
+    const nameA = a.item.toUpperCase();
+    const nameB = b.item.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  return sorted;
+}
 
 type SortByProps = {
   sortBy: string;
