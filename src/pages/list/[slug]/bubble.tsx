@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { forceCollide, forceManyBody } from "d3-force";
 import { GetServerSideProps } from "next";
 import axios from "axios";
+import { ParsedUrlQuery } from "querystring";
 
 // create types
 
@@ -19,253 +20,192 @@ type Data = {
 };
 interface Props {
   data: Data;
+  slug: string;
 }
 
 // create "Bubble" component. Props are defined at the bottom
 
-export default function Bubble({ data }: Props) {
-  const d3Container = useRef(null);
+const toggleButton = async (id: string, checked: boolean, slug: string) => {
+  console.log(id);
 
-  // Move dummy data to a seperate file
-
-  // const data: Data = {
-  //   children: [
-  //     {
-  //       name: "Fish",
-  //       children: [{ name: "Brot" }, { name: "Butter" }, { name: "Sahne" }],
-  //     },
-  //     {
-  //       name: "Meat",
-  //       children: [{ name: "Käse" }, { name: "Bier" }, { name: "Wasser" }],
-  //     },
-  //     {
-  //       name: "Dairy",
-  //       children: [
-  //         { name: "Honig" },
-  //         { name: "Tee" },
-  //         { name: "Kaffeefilter" },
-  //         { name: "Filter" },
-  //         { name: "Eis" },
-  //       ],
-  //     },
-  //     {
-  //       name: "Starch",
-  //       children: [
-  //         { name: "Gemüse" },
-  //         { name: "Kürbis" },
-  //         { name: "Gurke" },
-  //         { name: "Spinat" },
-  //         { name: "Salat" },
-  //       ],
-  //     },
-  //     {
-  //       name: "Frozen",
-  //       children: [
-  //         { name: "Kuchen" },
-  //         { name: "Mais" },
-  //         { name: "Quark" },
-  //         { name: "Lauch" },
-  //         { name: "Möhren" },
-  //       ],
-  //     },
-  //     {
-  //       name: "Misc",
-  //       children: [
-  //         { name: "Reis" },
-  //         { name: "Pfefferminz-Kaugummi" },
-  //         { name: "Käse" },
-  //         { name: "Batterien" },
-  //         { name: "Möhren" },
-  //       ],
-  //     },
-  //     {
-  //       name: "Some more",
-  //       children: [
-  //         { name: "Reis" },
-  //         { name: "Kaugummi" },
-  //         { name: "Käse" },
-  //         { name: "Batterien" },
-  //         { name: "Möhren" },
-  //       ],
-  //     },
-  //   ],
-  // };
-
-  console.log(data + "data");
-
-  // We should include the option to generate more colors
-  // if the user creates custom categories
-
-  const circleColor = [
-    "#FFC107",
-    "#2196F3",
-    "#8BC34A",
-    "#9C27B0",
-    "#607D8B",
-    "#FF9800",
-    "#795548",
-    "#4CAF50",
-    "#E91E63",
-    "#FFEB3B",
-    "#00BCD4",
-    "#673AB7",
-    "#03A9F4",
-    "#9E9E9E",
-    "#FF5722",
-    "#8E24AA",
-  ];
-
-  const color = d3
-    .scaleOrdinal()
-    .domain([
-      "snacks",
-      "seafood",
-      "soups-and-canned-goods",
-      "personal-hygine",
-      "other",
-      "grains-and-pasta",
-      "baking",
-      "household",
-      "meats",
-      "pet-supplies",
-      "beverages",
-      "alcohol",
-      "frozen",
-      "dairy",
-      "condiments",
-      "fruits-and-vegetables",
-    ]) // add names
-    .range(circleColor);
-
-  // Set up the SVG element and its dimensions
-  const svg = d3.select(d3Container.current);
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  svg.attr("width", width);
-  svg.attr("height", height);
-  const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
-
-  // Set up the pack layout.
-  const pack = d3.pack().size([chartWidth, chartHeight]).padding(-5);
-
-  // Generate the hierarchy data structure
-  const root = d3.hierarchy(data).sum((d) => 1);
-
-  // Compute the position and size of each circle
-  const nodes = pack(root).descendants();
-
-  // This function gets the maximum circle radius of all bottom level circles.
-  // It was needed at some point during development.
-  // Right now, it is not needed, but I would like to have it remain
-  // for potential purposes
-
-  let maxRadius = 0;
-  nodes.forEach((node) => {
-    if (node.r > maxRadius) {
-      maxRadius = node.r;
-    }
+  await axios.post(`http://localhost:3000/api/toggleButton`, {
+    id: id,
+    checked: checked,
+    slug: slug,
   });
+};
 
-  // Add the circles to the SVG element, assigning a color to each top-level node
-  svg
-    .selectAll("circle")
-    .data(nodes.slice(data.children.length + 1)) // skip the first node to remove the top level circle
-    .join("circle")
-    .attr("r", (d) => {
-      // If it's a leaf node, set the radius based on the text length
-      if (!d.children && d.data.name.length < 7) {
-        return d.data.name.length * 4;
+export default function Bubble({ data, slug }: Props) {
+  const d3Container = useRef(null);
+  useEffect(() => {
+    console.log(data + "data");
+    const circleColor = [
+      "#FFC107",
+      "#2196F3",
+      "#8BC34A",
+      "#9C27B0",
+      "#607D8B",
+      "#FF9800",
+      "#795548",
+      "#4CAF50",
+      "#E91E63",
+      "#FFEB3B",
+      "#00BCD4",
+      "#673AB7",
+      "#03A9F4",
+      "#9E9E9E",
+      "#FF5722",
+      "#8E24AA",
+    ];
+    //This maps category names to assined colours.
+    const color = d3
+      .scaleOrdinal()
+      .domain([
+        "snacks",
+        "seafood",
+        "soups-and-canned-goods",
+        "personal-hygine",
+        "other",
+        "grains-and-pasta",
+        "baking",
+        "household",
+        "meats",
+        "pet-supplies",
+        "beverages",
+        "alcohol",
+        "frozen",
+        "dairy",
+        "condiments",
+        "fruits-and-vegetables",
+      ])
+      .range(circleColor);
+
+    // Set up the SVG element and its dimensions
+    const svg = d3.select(d3Container.current);
+    const width = window.innerWidth;
+    const height = (window.innerHeight * 3) / 4;
+    svg.attr("width", width);
+    svg.attr("height", height);
+    const margin = { top: 10, right: 10, bottom: 10, left: 10 };
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+
+    // Set up the pack layout.  This determed how grouped the circles are to eachother.  90 very tight together.  -90 very far apart.
+    // Can maybe set this to depend on number of circles.  Also depends on collision force (see later)
+    const pack = d3.pack().size([chartWidth, chartHeight]).padding(-5);
+
+    // Generate the hierarchy data structure
+    const root = d3.hierarchy(data).sum((d) => 1);
+
+    // Compute the position and size of each circle
+    const nodes = pack(root).descendants();
+
+    // This function gets the maximum circle radius of all bottom level circles.
+    // It was needed at some point during development.
+    // Right now, it is not needed, but I would like to have it remain
+    // for potential purposes
+
+    let maxRadius = 0;
+    nodes.forEach((node) => {
+      if (node.r > maxRadius) {
+        maxRadius = node.r;
       }
-      if (!d.children && d.data.name.slice(0, 6).length) {
-        return d.data.name.slice(0, 6).length * 4;
-      }
-      // If it's a non-leaf node, set the radius to a fixed value
-      return 30;
-    })
-    .attr("fill", (d) => {
-      // Assign a color to each top-level node
-      if (!d.depth) {
-        return color(d.data.name);
-      }
-      // Otherwise, use the parent's color
-      return color(d.parent.data.name);
-    })
-    .attr("stroke", "black")
-    .attr("transform", "scale(1 1)")
-    .on("click", function () {
-      var currentColor = this.style.fill;
-      var nextColor =
-        currentColor === "white"
-          ? this.getAttribute("original-color")
-          : "white";
-      d3.select(this).style("fill", nextColor);
     });
 
-  const heightScale = d3.scaleLinear().domain([300, 1000]).range([0, -0.01]);
-
-  // Define a simulation with a collision force
-  const simulation = d3
-    .forceSimulation(nodes.slice(data.children.length + 1))
-    .force("charge", d3.forceManyBody().strength(0.1)) // a positive value will cause elements to attract one another while a negative value causes elements to repel each other. The default value is -30
-    .force(
-      "collide",
-      d3
-        .forceCollide()
-        .radius((d) => d.r + 1)
-        .strength(0.001)
-    ) // add a collision force to prevent circles from overlapping
-    .force("y", d3.forceY(height / 2).strength(heightScale(height)));
-
-  // Add tick function to update circle and text positions
-  simulation.on("tick", () => {
+    // Add the circles to the SVG element, assigning a color to each top-level node
     svg
       .selectAll("circle")
-      .attr("cx", (d) => d.x)
-      .attr("cy", (d) => d.y);
+      .data(nodes.slice(data.children.length + 1)) // skip the first node to remove the top level circle
+      .join("circle")
+      .attr("r", (d) => {
+        // If it's a leaf node, set the radius based on the text length
+        if (!d.children && d.data.name.length < 7) {
+          return d.data.name.length * 6;
+        }
+        if (!d.children && d.data.name.slice(0, 6).length) {
+          return d.data.name.slice(0, 6).length * 6;
+        }
+      })
+      .attr("fill", (d) => {
+        //Grab parents name (Category) to generate colour
+        return color(d.parent.data.name);
+      })
+      //Add details here to change styling
+      .attr("stroke", "#453C57")
+      .attr("stroke-width", 2)
+      //Distortion to fill  Compelementary on Text SVG
+      .attr("transform", "scale(1.2 1)")
+      .on("click", function (d) {
+        var currentColor = this.style.fill;
+        toggleButton(d.target.__data__.data.id, currentColor === "white", slug);
+        var nextColor =
+          currentColor === "white"
+            ? this.getAttribute("original-color")
+            : "white";
+        d3.select(this).style("fill", nextColor);
+      });
+
+    const heightScale = d3.scaleLinear().domain([300, 1000]).range([0, -0.01]);
+
+    // Define a simulation with a collision force
+    const simulation = d3
+      .forceSimulation(nodes.slice(data.children.length + 1))
+      .force("charge", d3.forceManyBody().strength(0.1)) // a positive value will cause elements to attract one another while a negative value causes elements to repel each other. The default value is -30
+      .force(
+        "collide",
+        d3
+          .forceCollide()
+          .radius((d) => d.r + 1)
+          //Strength at which circles will push away from eachother
+          .strength(0.5)
+      ) // add a collision force to prevent circles from overlapping
+      .force("y", d3.forceY(height / 2).strength(heightScale(height)));
+
+    // Add tick function to update circle and text positions
+    simulation.on("tick", () => {
+      svg
+        .selectAll("circle")
+        .attr("cx", (d) => d.x)
+        .attr("cy", (d) => d.y);
+      svg
+        .selectAll("text")
+        .attr("x", (d) => d.x)
+        .attr("y", (d) => d.y);
+    });
+
+    // Add the text labels to the SVG element
     svg
       .selectAll("text")
-      .attr("x", (d) => d.x)
-      .attr("y", (d) => d.y);
-  });
-
-  // Add the text labels to the SVG element
-  svg
-    .selectAll("text")
-    .data(nodes.slice(1).filter((d) => d.depth > 1))
-    .join("text")
-    .attr("transform", "scale(1 1)")
-    .attr("text-anchor", "middle")
-    .attr("dominant-baseline", "central")
-    .text((d) => {
-      console.log(d.data.name);
-      if (d.data.name.length < 7) {
-        return d.data.name;
-      } else {
-        return d.data.name.slice(0, 6) + "...";
-      }
-    })
-    .attr("class", "bar-text")
-    .style("font-size", "12px");
+      .data(nodes.slice(1).filter((d) => d.depth > 1))
+      .join("text")
+      .attr("transform", "scale(1.2 1)")
+      .attr("text-anchor", "middle")
+      .attr("dominant-baseline", "central")
+      .text((d) => {
+        if (d.data.name.length < 7) {
+          return d.data.name;
+        } else {
+          return d.data.name.slice(0, 6) + "...";
+        }
+      })
+      .attr("class", "bar-text");
+  }, []);
   return (
-    <div className="h-full w-full flex justify-center flex-col">
-      <div>
-        <button className="h-50 w-50 bg-blue">Expand</button>
-      </div>
+    <div className="h-full w-full flex justify-center flex-col bg-grad-frame">
       <div>
         <svg ref={d3Container} width="100vw" height="100vh"></svg>
       </div>
     </div>
   );
 }
-export const getServerSideProps: GetServerSideProps = async () => {
-  console.log("HEllo");
-
+interface Params extends ParsedUrlQuery {
+  slug: string;
+}
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { slug } = context.params as Params;
   const items: Items[] = await axios
-    .get("http://localhost:3000/api/ListItems?inputList={id}")
+    .get(`http://localhost:3000/api/ListItems?inputList=${slug}`)
     .then((res) => res.data);
-  console.log("Gekki");
 
   const returnValue: Data = {
     children: [],
@@ -294,6 +234,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       data,
+      slug,
     },
   };
 };
