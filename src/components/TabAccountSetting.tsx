@@ -16,17 +16,15 @@ export default function TabAccountSetting() {
   return (
     <div className="w-full max-w-md px-2 py-16 ">
       <Tab.Group>
-        <Tab.List className="flex p-1 rounded-md bg-secondary-default justify-around text-sm font-medium">
+        <Tab.List className="flex p-1 rounded-md bg-secondary-default justify-between text-sm ">
           {Object.keys(categories).map((category) => (
             <Tab key={category}>
               {({ selected }) => (
                 <button
                   className={classNames(
-                    ` ${
-                      selected
-                        ? "bg-primary-default-Solid rounded-sm"
-                        : "bg-secondary-default"
-                    }`
+                    selected
+                      ? "bg-primary-default-Solid rounded-md px-20"
+                      : "bg-secondary-default rounded-md px-20"
                   )}
                 >
                   {category}
