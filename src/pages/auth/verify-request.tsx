@@ -9,8 +9,8 @@ export default function VerifyRequest() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-screen h-screen rounded-lg bg-primary-frame flex flex-col items-center justify-center">
-        <div className=" bg-primary-frame w-80 h-38 rounded-lg drop-shadow-md">
+      <div className="w-screen h-screen rounded-lg bg-grad-frame flex flex-col items-center justify-center">
+        <div className=" bg-text-white_transparent w-80 h-38 rounded-lg">
           <h1 className="text-center gap-3 font-sans p-4">
             Thanks! <br />
             Please check your Inbox <br />
