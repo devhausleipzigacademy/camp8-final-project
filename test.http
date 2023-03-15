@@ -21,8 +21,8 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "sage",
-  "inputList": "d6e5005a-abdc-4478-b276-3c2f57e41ba8"
+  "query": "avocados",
+  "inputList": "1e3e64e1-bbb4-4b31-b829-772694127995"
 }
 
 ###

@@ -1,7 +1,7 @@
-import { List } from "@/pages/list";
 import { RadioGroup } from "@headlessui/react";
 import { Dispatch, SetStateAction } from "react";
 import { clsx } from "clsx";
+import { Category } from "@/pages/list/[slug]";
 
 export function sortByAlphabet(input: List) {
   const sorted = [...input];
@@ -18,8 +18,8 @@ export function sortByAlphabet(input: List) {
   });
   return sorted;
 }
-export function sortByCategory(input: List): List {
-  const sorted = [...input];
+export function sortByCategory(input: Category): List {
+  const sorted: Array<object> = [];
   sorted.sort((a, b) => {
     const categoryA = a.category.toUpperCase();
     const categoryB = b.category.toUpperCase();

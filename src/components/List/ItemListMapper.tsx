@@ -1,14 +1,15 @@
-import { List } from "@/pages/list";
+import { Category } from "@/pages/list/[slug]";
 import { sortByAlphabet, sortByCategory } from "./SortBySwitches";
+import { Item } from "@prisma/client";
 
 type ItemListMapperProps = {
-  itemList: List;
+  itemList: Category;
   sortBy: string;
 };
 
 export function ItemListMapper(props: ItemListMapperProps) {
   let sectionName = "";
-  let sorted: List = [];
+  let sorted: Item[];
 
   switch (props.sortBy) {
     case "date":
