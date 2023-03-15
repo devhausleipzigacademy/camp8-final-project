@@ -4,7 +4,7 @@ import { forceCollide, forceManyBody } from "d3-force";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 
-// Character length needs to be capped
+// create types
 
 type Items = {
   name: string;
@@ -21,10 +21,13 @@ interface Props {
   data: Data;
 }
 
-export default function Bubble({ data }: Props) {
-  console.log(data);
+// create "Bubble" component. Props are defined at the bottom
 
+export default function Bubble({ data }: Props) {
   const d3Container = useRef(null);
+
+  // Move dummy data to a seperate file
+
   // const data: Data = {
   //   children: [
   //     {
@@ -88,23 +91,38 @@ export default function Bubble({ data }: Props) {
   //   ],
   // };
 
-  useEffect(() => {
-    const count: any = (data: Data) => {
-      return data.children.reduce((acc: any, curr: any) => {
-        if (curr.children) {
-          return acc + count(curr);
-        } else {
-          return acc + 1;
-        }
-      }, 0);
-    };
+  // All D3 code is within the useeffect hook. The dependency array is empty right now.
+  // The idea was, however, to have width and height included in this array
+  // so that render is triggered as soon as display changes.
+  // This didn't work so far.
 
-    console.log(count(data));
+
+    // Count how many bottom level entries are present in the data. This will be
+    // the number of bottom level circles.
+
+    // const count: any = (data: Data) => {
+    //   return data.children.reduce((acc: any, curr: any) => {
+    //     if (curr.children) {
+    //       return acc + count(curr);
+    //     } else {
+    //       return acc + 1;
+    //     }
+    //   }, 0);
+    // };
+
+    // console.log(count(data) + " Count data");
+    console.log(data + "data")
+
+    // Take the number of bottom level circle and generate as many colors
+    // with a luminance greater 0.48.
+    // We should replace this function with an array of at least 15 distinct colors
+    // for each category. We should include the option to generate more colors
+    // if the user creates custom categories
 
     function getRandomColors() {
       var letters = "0123456789ABCDEF";
       var colors = [];
-      for (var j = 0; j < count(data); j++) {
+      for (var j = 0; j < data.children.length; j++) {
         var color = "#";
         for (var i = 0; i < 6; i++) {
           color += letters[Math.floor(Math.random() * 16)];
@@ -120,12 +138,13 @@ export default function Bubble({ data }: Props) {
       return colors;
     }
     const circleColor = getRandomColors();
-    // console.log(circleColor)
+    console.log(getRandomColors());
 
-    // Define a color scale to assign a color to each top-level node
+    // Define a color scale to assign a color to each top-level node.
+
     const color = d3
       .scaleOrdinal()
-      .domain(["Fish", "Meat", "Dairy"]) // add domain values for the top-level nodes
+      .domain(["Fish", "Meat", "Dairy"]) // add names
       .range(circleColor);
 
     // Set up the SVG element and its dimensions
@@ -138,7 +157,7 @@ export default function Bubble({ data }: Props) {
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
 
-    // Set up the pack layout
+    // Set up the pack layout.
     const pack = d3.pack().size([chartWidth, chartHeight]).padding(-5);
 
     // Generate the hierarchy data structure
@@ -146,6 +165,11 @@ export default function Bubble({ data }: Props) {
 
     // Compute the position and size of each circle
     const nodes = pack(root).descendants();
+
+    // This function gets the maximum circle radius of all bottom level circles.
+    // It was needed at some point during development.
+    // Right now, it is not needed, but I would like to have it remain
+    // for potential purposes
 
     let maxRadius = 0;
     nodes.forEach((node) => {
@@ -157,7 +181,7 @@ export default function Bubble({ data }: Props) {
     // Add the circles to the SVG element, assigning a color to each top-level node
     svg
       .selectAll("circle")
-      .data(nodes.slice(data.children.length + 1)) // skip the first node to remove the outer circle - count(data) or data.item.length + 1
+      .data(nodes.slice(data.children.length + 1)) // skip the first node to remove the top level circle
       .join("circle")
       .attr("r", (d) => {
         // If it's a leaf node, set the radius based on the text length
@@ -187,19 +211,6 @@ export default function Bubble({ data }: Props) {
             ? this.getAttribute("original-color")
             : "white";
         d3.select(this).style("fill", nextColor);
-
-        var cx = this.getAttribute("cx");
-        var cy = this.getAttribute("cy");
-
-        // Find the text element using the circle's coordinates
-        var textElement = d3.select("text[x='" + cx + "'][y='" + cy + "']");
-
-        // Change the text color
-        var textColor = textElement.style("fill");
-        if (textElement.getAttribute("original-color") === "white") {
-          var newTextColor = textColor === "white" ? "black" : "white";
-          textElement.style("fill", newTextColor);
-        }
       });
 
     const heightScale = d3.scaleLinear().domain([300, 1000]).range([0, -0.01]);
@@ -237,22 +248,17 @@ export default function Bubble({ data }: Props) {
       .attr("transform", "scale(1 1)")
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "central")
-      .attr("font-size", "10px")
-      // .style('fill', (d) => {
-      //   const bgColor = d3.rgb(color(d.parent.data.name));
-      //   const luminance = (0.2126 * bgColor.r + 0.7152 * bgColor.g + 0.0722 * bgColor.b) / 255;
-      //   return luminance > 0.5 ? 'black' : 'white';
-      // })
       .text((d) => {
+        console.log(d.data.name);
         if (d.data.name.length < 7) {
-          console.log(d.data.name);
           return d.data.name;
         } else {
           return d.data.name.slice(0, 6) + "...";
         }
       })
-      .attr("class", "bar-text");
-  }, []);
+      .attr("class", "bar-text")
+      .style("font-size", "12px");
+  );
 
   return (
     <div className="h-full w-full flex justify-center flex-col">
@@ -265,12 +271,15 @@ export default function Bubble({ data }: Props) {
     </div>
   );
 }
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug;
+export const getServerSideProps: GetServerSideProps = async () => {
+  console.log("HEllo");
 
   const items: Items[] = await axios
-    .get(`http://localhost:3000/api/ListItems?inputList=${slug}`)
+    .get(
+      "http://localhost:3000/api/ListItems?inputList=685ed990-f348-4307-8801-34d24e44ab76"
+    )
     .then((res) => res.data);
+  console.log("Gekki");
 
   const returnValue: Data = {
     children: [],
