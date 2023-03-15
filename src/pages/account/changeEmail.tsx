@@ -1,7 +1,10 @@
 import { LargeButton } from "@/components/LargeButton";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
-import { Router, useRouter } from "next/router";
+import { Transition } from "@headlessui/react";
+import { FormEvent, useState } from "react";
+import email from "next-auth/providers/email";
+import { signIn } from "next-auth/react";
 
 type buttonProps = {
 	variant: "primary";
@@ -10,10 +13,12 @@ type buttonProps = {
 };
 
 export default function Settings(props: buttonProps) {
-	const router = useRouter();
-	const redirect = () => {
-		router.push("/changeEmail");
+	const [email, setEmail] = useState("");
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		signIn("email", { email });
 	};
+	const emailCheck = new RegExp(`[A-z]+@[a-z]+.com`);
 
 	return (
 		<>
@@ -36,20 +41,36 @@ export default function Settings(props: buttonProps) {
 						<div>
 							<FiUser size={28} />
 						</div>
-
-						<div className="w-full flex flex-col gap-5">
-							<LargeButton
-								variant="primary"
-								label="Get new link"
-								onClick={() => router.push("/account/changeEmail")}
-								disabled={false}
+						<form onSubmit={handleSubmit} className="flex flex-col">
+							<input
+								type="text"
+								className=" w-96 p-2 m-2 ml-22 rounded-md border border-primary-default-Solid bg-transparent text-center"
+								placeholder="Email"
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 
-							<></>
-						</div>
+							<Transition
+								show={emailCheck.test(email)}
+								enter="transform transition duration-400"
+								enterFrom="opacity-0 scale-y-0"
+								enterTo="opacity-100 scale-y-100"
+								leave="transform duration-400 transition ease-in-out"
+								leaveFrom="opacity-100 scale-y-100"
+								leaveTo="opacity-0 scale-y-0"
+							>
+								<LargeButton
+									variant="primary"
+									label="Get new link"
+									disabled={false}
+								/>
+							</Transition>
+						</form>
 					</div>
 				</div>
 			</div>
 		</>
 	);
+}
+function setEmail(value: string): void {
+	throw new Error("Function not implemented.");
 }
