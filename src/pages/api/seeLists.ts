@@ -1,19 +1,17 @@
-//This api-Endpoint will return an Array of Objects like this one:
+//SeeLists.ts Api Endpoint will
 
 //export type ExampleObject = {
 //  id: string;
 //  listName: string;
-//  createdAt: String;
-//  itemsTotal: Number;
-//  itemsChecked: Number;
+//  createdAt: string;
+//  itemsTotal: number;
+//  itemsChecked: number;
 //  favorite: boolean;
 //};
-
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { prisma } from "./prisma";
-
 
 const inputQuerySchema = z.object({
   id: z.string(),
@@ -25,11 +23,8 @@ export default async function handler(
 ) {
   if (request.method === "GET") {
 
-    // Parse the user ID from the query parameters
-
     const { id } = inputQuerySchema.parse(request.query);
 
-    //First, get all the Ids that belong to a user, based on userIdentifier
     const userListsHttpRespond = await prisma.list.findMany({
       where: {
         userIdentifier: id,
@@ -47,23 +42,20 @@ export default async function handler(
       },
     });
 
-      userListsHttpRespond.forEach((element) => {
+    userListsHttpRespond.forEach((element) => {
+      element.itemsChecked = element.items.filter((i) => {
+        if (i.checked === true){
+          console.log("heyy, found one")
+          return true}
+      }).length;
+      element.itemsTotal = element.items.length
 
-      const itemsChecked = element.items.map((item) => {
-        item.checked === true
-      }).length
-
-      const itemsTotal = element.items.map((item)=>{}).length
-      element.itemsTotal = itemsTotal
-      element.itemsChecked = itemsChecked
       delete element.items
-
-      console.log({ ...element})
     }),
 
-    response.status(200).json(userListsHttpRespond)
-    console.log()
-    return userListsHttpRespond;
-  };
+    response.status(200).json(userListsHttpRespond);
+
+    return userListsHttpRespond
+  }
   response.status(405).send("not ok");
 }
