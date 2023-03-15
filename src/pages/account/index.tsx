@@ -21,10 +21,11 @@ export default function Settings(props: buttonProps) {
 	const [user, setUser] = useState<User>();
 	const getData = async () => {
 		const info: User = await axios
-			.get(
-				`http://localhost:3000/api/listItems?inputList=${session?.user?.email}`
-			)
+			.get(`http://localhost:3000/api/userInfo?email=${session?.user?.email}`)
 			.then((res) => res.data);
+		console.log("Hello");
+		console.log(session);
+
 		setUser(info);
 	};
 	useEffect(() => {

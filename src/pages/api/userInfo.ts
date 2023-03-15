@@ -1,6 +1,7 @@
 import { prisma } from "./prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import * as z from "zod";
+import { ZodError } from "zod";
 
 export default async function handler(
 	request: NextApiRequest,
@@ -16,8 +17,13 @@ export default async function handler(
 				},
 			});
 			response.status(200).send(user);
-		} catch (err) {}
-		response.status(404).send(`Invalid method, need PATCH: ${request.method}`);
+		} catch (err) {
+			if (err instanceof ZodError) {
+				response.status(418).send(`Wrogn type of Data Sent ${err}`);
+			} else {
+				response.status(400).send(`Something Went wrong: ${err}`);
+			}
+		}
 	}
 }
 const inputQuerySchema = z.object({
