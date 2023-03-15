@@ -56,7 +56,7 @@ model List {
   userIdentifier      String //entering correct listIdentifier will Link to user
   belongsTo           User @relation(fields: [userIdentifier], references: [id])
   
-  favorite            Boolean?
+  favorite            Boolean    @default(false)
 
   items               Item[] ///opposite relation to Items related to this List.
 
@@ -76,7 +76,7 @@ model Item {
   listIdentifier      String?
   inList              List?   @relation(fields: [listIdentifier], references: [id])
   
-  checked             Boolean?
+  checked             Boolean @default(false)
 
   //this userItem is based on
   masterItemId        String?
