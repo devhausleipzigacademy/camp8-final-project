@@ -1,6 +1,11 @@
 import { LargeButton } from "@/components/LargeButton";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
+import axios from "axios";
+import { User } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 type buttonProps = {
 	variant: "primary";
@@ -9,7 +14,19 @@ type buttonProps = {
 };
 
 export default function Settings(props: buttonProps) {
-	let label = ["a", "b"];
+	const { data: session } = useSession();
+	const [user, setUser] = useState<User>();
+	const getData = async () => {
+		const info: User = await axios
+			.get(
+				`http://localhost:3000/api/listItems?inputList=${session?.user?.email}`
+			)
+			.then((res) => res.data);
+		setUser(info);
+	};
+	useEffect(() => {
+		getData();
+	}, []);
 
 	return (
 		<>
@@ -32,6 +49,7 @@ export default function Settings(props: buttonProps) {
 						<div>
 							<FiUser size={40} />
 						</div>
+						<div> Hey {user?.name} </div>
 						<div className="w-full flex flex-col gap-5">
 							<LargeButton
 								variant="primary"
