@@ -1,7 +1,5 @@
 import SingleCard from "@/components/Card";
 import Head from "next/head";
-import { example_card } from "@/components/Lists";
-import Cards from "@/components/Cards";
 
 export default function Home() {
   return (
@@ -13,14 +11,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
-        <div className="max-w-screen-sm h-screen flex flex-col gap-2 justify-self-center">
-          <h1 className="text-text-typo text-title">
-            Landing Page
-          </h1>
-          <SingleCard {...example_card} />
-          <Cards />
+      <div className="max-w-screen-sm h-screen flex flex-col gap-2 justify-self-center">
+        <h1 className="text-text-typo text-title">Landing Page</h1>
+        <div className="flex-none">
+          <SingleCard
+            data={{
+              id: "fhjkkskd",
+              listName: "",
+              createdAt: "",
+              itemsTotal: 0,
+              itemsChecked: 0,
+              favorite: false,
+            }}
+            createNewCard={false}
+            changingName={false}
+          />
         </div>
+      </div>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import { ChangeEvent, useState } from "react";
 import {
   SwipeableListItem,
   Type,
@@ -9,14 +8,45 @@ import {
 import clsx from "clsx";
 import { Trash, Bookmark } from "react-feather";
 
-import { setChangingName, CardProps, updateName } from "./CardsUtilities";
+export type UserList = {
+  id: string;
+  listName: string;
+  createdAt: string;
+  itemsTotal: number;
+  itemsChecked: number;
+  favorite: boolean;
+};
+export type CardProps = {
+  data: UserList;
+  createNewCard: boolean;
+  changingName: boolean;
+};
+
+export type UserLists = Array<UserList>;
+
+export const example_list = {
+  id: "845d8198-7089-4618-891b-47a2b5038c83",
+  listName: "first custom list",
+  createdAt: "2023.03.03",
+  favorite: false,
+  itemsTotal: 0,
+  itemsChecked: 0,
+};
+
+export const example_card: CardProps = {
+  data: example_list,
+  createNewCard: false,
+  changingName: false
+};
+
+export const user_lists: UserLists = [example_list];
 
 export default function SingleCard({
   data,
   changingName,
   createNewCard,
 }: CardProps) {
-  //rewrite so that data gets fed in only ONCE (?)
+
   return (
     <SwipeableListItem
       listType={Type.IOS}
@@ -37,16 +67,16 @@ export default function SingleCard({
           <p className="button-bold font-semibold">
             {`${data.itemsChecked}/${data.itemsTotal} Items`}
           </p>
-          {(changingName ==="true") ? (
+          {(changingName === true) ? (
             <input
               type="text"
               placeholder="new list"
               className="text-title uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-              onChange={updateName}
+              onChange={()=>{}}
             />
           ) : (
             <p
-              onClick={() => setChangingName(true)}
+              onClick={()=>{}}
               className="text-title uppercase font-heading "
             >
               {data.listName}

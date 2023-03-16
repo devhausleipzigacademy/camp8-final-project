@@ -1,5 +1,3 @@
-import SingleCard from '@/components/Card'
-import { example_card } from '@/components/CardsUtilities'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
@@ -8,10 +6,6 @@ export default function Document() {
       <Head />
       <body>
         <Main/>
-        <SingleCard
-          createNewCard={false}
-          data={example_card.data}
-          changingName={"false"}/>
         <NextScript />
       </body>
     </Html>
