@@ -67,9 +67,9 @@ Possible responses from system:
 
    method: PATCH
 
-   must receive:
+   must receive: {
       id: [id of the list as string]
-      newName: [the newName as string]
+      newName: [the newName as string]}
    via requestBody.
 
    will return smth. like this if successfull:
@@ -100,9 +100,9 @@ Possible responses from system:
 
    method: PATCH
 
-   must receive:
-      id
-      targetGategoryId
+   must receive: {
+      id: [id]
+      targetGategoryId [id]}
    via request-body.
 
    will then pick then update the customCategoryId of Item
