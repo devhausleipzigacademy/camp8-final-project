@@ -65,14 +65,14 @@ Possible responses from system:
 ### API-ENDPOINTS:
 #### updateListName.ts
 
-...method: PATCH
+   method: PATCH
 
-...must receive:
-  id: [id of the list as string]
-  newName: [the newName as string]
-via requestBody.
+   must receive:
+      id: [id of the list as string]
+      newName: [the newName as string]
+   via requestBody.
 
-...will return smth. like this if successfull:
+   will return smth. like this if successfull:
 
 [
   "data updated: ",
