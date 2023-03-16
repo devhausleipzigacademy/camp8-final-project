@@ -1,8 +1,7 @@
 import { LargeButton } from "@/components/LargeButton";
 import Head from "next/head";
 import Link from "next/link";
-
-
+import Image from "next/image";
 
 export default function Splash() {
   return (
@@ -13,14 +12,24 @@ export default function Splash() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className=" font-bold flex justify-center">
-        Welcome to FullList,
-      </h1>
-     <Link href={"/login"}>
-     <LargeButton variant={"primary"} label={"get started"} disabled={false}></LargeButton>
-     </Link>
-      
-    
+      <div className="flex flex-col red-frame justify-center items-center">
+        <Image
+          src="/images/listfull-logo.png"
+          alt=""
+          width={218}
+          height={186}
+        />
+        <h1 className=" text-text-typo text-splash">
+          HI THERE! WELCOME TO SHOPPING HELPER
+        </h1>
+        <Link href={"/login"}>
+          <LargeButton
+            variant={"primary"}
+            label={"get started"}
+            disabled={false}
+          ></LargeButton>
+        </Link>
+      </div>
     </>
   );
 }
