@@ -32,7 +32,7 @@ export default function SignIn() {
 					<div className="flex  relative">
 						<input
 							type="text"
-							className="w-96 p-2 m-2 ml-22 rounded-md border border-primary-default-Solid bg-transparent text-center focus:outline-none invalid:border-ux-error invalid:border-2
+							className="w-96 p-2 m-2 ml-22 rounded-md border border-primary-default-Solid bg-transparent text-center focus:outline-none
 							"
 							placeholder="Email"
 							onChange={(e) => setEmail(e.target.value)}
