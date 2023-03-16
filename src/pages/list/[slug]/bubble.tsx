@@ -26,8 +26,6 @@ interface Props {
 // create "Bubble" component. Props are defined at the bottom
 
 const toggleButton = async (id: string, checked: boolean, slug: string) => {
-  console.log(id);
-
   await axios.post(`http://localhost:3000/api/toggleButton`, {
     id: id,
     checked: checked,
