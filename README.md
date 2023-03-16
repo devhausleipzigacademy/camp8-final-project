@@ -62,8 +62,8 @@ Possible responses from system:
 -405 Item was already added to list.
 -200 Item added to list correctly.
 
-###API-ENDPOINTS
-####updateListName.ts
+###API-ENDPOINTS:
+###updateListName.ts
 ...method: PATCH
 ...must receive:
   id: [id of the list as string]
@@ -82,14 +82,14 @@ via requestBody.
   }
 ]
 
-####seeLists.ts
+###seeLists.ts
 ...Method: GET
 ...must receive:
    id: [the id of the currently logged in user]
 ...via http://localhost:3000/api/seeLists?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
 ...will return 
 
-####changeCategory.ts
+###changeCategory.ts
 ...Method: PATCH
 ...must receive:
   id
