@@ -11,7 +11,7 @@
 
 ###
 PATCH http://localhost:3000/api/updateListName
-'Content-Type': 'application/json'
+Content-Type: application/json
 
 {
   "id": "52d01211-1eb1-403d-9be3-ade3cf91a2f5",
