@@ -1,5 +1,5 @@
-import SingleCard, { example_list, user_lists } from "@/components/Card";
-import { Wrapper, returnNodes } from "@/components/cards";
+import { SingleCard, user_lists } from "@/components/Card";
+import { CardsWrapper } from "@/components/CardsWrapper";
 import Head from "next/head";
 
 export default function Home() {
@@ -15,20 +15,7 @@ export default function Home() {
       <div className="max-w-screen-sm h-screen gap-2 justify-self-center">
         <h1 className="text-text-typo text-title">Landing Page</h1>
         <div className="">
-          <SingleCard
-            data={{
-              id: "",
-              listName: "",
-              createdAt: "",
-              itemsTotal: 0,
-              itemsChecked: 0,
-              favorite: false,
-            }}
-            createNewCard={false}
-
-          />
-          <Wrapper
-          list={user_lists}/>
+          <CardsWrapper id="43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98"/>
         </div>
       </div>
     </>
