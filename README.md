@@ -13,16 +13,7 @@ The idea is a shopping list App with catagorizations depending on type.
 
 Link to the Figma file: https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocery-App?node-id=1%3A4&t=DtQdRXnNpxqWqUqN-1
 
-## COLOR REFERENCES
-
-| Color         | Hex                                                              |
-| ------------- | ---------------------------------------------------------------- |
-| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
-
-## BACK_END
+## BACK_END / get started
 
 0. Make sure You have an .env file in root-Folder \* (!)
 
@@ -68,11 +59,41 @@ Link to the Figma file: https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocer
 Possible responses from system:
 
 -201 Item was added to list in category Other.
-
 -405 Item was already added to list.
-
 -200 Item added to list correctly.
 
-#### add(num1, num2)
+###API-ENDPOINTS
+####updateListName.ts
+...method: PATCH
+...must receive:
+  id: [id of the list as string]
+  newName: [the newName as string]
+via requestBody.
 
-Takes two numbers and returns the sum.
+...will return smth. like this if successfull:
+  [
+  "data updated: ",
+  {
+    "id": "52d01211-1eb1-403d-9be3-ade3cf91a2f5",
+    "listName": "brand new list name",
+    "createdAt": "2023-03-15T14:53:45.768Z",
+    "userIdentifier": "43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98",
+    "favorite": false
+  }
+]
+
+####seeLists.ts
+...Method: GET
+...must receive:
+   id: [the id of the currently logged in user]
+...via http://localhost:3000/api/seeLists?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
+...will return 
+
+####changeCategory.ts
+...Method: PATCH
+...must receive:
+  id
+  targetGategoryId
+via request-body.
+...will then pick then update the customCategoryId of Item
+
