@@ -16,7 +16,7 @@ export type List = {
   items: Item[];
 };
 
-type InputProps = {
+export type InputProps = {
   list: List;
   category: Category[];
 };
@@ -40,10 +40,7 @@ export default function Home(getData: InputProps) {
     <div>
       <div className="m-6">
         <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
-        <ItemListMapper
-          itemList={getData.list}
-          sortBy={sortBy}
-        ></ItemListMapper>
+        {/* <ItemListMapper list={getData} sortBy={sortBy}></ItemListMapper> */}
       </div>
       <div>{JSON.stringify(getData)}</div>
       <button

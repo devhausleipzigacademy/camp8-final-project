@@ -68,7 +68,7 @@ model List {
 model Item {
   id                  String  @id @default(uuid())
 
-  name                String?
+  name                String
   createdAt           DateTime   @default(now())
   imageUrl            String?
   

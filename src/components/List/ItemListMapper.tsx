@@ -1,43 +1,49 @@
-import { Category } from "@/pages/list/[slug]";
-import { sortByAlphabet, sortByCategory } from "./SortBySwitches";
+import { Category, InputProps, List } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
+import { sortByCategory, sortByAlphabet, sortByDate } from "./SortFunctions";
 
 type ItemListMapperProps = {
-  itemList: Category;
+  list: InputProps;
   sortBy: string;
 };
 
 export function ItemListMapper(props: ItemListMapperProps) {
-  let sectionName = "";
-  let sorted: Item[] = [];
+  let sortedByItems: Item[] = [];
+  let sortedByCategories: Category[] = [];
 
   switch (props.sortBy) {
     case "date":
-      sorted = props.itemList.item;
-      break;
-    case "category":
-      sorted = sortByCategory(props.itemList.item);
+      sortedByItems = sortByDate(props.list.list.items);
       break;
     case "alphabetical":
-      sorted = sortByAlphabet(props.itemList.item);
+      sortedByItems = sortByAlphabet(props.list.list.items);
+      break;
+    case "category":
+      sortedByCategories = sortByCategory(props.list.category);
       break;
   }
-  return (
-    <>
-      {sorted.map((product) => {
-        let nameSection = false;
 
-        if (props.sortBy === "category" && product.category !== sectionName) {
-          sectionName = product.category;
-          nameSection = true;
-        }
-        return (
-          <div className=" py-1">
-            {nameSection && <p>{sectionName + ":"}</p>}
-            <p className="px-4 rounded-2xl">{product.item}</p>
-          </div>
-        );
-      })}
-    </>
-  );
+  if (props.sortBy === "category") {
+    return (
+      <>
+        {sortedByCategories.map((product) => {
+          <div className="py-1">
+            <h3>{product.name}</h3>
+          </div>;
+        })}
+      </>
+    );
+  } else {
+    return (
+      <>
+        {sortedByItems.map((item) => {
+          return (
+            <div className=" py-1">
+              <p className="px-4 rounded-2xl">{item.name}</p>
+            </div>
+          );
+        })}
+      </>
+    );
+  }
 }

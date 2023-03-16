@@ -21,14 +21,12 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "avocados",
+  "query": "kiwis",
   "inputList": "1e3e64e1-bbb4-4b31-b829-772694127995"
 }
 
 ###
 
-GET http://localhost:3000/api/ListItems?inputList=ae13eb05-521d-414a-b762-0da39361b5e9
-
-
+GET http://localhost:3000/api/ListItems?inputList=1e3e64e1-bbb4-4b31-b829-772694127995
 
 ###
