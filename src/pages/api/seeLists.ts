@@ -2,6 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { prisma } from "./prisma";
 
+/*
+*/
+
 const inputQuerySchema = z.object({
   id: z.string(),
 });
@@ -11,11 +14,11 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method === "GET") {
-    // Parse the user ID from the query parameters
 
+    // Parse the user ID from the query parameters
     const { id } = inputQuerySchema.parse(request.query);
 
-    //First, get all the Ids that belong to a user, based on userIdentifier
+    ///all the lists linked to this specific Id, including all the Items included
     const userListsHttpRespond = await prisma.list.findMany({
       where: {
         userIdentifier: id,
@@ -32,7 +35,6 @@ export default async function handler(
         },
       },
     });
-
 
     userListsHttpRespond.forEach((element) => {
       element.itemsChecked = element.items.filter((i) => {

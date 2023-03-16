@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { z, ZodError } from "zod";
+import { z } from "zod";
 import { prisma } from "./prisma";
 
 /*
@@ -14,10 +14,12 @@ export default async function handler(
     request: NextApiRequest,
     response: NextApiResponse
   ) {
-    if (request.method === "PATCH") {
+    if (request.method !== "PATCH") {
+      response.status(405).send("wrong method")
+    } else {
+      try {
         const { id, newName } = inputQueryType.parse(request.body);
-        // Getting ID of list we will add product to.  If none there create one
-        const newData = await prisma.list.update({
+        const updatedData = await prisma.list.update({
           where: {
             id: id,
           },
@@ -25,7 +27,10 @@ export default async function handler(
             listName: newName,
           },
         })
-      return newData;
-    } else {response.status(405).send("wrong method")}
+        return updatedData;
+      } catch (err) {
+        response.status(400).send(err)
+      }
+    }
     response.status(405).send("not ok");
   }
