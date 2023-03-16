@@ -1,4 +1,5 @@
-import SingleCard from "@/components/Card";
+import SingleCard, { example_list, user_lists } from "@/components/Card";
+import { Wrapper, returnNodes } from "@/components/cards";
 import Head from "next/head";
 
 export default function Home() {
@@ -11,12 +12,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="max-w-screen-sm h-screen flex flex-col gap-2 justify-self-center">
+      <div className="max-w-screen-sm h-screen gap-2 justify-self-center">
         <h1 className="text-text-typo text-title">Landing Page</h1>
-        <div className="flex-none">
+        <div className="">
           <SingleCard
             data={{
-              id: "fhjkkskd",
+              id: "",
               listName: "",
               createdAt: "",
               itemsTotal: 0,
@@ -24,8 +25,10 @@ export default function Home() {
               favorite: false,
             }}
             createNewCard={false}
-            changingName={false}
+
           />
+          <Wrapper
+          list={user_lists}/>
         </div>
       </div>
     </>

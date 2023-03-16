@@ -1,13 +1,21 @@
-import SingleCard from "./Card";
-import { user_lists } from "./CardsUtilities";
-import axios from "axios";
+import SingleCard, { UserList, UserLists } from "./Card";
 
-export default function CardsWrapper() {
+export const returnNodes = (list: UserLists) => {
+  return (list.map((element: UserList) => {
+    return (
+      <SingleCard data={element}  createNewCard={false} />
+    )}))
+};
+
+type Props = {
+  list: UserLists
+}
+
+export const Wrapper = ({ list }: Props) => {
   return (
-    <div className="flex flex-col gap-[10px] overflow-hidden pt-[160px]">
-      {user_lists.map((element: UserList) => {
-        <SingleCard data={element} changingName={"false"} />;
-      })}
+    <div className="overflow-hidden pt-[160px]">
+      {returnNodes(list)}
     </div>
   );
-}
+};
+

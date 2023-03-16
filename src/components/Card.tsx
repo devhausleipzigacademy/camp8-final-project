@@ -6,7 +6,10 @@ import {
   LeadingActions,
 } from "react-swipeable-list";
 import clsx from "clsx";
+import axios from "axios"
 import { Trash, Bookmark } from "react-feather";
+import 'react-swipeable-list/dist/styles.css';
+import { useState } from "react";
 
 export type UserList = {
   id: string;
@@ -19,7 +22,7 @@ export type UserList = {
 export type CardProps = {
   data: UserList;
   createNewCard: boolean;
-  changingName: boolean;
+
 };
 
 export type UserLists = Array<UserList>;
@@ -36,21 +39,48 @@ export const example_list = {
 export const example_card: CardProps = {
   data: example_list,
   createNewCard: false,
-  changingName: false
 };
 
 export const user_lists: UserLists = [example_list];
 
 export default function SingleCard({
   data,
-  changingName,
   createNewCard,
 }: CardProps) {
+
+  //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
+  const [changingName, setChangingName] = useState(false)
+
+  //create a binding to store the Name provided by event, when clicking enter
+  const [newName, setNewName] = useState("")
+
+  //to store Error and optionally display it on the screen
+  const [isError, setIsError] = useState(false)
+
+  //define a Type for Data we are going to send
+  type RequestData = {
+    id: string
+    newName: string
+  }
+
+  async function ApiCall(){
+    try {
+      const response = await axios.patch("http://localhost:3000/api/updateListName", {id: data.id, newName: newName} as RequestData)
+    } catch (err){
+      setIsError(true)
+      console.log(err)
+    }
+  }
+
+  function updateName(event: Event){
+    event.preventDefault()
+    setNewName(ApiCall(event.target.value))
+  }
 
   return (
     <SwipeableListItem
       listType={Type.IOS}
-      className="flex rounded-2xl"
+      className="rounded-2xl"
       leadingActions={leadingActions(data.id)}
       trailingActions={trailingActions(data.id)}
       key={data.id}
@@ -68,15 +98,17 @@ export default function SingleCard({
             {`${data.itemsChecked}/${data.itemsTotal} Items`}
           </p>
           {(changingName === true) ? (
+            <form action=""
+            onSubmit={updateName(data.id, event.target.value)}>
             <input
               type="text"
               placeholder="new list"
               className="text-title uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-              onChange={()=>{}}
             />
+            </form>
           ) : (
             <p
-              onClick={()=>{}}
+              onClick={()=>setChangingName(true)}
               className="text-title uppercase font-heading "
             >
               {data.listName}
