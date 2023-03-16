@@ -9,8 +9,9 @@ import clsx from "clsx";
 import axios from "axios"
 import { Trash, Bookmark } from "react-feather";
 import 'react-swipeable-list/dist/styles.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+///TYPES
 export type UserList = {
   id: string;
   listName: string;
@@ -43,7 +44,7 @@ export const example_card: CardProps = {
 
 export const user_lists: UserLists = [example_list];
 
-export default function SingleCard({
+export function SingleCard({
   data,
   createNewCard,
 }: CardProps) {
@@ -64,14 +65,14 @@ export default function SingleCard({
   const [inputName, setInputName] = useState("")
   const [inputId, setInputId] = useState("")
 
-  async function ApiCall(){
-    try {
-      const response = await axios.patch("http://localhost:3000/api/updateListName", {id: inputId, newName: inputName} as RequestData)
-    } catch (err){
-      setIsError(true)
-      console.log(err)
-    }
-  }
+  // async function ApiCall(){
+  //   try {
+  //     const response = await axios.patch("http://localhost:3000/api/updateListName", {id: inputId, newName: inputName} as RequestData)
+  //   } catch (err){
+  //     setIsError(true)
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <SwipeableListItem
@@ -79,7 +80,6 @@ export default function SingleCard({
       className="rounded-2xl"
       leadingActions={leadingActions(data.id)}
       trailingActions={trailingActions(data.id)}
-      key={data.id}
     >
       <div
         className={clsx(
@@ -153,7 +153,7 @@ export const leadingActions = (id: string) => (
           <span className="h-6 w-6 m-0">
             <Bookmark />
           </span>
-          <p className="bg-white text-links pt-[0.1rem]">Pin</p>
+          <p className="bg-white text-links pt-[0.2rem]">Pin</p>
         </div>
       </div>
     </SwipeAction>
@@ -169,7 +169,7 @@ export const trailingActions = (id: string) => (
       >
         <div
         className="flex gap-7 ml-7 mr-7 m-0 content-center">
-          <p className="bg-white text-links pt-[0.1rem]">Delete</p>
+          <p className="bg-white text-links pt-[0.2rem]">Delete</p>
           <span className="h-6 w-6">
             <Trash className="stroke-text-white" />
           </span>
