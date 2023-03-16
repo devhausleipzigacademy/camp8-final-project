@@ -49,8 +49,9 @@
 
   .text-links {
     font-size: 14pt;
-    font-weight: 600;
-    line-height: 17px;
+    font-weight: 300;
+    line-height: 14pt;
+    text-decoration: underline;
   }
   .text-secondary {
     font-size: 14pt;

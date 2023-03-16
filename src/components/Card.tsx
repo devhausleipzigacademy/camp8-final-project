@@ -51,8 +51,6 @@ export default function SingleCard({
   //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
   const [changingName, setChangingName] = useState(false)
 
-
-
   //to store Error and optionally display it on the screen
   const [isError, setIsError] = useState(false)
 
@@ -96,24 +94,29 @@ export default function SingleCard({
             {`${data.itemsChecked}/${data.itemsTotal} Items`}
           </p>
           {(changingName === true) ? (
-            <form action=""
-            onSubmit={(event) =>{
-              event.preventDefault();
-              const { target } = event
-              setInputName((target as HTMLInputElement).value);
-              setInputId(data.id);
-              ApiCall()
-            }}>
+            <form
+            onSubmit={
+
+              (event)=>{console.log("CLICK ON LINE 100!")}
+
+              // (event) =>{
+              // event.preventDefault();
+              // const { target } = event
+              // setInputName((target as HTMLInputElement).value);
+              // setInputId(data.id);
+              // ApiCall()}
+
+            }>
             <input
-              type="text"
-              placeholder="new list"
-              className="text-title uppercase font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+              type="Text"
+              placeholder={clsx(!data.listName ? "New Name" : data.listName )}
+              className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
             />
             </form>
           ) : (
             <p
               onClick={()=>setChangingName(true)}
-              className="text-title uppercase font-heading "
+              className="cards-title uppercase font-heading "
             >
               {data.listName}
             </p>
@@ -142,14 +145,15 @@ export const leadingActions = (id: string) => (
   <LeadingActions>
     <SwipeAction onClick={handlePin(id)}>
       <div
-        onClick={() => {}}
+        onClick={() => {console.log("CLICK!")}}
         className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl"
       >
-        <div className="flex gap-8 ml-8 mr-7 m-0 content-center">
+        <div
+        className="flex gap-7 ml-7 mr-7 m-0 content-center">
           <span className="h-6 w-6 m-0">
             <Bookmark />
           </span>
-          <p className="bg-white text-primary">Pin</p>
+          <p className="bg-white text-links pt-[0.1rem]">Pin</p>
         </div>
       </div>
     </SwipeAction>
@@ -160,14 +164,15 @@ export const trailingActions = (id: string) => (
   <TrailingActions>
     <SwipeAction onClick={handleDelete(id)}>
       <div
-        onClick={() => {}}
+        onClick={() => {console.log("CLICK!")}}
         className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl"
       >
-        <div className="flex gap-8 ml-6 mr-8 m-0 content-center">
+        <div
+        className="flex gap-7 ml-7 mr-7 m-0 content-center">
+          <p className="bg-white text-links pt-[0.1rem]">Delete</p>
           <span className="h-6 w-6">
             <Trash className="stroke-text-white" />
           </span>
-          <p className="bg-white text-primary">Delete</p>
         </div>
       </div>
     </SwipeAction>
