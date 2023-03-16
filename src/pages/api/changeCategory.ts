@@ -4,8 +4,8 @@ import { prisma } from "./prisma";
 
 /*
 The point must receive:
-  item_id
-  target_category_id
+  id
+  targetGategoryId
 as request-body.
 It will then pick then update the  customCategoryId of Item
 */
@@ -13,8 +13,8 @@ It will then pick then update the  customCategoryId of Item
 /* ids are stored in value-tags*/
 
 const bodySchema = z.object({
-  item_id: z.string(),
-  category_id: z.string(),
+  id: z.string(),
+  customCategoryId: z.string(),
 });
 
 export default async function handler(
@@ -23,12 +23,12 @@ export default async function handler(
 ) {
   if (request.method === "PATCH") {
     try {
-      const { item_id, category_id } = {
+      const { id, customCategoryId } = {
         ...bodySchema.parse(request.body),
       };
       const updated = await prisma.item.update({
-        where: { id: item_id },
-        data: { customCategoryId: category_id },
+        where: { id: customCategoryId },
+        data: { customCategoryId: customCategoryId },
       });
       response.status(200).send(`Successfully updated item ${updated.id}, customCategory is now ${updated.customCategoryId}`);
     } catch (err) {
