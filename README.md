@@ -63,7 +63,7 @@ Possible responses from system:
 -200 Item added to list correctly.
 
 ### API-ENDPOINTS:
-#### updateListName.ts
+#### 1. updateListName.ts
 
    method: PATCH
 
@@ -85,7 +85,7 @@ Possible responses from system:
   }
 ]
 
-#### seeLists.ts
+#### 2. seeLists.ts
 
    method: GET
 
@@ -96,7 +96,7 @@ Possible responses from system:
 
    will return 
 
-#### changeCategory.ts
+#### 3. changeCategory.ts
 
    method: PATCH
 
