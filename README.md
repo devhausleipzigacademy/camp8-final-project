@@ -87,23 +87,23 @@ via requestBody.
 
 #### seeLists.ts
 
-...Method: GET
+   method: GET
 
-...must receive:
-   id: [the id of the currently logged in user]
+   must receive:
+      id: [the id of the currently logged in user]
 
-...via http://localhost:3000/api/seeLists?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
+   via http://localhost:3000/api/seeLists?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
 
-...will return 
+   will return 
 
 #### changeCategory.ts
 
-...Method: PATCH
+   method: PATCH
 
-...must receive:
-  id
-  targetGategoryId
-via request-body.
+   must receive:
+      id
+      targetGategoryId
+   via request-body.
 
-...will then pick then update the customCategoryId of Item
+   will then pick then update the customCategoryId of Item
 
