@@ -2,7 +2,7 @@ import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 
 import { Meta, StoryObj } from "@storybook/react";
-import EditModal from "../pages/list/EditModal";
+import EditModal from "../components/EditModal";
 
 const meta: Meta<typeof EditModal> = {
 	title: "components/EditModal",

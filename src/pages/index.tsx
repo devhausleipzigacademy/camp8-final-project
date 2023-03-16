@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import { prisma } from "./api/prisma";
-import EditModal from "./list/EditModal";
+import EditModal from "../components/EditModal";
 
 export default function Home() {
 	return (
@@ -21,6 +21,7 @@ export default function Home() {
 			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
 				Landing Page
 			</h1>
+			<EditModal />
 		</>
 	);
 }

@@ -16,8 +16,9 @@ export function SortByButton() {
 		CATEGORY: [{ id: 2 }],
 		ALPHABETIC: [{ id: 3 }],
 	});
+
 	return (
-		<div className=" w-96 h-8 px-2 py-16">
+		<div className=" max-w-[354px] h-8 px-2 py-16">
 			<Tab.Group>
 				<Tab.List className="flex space-x-1 rounded-xl bg-secondary-transparent p-1">
 					{Object.keys(categories).map((category) => (

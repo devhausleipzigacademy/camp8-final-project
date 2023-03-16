@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import ListItem from "@/components/ListItem";
+import { SortByButton } from "./SortByButton";
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
@@ -61,49 +62,25 @@ export default function EditModal() {
 			},
 		],
 	});
-
 	return (
-		<div className="w-full h-full px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
+		<div className="w-full h-full flex flex-col px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
 			<ListItem
-				className={
-					"focus:z-10 focus:outline-none focus:bg-secondary-default"
-				}
 				name={""}
 				image={""}
 				checked={false}
 				onRemove={function (): void {
 					throw new Error("Function not implemented.");
 				}}
+				clicked={false}
 			/>
-
+			<SortByButton />
 			<Tab.Group>
-				{/* ///////// TABS START */}
-				<Tab.List className="flex max-w-[334px] space-x-1 rounded-xl p-1 ">
-					{Object.keys(categories).map((category) => (
-						<Tab
-							key={category}
-							className={({ selected }) =>
-								classNames(
-									"w-full rounded-lg py-2.5 text-sm font-medium leading-5",
-									"ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2",
-									selected
-										? "bg-primary-default-background text-text-white"
-										: "text-text-typo hover:bg-white/[0.12] hover:text-white"
-								)
-							}
-						>
-							{category}
-						</Tab>
-					))}
-				</Tab.List>
-				{/* //////// TABS END */}
-
-				<Tab.Panels className="mt-2 max-w-[334px]">
+				<Tab.Panels className="mt-2 max-w-[354px] h-8">
 					{Object.values(categories).map((options, idx) => (
 						<Tab.Panel
 							key={idx}
 							className={classNames(
-								"rounded-xl bg-white p-3 outline-1 outline-primary-default-background font-sans text-text-typo",
+								"rounded-xl max-w-[354px] bg-white p-3 outline-1 outline-primary-default-background font-sans text-text-typo",
 								"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
 							)}
 						>
