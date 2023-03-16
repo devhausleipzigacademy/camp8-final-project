@@ -51,8 +51,7 @@ export default function SingleCard({
   //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
   const [changingName, setChangingName] = useState(false)
 
-  //create a binding to store the Name provided by event, when clicking enter
-  const [newName, setNewName] = useState("")
+
 
   //to store Error and optionally display it on the screen
   const [isError, setIsError] = useState(false)
@@ -63,18 +62,17 @@ export default function SingleCard({
     newName: string
   }
 
+  //create a binding to store the Name provided by event, when clicking enter
+  const [inputName, setInputName] = useState("")
+  const [inputId, setInputId] = useState("")
+
   async function ApiCall(){
     try {
-      const response = await axios.patch("http://localhost:3000/api/updateListName", {id: data.id, newName: newName} as RequestData)
+      const response = await axios.patch("http://localhost:3000/api/updateListName", {id: inputId, newName: inputName} as RequestData)
     } catch (err){
       setIsError(true)
       console.log(err)
     }
-  }
-
-  function updateName(event: Event){
-    event.preventDefault()
-    setNewName(ApiCall(event.target.value))
   }
 
   return (
@@ -99,7 +97,13 @@ export default function SingleCard({
           </p>
           {(changingName === true) ? (
             <form action=""
-            onSubmit={updateName(data.id, event.target.value)}>
+            onSubmit={(event) =>{
+              event.preventDefault();
+              const { target } = event
+              setInputName((target as HTMLInputElement).value);
+              setInputId(data.id);
+              ApiCall()
+            }}>
             <input
               type="text"
               placeholder="new list"
