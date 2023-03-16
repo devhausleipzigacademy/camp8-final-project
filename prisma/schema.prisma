@@ -27,10 +27,10 @@
 ////delete all Items form Items linked id, delete List by id
 
 
-// generator client {
-//   provider = "prisma-client-js"
-//     previewFeatures = ["fullTextSearch"]
-// }
+generator client {
+  provider = "prisma-client-js"
+    previewFeatures = ["fullTextSearch"]
+}
 
 datasource db {
   provider = "postgresql"
