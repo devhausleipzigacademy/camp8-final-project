@@ -64,14 +64,17 @@ Possible responses from system:
 
 ### API-ENDPOINTS:
 #### updateListName.ts
+
 ...method: PATCH
+
 ...must receive:
   id: [id of the list as string]
   newName: [the newName as string]
 via requestBody.
 
 ...will return smth. like this if successfull:
-  [
+
+[
   "data updated: ",
   {
     "id": "52d01211-1eb1-403d-9be3-ade3cf91a2f5",
@@ -83,17 +86,24 @@ via requestBody.
 ]
 
 #### seeLists.ts
+
 ...Method: GET
+
 ...must receive:
    id: [the id of the currently logged in user]
+
 ...via http://localhost:3000/api/seeLists?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
+
 ...will return 
 
 #### changeCategory.ts
+
 ...Method: PATCH
+
 ...must receive:
   id
   targetGategoryId
 via request-body.
+
 ...will then pick then update the customCategoryId of Item
 
