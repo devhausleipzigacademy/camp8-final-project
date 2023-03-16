@@ -12,16 +12,18 @@ export default function Splash() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col red-frame justify-center items-center">
+      <div className="flex flex-col pt-12 justify-center items-center">
         <Image
           src="/images/listfull-logo.png"
           alt=""
           width={218}
           height={186}
         />
-        <h1 className=" text-text-typo text-splash">
-          HI THERE! WELCOME TO SHOPPING HELPER
-        </h1>
+      </div>
+      <h1 className=" text-text-typo text-splash px-8">
+        HI THERE! WELCOME TO SHOPPING HELPER
+      </h1>
+      <div className="px-8 pt-10">
         <Link href={"/login"}>
           <LargeButton
             variant={"primary"}
