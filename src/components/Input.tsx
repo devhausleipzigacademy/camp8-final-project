@@ -1,4 +1,3 @@
-import Link from "next/link";
 export default function Input() {
 	return (
 		<>
@@ -9,9 +8,6 @@ export default function Input() {
 					type="email"
 					placeholder="Email"
 				/>
-				<div>
-					<Link href={"/auth/signIn"}></Link>
-				</div>
 			</div>
 		</>
 	);

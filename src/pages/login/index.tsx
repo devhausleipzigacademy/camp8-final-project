@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Input from "@/components/Input";
 import Image from "next/image";
-import logo from "public/images/logo.png";
-import { PlusButton } from "@/components/PlusButton";
+import Link from "next/link";
 
 export default function Login() {
 	return (
@@ -24,6 +23,9 @@ export default function Login() {
 			</div>
 
 			{/* <Image src={logo} alt="" className="w-full" /> */}
+			<div>
+				<Link href={"/signIn"}></Link>
+			</div>
 			<Input />
 		</>
 	);
