@@ -81,17 +81,33 @@ export default function Bubble({ data, slug }: Props) {
     // Set up the SVG element and its dimensions
     const svg = d3.select(d3Container.current);
     const width = window.innerWidth;
-    const height = (window.innerHeight * 3) / 4;
+    const height = window.innerHeight;
     svg.attr("width", width);
     svg.attr("height", height);
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
 
+    const count = (data) => {
+      return data.children.reduce((acc, curr) => {
+        if (curr.children) {
+          return acc + count(curr);
+        } else {
+          return acc + 1;
+        }
+      }, 0);
+    };
+
     // Set up the pack layout.  This determed how grouped the circles are to eachother.  90 very tight together.  -90 very far apart.
     // Can maybe set this to depend on number of circles.  Also depends on collision force (see later)
-    const pack = d3.pack().size([chartWidth, chartHeight]).padding(-5);
 
+    // Scaling function to scale the padding with the number of circles
+    const paddingScale = d3.scaleLinear().domain([1, 50]).range([20, -100]);
+
+    const pack = d3
+      .pack()
+      .size([chartWidth, chartHeight])
+      .padding(paddingScale(count(data)));
     // Generate the hierarchy data structure
     const root = d3.hierarchy(data).sum((d) => 1);
 
@@ -132,7 +148,7 @@ export default function Bubble({ data, slug }: Props) {
       .attr("stroke", "#453C57")
       .attr("stroke-width", 2)
       //Distortion to fill  Compelementary on Text SVG
-      .attr("transform", "scale(1.2 1)")
+      .attr("transform", "scale(1 1)")
       .on("click", function (d) {
         var currentColor = this.style.fill;
         toggleButton(d.target.__data__.data.id, currentColor === "white", slug);
@@ -155,7 +171,7 @@ export default function Bubble({ data, slug }: Props) {
           .forceCollide()
           .radius((d) => d.r + 1)
           //Strength at which circles will push away from eachother
-          .strength(0.5)
+          .strength(0.1)
       ) // add a collision force to prevent circles from overlapping
       .force("y", d3.forceY(height / 2).strength(heightScale(height)));
 
@@ -176,7 +192,7 @@ export default function Bubble({ data, slug }: Props) {
       .selectAll("text")
       .data(nodes.slice(1).filter((d) => d.depth > 1))
       .join("text")
-      .attr("transform", "scale(1.2 1)")
+      .attr("transform", "scale(1 1)")
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "central")
       .text((d) => {
