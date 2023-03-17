@@ -19,8 +19,11 @@ export default function Login() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<div className="flex flex-col pt-12 justify-center items-center">
+				<Image src="/images/logo.png" alt="" width={318} height={271} />
+			</div>
 
-			<Image src={logo} alt="" className="w-full" />
+			{/* <Image src={logo} alt="" className="w-full" /> */}
 			<Input />
 		</>
 	);
