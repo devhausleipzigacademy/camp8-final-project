@@ -1,5 +1,20 @@
-import { Category, List } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
+
+export function sortByDate(input: Item[]): Item[] {
+  const sorted = [...input];
+  sorted.sort((a, b) => {
+    const nameA = a.createdAt;
+    const nameB = b.createdAt;
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  return sorted;
+}
 
 export function sortByAlphabet(input: Item[]): Item[] {
   const sorted = [...input];
@@ -17,7 +32,7 @@ export function sortByAlphabet(input: Item[]): Item[] {
   return sorted;
 }
 
-export function sortByCategory(input: Array<Category>): Array<Category> {
+export function sortByCategory(input: Array<Item>): Array<Item> {
   const sorted = [...input];
   sorted.sort((a, b) => {
     const categoryA = a.name.toUpperCase();
@@ -30,24 +45,6 @@ export function sortByCategory(input: Array<Category>): Array<Category> {
       return 1;
     }
 
-    sortByAlphabet(a.item);
-
-    return 0;
-  });
-  return sorted;
-}
-
-export function sortByDate(input: Item[]): Item[] {
-  const sorted = [...input];
-  sorted.sort((a, b) => {
-    const nameA = a.createdAt;
-    const nameB = b.createdAt;
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
     return 0;
   });
   return sorted;

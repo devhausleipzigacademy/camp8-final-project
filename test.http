@@ -27,6 +27,6 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/ListItems?inputList=1e3e64e1-bbb4-4b31-b829-772694127995
+GET http://localhost:3000/api/listItems?inputList=1e3e64e1-bbb4-4b31-b829-772694127995
 
 ###

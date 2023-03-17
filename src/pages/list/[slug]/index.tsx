@@ -1,28 +1,53 @@
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import { Item } from "@prisma/client";
+import { Item, List } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
+import {
+  sortByDate,
+  sortByAlphabet,
+  sortByCategory,
+} from "@/components/List/SortFunctions";
 
 export type Category = {
   id: string;
   name: string;
   item: Item[];
 };
-export type List = {
-  listName: string;
-  items: Item[];
-};
+
+// export type List = {
+//   id: string;
+//   listName: string | null;
+//   createdAt: Date;
+//   userIdentifier: string;
+//   favorite: boolean | null;
+//   items: Item[];
+// };
 
 export type InputProps = {
   list: List;
-  category: Category[];
+  category: Category;
 };
 
 export default function Home(getData: InputProps) {
   const [sortBy, setSortBy] = useState("date");
+
+  let list: Item[] = [];
+  let data = { ...getData };
+
+  switch (sortBy) {
+    case "date":
+      list = sortByDate(data.category.item);
+      break;
+    case "alphabetical":
+      list = sortByAlphabet(data.category.item);
+      break;
+    case "category":
+      list = sortByCategory(data.category.item);
+      break;
+  }
 
   const router = useRouter();
   const refreshData = () => {
@@ -39,8 +64,8 @@ export default function Home(getData: InputProps) {
   return (
     <div>
       <div className="m-6">
-        <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
-        {/* <ItemListMapper list={getData} sortBy={sortBy}></ItemListMapper> */}
+        {/* <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
+        <ItemListMapper list={list} sortBy={sortBy}></ItemListMapper> */}
       </div>
       <div>{JSON.stringify(getData)}</div>
       <button
