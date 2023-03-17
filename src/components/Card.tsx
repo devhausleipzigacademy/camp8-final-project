@@ -65,14 +65,14 @@ export function SingleCard({
   const [inputName, setInputName] = useState("")
   const [inputId, setInputId] = useState("")
 
-  // async function ApiCall(){
-  //   try {
-  //     const response = await axios.patch("http://localhost:3000/api/updateListName", {id: inputId, newName: inputName} as RequestData)
-  //   } catch (err){
-  //     setIsError(true)
-  //     console.log(err)
-  //   }
-  // }
+  async function ApiCall(){
+    try {
+      const response = await axios.patch("http://localhost:3000/api/updateListName", {id: inputId, newName: inputName} as RequestData)
+    } catch (err){
+      setIsError(true)
+      console.log(err)
+    }
+  }
 
   return (
     <SwipeableListItem
@@ -97,14 +97,12 @@ export function SingleCard({
             <form
             onSubmit={
 
-              (event)=>{console.log("CLICK ON LINE 100!")}
-
-              // (event) =>{
-              // event.preventDefault();
-              // const { target } = event
-              // setInputName((target as HTMLInputElement).value);
-              // setInputId(data.id);
-              // ApiCall()}
+              (event) =>{
+              event.preventDefault();
+              const { target } = event
+              setInputName((target as HTMLInputElement).value);
+              setInputId(data.id);
+              ApiCall()}
 
             }>
             <input
