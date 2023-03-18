@@ -1,15 +1,12 @@
 import { MasterItem } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
 import { defineEndpoints } from "next-rest-framework/client";
 import { z, ZodError } from "zod";
 import { prisma } from "..";
-import { toZod } from "tozod";
-
-const inputQueryTest = z.object({
+export const addItemInputSchema = z.object({
   query: z.string().regex(/[A-z]/, "No Numbers allowed"),
   inputList: z.string(),
 });
-const output = z.object({
+export const addItemOutputSchema = z.object({
   id: z.string(),
   name: z.string(),
   imageUrl: z.nullable(z.string()),
@@ -21,13 +18,13 @@ export default defineEndpoints({
   POST: {
     input: {
       contentType: "application/json",
-      body: inputQueryTest,
+      body: addItemInputSchema,
     },
     output: [
       {
         status: 200,
         contentType: "application/json",
-        schema: output,
+        schema: addItemOutputSchema,
       },
       {
         status: 201,

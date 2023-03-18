@@ -1,7 +1,6 @@
 import { MasterItem } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
 import { defineEndpoints } from "next-rest-framework/client";
-import { object, z, ZodError } from "zod";
+import { z } from "zod";
 import { prisma } from "..";
 var stringSimilarity = require("string-similarity");
 
@@ -20,10 +19,10 @@ export function sortByRating(input: Array<{ target: string; rating: number }>) {
   return sorted;
 }
 
-const inputQuerySchema = z.object({
+export const autocompleteInputSchema = z.object({
   name: z.string(),
 });
-const outputSchema = z.object({
+export const autocompleteOutputSchema = z.object({
   results: z.array(
     z.object({
       id: z.string(),
@@ -39,7 +38,7 @@ const outputSchema = z.object({
 export default defineEndpoints({
   GET: {
     input: {
-      query: inputQuerySchema,
+      query: autocompleteInputSchema,
     },
     output: [
       {
@@ -50,7 +49,7 @@ export default defineEndpoints({
       {
         status: 200,
         contentType: "application/json",
-        schema: outputSchema,
+        schema: autocompleteOutputSchema,
       },
     ],
     handler: async ({
@@ -92,10 +91,3 @@ export default defineEndpoints({
     },
   },
 });
-
-// async function handler(request: NextApiRequest, response: NextApiResponse) {
-//   if (request.method == "GET") {
-//     const { name } = inputQuerySchema.parse(request.query);
-//   }
-//   response.status(404).send(`Invalid method: ${request.method}`);
-// }

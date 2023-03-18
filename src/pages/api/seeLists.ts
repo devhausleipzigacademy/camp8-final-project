@@ -1,13 +1,11 @@
-import { List } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
 import { defineEndpoints } from "next-rest-framework/client";
 import { z } from "zod";
 import { prisma } from "./prisma";
 
-const inputQuerySchema = z.object({
+export const seeListsInputSchema = z.object({
   id: z.string(),
 });
-const output = z.array(
+export const seeListsOutputSchema = z.array(
   z.object({
     id: z.string(),
     listName: z.nullable(z.string()),
@@ -19,13 +17,13 @@ const output = z.array(
 export default defineEndpoints({
   GET: {
     input: {
-      query: inputQuerySchema,
+      query: seeListsInputSchema,
     },
     output: [
       {
         status: 200,
         contentType: "application/json",
-        schema: output,
+        schema: seeListsOutputSchema,
       },
       {
         status: 404,
