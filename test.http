@@ -25,4 +25,6 @@ Content-Type: application/json
   "inputList": "1232"
 }
 
-GET http://localhost:3000/api/seeLists?id=123456789
+###
+
+GET http://localhost:3000/api/seeLists?id=53fed350-9c23-47ad-ba4f-3d6c41d270c6

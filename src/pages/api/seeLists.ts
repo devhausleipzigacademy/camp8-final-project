@@ -1,29 +1,55 @@
+import { List } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { defineEndpoints } from "next-rest-framework/client";
 import { z } from "zod";
 import { prisma } from "./prisma";
 
 const inputQuerySchema = z.object({
   id: z.string(),
 });
-
-export default async function handler(
-  request: NextApiRequest,
-  response: NextApiResponse
-) {
-  if (request.method === "GET") {
-    // Parse the user ID from the query parameters
-
-    const { id } = inputQuerySchema.parse(request.query);
-
-    // Find all lists that belong to the user
-    const lists = await prisma.list.findMany({
-      where: {
-        userIdentifier: id,
+const output = z.array(
+  z.object({
+    id: z.string(),
+    listName: z.nullable(z.string()),
+    createdAt: z.date(),
+    userIdentifier: z.string(),
+    favorite: z.nullable(z.boolean()),
+  })
+);
+export default defineEndpoints({
+  GET: {
+    input: {
+      query: inputQuerySchema,
+    },
+    output: [
+      {
+        status: 200,
+        contentType: "application/json",
+        schema: output,
       },
-    });
-
-    response.status(200).json(lists);
-    return;
-  }
-  response.status(405).send("not ok");
-}
+      {
+        status: 404,
+        contentType: "text/plain",
+        schema: z.string(),
+      },
+    ],
+    handler: async ({
+      req: {
+        query: { id },
+      },
+      res,
+    }) => {
+      const lists = await prisma.list.findMany({
+        where: {
+          userIdentifier: id,
+        },
+      });
+      if (!lists) {
+        res.setHeader("content-type", "text/plain");
+        res.status(404).send("No list with that ID found");
+      }
+      res.setHeader("content-type", "application/json");
+      res.status(200).json(lists);
+    },
+  },
+});

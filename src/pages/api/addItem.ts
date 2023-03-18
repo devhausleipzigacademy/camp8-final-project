@@ -1,71 +1,114 @@
 import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { defineEndpoints } from "next-rest-framework/client";
 import { z, ZodError } from "zod";
 import { prisma } from "..";
-
-/*
- */
-export default async function handler(
-  request: NextApiRequest,
-  response: NextApiResponse
-) {
-  if (request.method === "POST") {
-    try {
-      const { query, inputList } = inputQueryTest.parse(request.body);
-      // Getting ID of list we will add product to.  If none there create one
-
-      let product: MasterItem;
-      const list = await prisma.list.findFirst({
-        where: {
-          id: inputList,
-        },
-      });
-      if (!list) {
-        response.status(404).send("List not found");
-      }
-
-      try {
-        product = (await prisma.masterItem.findFirst({
-          where: {
-            name: query,
-          },
-        })) as MasterItem;
-
-        await prisma.item.create({
-          data: {
-            masterItemId: product.id,
-            listIdentifier: inputList,
-          },
-        });
-
-        response.status(200).send(product);
-      } catch (err) {
-        const other = await prisma.category.findFirst({
-          where: {
-            category: "other",
-          },
-        });
-        await prisma.item.create({
-          data: {
-            customItemName: query,
-            listIdentifier: inputList,
-            customCategoryId: other?.id,
-          },
-        });
-        response.status(201).send("New User created in Other");
-      }
-    } catch (err) {
-      if (err instanceof ZodError) {
-        response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
-      } else {
-        response.status(418).send(JSON.stringify(err));
-      }
-    }
-    response.status(404).send(`Invalid method, need POST: ${request.method}`);
-  }
-}
+import { toZod } from "tozod";
 
 const inputQueryTest = z.object({
   query: z.string().regex(/[A-z]/, "No Numbers allowed"),
   inputList: z.string(),
+});
+const output = z.object({
+  id: z.string(),
+  name: z.string(),
+  imageUrl: z.nullable(z.string()),
+  category: z.nullable(z.string()),
+  approved: z.boolean(),
+});
+
+export default defineEndpoints({
+  POST: {
+    input: {
+      contentType: "application/json",
+      body: inputQueryTest,
+    },
+    output: [
+      {
+        status: 200,
+        contentType: "application/json",
+        schema: output,
+      },
+      {
+        status: 201,
+        contentType: "text/plain",
+        schema: z.string(),
+      },
+      {
+        status: 404,
+        contentType: "text/plain",
+        schema: z.string(),
+      },
+      {
+        status: 400,
+        contentType: "text/plain",
+        schema: z.string(),
+      },
+      {
+        status: 418,
+        contentType: "text/plain",
+        schema: z.string(),
+      },
+    ],
+    handler: async ({
+      res,
+      req: {
+        body: { inputList, query },
+      },
+    }) => {
+      try {
+        const list = await prisma.list.findFirst({
+          where: {
+            id: inputList,
+          },
+        });
+        if (!list) {
+          res.setHeader("content-type", "text/plain");
+          res.status(404).send("List not found");
+        }
+
+        try {
+          const product = (await prisma.masterItem.findFirst({
+            where: {
+              name: query,
+            },
+          })) as MasterItem;
+          await prisma.item.create({
+            data: {
+              masterItemId: product.id,
+              listIdentifier: inputList,
+            },
+          });
+          res.setHeader("content-type", "application/json");
+
+          res.status(200).json(product);
+        } catch (err) {
+          const other = await prisma.category.findFirst({
+            where: {
+              name: "other",
+            },
+          });
+          await prisma.item.create({
+            data: {
+              customName: query,
+              listIdentifier: inputList,
+              customCategoryId: other?.id,
+            },
+          });
+          res.setHeader("content-type", "text/plain");
+
+          res.status(201).send("New User created in Other");
+        }
+      } catch (err) {
+        if (err instanceof ZodError) {
+          res.setHeader("content-type", "text/plain");
+
+          res.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
+        } else {
+          res.setHeader("content-type", "text/plain");
+          res.status(418).send(JSON.stringify(err));
+        }
+      }
+    },
+  },
 });
