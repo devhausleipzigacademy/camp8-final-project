@@ -22,17 +22,17 @@ export default defineEndpoints({
       {
         status: 200,
         contentType: "text/plain",
-        schema: z.string(),
+        schema: outputSchema,
       },
       {
         status: 400,
         contentType: "text/plain",
-        schema: z.string(),
+        schema: outputSchema,
       },
       {
         status: 418,
         contentType: "text/plain",
-        schema: z.string(),
+        schema: outputSchema,
       },
     ],
     handler: async ({

@@ -21,23 +21,6 @@ async function main() {
       }),
       skipDuplicates: true,
     });
-    await prisma.category.create({
-      data: {
-        name: categoryName,
-        masterItem: {
-          createMany: {
-            data: bigData[categoryName].map((x) => {
-              return {
-                name: x.name,
-                imageUrl: x.image,
-                approved: true,
-              };
-            }),
-            skipDuplicates: true,
-          },
-        },
-      },
-    });
   }
 
   const John = await prisma.user.create({
@@ -84,8 +67,9 @@ async function main() {
     });
   }
   console.log(
-    "For bubble chart go to page:\n",
-    `http://localhost:3000/list/${John.lists[0].id}/bubble`
+    "Created basic user with the following info:\n",
+    `User ID: ${John.id}`,
+    `List ID: ${John.lists[0].id}\n`
   );
 }
 main();

@@ -1,7 +1,7 @@
 import { MasterItem } from "@prisma/client";
 import { defineEndpoints } from "next-rest-framework/client";
 import { z, ZodError } from "zod";
-import { prisma } from "..";
+import { prisma } from "./prisma";
 export const addItemInputSchema = z.object({
   query: z.string().regex(/[A-z]/, "No Numbers allowed"),
   inputList: z.string(),
@@ -72,8 +72,9 @@ export default defineEndpoints({
           })) as MasterItem;
           await prisma.item.create({
             data: {
-              masterItemId: product.id,
               listIdentifier: inputList,
+              category: product.category,
+              imageUrl: product.imageUrl,
             },
           });
           res.setHeader("content-type", "application/json");
@@ -87,9 +88,9 @@ export default defineEndpoints({
           });
           await prisma.item.create({
             data: {
-              customName: query,
+              name: query,
               listIdentifier: inputList,
-              customCategoryId: other?.id,
+              category: other?.id,
             },
           });
           res.setHeader("content-type", "text/plain");

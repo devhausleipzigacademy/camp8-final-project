@@ -1,7 +1,7 @@
 import { MasterItem } from "@prisma/client";
 import { defineEndpoints } from "next-rest-framework/client";
 import { z } from "zod";
-import { prisma } from "..";
+import { prisma } from "./prisma";
 var stringSimilarity = require("string-similarity");
 
 export function sortByRating(input: Array<{ target: string; rating: number }>) {
