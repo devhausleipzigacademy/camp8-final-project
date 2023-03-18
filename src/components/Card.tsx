@@ -6,10 +6,10 @@ import {
   LeadingActions,
 } from "react-swipeable-list";
 import clsx from "clsx";
-import axios from "axios"
+import axios from "axios";
 import { Trash, Bookmark } from "react-feather";
-import 'react-swipeable-list/dist/styles.css';
-import { useEffect, useState } from "react";
+import "react-swipeable-list/dist/styles.css";
+import { useState } from "react";
 
 ///TYPES
 export type UserList = {
@@ -23,7 +23,6 @@ export type UserList = {
 export type CardProps = {
   data: UserList;
   createNewCard: boolean;
-
 };
 
 export type UserLists = Array<UserList>;
@@ -42,35 +41,39 @@ export const example_card: CardProps = {
   createNewCard: false,
 };
 
-export const user_lists: UserLists = [example_list];
+export function SingleCard({ data, createNewCard }: CardProps) {
 
-export function SingleCard({
-  data,
-  createNewCard,
-}: CardProps) {
+  //current list Id
+  const listId = data.id;
+
+  //binding to access favorite
+  const pinned = data.favorite
 
   //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
-  const [changingName, setChangingName] = useState(false)
+  const [changingName, setChangingName] = useState(false);
 
-  //to store Error and optionally display it on the screen
-  const [isError, setIsError] = useState(false)
+  //define Types for Data we are going to send
+  type UpdateListNameRequestData = {
+    id: string;
+    newName: string;
+  };
 
-  //define a Type for Data we are going to send
-  type RequestData = {
-    id: string
-    newName: string
-  }
+  type DeleteListRequestData = {
+    id: string;
+  };
 
-  //create a binding to store the Name provided by event, when clicking enter
-  const [inputName, setInputName] = useState("")
-  const [inputId, setInputId] = useState("")
+  //create a binding to store the Name provided by event, obChange. Will be updated as typing. ApiChangeListName will be triggered when clicking enter
+  const [inputName, setInputName] = useState("");
 
-  async function ApiCall(){
+  async function ApiChangeListName(current_id: string) {
     try {
-      const response = await axios.patch("http://localhost:3000/api/updateListName", {id: inputId, newName: inputName} as RequestData)
-    } catch (err){
-      setIsError(true)
-      console.log(err)
+      const response = await axios.patch(
+        "http://localhost:3000/api/updateListName",
+        { id: current_id, newName: inputName } as UpdateListNameRequestData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -78,7 +81,7 @@ export function SingleCard({
     <SwipeableListItem
       listType={Type.IOS}
       className="rounded-2xl"
-      leadingActions={leadingActions(data.id)}
+      leadingActions={leadingActions(data.id, data.favorite)}
       trailingActions={trailingActions(data.id)}
     >
       <div
@@ -93,27 +96,25 @@ export function SingleCard({
           <p className="button-bold font-semibold">
             {`${data.itemsChecked}/${data.itemsTotal} Items`}
           </p>
-          {(changingName === true) ? (
+          {changingName === true ? (
             <form
-            onSubmit={
-
-              (event) =>{
-              event.preventDefault();
-              const { target } = event
-              setInputName((target as HTMLInputElement).value);
-              setInputId(data.id);
-              ApiCall()}
-
-            }>
-            <input
-              type="Text"
-              placeholder={clsx(!data.listName ? "New Name" : data.listName )}
-              className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-            />
+              onSubmit={(event) => {
+                event.preventDefault();
+                ApiChangeListName(listId);
+              }}
+            >
+              <input
+                type="Text"
+                placeholder={clsx(!data.listName ? "New Name" : data.listName)}
+                className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+                onChange={(event) => {
+                  setInputName(event.target.value);
+                }} //change value every Type
+              />
             </form>
           ) : (
             <p
-              onClick={()=>setChangingName(true)}
+              onClick={() => setChangingName(true)}
               className="cards-title uppercase font-heading "
             >
               {data.listName}
@@ -124,34 +125,57 @@ export function SingleCard({
           <div className="text-primary">
             {data.favorite && <Bookmark className="h-6 w-6" />}
           </div>
-          <p>{data.createdAt}</p>
+          <p>{data.createdAt.slice(0, 9)}</p>
         </div>
       </div>
     </SwipeableListItem>
   );
 }
 
-export const handleDelete = (id: string) => () => {
-  console.log("[Handle DELETE]", id);
-};
+function ApiDeleteList(current_id: string) {
+  // A simple DELETE request with fetch
+  fetch(`http://localhost:3000/api/deleteList?id=${current_id}`, {
+    method: "DELETE",
+  }).then((response) => {
+    console.log(response);
+  });
+}
 
-export const handlePin = (id: string) => () => {
-  console.log("[Handle PIN]", id);
-};
+function ApiPnList(current_id: string) {
+  fetch(`http://localhost:3000/api/deleteList?id=${current_id}`, {
+    method: "PATCH",
+  }).then((response) => {
+    console.log(response);
+  });
+}
 
-export const leadingActions = (id: string) => (
+function ApiUnpinList(current_id: string) {
+  fetch(`http://localhost:3000/api/deleteList?id=${current_id}`, {
+    method: "PATCH",
+  }).then((response) => {
+    console.log(response);
+  });
+}
+
+function PinOrUnpin(id: string, pinned: boolean){
+  (pinned&&ApiPnList(id));
+  (!pinned&&console.log("HUHUHUHUHUH"))
+}
+
+export const leadingActions = (id: string, pinned: boolean) => (
   <LeadingActions>
-    <SwipeAction onClick={handlePin(id)}>
-      <div
-        onClick={() => {console.log("CLICK!")}}
-        className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl"
-      >
-        <div
-        className="flex gap-7 ml-7 mr-7 m-0 content-center">
+    <SwipeAction
+      onClick={() => {
+        PinOrUnpin(id, pinned);
+        console.log("after click: pinned: " + pinned)
+      }}
+    >
+      <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
+        <div className="flex justify-between fixed w-26 ml-7 mr-7 content-center">
           <span className="h-6 w-6 m-0">
             <Bookmark />
           </span>
-          <p className="bg-white text-links pt-[0.2rem]">Pin</p>
+          <p className="bg-white text-links pt-[0.2rem]">{clsx((pinned&&"unpin"),(!pinned&&"pin"))}</p>
         </div>
       </div>
     </SwipeAction>
@@ -160,13 +184,14 @@ export const leadingActions = (id: string) => (
 
 export const trailingActions = (id: string) => (
   <TrailingActions>
-    <SwipeAction onClick={handleDelete(id)}>
-      <div
-        onClick={() => {console.log("CLICK!")}}
-        className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl"
-      >
-        <div
-        className="flex gap-7 ml-7 mr-7 m-0 content-center">
+    <SwipeAction
+      onClick={() => {
+        console.log("CLICKED");
+        ApiDeleteList(id);
+      }}
+    >
+      <div className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
+        <div className="flex justify-between fixed w-28 ml-7 mr-7 content-center">
           <p className="bg-white text-links pt-[0.2rem]">Delete</p>
           <span className="h-6 w-6">
             <Trash className="stroke-text-white" />

@@ -14,14 +14,17 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  if (request.method === "DELETE") {
+  if (request.method === "PATCH") {
     try {
       const { id } = inputQueryDelete.parse(request.query);
 
-      await prisma.list.delete({
+      await prisma.list.update({
         where: {
           id: id,
         },
+        data: {
+          favorite: false,
+        }
       });
       response.status(200).send(`Removed List with following id:${id}`);
     } catch (err) {

@@ -30,8 +30,10 @@ export default async function handler(
     request: NextApiRequest,
     response: NextApiResponse
   ) {
+    console.log(inputQueryType.parse(request.body));
     if (request.method !== "PATCH") {
       response.status(405).send("wrong method")
+      return
     } else {
       try {
         const { id, newName } = inputQueryType.parse(request.body);
@@ -45,8 +47,10 @@ export default async function handler(
         })
         response.status(200).send(["data updated: ", updatedData])
       } catch (err) {
-        response.status(400).send(err)
+        console.log(err)
+        response.status(500).send(err)
       }
     }
-    response.status(400).send("not ok");
   }
+
+  //after calling .send and other comparable methods don't modify anything anymore!!

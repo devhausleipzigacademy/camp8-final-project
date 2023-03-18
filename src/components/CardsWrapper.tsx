@@ -20,7 +20,7 @@ export const CardsWrapper = ({id}: Props) => {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`/api//seeLists?id=${id}`)
+    fetch(`/api/seeLists?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data)
@@ -28,12 +28,11 @@ export const CardsWrapper = ({id}: Props) => {
       })
   }, [])
 
-
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>Press plus button to create Your first list!</p>
 
   return (
-    <div className="overflow-hidden pt-[160px]">
+    <div className="flex flex-col gap-3 pt-[160px]">
       {returnNodes(data)}
     </div>
   );
