@@ -3,7 +3,7 @@ GET http://localhost:3000/api/test
 
 ###
 
-GET http://localhost:3000/api/autocomplete?name=pear
+GET http://localhost:3000/api/autocomplete?name=ban
 
 
 ###
@@ -21,10 +21,17 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "bla",
-  "inputList": "1232"
+  "query": "sage",
+  "inputList": "7ad3e6e6-81e9-4054-a951-286f598b89bd"
 }
 
 ###
 
 GET http://localhost:3000/api/seeLists?id=53fed350-9c23-47ad-ba4f-3d6c41d270c6
+
+###
+GET http://localhost:3000/api/ListItems?inputList=ae13eb05-521d-414a-b762-0da39361b5e9
+
+
+
+###
