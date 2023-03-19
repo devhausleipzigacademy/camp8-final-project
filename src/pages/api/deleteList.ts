@@ -15,6 +15,9 @@ const outputSchema = z.string();
 
 export default defineEndpoints({
   DELETE: {
+    openApiSpec: {
+      description: "Deletes a list",
+    },
     input: {
       query: deleteListInputSchema,
     },

@@ -16,6 +16,9 @@ export const seeListsOutputSchema = z.array(
 );
 export default defineEndpoints({
   GET: {
+    openApiSpec: {
+      description: "Shows all the lists associated with a specific user",
+    },
     input: {
       query: seeListsInputSchema,
     },

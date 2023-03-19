@@ -16,6 +16,10 @@ export const addItemOutputSchema = z.object({
 
 export default defineEndpoints({
   POST: {
+    openApiSpec: {
+      description:
+        "Will check if input is in MasterItem, if so, will add it along with photo and category.  If not, will add to list other",
+    },
     input: {
       contentType: "application/json",
       body: addItemInputSchema,

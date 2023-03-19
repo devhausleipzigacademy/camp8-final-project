@@ -39,7 +39,7 @@ export default defineEndpoints({
   GET: {
     openApiSpec: {
       description:
-        "Enpoint looks for words in the MasterItem table and returns the top 5 results.  Also returns a number of how much the first result matches.",
+        "Endpoint looks for words in the MasterItem table and returns the top 5 results.  Also returns a number of how much the first result matches.",
     },
     input: {
       query: autocompleteInputSchema,
