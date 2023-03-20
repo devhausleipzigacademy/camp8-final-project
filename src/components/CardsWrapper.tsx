@@ -20,7 +20,7 @@ export const CardsWrapper = ({id}: Props) => {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`/api/seeLists?id=${id}`)
+    fetch(`/api/getCards?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data)
