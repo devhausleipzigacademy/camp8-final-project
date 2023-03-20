@@ -1,17 +1,22 @@
 import { LargeButton } from "@/components/LargeButton";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";
-import { signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import {
+	getSession,
+	SessionProvider,
+	signOut,
+	useSession,
+} from "next-auth/react";
 import { useRouter } from "next/router";
 
 type buttonProps = {
 	variant: "primary";
 	label: string;
 	disable: boolean;
+	user: User;
 };
 
 export default function Settings(props: buttonProps) {
@@ -22,20 +27,6 @@ export default function Settings(props: buttonProps) {
 	const redirect = () => {
 		router.push("/account/changeEmail");
 	};
-	const { data: session } = useSession();
-	const [user, setUser] = useState<User>();
-	const getData = async () => {
-		const info: User = await axios
-			.get(`http://localhost:3000/api/userInfo?email=${session?.user?.email}`)
-			.then((res) => res.data);
-		console.log("Hello");
-		console.log(session);
-
-		setUser(info);
-	};
-	useEffect(() => {
-		getData();
-	}, []);
 
 	return (
 		<>
@@ -45,7 +36,7 @@ export default function Settings(props: buttonProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="px-8 flex flex-col bg-grad-frame">
+			<div className="px-8 flex flex-col bg-grad-frame h-full">
 				<header className="w-full flex items-center h-10 pt-8">
 					<a href="">
 						<FiChevronLeft size={28} />
@@ -59,8 +50,8 @@ export default function Settings(props: buttonProps) {
 							<FiUser size={28} />
 						</div>
 						<div className="text-primary-default-Solid font-heading text-4xl">
-							{" "}
-							Hey, {user?.name}{" "}
+							Hey,&nbsp;
+							{props.user.name ? props.user.name : props.user.email}
 						</div>
 						<div className="w-full flex flex-col gap-5">
 							<LargeButton
@@ -83,3 +74,16 @@ export default function Settings(props: buttonProps) {
 		</>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const session = await getSession({ req: context.req });
+	const info: User = await axios
+		.get(`http://localhost:3000/api/userInfo?email=${session?.user?.email}`)
+		.then((res) => res.data);
+
+	return {
+		props: {
+			user: info,
+		},
+	};
+};
