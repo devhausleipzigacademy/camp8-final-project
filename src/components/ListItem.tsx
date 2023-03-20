@@ -8,6 +8,7 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { CheckSquare, Square } from "react-feather";
+import clsx from "clsx";
 
 type ListItemProps = {
   name: string;
@@ -64,7 +65,7 @@ export default function ListItem(props: ListItemProps) {
       leaveTo="opacity-0 scale-y-0 "
     >
       <SwipeableListItem
-        className="max-w-[334px] h-16 bg-primary-transparent border border-secondary-default rounded-md flex flex-row"
+        className={clsx(checked? 'bg-primary-transparent':'bg-secondary-transparent' ,"max-w-[334px] h-16 border border-secondary-default rounded-md flex gap-3")}
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
         threshold={0.5}
@@ -78,9 +79,9 @@ export default function ListItem(props: ListItemProps) {
           }
           alt="http://cdn.onlinewebfonts.com/svg/img_275679.png"
         />
-        <div className="flex p-2 justify-between items-center flex-grow">
-          <p className="text-text-typo text-primary">{props.name}</p>
-          <p className="text-secondary font-thin">{props.quantity}</p>
+        <div className="flex justify-between items-center px-3 w-full text-text-typo">
+          <p className="text-primary">{props.name}</p>
+          <p className="text-secondary">{props.quantity}</p>
           {checked ? (
             <CheckSquare onClick={onCheck} />
           ) : (
