@@ -1,11 +1,11 @@
-import { EyeIcon } from "@heroicons/react/24/solid";
+import { FiEdit } from "react-icons/fi";
 
 type InputProps = {
 	type: string;
 };
 
 export default function Input(props: InputProps) {
-	let placeholder: string = props.type === "email" ? "Email" : "Password";
+	let placeholder: string = props.type === "email" ? "Email" : "New name";
 
 	return (
 		<>
@@ -17,8 +17,8 @@ export default function Input(props: InputProps) {
 					placeholder={placeholder}
 				/>
 
-				{props.type === "password" && (
-					<EyeIcon className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square " />
+				{props.type === "New name" && (
+					<FiEdit className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square " />
 				)}
 			</label>
 		</>
