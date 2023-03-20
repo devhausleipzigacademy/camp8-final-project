@@ -1,15 +1,13 @@
 import { Transition } from "@headlessui/react";
-import Image from "next/image";
 import { useState } from "react";
-import { Tick } from "./Tick";
 import {
   LeadingActions,
-  SwipeableList,
   SwipeableListItem,
   SwipeAction,
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import { CheckSquare, Square } from "react-feather";
 
 type ListItemProps = {
   name: string;
@@ -20,7 +18,7 @@ type ListItemProps = {
 };
 // onRemove is added so higher level page can trigger a function when an item is removed.
 export default function ListItem(props: ListItemProps) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(props.checked);
   const [swiped, setSwiped] = useState(true);
   const onCheck = () => {
     setChecked(!checked);
@@ -83,22 +81,11 @@ export default function ListItem(props: ListItemProps) {
         <div className="flex p-2 justify-between items-center flex-grow">
           <p className="text-text-typo text-primary">{props.name}</p>
           <p className="text-secondary font-thin">{props.quantity}</p>
-          <div
-            onClick={onCheck}
-            className="h-10 w-10 bg-text-white border-primary-default-Solid rounded-2xl border-2 flex justify-center items-center"
-          >
-            <Transition
-              show={checked}
-              enter="transform transition duration-[400ms]"
-              enterFrom="opacity-0 rotate-[-120deg] scale-50"
-              enterTo="opacity-100 rotate-0 scale-100"
-              leave="transform duration-200 transition ease-in-out"
-              leaveFrom="opacity-100 rotate-0 scale-100 "
-              leaveTo="opacity-0 scale-95 "
-            >
-              <Tick classes="w-8 h-8 text-primary-default-Solid" />
-            </Transition>
-          </div>
+          {checked ? (
+            <CheckSquare onClick={onCheck} />
+          ) : (
+            <Square onClick={onCheck} />
+          )}
         </div>
       </SwipeableListItem>
     </Transition>
