@@ -1,4 +1,4 @@
-import { ComponentStory, Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import ListItem from "../components/ListItem";
 
 const meta: Meta<typeof ListItem> = {
@@ -10,15 +10,28 @@ const meta: Meta<typeof ListItem> = {
     quantity: { control: "text" },
   },
 };
-const Template: ComponentStory<typeof ListItem> = (args) => (
-  <ListItem {...args} />
-);
 
 export default meta;
 
-export const Default = Template.bind({});
-Default.args = {
+const Banana = {
   image: "https://spoonacular.com/cdn/ingredients_100x100/bananas.jpg",
   name: "Banana",
   quantity: "1 unit",
+  setSelected: () => {},
+};
+
+type Story = StoryObj<typeof ListItem>;
+
+export const Default: Story = {
+  args: {
+    ...Banana,
+    selected: "Something Else",
+  },
+};
+
+export const Selected: Story = {
+  args: {
+    ...Banana,
+    selected: Banana.name,
+  },
 };
