@@ -5,13 +5,13 @@ import { clsx } from "clsx";
 type SortByProps = {
   sortBy: string;
   setSort: Dispatch<SetStateAction<string>>;
-  className: string;
+  className?: string;
 };
 
 export function SortBySwitches(props: SortByProps) {
   return (
     <RadioGroup
-      className="font-sans flex flex-row justify-center items-center bg-secondary-transparent text-sm h-7 rounded-listitem"
+      className="text-secondary flex flex-row justify-center items-center bg-secondary-transparent text-sm h-7 rounded-listitem"
       value={props.sortBy}
       onChange={props.setSort}
     >

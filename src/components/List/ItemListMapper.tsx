@@ -1,5 +1,6 @@
 import { Category } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
+import { capitalizeCategory } from "../CapitalizeFunctions";
 import ListItem from "../ListItem";
 
 type ItemListMapperProps = {
@@ -20,11 +21,11 @@ export function ItemListMapper(props: ItemListMapperProps) {
         let nameSection = false;
 
         if (props.sortBy === "category" && product.category !== sectionName) {
-          sectionName = product.category;
+          sectionName = capitalizeCategory(product.category);
           nameSection = true;
         }
         return (
-          <div className="">
+          <div key={product.id}>
             {nameSection && <p>{sectionName + ":"}</p>}
             <ListItem
               name={capitalizeFirstLetter(product.name)}

@@ -64,12 +64,14 @@ export default function Home({ getData }: InputProps) {
   };
 
   return (
-    <div>
-      <div className="m-6">
-        <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
-        <ItemListMapper list={list} sortBy={sortBy}></ItemListMapper>
-      </div>
-      {/* <div>{JSON.stringify(getData)}</div> */}
+    <div className="m-6">
+      <SortBySwitches
+        className=""
+        sortBy={sortBy}
+        setSort={setSortBy}
+      ></SortBySwitches>
+      <ItemListMapper list={list} sortBy={sortBy}></ItemListMapper>
+
       <button
         className="bg-grad-default p-4 rounded-md text-text-white"
         onClick={handleClick}
