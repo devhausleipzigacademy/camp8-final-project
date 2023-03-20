@@ -11,6 +11,7 @@ import {
 	useSession,
 } from "next-auth/react";
 import { useRouter } from "next/router";
+import Input from "@/components/Input";
 
 type buttonProps = {
 	variant: "primary";
@@ -54,6 +55,7 @@ export default function Settings(props: buttonProps) {
 							{props.user.name ? props.user.name : props.user.email}
 						</div>
 						<div className="w-full flex flex-col gap-5">
+							<Input type={"New name"} />
 							<LargeButton
 								variant="primary"
 								label="Change E-Mail"
