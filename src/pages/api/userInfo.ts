@@ -19,7 +19,7 @@ export default async function handler(
 			response.status(200).send(user);
 		} catch (err) {
 			if (err instanceof ZodError) {
-				response.status(418).send(`Wrogn type of Data Sent ${err}`);
+				response.status(418).send(`Wrong type of Data Sent ${err}`);
 			} else {
 				response.status(400).send(`Something Went wrong: ${err}`);
 			}
