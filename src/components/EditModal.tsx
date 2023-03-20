@@ -64,16 +64,9 @@ export default function EditModal() {
 	});
 	return (
 		<div className="w-full h-full flex flex-col px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
-			<ListItem
-				name={""}
-				image={""}
-				checked={false}
-				onRemove={function (): void {
-					throw new Error("Function not implemented.");
-				}}
-				clicked={false}
-			/>
 			<SortByButton />
+
+			{/* ---IMPLEMENTED IN COMPONENT */}
 			<Tab.Group>
 				<Tab.Panels className="mt-2 max-w-[354px] h-8">
 					{Object.values(categories).map((options, idx) => (
@@ -108,6 +101,7 @@ export default function EditModal() {
 					))}
 				</Tab.Panels>
 			</Tab.Group>
+			{/* ---IMPLEMENTED IN COMPONENT */}
 		</div>
 	);
 }
