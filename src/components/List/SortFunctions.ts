@@ -1,3 +1,4 @@
+import { Category } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
 
 export function sortByDate(input: Item[]): Item[] {

@@ -1,32 +1,42 @@
+import { Category } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
+import ListItem from "../ListItem";
 
 type ItemListMapperProps = {
   list: Item[];
   sortBy: string;
 };
 
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export function ItemListMapper(props: ItemListMapperProps) {
-  if (props.sortBy === "category") {
-    return (
-      <>
-        {props.list.map((product) => {
-          <div className="py-1">
-            <h3>{product.name}</h3>
-          </div>;
-        })}
-      </>
-    );
-  } else {
-    return (
-      <>
-        {props.list.map((item) => {
-          return (
-            <div className=" py-1">
-              <p className="px-4 rounded-2xl">{item.name}</p>
-            </div>
-          );
-        })}
-      </>
-    );
-  }
+  let sectionName: string | null = "";
+
+  return (
+    <>
+      {props.list.map((product) => {
+        let nameSection = false;
+
+        if (props.sortBy === "category" && product.category !== sectionName) {
+          sectionName = product.category;
+          nameSection = true;
+        }
+        return (
+          <div className="">
+            {nameSection && <p>{sectionName + ":"}</p>}
+            <ListItem
+              name={capitalizeFirstLetter(product.name)}
+              image={product.imageUrl}
+              checked={product.checked}
+              onRemove={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            ></ListItem>
+          </div>
+        );
+      })}
+    </>
+  );
 }

@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import { Item, List } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
@@ -10,6 +9,7 @@ import {
   sortByAlphabet,
   sortByCategory,
 } from "@/components/List/SortFunctions";
+import { Item } from "@prisma/client";
 
 export type Category = {
   id: string;
@@ -17,35 +17,37 @@ export type Category = {
   item: Item[];
 };
 
-// export type List = {
-//   id: string;
-//   listName: string | null;
-//   createdAt: Date;
-//   userIdentifier: string;
-//   favorite: boolean | null;
-//   items: Item[];
-// };
-
-export type InputProps = {
-  list: List;
-  category: Category;
+export type List = {
+  id: string;
+  listName: string | null;
+  createdAt: Date;
+  userIdentifier: string;
+  favorite: boolean | null;
+  items: Item[];
 };
 
-export default function Home(getData: InputProps) {
+export type InputProps = {
+  getData: {
+    list: List;
+    category: Category[];
+  };
+};
+
+export default function Home({ getData }: InputProps) {
   const [sortBy, setSortBy] = useState("date");
 
-  let list: Item[] = [];
   let data = { ...getData };
+  let list: Item[] = [];
 
   switch (sortBy) {
     case "date":
-      list = sortByDate(data.category.item);
+      list = sortByDate(data.list.items);
       break;
     case "alphabetical":
-      list = sortByAlphabet(data.category.item);
+      list = sortByAlphabet(data.list.items);
       break;
     case "category":
-      list = sortByCategory(data.category.item);
+      list = sortByCategory(data.list.items);
       break;
   }
 
@@ -64,10 +66,10 @@ export default function Home(getData: InputProps) {
   return (
     <div>
       <div className="m-6">
-        {/* <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
-        <ItemListMapper list={list} sortBy={sortBy}></ItemListMapper> */}
+        <SortBySwitches sortBy={sortBy} setSort={setSortBy}></SortBySwitches>
+        <ItemListMapper list={list} sortBy={sortBy}></ItemListMapper>
       </div>
-      <div>{JSON.stringify(getData)}</div>
+      {/* <div>{JSON.stringify(getData)}</div> */}
       <button
         className="bg-grad-default p-4 rounded-md text-text-white"
         onClick={handleClick}

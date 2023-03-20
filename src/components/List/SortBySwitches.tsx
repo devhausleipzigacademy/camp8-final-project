@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 type SortByProps = {
   sortBy: string;
   setSort: Dispatch<SetStateAction<string>>;
+  className: string;
 };
 
 export function SortBySwitches(props: SortByProps) {
@@ -19,7 +20,7 @@ export function SortBySwitches(props: SortByProps) {
           <p
             className={clsx(
               "h-full w-full flex justify-center items-center rounded-listitem",
-              checked && "bg-primary-default-background text-text-white"
+              checked && "bg-primary-default-Solid text-text-white"
             )}
           >
             Date
@@ -31,7 +32,7 @@ export function SortBySwitches(props: SortByProps) {
           <p
             className={clsx(
               "h-full w-full  flex justify-center items-center rounded-listitem",
-              checked && "bg-primary-default-background text-text-white"
+              checked && "bg-primary-default-Solid text-text-white"
             )}
           >
             Category
@@ -43,7 +44,7 @@ export function SortBySwitches(props: SortByProps) {
           <p
             className={clsx(
               "h-full w-full flex justify-center items-center rounded-listitem",
-              checked && "bg-primary-default-background text-text-white"
+              checked && "bg-primary-default-Solid text-text-white"
             )}
           >
             Alphabetical
