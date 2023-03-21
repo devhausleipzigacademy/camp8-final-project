@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { Combobox } from "@headlessui/react";
-import { Search } from "feather-icons-react";
+import { FiSearch } from "react-icons/fi";
 
 type Items = Array<Item>;
 type Item = {
@@ -41,7 +41,7 @@ export function SearchBar() {
 						/>
 
 						<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-3">
-							<Search
+							<FiSearch
 								className=" w-6 h-6 stroke-2"
 								aria-hidden="true"
 								auto-fill="none"
