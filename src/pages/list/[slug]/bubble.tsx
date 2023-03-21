@@ -102,12 +102,14 @@ export default function Bubble({ data, slug }: Props) {
     // Can maybe set this to depend on number of circles.  Also depends on collision force (see later)
 
     // Scaling function to scale the padding with the number of circles
-    const paddingScale = d3.scaleLinear().domain([1, 50]).range([20, -100]);
+    // const paddingScale = d3.scaleLinear().domain([1, 50]).range([50, -200]);
 
     const pack = d3
       .pack()
       .size([chartWidth, chartHeight])
-      .padding(paddingScale(count(data)));
+      // .padding(paddingScale(count(data)));
+      .padding(-5);
+
     // Generate the hierarchy data structure
     const root = d3.hierarchy(data).sum((d) => 1);
 
@@ -148,7 +150,7 @@ export default function Bubble({ data, slug }: Props) {
       .attr("stroke", "#453C57")
       .attr("stroke-width", 2)
       //Distortion to fill  Compelementary on Text SVG
-      .attr("transform", "scale(1 1)")
+      // .attr("transform", "scale(1 1)")
       .on("click", function (d) {
         var currentColor = this.style.fill;
         toggleButton(d.target.__data__.data.id, currentColor === "white", slug);
@@ -164,7 +166,7 @@ export default function Bubble({ data, slug }: Props) {
     // Define a simulation with a collision force
     const simulation = d3
       .forceSimulation(nodes.slice(data.children.length + 1))
-      .force("charge", d3.forceManyBody().strength(0.1)) // a positive value will cause elements to attract one another while a negative value causes elements to repel each other. The default value is -30
+      .force("charge", d3.forceManyBody().strength(1)) // a positive value will cause elements to attract one another while a negative value causes elements to repel each other. The default value is -30
       .force(
         "collide",
         d3
@@ -208,6 +210,11 @@ export default function Bubble({ data, slug }: Props) {
     <div className="h-full w-full flex justify-center flex-col bg-grad-frame">
       <div>
         <svg ref={d3Container} width="100vw" height="100vh"></svg>
+        <div className="flex items-center justify-center">
+          <button className="flex h-20 w-20 border-2 rounded-full justify-center items-center">
+            Add item
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -21,13 +21,13 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "sage",
-  "inputList": "7ad3e6e6-81e9-4054-a951-286f598b89bd"
+  "query": "apples",
+  "inputList": "0c57b3a1-756e-4ff8-94e5-5c50ae86d84d"
 }
 
 ###
 
-GET http://localhost:3000/api/ListItems?inputList=ae13eb05-521d-414a-b762-0da39361b5e9
+GET http://localhost:3000/api/ListItems?inputList=0c57b3a1-756e-4ff8-94e5-5c50ae86d84d
 
 
 
