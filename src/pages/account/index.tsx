@@ -56,6 +56,7 @@ export default function Settings(props: buttonProps) {
 						</div>
 						<div className="w-full flex flex-col gap-5">
 							<Input type={"New name"} />
+
 							<LargeButton
 								variant="primary"
 								label="Change E-Mail"

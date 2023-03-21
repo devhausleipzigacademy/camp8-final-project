@@ -37,9 +37,9 @@ export default function Settings(props: buttonProps) {
 						<FiChevronLeft size={28} />
 					</a>
 				</header>
-				<div className="w-full flex-grow flex flex-col justify-around">
+				<div className="w-full h-full flex-grow flex flex-col justify-around">
 					<div className="flex bg-slate-400 w-full ">Account vs settings</div>
-					<div className="flex w-full flex-col items-center gap-5">
+					<div className="flex h-full w-full flex-col items-center gap-5">
 						{/* This section will change depending on the account status of the User */}
 						<div>
 							<FiUser size={28} />
