@@ -1,4 +1,5 @@
 import { LargeButton } from "@/components/LargeButton";
+import { SmallButton } from "@/components/SmallButton";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
@@ -56,6 +57,7 @@ export default function Settings(props: buttonProps) {
 						</div>
 						<div className="w-full flex flex-col gap-5">
 							<Input type={"New name"} />
+							<SmallButton label="Change" />
 
 							<LargeButton
 								variant="primary"
