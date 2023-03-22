@@ -1,10 +1,11 @@
 import {
+  LeadingActions,
   SwipeableListItem,
-  Type,
   SwipeAction,
   TrailingActions,
-  LeadingActions,
-} from "react-swipeable-list";
+  Type,
+} from 'react-swipeable-list';
+import 'react-swipeable-list/dist/styles.css';
 import clsx from "clsx";
 import { Trash, Bookmark } from "react-feather";
 import "react-swipeable-list/dist/styles.css";
@@ -50,8 +51,6 @@ export function SingleCard({ data, new_card }: CardProps) {
     return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
       method: "DELETE",
     }).then((response) => {
-      console.log("tried to delete : " + list_id + "result: ")
-      console.log(response);
       return response;
     });
   }
@@ -91,18 +90,16 @@ export function SingleCard({ data, new_card }: CardProps) {
   const [changingName, setChangingName] = useState(false);
 
   function ApiChangeListName(list_id: string) {
-    return fetch("/api/updateListName",{
+    return fetch("/api/updateListName", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({
         newName: inputName,
-        id: list_id
+        id: list_id,
       }),
     }).then((response) => {
-      console.log("tries to update list with id : " + list_id + "result: ")
-      console.log(response);
       return response;
     });
   }
@@ -115,29 +112,7 @@ export function SingleCard({ data, new_card }: CardProps) {
   );
   //end of change Name>
 
-  //< Pin list
-  const leadingActions = (list_id: string, pinned: boolean) => (
-    <LeadingActions>
-      <SwipeAction
-        onClick={() => {
-          PinOrUnpin(list_id, pinned);
-        }}
-      >
-        <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
-          <div className="flex justify-between fixed w-26 ml-7 mr-7 content-center">
-            <span className="h-6 w-6 m-0">
-              <Bookmark />
-            </span>
-            <p className="bg-white text-links pt-[0.2rem]">
-              {clsx(pinned && "unpin", !pinned && "pin")}
-            </p>
-          </div>
-        </div>
-      </SwipeAction>
-    </LeadingActions>
-  );
-  //> End of pin list
-
+  //3. <Pin List part 1
   function ApiPnList(list_id: string) {
     return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
       method: "PATCH",
@@ -173,12 +148,38 @@ export function SingleCard({ data, new_card }: CardProps) {
     !pinned && unpinList(list_id);
   }
 
+  //< Pin list Part2
+const functionWrapper = (passed_function: Function, list_id: string, pinned: boolean) => {
+  return passed_function(list_id, pinned)
+}
+
+const leadingActions = (passed_function: Function, list_id: string, pinned: boolean) => (
+  <LeadingActions>
+    <SwipeAction
+      onClick={()=>{functionWrapper(passed_function, list_id, pinned)}}
+    >
+      <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
+        <div className="flex justify-between fixed w-26 ml-7 mr-7 content-center">
+          <span className="h-6 w-6 m-0">
+            {pinned&&<Bookmark />}
+          </span>
+          <p className="bg-white text-links pt-[0.2rem]">
+            {clsx({pinned} && "unpin", !{pinned} && "pin")}
+          </p>
+        </div>
+      </div>
+    </SwipeAction>
+  </LeadingActions>
+);
+  //> end of pin list part1
+
   return (
     <SwipeableListItem
       listType={Type.IOS}
       className="rounded-2xl"
-      leadingActions={leadingActions(listId, data.favorite)}
+      leadingActions={leadingActions(PinOrUnpin, listId, data.favorite)}
       trailingActions={trailingActions(listId)}
+      fullSwipe={false}
     >
       <div
         className={clsx(
@@ -227,3 +228,4 @@ export function SingleCard({ data, new_card }: CardProps) {
     </SwipeableListItem>
   );
 }
+//> End of pin list part 2
