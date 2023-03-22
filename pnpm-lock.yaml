@@ -71,18 +71,12 @@ dependencies:
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
   fastify: 4.13.0
   fastify-zod: 1.2.0_fastify@4.13.0
-<<<<<<< HEAD
-  feather-icons-react: 0.6.2_react@18.2.0
-  headlessui: 0.0.0
-  next: 13.1.6_pjwopsidmaokadturxaafygjp4
-=======
   feather-icons: 4.29.0
   feather-icons-react: 0.6.2_react@18.2.0
   headlessui: 0.0.0
   next: 13.1.6_pjwopsidmaokadturxaafygjp4
   next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
   nodemailer: 6.9.1
->>>>>>> authTest
   postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -7369,8 +7363,6 @@ packages:
       react: 18.2.0
     dev: false
 
-<<<<<<< HEAD
-=======
   /feather-icons/4.29.0:
     resolution: {integrity: sha512-Y7VqN9FYb8KdaSF0qD1081HCkm0v4Eq/fpfQYQnubpqi0hXx14k+gF9iqtRys1SIcTEi97xDi/fmsPFZ8xo0GQ==}
     dependencies:
@@ -7378,7 +7370,6 @@ packages:
       core-js: 3.28.0
     dev: false
 
->>>>>>> authTest
   /fetch-retry/5.0.3:
     resolution: {integrity: sha512-uJQyMrX5IJZkhoEUBQ3EjxkeiZkppBd5jS/fMTJmfZxLSiaQjv2zD0kTvuvkSH89uFvgSlB6ueGpjD3HWN7Bxw==}
     dev: true
@@ -9068,13 +9059,10 @@ packages:
       '@types/node': 18.13.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
-<<<<<<< HEAD
-=======
 
   /jose/4.13.1:
     resolution: {integrity: sha512-MSJQC5vXco5Br38mzaQKiq9mwt7lwj2eXpgpRyQYNHYt2lq1PjkWa7DLXX0WVcQLE9HhMh3jPiufS7fhJf+CLQ==}
     dev: false
->>>>>>> authTest
 
   /js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}

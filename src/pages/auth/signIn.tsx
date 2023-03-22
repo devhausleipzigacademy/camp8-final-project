@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { Lock } from "react-feather";
 import { Edit } from "react-feather";
+import Image from "next/image";
 
 export default function SignIn() {
 	const [email, setEmail] = useState("");
@@ -26,7 +27,10 @@ export default function SignIn() {
 	return (
 		<div className="h-screen flex flex-col justify-around items-center bg-primary-transparent">
 			<div></div>
-			<div className="w-96 aspect-square bg-secondary-default"></div>
+			{/* <div className="w-96 aspect-square bg-secondary-default"></div> */}
+			<div className="flex flex-col pt-12 justify-center items-center">
+				<Image src="/images/logo.png" alt="" width={318} height={271} />
+			</div>
 			<div className="flex flex-col justify-around items-center">
 				<form onSubmit={handleSubmit} className="flex flex-col">
 					<div className="flex  relative">

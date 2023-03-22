@@ -24,7 +24,7 @@ export default function Login() {
 
 			{/* <Image src={logo} alt="" className="w-full" /> */}
 			<div>
-				<Link href={"/signIn"}></Link>
+				<Link href={"/auth/signIn"}></Link>
 			</div>
 			<Input />
 		</>
