@@ -17,13 +17,12 @@ export default async function handler(
   if (request.method === "DELETE") {
     try {
       const { id } = inputQueryDelete.parse(request.query);
-
       await prisma.list.delete({
         where: {
           id: id,
         },
       });
-      response.status(200).send(`Removed List with following id:${id}`);
+      response.status(200).json({message: `Removed List with following id:${id}`});
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);

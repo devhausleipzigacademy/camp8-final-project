@@ -15,8 +15,9 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  if (request.method !== "GET") {console.log("wrong method")}
-  else {
+  if (request.method !== "GET") {
+    console.log("wrong method");
+  } else {
     // Parse the user ID from the query parameters
     const { id } = inputQuerySchema.parse(request.query);
 
@@ -38,27 +39,28 @@ export default async function handler(
       },
     });
 
-    if (userListsHttpRespond) {userListsHttpRespond.forEach((element) => {
-      console.log(JSON.stringify(element))
-      element.itemsChecked = element.items.filter((i) => {
-        if (i.checked === true){
-          console.log("heyy, found one")
-          return true}
-      }).length;
-      element.itemsTotal = element.items.length
+    if (userListsHttpRespond) {
+      userListsHttpRespond.forEach((element) => {
+        console.log(JSON.stringify(element));
+        element.itemsChecked = element.items.filter((i) => {
+          if (i.checked === true) {
+            console.log("heyy, found one");
+            return true;
+          }
+        }).length;
+        element.itemsTotal = element.items.length;
 
-      delete element.items
-    })
+        delete element.items;
+      });
 
-    console.log("data processed", JSON.stringify(userListsHttpRespond)),
-
-    response.status(200).json(userListsHttpRespond);
-
-    userListsHttpRespond
-    return userListsHttpRespond}
-    else {
-      const userListsHttpRespond = "we didn't find any lists yet :)"
-      return  userListsHttpRespond
+      console.log("data processed", JSON.stringify(userListsHttpRespond)),
+        response
+          .status(200)
+          .json({ message: `Got Lists for the user with id : ${id}` });
+      return userListsHttpRespond;
+    } else {
+      const userListsHttpRespond = "we didn't find any lists yet :)";
+      return userListsHttpRespond;
     }
   }
   response.status(405).send("not ok");
