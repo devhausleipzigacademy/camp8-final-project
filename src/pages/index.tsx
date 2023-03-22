@@ -11,7 +11,7 @@ async function checkOrCreateUser(object: Session) {
 		.then((respuesta) => console.log(respuesta));
 }
 
-export default function Home() {
+export default function Home1() {
 	const { push } = useRouter();
 
 	const { data: session } = useSession();
