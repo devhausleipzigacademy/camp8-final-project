@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import { prisma } from "./prisma";
 
 /*
@@ -22,36 +22,37 @@ Will return smth. like this if successfull:
 */
 
 const inputQueryType = z.object({
-    id: z.string(),
-    newName: z.string(),
-  });
+  newName: z.string(),
+  id: z.string(),
+});
 
 export default async function handler(
-    request: NextApiRequest,
-    response: NextApiResponse
-  ) {
-    console.log(inputQueryType.parse(request.body));
-    if (request.method !== "PATCH") {
-      response.status(405).send("wrong method")
-      return
-    } else {
-      try {
-        const { id, newName } = inputQueryType.parse(request.body);
-        const updatedData = await prisma.list.update({
-          where: {
-            id: id,
-          },
-          data: {
-            listName: newName,
-          },
-        })
-        response.status(200).send(["list updated : " + {id}])
-      } catch (err) {
-        console.log(err)
-        response.status(500).send(err)
+  request: NextApiRequest,
+  response: NextApiResponse
+) {
+  if (request.method === "PATCH") {
+    try {
+      const { id, newName } = inputQueryType.parse(request.body);
+      await prisma.list.update({
+        where: {
+          id: id,
+        },
+        data: {
+          listName: newName,
+        },
+      });
+      response.status(200).send({ message: "list updated : " + { id } });
+    } catch (err) {
+      if (err instanceof ZodError) {
+        response.status(400).send(`Wrong Data Sent => ${JSON.stringify(err)}`);
+      } else {
+        response.status(418).send("Something is wrong");
       }
     }
+  } else {
+    response.status(404).send(`Invalid method, need PATCH: ${request.method}`);
   }
+}
 
-  //MIND the syntax:
-  //after calling .send and other comparable methods don't modify anything anymore!!
+//MIND the syntax:
+//after calling .send and other comparable methods don't modify anything anymore!!

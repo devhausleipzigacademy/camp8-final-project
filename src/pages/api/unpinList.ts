@@ -17,7 +17,6 @@ export default async function handler(
   if (request.method === "PATCH") {
     try {
       const { id } = inputQueryDelete.parse(request.query);
-
       await prisma.list.update({
         where: {
           id: id,

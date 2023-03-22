@@ -32,19 +32,13 @@ export type CardProps = {
 
 export type UserLists = Array<UserList>;
 
-//define Types for Data we are going to send or receive
-type UpdateListNameRequestData = {
-  list_id: string;
-  newName: string;
-};
-
 export function SingleCard({ data, new_card }: CardProps) {
   //current list Id
   const listId = data.id;
 
   //make prop "new_card" usable / changable
   const [createNewCard, setCreateNewCard] = useState(false);
-  // setCreateNewCard(new_card); //triggered rerender
+  // setCreateNewCard(new_card); //triggered infinited rerender, must be set onClick
 
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
@@ -56,7 +50,9 @@ export function SingleCard({ data, new_card }: CardProps) {
     return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
       method: "DELETE",
     }).then((response) => {
-      return response.json();
+      console.log("tried to delete : " + list_id + "result: ")
+      console.log(response);
+      return response;
     });
   }
 
@@ -67,11 +63,11 @@ export function SingleCard({ data, new_card }: CardProps) {
     }
   );
 
-  const trailingActions = (id: string) => (
+  const trailingActions = (list_id: string) => (
     <TrailingActions>
       <SwipeAction
         onClick={() => {
-          deleteList(id);
+          deleteList(list_id);
         }}
       >
         <div className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
@@ -95,18 +91,19 @@ export function SingleCard({ data, new_card }: CardProps) {
   const [changingName, setChangingName] = useState(false);
 
   function ApiChangeListName(list_id: string) {
-    return fetch("http:localhost:3000/api/updateListName", {
+    return fetch("/api/updateListName",{
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        id: list_id,
         newName: inputName,
+        id: list_id
       }),
     }).then((response) => {
-      console.log("updated list with id " + list_id + response);
-      return response.json();
+      console.log("tries to update list with id : " + list_id + "result: ")
+      console.log(response);
+      return response;
     });
   }
 
@@ -116,7 +113,6 @@ export function SingleCard({ data, new_card }: CardProps) {
       onSuccess: () => queryClient.invalidateQueries(["cards"]), //how can I invalidate a single card?
     }
   );
-
   //end of change Name>
 
   //< Pin list
@@ -124,6 +120,7 @@ export function SingleCard({ data, new_card }: CardProps) {
     <LeadingActions>
       <SwipeAction
         onClick={() => {
+          PinOrUnpin(list_id, pinned);
         }}
       >
         <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
@@ -167,9 +164,9 @@ export function SingleCard({ data, new_card }: CardProps) {
   const { mutate: unpinList } = useMutation(
     (list_id: string) => ApiUnpinList(list_id),
     {
-      onSuccess: () => queryClient.invalidateQueries(["cards"])
+      onSuccess: () => queryClient.invalidateQueries(["cards"]),
     }
-  )
+  );
 
   function PinOrUnpin(list_id: string, pinned: boolean) {
     pinned && pinList(list_id);
@@ -180,8 +177,8 @@ export function SingleCard({ data, new_card }: CardProps) {
     <SwipeableListItem
       listType={Type.IOS}
       className="rounded-2xl"
-      leadingActions={leadingActions(data.id, data.favorite)}
-      trailingActions={trailingActions(data.id)}
+      leadingActions={leadingActions(listId, data.favorite)}
+      trailingActions={trailingActions(listId)}
     >
       <div
         className={clsx(

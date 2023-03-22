@@ -54,13 +54,9 @@ export default async function handler(
       });
 
       console.log("data processed", JSON.stringify(userListsHttpRespond)),
-        response
-          .status(200)
-          .json({ message: `Got Lists for the user with id : ${id}` });
-      return userListsHttpRespond;
+        response.status(200).send(userListsHttpRespond);
     } else {
-      const userListsHttpRespond = "we didn't find any lists yet :)";
-      return userListsHttpRespond;
+      return [{}];
     }
   }
   response.status(405).send("not ok");
