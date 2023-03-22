@@ -10,7 +10,7 @@ import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import "react-swipeable-list/dist/styles.css";
-import { Trash, Bookmark } from "react-feather";
+import { FiTrash2, FiPaperclip } from "react-icons/fi";
 
 type Props = {
   data: {
@@ -98,7 +98,7 @@ export default function Card({
             )}
           </div>
           <div className="flex justify-between items-center">
-            <div>{favorite && <Bookmark className="h-6 w-6" />}</div>
+            <div>{favorite && <FiPaperclip className="h-6 w-6" />}</div>
             <p className="text-xl">
               {isToday(dateCreated)
                 ? "today"
@@ -120,7 +120,7 @@ function DeleteList({onDelete}: DeleteListProps) {
       <SwipeAction onClick={onDelete} >
         <div className="justify-center items-center flex gap-5 pl-4 my-3 text-text-white">
           <p className="text-xl underline">delete</p>
-          <Trash className="h-10 w-10 mr-10" />
+          <FiTrash2 className="h-10 w-10 mr-10" />
         </div>
       </SwipeAction>
     </TrailingActions>
