@@ -26,7 +26,7 @@ export default async function handler(
           favorite: true,
         }
       });
-      response.status(200).send(`Removed List with following id:${id}`);
+      response.status(200).send(`Pinned List with id:${id}`);
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
@@ -34,6 +34,5 @@ export default async function handler(
         response.status(418).send("Something is wrong");
       }
     }
-    response.status(404).send(`Invalid method, need PATCH: ${request.method}`);
   }
 }
