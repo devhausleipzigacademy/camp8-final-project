@@ -1,8 +1,10 @@
+import console from "console";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { prisma } from "./prisma";
 
 /*
+Gets the id of a user, returns an array of Type UserList
 */
 
 const inputQuerySchema = z.object({
@@ -13,8 +15,8 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  if (request.method === "GET") {
-
+  if (request.method !== "GET") {console.log("wrong method")}
+  else {
     // Parse the user ID from the query parameters
     const { id } = inputQuerySchema.parse(request.query);
 
@@ -36,7 +38,8 @@ export default async function handler(
       },
     });
 
-    userListsHttpRespond.forEach((element) => {
+    if (userListsHttpRespond) {userListsHttpRespond.forEach((element) => {
+      console.log(JSON.stringify(element))
       element.itemsChecked = element.items.filter((i) => {
         if (i.checked === true){
           console.log("heyy, found one")
@@ -45,11 +48,18 @@ export default async function handler(
       element.itemsTotal = element.items.length
 
       delete element.items
-    }),
+    })
+
+    console.log("data processed", JSON.stringify(userListsHttpRespond)),
 
     response.status(200).json(userListsHttpRespond);
 
-    return userListsHttpRespond
+    userListsHttpRespond
+    return userListsHttpRespond}
+    else {
+      const userListsHttpRespond = "we didn't find any lists yet :)"
+      return  userListsHttpRespond
+    }
   }
   response.status(405).send("not ok");
 }

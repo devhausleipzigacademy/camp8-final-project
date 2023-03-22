@@ -45,7 +45,7 @@ export default async function handler(
             listName: newName,
           },
         })
-        response.status(200).send(["data updated: ", updatedData])
+        response.status(200).send(["list updated : " + {id}])
       } catch (err) {
         console.log(err)
         response.status(500).send(err)
@@ -53,4 +53,5 @@ export default async function handler(
     }
   }
 
+  //MIND the syntax:
   //after calling .send and other comparable methods don't modify anything anymore!!
