@@ -4,20 +4,20 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { FiLock } from "react-icons/fi";
 
 export interface LargeButtonProps
-	extends DetailedHTMLProps<
-		ButtonHTMLAttributes<HTMLButtonElement>,
-		HTMLButtonElement
-	> {
-	variant: "primary" | "secondary";
-	label: string;
-	disabled: boolean;
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  variant: "primary" | "secondary";
+  label: string;
+  disabled: boolean;
 }
 
 export function LargeButton({
-	variant,
-	label,
-	disabled,
-	...props
+  variant,
+  label,
+  disabled,
+  ...props
 }: LargeButtonProps) {
 	return (
 		<button
