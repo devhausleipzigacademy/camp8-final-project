@@ -1,12 +1,6 @@
 import Head from "next/head";
-import { PrismaClient } from "@prisma/client";
-import { LargeButton } from "@/components/LargeButton";
-import Link from "next/link";
-import Image from "next/image";
 
-export const prisma = new PrismaClient();
-
-export default function Splash() {
+export default function Home() {
   return (
     <>
       <Head>
