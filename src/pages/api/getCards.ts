@@ -54,10 +54,9 @@ export default async function handler(
       });
 
       console.log("data processed", JSON.stringify(userListsHttpRespond)),
-        response.status(200).send(userListsHttpRespond);
+      response.status(200).send(userListsHttpRespond);
     } else {
       return [{}];
     }
   }
-  response.status(405).send("not ok");
 }
