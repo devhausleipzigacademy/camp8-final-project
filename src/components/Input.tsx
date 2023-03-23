@@ -1,4 +1,5 @@
 import { FiEdit } from "react-icons/fi";
+import { SmallButton } from "./SmallButton";
 
 type InputProps = {
 	type: string;
@@ -18,7 +19,12 @@ export default function Input(props: InputProps) {
 				/>
 
 				{props.type === "New name" && (
-					<FiEdit className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square " />
+					<>
+						{/* <FiEdit className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square " /> */}
+						<div className="absolute right-0 flex h-full top-0 items-center mr-1 justify-center">
+							<SmallButton label="Update" />
+						</div>
+					</>
 				)}
 			</label>
 		</>

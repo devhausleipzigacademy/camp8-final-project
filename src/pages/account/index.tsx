@@ -56,8 +56,8 @@ export default function Settings(props: buttonProps) {
 							{props.user.name ? props.user.name : props.user.email}
 						</div>
 						<div className="w-full flex flex-col gap-5">
-							<Input type={"New name"} />
-							<SmallButton label="Change" />
+							<Input type={"New name"}></Input>
+							{/* <SmallButton label="Update" /> */}
 
 							<LargeButton
 								variant="primary"
