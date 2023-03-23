@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 //About this Schema:
 
 // MasterItems:  are "prototype" Items. Are defined by id, name, img-url, default category and a boolean for "approved" for this item. When item is added by a customer, it will have false for approved as default value.
@@ -34,17 +32,16 @@ generator client {
     previewFeatures = ["fullTextSearch"]
 }
 
->>>>>>> main
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/migrate-shadow
 }
 
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["referentialActions"] // You won't need this in Prisma 3.X or higher.
-}
+// generator client {
+//   provider        = "prisma-client-js"
+//   previewFeatures = ["referentialActions"] // You won't need this in Prisma 3.X or higher.
+// }
 
 model Account {
   id                 String  @id @default(cuid())
@@ -100,12 +97,8 @@ model List {
   userIdentifier      String //entering correct listIdentifier will Link to user
   belongsTo           User @relation(fields: [userIdentifier], references: [id])
   
-<<<<<<< HEAD
-  favorite            Boolean?
-=======
   favorite            Boolean    @default(false)
 
->>>>>>> main
   items               Item[] ///opposite relation to Items related to this List.
   @@map("Lists")
 }
@@ -120,12 +113,8 @@ model Item {
   listIdentifier      String?
   inList              List?   @relation(fields: [listIdentifier], references: [id])
   
-<<<<<<< HEAD
-  checked             Boolean?
-=======
   checked             Boolean @default(false)
 
->>>>>>> main
   //this userItem is based on
   masterItemId        String?
   masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])

@@ -27,7 +27,7 @@ export default function SignIn() {
 	return (
 		<div className="h-screen flex flex-col justify-around items-center bg-primary-transparent">
 			<div></div>
-			{/* <div className="w-96 aspect-square bg-secondary-default"></div> */}
+
 			<div className="flex flex-col pt-12 justify-center items-center">
 				<Image src="/images/logo.png" alt="" width={318} height={271} />
 			</div>
