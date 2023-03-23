@@ -914,17 +914,17 @@
       "name": "molasses"
     }
   ],
-  "personal-hygine": [
+  "personal-hygiene": [
     {
       "image": "https://spoonacular.com/cdn/ingredients_100x100/cactus-leaves.jpg",
       "name": "pads"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://cdn.pixabay.com/photo/2016/11/26/13/16/shampoo-1860642_1280.png",
       "name": "tampons"
     },
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/unknown",
+      "image": "https://cdn.pixabay.com/photo/2016/11/26/13/16/shampoo-1860642_1280.png",
       "name": "shampoo"
     },
     {

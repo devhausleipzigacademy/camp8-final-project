@@ -35,7 +35,7 @@ export default function ListItem(props: ListItemProps) {
       <SwipeAction onClick={onCheck} Tag="div">
         <div
           id="Tick_Action"
-          className="w-full h-full bg-ux-success button-bold text-text-white flex items-center"
+          className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
         >
           Tick
         </div>
@@ -72,15 +72,9 @@ export default function ListItem(props: ListItemProps) {
         trailingActions={trailingActions()}
         threshold={0.5}
       >
-        <img
-          className="h-full aspect-square"
-          src={
-            props.image
-              ? props.image
-              : "http://cdn.onlinewebfonts.com/svg/img_275679.png"
-          }
-          alt="http://cdn.onlinewebfonts.com/svg/img_275679.png"
-        />
+        <div className="flex justify-center items-center h-full bg-text-white p-1">
+          <img className="h-full aspect-square" src={props.image} />
+        </div>
         <div className="flex p-2 justify-between items-center flex-grow">
           <p className="text-text-typo text-primary">{props.name}</p>
           <p className="text-secondary font-thin">{props.quantity}</p>
