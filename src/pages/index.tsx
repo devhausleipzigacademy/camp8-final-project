@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import axios from "axios";
 import { Session } from "next-auth";
+import Home from "../pages/home";
 
 async function checkOrCreateUser(object: Session) {
 	await axios
@@ -22,7 +23,10 @@ export default function Home1() {
 	}, [session]);
 
 	const handleSignOut = () => {
-		signOut({ redirect: true, callbackUrl: "/auth/signIn" });
+		signOut({
+			redirect: true,
+			callbackUrl: "/auth/signIn",
+		});
 	};
 
 	return (
@@ -42,8 +46,22 @@ export default function Home1() {
 			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
 				Landing Page
 			</h1>
-			<button onClick={() => push("/auth/signIn")}>Sign In</button>
-			<button onClick={handleSignOut}>Sign Out</button>
+
+			<div className="flex flex-row m-3 gap-4 items-center justify-center ">
+				<button
+					onClick={() => push("/auth/signIn")}
+					className=" w-26 h-18 rounded-md bg-primary-default-Solid p-2"
+				>
+					Sign In
+				</button>
+				<button
+					onClick={handleSignOut}
+					className="w-26 h-18 rounded-md bg-primary-default-Solid p-2"
+				>
+					Sign Out
+				</button>
+			</div>
+			<Home />
 		</>
 	);
 }
