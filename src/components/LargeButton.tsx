@@ -1,23 +1,23 @@
 import type { AppProps } from "next/app";
 import clsx from "clsx";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { MdOutlineLock } from "react-icons/md";
+import { FiLock } from "react-icons/fi";
 
 export interface LargeButtonProps
-	extends DetailedHTMLProps<
-		ButtonHTMLAttributes<HTMLButtonElement>,
-		HTMLButtonElement
-	> {
-	variant: "primary" | "secondary";
-	label: string;
-	disabled: boolean;
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  variant: "primary" | "secondary";
+  label: string;
+  disabled: boolean;
 }
 
 export function LargeButton({
-	variant,
-	label,
-	disabled,
-	...props
+  variant,
+  label,
+  disabled,
+  ...props
 }: LargeButtonProps) {
 	return (
 		<button
@@ -33,7 +33,7 @@ export function LargeButton({
 			<div className="h-6 aspect-square"></div>
 			{label}
 			{variant === "primary" && (
-				<MdOutlineLock className="button-large aspect-square" />
+				<FiLock className="button-large aspect-square" />
 			)}
 		</button>
 	);
