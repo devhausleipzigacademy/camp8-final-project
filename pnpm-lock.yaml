@@ -28,8 +28,11 @@ specifiers:
   babel-loader: ^8.3.0
   clsx: ^1.2.1
   cors: ^2.8.5
+<<<<<<< HEAD
   d3: ^7.8.2
   d3-force: ^3.0.0
+=======
+>>>>>>> main
   date-fns: ^2.29.3
   dotenv: ^16.0.3
   eslint: 8.34.0
@@ -66,8 +69,11 @@ dependencies:
   '@types/react-dom': 18.0.11
   clsx: 1.2.1
   cors: 2.8.5
+<<<<<<< HEAD
   d3: 7.8.2
   d3-force: 3.0.0
+=======
+>>>>>>> main
   date-fns: 2.29.3
   dotenv: 16.0.3
   eslint: 8.34.0
@@ -4028,10 +4034,13 @@ packages:
 
   /@types/estree/0.0.51:
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
+<<<<<<< HEAD
 
   /@types/geojson/7946.0.10:
     resolution: {integrity: sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==}
     dev: false
+=======
+>>>>>>> main
 
   /@types/glob/7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}

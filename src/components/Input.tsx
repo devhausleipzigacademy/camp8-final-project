@@ -1,4 +1,4 @@
-import { EyeIcon } from "@heroicons/react/24/solid";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 
 type InputProps = {
 	type: string;
@@ -18,7 +18,7 @@ export default function Input(props: InputProps) {
 				/>
 
 				{props.type === "password" && (
-					<EyeIcon className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square " />
+					<FiEye className="absolute right-0 flex h-full top-0 mr-2 justify-center w-6 aspect-square " />
 				)}
 			</label>
 		</>

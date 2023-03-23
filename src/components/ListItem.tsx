@@ -10,6 +10,7 @@ import {
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import { FiCheckSquare, FiSquare } from "react-icons/fi";
 
 type ListItemProps = {
   name: string;
@@ -83,10 +84,7 @@ export default function ListItem(props: ListItemProps) {
         <div className="flex p-2 justify-between items-center flex-grow">
           <p className="text-text-typo text-primary">{props.name}</p>
           <p className="text-secondary font-thin">{props.quantity}</p>
-          <div
-            onClick={onCheck}
-            className="h-10 w-10 bg-text-white border-primary-default-Solid rounded-2xl border-2 flex justify-center items-center"
-          >
+          <div className="relative w-10 h-8">
             <Transition
               show={checked}
               enter="transform transition duration-[400ms]"
@@ -95,8 +93,27 @@ export default function ListItem(props: ListItemProps) {
               leave="transform duration-200 transition ease-in-out"
               leaveFrom="opacity-100 rotate-0 scale-100 "
               leaveTo="opacity-0 scale-95 "
+              className="absolute"
             >
-              <Tick classes="w-8 h-8 text-primary-default-Solid" />
+              <FiCheckSquare
+                className="w-8 h-8 text-primary-default-Solid"
+                onClick={onCheck}
+              />
+            </Transition>
+            <Transition
+              show={!checked}
+              enter="transform transition duration-[400ms]"
+              enterFrom="opacity-0 rotate-[-120deg] scale-50"
+              enterTo="opacity-100 rotate-0 scale-100"
+              leave="transform duration-200 transition ease-in-out"
+              leaveFrom="opacity-100 rotate-0 scale-100 "
+              leaveTo="opacity-0 scale-95 "
+              className="absolute top-0 left-0"
+            >
+              <FiSquare
+                className="w-8 h-8 text-primary-default-Solid"
+                onClick={onCheck}
+              />
             </Transition>
           </div>
         </div>
