@@ -36,14 +36,26 @@ export function sortByAlphabet(input: Item[]): Item[] {
 export function sortByCategory(input: Array<Item>): Array<Item> {
   const sorted = [...input];
   sorted.sort((a, b) => {
-    const categoryA = a.name.toUpperCase();
-    const categoryB = b.name.toUpperCase();
+    const categoryA = a.category.toUpperCase();
+    const categoryB = b.category.toUpperCase();
+
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
 
     if (categoryA < categoryB) {
       return -1;
     }
     if (categoryA > categoryB) {
       return 1;
+    }
+
+    if (categoryA === categoryB) {
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
     }
 
     return 0;

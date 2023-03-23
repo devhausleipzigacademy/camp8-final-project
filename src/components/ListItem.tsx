@@ -67,7 +67,7 @@ export default function ListItem(props: ListItemProps) {
       leaveTo="opacity-0 scale-y-0 "
     >
       <SwipeableListItem
-        className="max-w-[334px] h-16 bg-primary-transparent border border-secondary-default rounded-md flex flex-row"
+        className="w-full h-16 bg-primary-transparent border border-secondary-default rounded-md flex flex-row"
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
         threshold={0.5}

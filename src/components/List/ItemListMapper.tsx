@@ -13,7 +13,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
   let sectionName: string = "";
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       {props.list.map((product) => {
         let nameSection = false;
 
@@ -23,7 +23,11 @@ export function ItemListMapper(props: ItemListMapperProps) {
         }
         return (
           <div key={product.id}>
-            {nameSection && <p>{capitalizeCategory(sectionName) + ":"}</p>}
+            {nameSection && (
+              <p className="pl-12 pt-5 pb-2 text-primary">
+                {capitalizeCategory(sectionName) + ":"}
+              </p>
+            )}
             <ListItem
               name={capitalizeWord(product.name)}
               image={product.imageUrl}
@@ -35,6 +39,6 @@ export function ItemListMapper(props: ItemListMapperProps) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
