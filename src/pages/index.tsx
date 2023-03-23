@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { PrismaClient } from "@prisma/client";
 
 export default function Home() {
   return (

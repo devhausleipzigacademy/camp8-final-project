@@ -65,13 +65,8 @@ export default function Home({ getData }: InputProps) {
 
   return (
     <div className="m-6">
-      <SortBySwitches
-        className=""
-        sortBy={sortBy}
-        setSort={setSortBy}
-      ></SortBySwitches>
-      <ItemListMapper list={list} sortBy={sortBy}></ItemListMapper>
-
+      <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
+      <ItemListMapper list={list} sortBy={sortBy} />
       <button
         className="bg-grad-default p-4 rounded-md text-text-white"
         onClick={handleClick}
