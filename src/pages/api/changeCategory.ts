@@ -38,11 +38,5 @@ export default async function handler(
         response.status(500).send("Something went wrong, but I don't know what");
       }
     }
-  } else {
-    response
-      .status(404)
-      .send(
-        `Invalid method in a front-end-script, need a PATCH to update the category, request method was ${request.method}`
-      );
   }
 }
