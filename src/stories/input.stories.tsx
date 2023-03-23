@@ -11,7 +11,7 @@ export default {
 	component: Input,
 	argTypes: {
 		type: {
-			options: ["email", "password"],
+			options: ["email", "New name"],
 			control: { type: "radio" },
 		},
 	},
