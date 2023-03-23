@@ -21,8 +21,8 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "shampoo",
-  "inputList": "682e5c46-f53e-49b5-9720-245afc58c686"
+  "query": "sdflknkljasdfjkdsa",
+  "inputList": "d996354b-3ddc-49a9-92d7-37a90fed8a93"
 }
 
 ###

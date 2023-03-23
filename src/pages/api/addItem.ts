@@ -57,6 +57,7 @@ export default async function handler(
               create: {
                 listIdentifier: list?.id,
                 name: query,
+                imageUrl: "",
               },
             },
           },

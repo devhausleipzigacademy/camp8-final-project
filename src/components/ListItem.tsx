@@ -72,7 +72,7 @@ export default function ListItem(props: ListItemProps) {
         trailingActions={trailingActions()}
         threshold={0.5}
       >
-        <div className="flex justify-center items-center h-full bg-text-white p-1">
+        <div className="flex justify-center items-center h-full bg-text-white p-2">
           <img className="h-full aspect-square" src={props.image} />
         </div>
         <div className="flex p-2 justify-between items-center flex-grow">

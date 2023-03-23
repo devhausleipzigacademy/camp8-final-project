@@ -1,5 +1,6 @@
 import data from "../data.json";
 import { PrismaClient } from "@prisma/client";
+import axios from "axios";
 type Input = {
   image: string;
   name: string;
@@ -45,7 +46,9 @@ async function main() {
       data: bigData[categoryName].map((x) => {
         return {
           approved: true,
-          imageUrl: unknown.test(x.image) ? x.image : stockValues[categoryName],
+          imageUrl: !unknown.test(x.image)
+            ? x.image
+            : stockValues[categoryName],
           name: x.name,
           category: categoryName,
         };
@@ -58,5 +61,52 @@ async function main() {
       },
     });
   }
+  const John = await prisma.user.create({
+    data: {
+      name: "John Doe",
+      email: "john.doe@email.com",
+      lists: {
+        create: {
+          listName: "John Doe's List",
+        },
+      },
+    },
+    include: {
+      lists: true,
+    },
+  });
+  const exampleItems = [
+    "apples",
+    "pears",
+    "bananas",
+    "oranges",
+    "grapes",
+    "strawberries",
+    "blueberries",
+    "beef",
+    "sausage",
+    "frankfurt",
+    "pork",
+    "yeast",
+    "cornstarch",
+    "sugar",
+    "risotto",
+    "semolina",
+    "cinnamon",
+    "shampoo",
+    "burrata",
+    "cajeta",
+    "quark",
+  ];
+  for (let i of exampleItems) {
+    await axios.post("http://localhost:3000/api/addItem", {
+      query: i,
+      inputList: John.lists[0].id,
+    });
+  }
+  console.log(
+    "For bubble chart go to page:\n",
+    `http://localhost:3000/list/${John.lists[0].id}/bubble`
+  );
 }
 main();

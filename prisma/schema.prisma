@@ -68,10 +68,10 @@ model Item {
 
   name                String
   createdAt           DateTime   @default(now())
-  imageUrl            String?
+  imageUrl            String
   
-  category            String?
-  defaultCategory     Category? @relation(fields: [category], references: [name])
+  category            String
+  defaultCategory     Category @relation(fields: [category], references: [name])
 
   quantity            Float?
   unit                String?

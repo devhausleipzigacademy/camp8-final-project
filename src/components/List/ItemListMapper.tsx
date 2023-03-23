@@ -10,7 +10,7 @@ type ItemListMapperProps = {
 };
 
 export function ItemListMapper(props: ItemListMapperProps) {
-  let sectionName: string | null = "";
+  let sectionName: string = "";
 
   return (
     <>
