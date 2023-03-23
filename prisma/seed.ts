@@ -34,7 +34,7 @@ const stockValues: Record<string, string> = {
   beverages:
     "https://cdn.pixabay.com/photo/2018/02/15/11/20/water-glass-3155018_1280.png",
   other:
-    "https://ik.imagekit.io/ontimesupplies/oppictures/images/754707.JPG?tr=w-1500",
+    "https://a0.anyrgb.com/pngimg/1652/488/supermarket-lifelike-shopping-mall-realistic-shopping-bags-coffee-shop-shopping-bags-trolleys-shopping-bag-shopping-girl-shopping-cart-thumbnail.png",
 };
 const unknown = new RegExp(/.*unknown/);
 type Data = Record<string, Array<Input>>;

@@ -41,6 +41,8 @@ export default async function handler(
                 imageUrl: product.imageUrl,
                 listIdentifier: list?.id,
                 name: product.name,
+                checked: false,
+                
               },
             },
           },
@@ -57,7 +59,8 @@ export default async function handler(
               create: {
                 listIdentifier: list?.id,
                 name: query,
-                imageUrl: "",
+                imageUrl:
+                  "https://a0.anyrgb.com/pngimg/1652/488/supermarket-lifelike-shopping-mall-realistic-shopping-bags-coffee-shop-shopping-bags-trolleys-shopping-bag-shopping-girl-shopping-cart-thumbnail.png",
               },
             },
           },
