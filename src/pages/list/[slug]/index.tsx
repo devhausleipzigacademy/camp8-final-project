@@ -64,7 +64,7 @@ export default function Home({ getData }: InputProps) {
   };
 
   return (
-    <div className="m-6">
+    <div className="m-6 flex flex-col justify-center">
       <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
       <ItemListMapper list={list} sortBy={sortBy} />
       <button
