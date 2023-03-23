@@ -21,8 +21,8 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "kiwis",
-  "inputList": "1e3e64e1-bbb4-4b31-b829-772694127995"
+  "query": "Turnip white",
+  "inputList": "726e9215-7468-46cd-b5f6-f082a4668dd1"
 }
 
 ###
