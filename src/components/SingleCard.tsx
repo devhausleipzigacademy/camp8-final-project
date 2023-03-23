@@ -4,18 +4,29 @@ import {
   SwipeAction,
   TrailingActions,
   Type,
-} from 'react-swipeable-list';
-import 'react-swipeable-list/dist/styles.css';
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
 import clsx from "clsx";
 import { Trash, Bookmark } from "react-feather";
 import "react-swipeable-list/dist/styles.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { useEffect } from "react";
 
 //Issues:
 //fixed position of the card description, no rounding
 //swip-right falls back automatically
 //no animation / user feedback after delete-Function triggered
+
+//Default values for the new Card:
+export const dummyCard = {
+  id: "defaultId",
+  listName: "My New List",
+  createdAt: "",
+  itemsTotal: 0,
+  itemsChecked: 0,
+  favorite: false,
+};
 
 ///TYPES
 export type UserList = {
@@ -29,16 +40,27 @@ export type UserList = {
 export type CardProps = {
   data: UserList;
   new_card: boolean;
+  user_id: string;
 };
 
 export type UserLists = Array<UserList>;
 
-export function SingleCard({ data, new_card }: CardProps) {
+export function SingleCard({ data, new_card, user_id }: CardProps) {
   //current list Id
   const listId = data.id;
 
   //make prop "new_card" usable / changable
   const [createNewCard, setCreateNewCard] = useState(false);
+
+  {
+    new_card &&
+      useEffect(() => {
+        setCreateNewCard(true);
+      });
+  }
+
+  console.log("Achieved 59, CreateNewCard = " + createNewCard);
+
   // setCreateNewCard(new_card); //triggered infinited rerender, must be set onClick
 
   //link to queryClient in app.tsx
@@ -112,7 +134,30 @@ export function SingleCard({ data, new_card }: CardProps) {
   );
   //end of change Name>
 
-  //3. <Pin List part 1
+
+  //3. <create Card
+
+  function ApiCreateList(user_id: string) {
+    return fetch(`http://localhost:3000/api/createList?id=${user_id}`, {
+      method: "PATCH",
+    }).then((response) => {
+      return response.json();
+    });
+  }
+
+  const { mutate: createList } = useMutation(
+    (list_id: string) => ApiCreateList(user_id),
+    {
+      onSuccess: () => queryClient.invalidateQueries(["cards"]),
+    }
+  );
+
+  function handleCreateNewCard() {
+    createList(user_id)
+  }
+  //
+
+  //4. <Pin List
   function ApiPnList(list_id: string) {
     return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
       method: "PATCH",
@@ -148,29 +193,36 @@ export function SingleCard({ data, new_card }: CardProps) {
     !pinned && unpinList(list_id);
   }
 
-  //< Pin list Part2
-const functionWrapper = (passed_function: Function, list_id: string, pinned: boolean) => {
-  return passed_function(list_id, pinned)
-}
+  const functionWrapper = (
+    passed_function: Function,
+    list_id: string,
+    pinned: boolean
+  ) => {
+    return passed_function(list_id, pinned);
+  };
 
-const leadingActions = (passed_function: Function, list_id: string, pinned: boolean) => (
-  <LeadingActions>
-    <SwipeAction
-      onClick={()=>{functionWrapper(passed_function, list_id, pinned)}}
-    >
-      <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
-        <div className="flex justify-between fixed w-26 ml-7 mr-7 content-center">
-          <span className="h-6 w-6 m-0">
-            {pinned&&<Bookmark />}
-          </span>
-          <p className="bg-white text-links pt-[0.2rem]">
-            {clsx({pinned} && "unpin", !{pinned} && "pin")}
-          </p>
+  const leadingActions = (
+    passed_function: Function,
+    list_id: string,
+    pinned: boolean
+  ) => (
+    <LeadingActions>
+      <SwipeAction
+        onClick={() => {
+          functionWrapper(passed_function, list_id, pinned);
+        }}
+      >
+        <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
+          <div className="flex justify-between fixed w-26 ml-7 mr-7 content-center">
+            <span className="h-6 w-6 m-0">{pinned && <Bookmark />}</span>
+            <p className="bg-white text-links pt-[0.2rem]">
+              {clsx({ pinned } && "unpin", !{ pinned } && "pin")}
+            </p>
+          </div>
         </div>
-      </div>
-    </SwipeAction>
-  </LeadingActions>
-);
+      </SwipeAction>
+    </LeadingActions>
+  );
   //> end of pin list part1
 
   return (
@@ -179,7 +231,7 @@ const leadingActions = (passed_function: Function, list_id: string, pinned: bool
       className="rounded-2xl"
       leadingActions={leadingActions(PinOrUnpin, listId, data.favorite)}
       trailingActions={trailingActions(listId)}
-      fullSwipe={false}
+      fullSwipe={true}
     >
       <div
         className={clsx(
@@ -197,7 +249,10 @@ const leadingActions = (passed_function: Function, list_id: string, pinned: bool
             <form
               onSubmit={(event) => {
                 event.preventDefault();
-                ApiChangeListName(listId);
+                {
+                  !createNewCard && ApiChangeListName(listId);
+                }
+                // {createNewCard&&handleCreateNewCard(userId)};
               }}
             >
               <input

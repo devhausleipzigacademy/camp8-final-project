@@ -33,5 +33,7 @@ export default async function handler(
         response.status(418).send("Something is wrong");
       }
     }
+  } else {
+    response.status(405).send(`${request.method} not allowed, need PATCH`);
   }
 }

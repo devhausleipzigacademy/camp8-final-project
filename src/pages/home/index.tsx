@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
 	const date = new Date();
@@ -24,7 +22,6 @@ export default function Home() {
 					<h3 className=" text-4xl text-indigo-600">
 						HEY, BEAUTIFUL!
 					</h3>
-					<UserCircleIcon className="w-6 h-6 mt-2" />
 				</div>
 
 				<div className="relative w-screen mt-3">
@@ -34,7 +31,6 @@ export default function Home() {
 						className=" border border-indigo-700 rounded-lg w-full p-3"
 					/>
 					<div className=" absolute top-0 right-0 p-3">
-						<MagnifyingGlassIcon className="w-6 h-6" />
 					</div>
 				</div>
 

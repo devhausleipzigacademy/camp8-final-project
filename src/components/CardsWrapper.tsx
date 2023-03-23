@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { SingleCard, UserList, UserLists } from "./Card";
+import { dummyCard, SingleCard, UserList, UserLists } from "./SingleCard";
 
 //send request to the backend
 function askApiForCards(user_id: string) {
@@ -18,7 +18,7 @@ type Props = {
 //map over data passed as argument, return a card (a Node) for each
 export const returnNodes = (data: UserLists) => {
   return data.map((element: UserList) => {
-    return <SingleCard data={element} key={element.id} new_card={false} />;
+    return <SingleCard data={element} key={element.id} new_card={false} user_id={"put a valid user id here for testing"} />;
   });
 };
 
@@ -31,7 +31,9 @@ export default function CardsWrapper({ user_id }: Props) {
 
   const router = useRouter();
   return (
+
     <div className="flex flex-col gap-3 pt-[160px]">
+      <SingleCard data={{...dummyCard}} new_card={true} user_id={user_id} key={"jkdjkasjss"}/>
       {data ? returnNodes(data) : "isLoading"}
     </div>
   );

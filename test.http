@@ -18,7 +18,7 @@
 #   "newName": "brand new list name"
 # }
 
-GET http://localhost:3000/api/getCards?id=123456789
+PATCH http://localhost:3000/api/createList?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
 
 
 # DELETE http://localhost:3000/api/deleteList

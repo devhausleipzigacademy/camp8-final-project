@@ -16,7 +16,7 @@ export default async function handler(
   response: NextApiResponse
 ) {
   if (request.method !== "GET") {
-    console.log("wrong method");
+    response.status(405).send(`Invalid method, need PATCH: ${request.method}`);
   } else {
     // Parse the user ID from the query parameters
     const { id } = inputQuerySchema.parse(request.query);

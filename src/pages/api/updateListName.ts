@@ -50,9 +50,6 @@ export default async function handler(
       }
     }
   } else {
-    response.status(404).send(`Invalid method, need PATCH: ${request.method}`);
+    response.status(405).send(`${request.method} not allowed, need PATCH: `);
   }
 }
-
-//MIND the syntax:
-//after calling .send and other comparable methods don't modify anything anymore!!
