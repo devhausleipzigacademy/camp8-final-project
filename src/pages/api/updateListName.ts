@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import { prisma } from "./prisma";
 
 /*
@@ -22,31 +22,34 @@ Will return smth. like this if successfull:
 */
 
 const inputQueryType = z.object({
-    id: z.string(),
-    newName: z.string(),
-  });
+  newName: z.string(),
+  id: z.string(),
+});
 
 export default async function handler(
-    request: NextApiRequest,
-    response: NextApiResponse
-  ) {
-    if (request.method !== "PATCH") {
-      response.status(405).send("wrong method")
-    } else {
-      try {
-        const { id, newName } = inputQueryType.parse(request.body);
-        const updatedData = await prisma.list.update({
-          where: {
-            id: id,
-          },
-          data: {
-            listName: newName,
-          },
-        })
-        response.status(200).send(["data updated: ", updatedData])
-      } catch (err) {
-        response.status(400).send(err)
+  request: NextApiRequest,
+  response: NextApiResponse
+) {
+  if (request.method === "PATCH") {
+    try {
+      const { id, newName } = inputQueryType.parse(request.body);
+      await prisma.list.update({
+        where: {
+          id: id,
+        },
+        data: {
+          listName: newName,
+        },
+      });
+      response.status(200).send({ message: "list updated : " + { id } });
+    } catch (err) {
+      if (err instanceof ZodError) {
+        response.status(400).send(`Wrong Data Sent => ${JSON.stringify(err)}`);
+      } else {
+        response.status(418).send("Something is wrong");
       }
     }
-    response.status(400).send("not ok");
+  } else {
+    response.status(405).send(`${request.method} not allowed, need PATCH: `);
   }
+}
