@@ -30,3 +30,16 @@ Content-Type: application/json
 GET http://localhost:3000/api/listItems?inputList=1e3e64e1-bbb4-4b31-b829-772694127995
 
 ###
+
+DELETE http://localhost:3000/api/deleteItem?id=1ae7a208-521a-4439-9ebb-94192ce4f521
+
+###
+
+PATCH http://localhost:3000/api/patchItem
+Content-Type: application/json
+
+{
+  "who":"087bdff9-a3bf-4f30-8fd2-5648907feda6",
+  "what":"checked",
+  "toWhat":true
+}

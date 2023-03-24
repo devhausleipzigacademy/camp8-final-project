@@ -11,6 +11,7 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
+import axios from "axios";
 
 type ListItemProps = {
   name: string;
@@ -21,18 +22,17 @@ type ListItemProps = {
 };
 // onRemove is added so higher level page can trigger a function when an item is removed.
 export default function ListItem(props: ListItemProps) {
-  const [checked, setChecked] = useState(false);
   const [swiped, setSwiped] = useState(true);
-  const onCheck = () => {
-    setChecked(!checked);
-  };
   const onDelete = () => {
     setSwiped(false);
     props.onRemove();
   };
+  // const checked = ()=>{
+  //   axios.patch()
+  // }
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={onCheck} Tag="div">
+      <SwipeAction onClick={() => console.log("Checked")} Tag="div">
         <div
           id="Tick_Action"
           className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
@@ -80,7 +80,7 @@ export default function ListItem(props: ListItemProps) {
           <p className="text-secondary font-thin">{props.quantity}</p>
           <div className="relative w-10 h-8">
             <Transition
-              show={checked}
+              show={props.checked}
               enter="transform transition duration-[400ms]"
               enterFrom="opacity-0 rotate-[-120deg] scale-50"
               enterTo="opacity-100 rotate-0 scale-100"
@@ -91,11 +91,11 @@ export default function ListItem(props: ListItemProps) {
             >
               <FiCheckSquare
                 className="w-8 h-8 text-primary-default-Solid"
-                onClick={onCheck}
+                onClick={() => console.log("Checked")}
               />
             </Transition>
             <Transition
-              show={!checked}
+              show={!props.checked}
               enter="transform transition duration-[400ms]"
               enterFrom="opacity-0 rotate-[-120deg] scale-50"
               enterTo="opacity-100 rotate-0 scale-100"
@@ -106,7 +106,7 @@ export default function ListItem(props: ListItemProps) {
             >
               <FiSquare
                 className="w-8 h-8 text-primary-default-Solid"
-                onClick={onCheck}
+                onClick={() => console.log("Checked")}
               />
             </Transition>
           </div>
