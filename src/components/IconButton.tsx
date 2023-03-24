@@ -1,5 +1,5 @@
 import React from "react";
-import { CgProfile } from "react-icons/cg";
+import { FiUser } from "react-icons/fi";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ type IconButton = {
 export function IconButton(props: IconButton) {
   return (
     <Link href="/account">
-      <CgProfile
+      <FiUser 
         className={clsx(" text-primary-default-Solid", props.classes)}
       />
     </Link>
