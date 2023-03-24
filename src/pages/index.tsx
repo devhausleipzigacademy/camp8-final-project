@@ -1,7 +1,7 @@
+import EditModal from "@/components/EditModal";
 import Head from "next/head";
 
 import { prisma } from "./api/prisma";
-import EditModal from "../components/EditModal";
 
 export default function Home() {
 	return (
