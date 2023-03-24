@@ -1,3 +1,4 @@
+import EditModal from "@/components/EditModal";
 import Head from "next/head";
 
 export default function Home() {

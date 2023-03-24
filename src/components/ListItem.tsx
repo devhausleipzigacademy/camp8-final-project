@@ -1,10 +1,8 @@
 import { Transition } from "@headlessui/react";
-import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Tick } from "./Tick";
 import {
   LeadingActions,
-  SwipeableList,
   SwipeableListItem,
   SwipeAction,
   TrailingActions,
@@ -12,6 +10,7 @@ import {
 import "react-swipeable-list/dist/styles.css";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
 import axios from "axios";
+import clsx from "clsx";
 
 type ListItemProps = {
   name: string;
@@ -19,6 +18,8 @@ type ListItemProps = {
   id: string;
   quantity?: string;
   checked: boolean;
+  selected: string;
+  setSelected: Dispatch<SetStateAction<string>>;
   onRemove: () => void;
 };
 // onRemove is added so higher level page can trigger a function when an item is removed.
@@ -72,10 +73,16 @@ export default function ListItem(props: ListItemProps) {
       leaveTo="opacity-0 scale-y-0 "
     >
       <SwipeableListItem
-        className="w-full h-16 bg-primary-transparent border border-secondary-default rounded-md flex flex-row"
+        className={clsx(
+          props.selected == props.name
+            ? "bg-secondary-transparent"
+            : "bg-primary-transparent",
+          "max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
+        )}
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
         threshold={0.5}
+        // onClick={onSelected}
       >
         <div className="flex justify-center items-center h-full bg-text-white p-2">
           <img className="h-full aspect-square" src={props.image} />
