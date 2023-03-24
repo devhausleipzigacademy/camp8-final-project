@@ -57,7 +57,7 @@ export default async function handler(
 
     response
       .status(200)
-      .json({ ...result, top_rating: sorted_matches[0].rating });
+      .json({ results: result, top_rating: sorted_matches[0].rating });
   }
   response.status(404).send(`Invalid method: ${request.method}`);
 }

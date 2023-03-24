@@ -11,6 +11,7 @@ import {
 } from "@/components/List/SortFunctions";
 import { Item } from "@prisma/client";
 import { SearchBar } from "@/components/SearchBar";
+import { NewItemInput } from "@/components/NewItemInput";
 
 export type Category = {
   id: string;
@@ -69,6 +70,7 @@ export default function Home({ getData }: InputProps) {
         className="absolute bottom-0 left-0 p-2 rounded-t-md bg-grad-default text-text-white w-full"
         placeholder="This is where input will go"
       />
+      <NewItemInput />
     </div>
   );
 }

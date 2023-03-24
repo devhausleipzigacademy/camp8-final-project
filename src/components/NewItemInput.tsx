@@ -1,85 +1,46 @@
-import Image from "next/image";
-import { useState, Fragment } from "react";
+import { useState, Fragment, ChangeEvent } from "react";
 import { Combobox } from "@headlessui/react";
 import { SmallButton } from "./SmallButton";
+import axios from "axios";
 
 type Items = Array<Item>;
 type Item = {
   id: number;
   name: string;
 };
-const items: Items = [
-  { id: 1, name: "Apple" },
-  { id: 2, name: "Beverages" },
-  { id: 3, name: "Cheese" },
-  { id: 4, name: "Dairy Products" },
-  { id: 5, name: "Egg" },
-  { id: 6, name: "Fish" },
-];
 
 export function NewItemInput(): JSX.Element {
-  const [selectedItems, setSelectedItems] = useState(items[0]);
   const [query, setQuery] = useState("");
-
-  const filteredItems =
-    query === ""
-      ? items
-      : items.filter((person) =>
-          person.name
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+  const [list, setList] = useState<string[]>([""]);
+  const onType = async (event: ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+    await axios
+      .get(`http://localhost:3000/api/autocomplete?name=${query}`)
+      .then((res) => {
+        setList(res.data.results.reverse().map((x: any) => x.name));
+      });
+  };
 
   return (
-    <div className=" fixed top-16">
-      <Combobox value={selectedItems} onChange={setSelectedItems}>
-        <div className=" relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden rounded-md bg-white text-end">
-            <Combobox.Input
-              className=" border  border-secondary-default rounded-md w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-purple-700"
-              displayValue={(i: Item) => i.name}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder={"Add an Item here"}
-            />
-
-            <SmallButton label="Enter"></SmallButton>
-          </div>
-
-          <Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ">
-            {filteredItems.map((list) => (
-              <Combobox.Option
-                key={list.id}
-                value={list}
-                className={({ active }) =>
-                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                    active ? "bg-teal-600 text-white" : " "
-                  }`
-                }
-              >
-                {({ selected, active }) => (
-                  <>
-                    <span
-                      className={`block truncate ${
-                        selected ? "font-medium" : "font-normal"
-                      }`}
-                    >
-                      {list.name}
-                    </span>
-                    {selected ? (
-                      <span
-                        className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                          active ? "text-white" : "text-teal-600"
-                        }`}
-                      ></span>
-                    ) : null}
-                  </>
-                )}
-              </Combobox.Option>
-            ))}
-          </Combobox.Options>
+    <Combobox>
+      <div className=" relative mt-1">
+        <Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ">
+          {list.map((listItem) => (
+            <Combobox.Option key={listItem} value={listItem} className="">
+              {listItem}
+            </Combobox.Option>
+          ))}
+        </Combobox.Options>
+        <div className="w-full flex cursor-default overflow-hidden rounded-md bg-white text-end">
+          <Combobox.Input
+            className=" border border-secondary-default rounded-md w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-purple-700"
+            displayValue={(i: Item) => i.name}
+            onChange={onType}
+            placeholder={"Add an Item here"}
+          />
+          <SmallButton label="Enter"></SmallButton>
         </div>
-      </Combobox>
-    </div>
+      </div>
+    </Combobox>
   );
 }
