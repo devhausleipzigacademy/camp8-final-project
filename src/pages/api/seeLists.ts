@@ -18,7 +18,7 @@ export default async function handler(
     // Find all lists that belong to the user
     const lists = await prisma.list.findMany({
       where: {
-        listIdentifier: id,
+        userIdentifier: id,
       },
     });
 
