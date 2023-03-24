@@ -95,8 +95,12 @@ async function main() {
     "cinnamon",
     "shampoo",
     "burrata",
+    "herbal tea",
+    "eyeliner",
+    "car wash soap",
     "cajeta",
     "quark",
+    "sfbaljsdhfljash",
   ];
   for (let i of exampleItems) {
     await axios.post("http://localhost:3000/api/addItem", {

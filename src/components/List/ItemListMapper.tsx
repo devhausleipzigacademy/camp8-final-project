@@ -1,5 +1,6 @@
 import { Category } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
+import clsx from "clsx";
 import { capitalizeCategory, capitalizeWord } from "../CapitalizeFunctions";
 import ListItem from "../ListItem";
 
@@ -13,7 +14,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
   let sectionName: string = "";
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={clsx("flex flex-col gap-2", props.className)}>
       {props.list.map((product) => {
         let nameSection = false;
 
@@ -24,7 +25,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
         return (
           <div key={product.id}>
             {nameSection && (
-              <p className="pl-12 pt-5 pb-2 text-primary">
+              <p className="pl-12 pt-2 pb-2 text-primary">
                 {capitalizeCategory(sectionName) + ":"}
               </p>
             )}
