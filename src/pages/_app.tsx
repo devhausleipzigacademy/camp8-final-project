@@ -4,11 +4,11 @@ import { Inter, Staatliches } from "@next/font/google";
 import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }: AppProps) {
-	return (
-		<div className="bg-grad-frame h-screen w-auto">
-			<SessionProvider>
-				<Component {...pageProps} />
-			</SessionProvider>
-		</div>
-	);
+  return (
+    <div className="bg-grad-frame h-screen w-auto">
+      <SessionProvider>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </div>
+  );
 }
