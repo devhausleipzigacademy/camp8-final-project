@@ -33,6 +33,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
               name={capitalizeWord(product.name)}
               image={product.imageUrl}
               checked={product.checked}
+              id={product.id}
               onRemove={function (): void {
                 throw new Error("Function not implemented.");
               }}

@@ -16,6 +16,7 @@ import axios from "axios";
 type ListItemProps = {
   name: string;
   image: string;
+  id: string;
   quantity?: string;
   checked: boolean;
   onRemove: () => void;
@@ -27,12 +28,16 @@ export default function ListItem(props: ListItemProps) {
     setSwiped(false);
     props.onRemove();
   };
-  // const checked = ()=>{
-  //   axios.patch()
-  // }
+  const checked = () => {
+    axios.patch("http://localhost:3000/api/patchItem", {
+      who: props.id,
+      what: "checked",
+      toWhat: !props.checked,
+    });
+  };
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.log("Checked")} Tag="div">
+      <SwipeAction onClick={checked} Tag="div">
         <div
           id="Tick_Action"
           className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
@@ -91,7 +96,7 @@ export default function ListItem(props: ListItemProps) {
             >
               <FiCheckSquare
                 className="w-8 h-8 text-primary-default-Solid"
-                onClick={() => console.log("Checked")}
+                onClick={checked}
               />
             </Transition>
             <Transition
@@ -106,7 +111,7 @@ export default function ListItem(props: ListItemProps) {
             >
               <FiSquare
                 className="w-8 h-8 text-primary-default-Solid"
-                onClick={() => console.log("Checked")}
+                onClick={checked}
               />
             </Transition>
           </div>
