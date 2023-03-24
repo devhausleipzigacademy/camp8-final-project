@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LargeButton } from "@/components/LargeButton";
 
-export default function Splash() {
+export default function Home() {
   return (
     <>
       <Head>
