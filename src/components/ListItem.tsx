@@ -16,10 +16,9 @@ type ListItemProps = {
   name: string;
   image: string;
   id: string;
-  quantity?: string;
+  quantity?: number | null;
+  unit?: string | null;
   checked: boolean;
-  selected: string;
-  setSelected: Dispatch<SetStateAction<string>>;
   onRemove: () => void;
 };
 // onRemove is added so higher level page can trigger a function when an item is removed.
@@ -73,12 +72,7 @@ export default function ListItem(props: ListItemProps) {
       leaveTo="opacity-0 scale-y-0 "
     >
       <SwipeableListItem
-        className={clsx(
-          props.selected == props.name
-            ? "bg-secondary-transparent"
-            : "bg-primary-transparent",
-          "max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
-        )}
+        className="bg-primary-transparent max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
         threshold={0.5}
@@ -87,9 +81,14 @@ export default function ListItem(props: ListItemProps) {
         <div className="flex justify-center items-center h-full bg-text-white p-2">
           <img className="h-full aspect-square" src={props.image} />
         </div>
-        <div className="flex p-2 justify-between items-center flex-grow">
-          <p className="text-text-typo text-primary">{props.name}</p>
-          <p className="text-secondary font-thin">{props.quantity}</p>
+        <p className="text-text-typo text-primary pl-4">{props.name}</p>
+        <div className="flex p-2 justify-end gap-6 items-center flex-grow">
+          <p className="text-secondary font-thin">
+            {props.quantity ? props.quantity : "amount"}
+          </p>
+          {props.unit && (
+            <p className="text-secondary font-thin">{props.unit}</p>
+          )}
           <div className="relative w-10 h-8">
             <Transition
               show={props.checked}

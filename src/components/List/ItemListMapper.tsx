@@ -34,6 +34,8 @@ export function ItemListMapper(props: ItemListMapperProps) {
               image={product.imageUrl}
               checked={product.checked}
               id={product.id}
+              quantity={product.quantity}
+              unit={product.unit}
               onRemove={function (): void {
                 throw new Error("Function not implemented.");
               }}
