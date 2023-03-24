@@ -14,15 +14,18 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  if (request.method === "DELETE") {
+  if (request.method === "PATCH") {
     try {
       const { id } = inputQueryDelete.parse(request.query);
-      await prisma.list.delete({
+      await prisma.list.update({
         where: {
           id: id,
         },
+        data: {
+          favorite: false,
+        }
       });
-      response.status(200).json({message: `Removed List with following id:${id}`});
+      response.status(200).send(`Unpinned List with id:${id}`);
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
@@ -31,6 +34,6 @@ export default async function handler(
       }
     }
   } else {
-    response.status(405).send(`Invalid method, need PATCH: ${request.method}`);
+    response.status(405).send(`${request.method} not allowed, need PATCH`);
   }
 }

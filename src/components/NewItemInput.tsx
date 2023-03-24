@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { Combobox } from "@headlessui/react";
+import { SmallButton } from "./SmallButton";
 
 type Items = Array<Item>;
 type Item = {
@@ -42,6 +43,7 @@ export function NewItemInput(): JSX.Element {
               placeholder={"Add an Item here"}
             />
 
+            <SmallButton label="Enter"></SmallButton>
           </div>
 
           <Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ">
@@ -59,9 +61,7 @@ export function NewItemInput(): JSX.Element {
                   <>
                     <span
                       className={`block truncate ${
-                        selected
-                          ? "font-medium"
-                          : "font-normal"
+                        selected ? "font-medium" : "font-normal"
                       }`}
                     >
                       {list.name}
@@ -69,9 +69,7 @@ export function NewItemInput(): JSX.Element {
                     {selected ? (
                       <span
                         className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                          active
-                            ? "text-white"
-                            : "text-teal-600"
+                          active ? "text-white" : "text-teal-600"
                         }`}
                       ></span>
                     ) : null}

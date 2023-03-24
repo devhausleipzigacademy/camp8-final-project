@@ -1,6 +1,10 @@
 import Head from "next/head";
+import { signOut } from "next-auth/react";
 
 export default function Settings() {
+  const handleSignOut = () => {
+    signOut({ redirect: true, callbackUrl: "/auth/signIn" });
+  };
   return (
     <>
       <Head>
