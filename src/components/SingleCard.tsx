@@ -7,7 +7,7 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import clsx from "clsx";
-import { Trash, Bookmark } from "react-feather";
+import { FiTrash2, FiPaperclip } from "react-icons/fi";
 import "react-swipeable-list/dist/styles.css";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";

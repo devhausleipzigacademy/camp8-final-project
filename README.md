@@ -73,6 +73,3 @@ Possible responses from system:
 
 -200 Item added to list correctly.
 
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.

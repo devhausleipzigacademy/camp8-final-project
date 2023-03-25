@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
+import TabAccountSetting from "@/components/TabAccountSetting";
 
-export default function SignIn() {
+export default function Settings() {
   return (
     <>
       <Head>
@@ -11,9 +10,12 @@ export default function SignIn() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-red-600 text-4xl font-bold flex justify-center">
-        SignIn
-      </h1>
+      <h1 className="text-4xl font-bold flex justify-center">Settings </h1>
+      <div className="">
+        <div className="flex justify-center text-text-white">
+          <TabAccountSetting />
+        </div>
+      </div>
     </>
   );
 }

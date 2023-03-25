@@ -6,27 +6,6 @@
 // Lists:        Lists. Are defined by id, date crteated at, the user they belong to, boolean for favorite (false on default) & Items linked to this list. Optional value is "New List"
 // Users:        Users. Are defined by id, name, email & Lists that are related to this specific user.
 
-
-//WORKFLOWS:
-
-//1. add Item to the List:
-////pick id, start typing
-////Input already in MasterItems: simply add Item to the list, add Id as listIdentifier
-////Input not in Category yet: add Item to MasterItems, add Item to list, add id as listIdentifier
-
-//2. disply Lists for a specific user:
-////Only ids that the user has acceess to are displayd.
-
-//3. show List content:
-////display all Items filtered by id.
-
-//4. change Category:
-//// take Item by ItemId, take targeted Category, store as custom Category
-
-//5. delete List:
-////delete all Items form Items linked id, delete List by id
-
-
 generator client {
   provider = "prisma-client-js"
     previewFeatures = ["fullTextSearch"]
@@ -35,43 +14,73 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/migrate-shadow
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id              String @id @default(uuid())
-
-  name            String
-  email           String @unique
-  lists           List[] //opposite relation one-to-many
-
-  @@map("Users")
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  lists   List[]
 }
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
 
 model List {
   id                  String @id @default(uuid())
-
   listName            String?    @default("new list")
   createdAt           DateTime   @default(now())
-
   userIdentifier      String //entering correct listIdentifier will Link to user
   belongsTo           User @relation(fields: [userIdentifier], references: [id])
-
   favorite            Boolean @default(false)
-
   items               Item[] ///opposite relation to Items related to this List.
-
   @@map("Lists")
 }
 
 model Item {
   id                  String  @id @default(uuid())
-
   customName          String?
   createdAt           DateTime   @default(now())
-
   quantity            Float?
   unit                String?
-
   //entering correct listIdentifier will Link to a list
   listIdentifier      String?
   inList              List?   @relation(fields: [listIdentifier], references: [id])
@@ -79,12 +88,10 @@ model Item {
   checked             Boolean @default(false)
 
   //this userItem is based on
-  masterItemId        String ?
+  masterItemId        String?
   masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])
-
   customCategoryId    String?
   customCategory      Category? @relation(fields: [customCategoryId], references: [id])
-
   @@map("Items")
 }
 
@@ -92,14 +99,10 @@ model MasterItem {
   id                  String @id @default(uuid())
   name                String @unique
   imageUrl            String?
-
   category            String?
   defaultCategory     Category? @relation(fields: [category], references: [name])
-
-  approved            Boolean //must be set as wrong, when creating a new category
-
+  approved            Boolean
   item                Item[] //opposite Relation
-
   @@map("MasterItems")
 }
 
@@ -108,7 +111,5 @@ model Category {
   name                String  @unique
   masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
   userItem            Item[] //opposite relation to customCategory in userItem
-
   @@map("Categories")
 }
-//Additional: Inam for units (?)

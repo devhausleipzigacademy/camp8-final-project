@@ -1,7 +1,6 @@
-//import functions that return mutation
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
 import { SingleCard, UserList, UserLists } from "./SingleCard";
 
 //TO GET ALL THE LISTS

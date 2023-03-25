@@ -4,8 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ui-size: 14px;
+  font-size: var(--ui-size);
+}
+
 .bg-primary-default-background {
   background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
+}
+
+.big {
+  font-size: 22px;
 }
 
 .bg-primary-frame {
@@ -49,14 +58,13 @@
 
   .text-links {
     font-size: 14px;
-    font-weight: 300;
-    line-height: 14px;
-    text-decoration: underline;
+    font-weight: 600;
+    line-height: 17px;
   }
   .text-secondary {
     font-size: 14px;
+    font-weight: 300;
     line-height: 17px;
-    font-weight: lighter;
   }
 
   .cards-title {
@@ -75,9 +83,95 @@
     font-size: 24px;
     line-height: 29px;
   }
+  .text-title {
+    font-size: 58px;
+    line-height: 72px;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 18px;
+    line-height: 22px;
+  }
 
+  .text-links {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .cards-title {
+    font-size: 40px;
+    line-height: 50px;
+    @apply font-heading;
+  }
+
+  .text-splash {
+    font-family: Staatliches;
+    font-size: 3.625rem;
+    font-weight: 400;
+    line-height: 4.5rem;
+    text-align: center;
+  }
+  .button-large {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .text-title {
+    font-size: 3.625rem;
+    line-height: 4.5rem;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+  }
+
+  .text-links {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.063rem;
+  }
+  .text-secondary {
+    font-size: 0.875rem;
+    line-height: 1.063rem;
+  }
+
+  .text-links {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .cards-title {
+    font-size: 40px;
+    line-height: 50px;
+    @apply font-heading;
+  }
+
+  .button-bold {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  .button-large {
+    font-size: 24px;
+    line-height: 29px;
+  }
   #Delete_Action,
   #Tick_Action {
     justify-content: center;
   }
+}
+
+.dark {
+  background-color: #7751c7;
 }
