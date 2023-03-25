@@ -14,10 +14,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <div className="bg-grad-frame h-screen w-auto">
-      <SessionProvider>
-        <Component {...pageProps} />
-      </SessionProvider>
+    <div id="screen" className="bg-grad-frame h-screen w-auto">
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>
+          <Component {...pageProps} />
+        </SessionProvider>
+      </QueryClientProvider>
     </div>
   );
 }

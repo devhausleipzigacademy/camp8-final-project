@@ -12,6 +12,7 @@ import {
 import { Item } from "@prisma/client";
 import { SearchBar } from "@/components/SearchBar";
 import { NewItemInput } from "@/components/NewItemInput";
+import { useQuery } from "@tanstack/react-query";
 
 export type Category = {
   id: string;
@@ -29,16 +30,24 @@ export type List = {
 };
 
 export type InputProps = {
-  getData: {
-    list: List;
-    category: Category[];
-  };
+  list: List;
+  category: Category[];
+  slug: string;
 };
 
-export default function Home({ getData }: InputProps) {
-  const [sortBy, setSortBy] = useState("date");
+export default function Home({ slug }: InputProps) {
+  const [sortBy, setSortBy] = useState("category");
 
-  let data = { ...getData };
+  const {
+    data: bigList,
+    status,
+    isLoading,
+  } = useQuery(["data"], () => getListData(slug));
+  if (isLoading) {
+    return <p>...Loading</p>;
+  }
+
+  let data = bigList!;
   let list: Item[] = [];
 
   switch (sortBy) {
@@ -52,14 +61,6 @@ export default function Home({ getData }: InputProps) {
       list = sortByCategory(data.list.items);
       break;
   }
-
-  const router = useRouter();
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
-  // setInterval(() => {
-  //   refreshData();
-  // }, 2000);
 
   return (
     <div className="p-6 flex flex-col justify-center gap-2 h-screen relative">
@@ -77,15 +78,18 @@ export default function Home({ getData }: InputProps) {
 
 const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug; // slug = listId
-  const getData: InputProps = await axios
-    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
-    .then((res) => res.data);
 
   return {
     props: {
-      getData,
+      slug,
     },
   };
 };
 
 export { getServerSideProps };
+
+export const getListData = async (slug: string) => {
+  return (await axios
+    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
+    .then((res) => res.data)) as InputProps;
+};

@@ -36,9 +36,6 @@ export function ItemListMapper(props: ItemListMapperProps) {
               id={product.id}
               quantity={product.quantity}
               unit={product.unit}
-              onRemove={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             ></ListItem>
           </div>
         );
