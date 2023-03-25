@@ -18,7 +18,9 @@
 #   "newName": "brand new list name"
 # }
 
-PATCH http://localhost:3000/api/createList?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
+# PATCH http://localhost:3000/api/createList?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
+
+POST http://localhost:3000/api/createANewUser
 
 
 # DELETE http://localhost:3000/api/deleteList
