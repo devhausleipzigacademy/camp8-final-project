@@ -34,20 +34,21 @@ export type UserList = {
 };
 export type CardProps = {
   cardData: UserList;
-  new_card: boolean;
+  newCardId: string;
 };
 
 export type UserLists = Array<UserList>;
 
-export function SingleCard({ cardData, new_card }: CardProps) {
+export function SingleCard({ cardData, newCardId }: CardProps) {
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
   //current list Id
   const listId = cardData.id;
 
-  const [createNewCard, setCreateNewCard] = useState(false);
 
+  const thisIsANewCard = (newCardId === cardData.id)
+  console.log(cardData.id, thisIsANewCard)
 
   //COMPONENT FUNCTIONS:
 
@@ -197,7 +198,7 @@ export function SingleCard({ cardData, new_card }: CardProps) {
         <div
           className={clsx(
             "border border-secondary-transparent flex flex-col gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
-            createNewCard
+            thisIsANewCard
               ? "text-primary-transparent"
               : "text-primary-default-Solid"
           )}
@@ -211,7 +212,7 @@ export function SingleCard({ cardData, new_card }: CardProps) {
                 onSubmit={(event) => {
                   event.preventDefault();
                   {
-                    !createNewCard && ApiChangeListName(listId);
+                    !thisIsANewCard && ApiChangeListName(listId);
                   }
                   // {createNewCard&&handleCreateNewCard(userId)};
                 }}

@@ -21,7 +21,7 @@ const queryClient = useQueryClient();
   };
 
   //updates data linked to render all cards automatically as newCardId is called
-  const { mutate: newCard } = useMutation(
+  const { mutate: CreateNewCard } = useMutation(
     (list_id: string) => newCardId(list_id),
     {
       onSuccess: () => queryClient.invalidateQueries(["cards"]),
@@ -34,8 +34,8 @@ const queryClient = useQueryClient();
         <div className="">
           {//TESTs:
           }
-          <button onClick={()=>{newCard("43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98")}}>HALLO TRY THIS</button>
-          <CardsWrapper user_id="43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98" />
+          <button onClick={()=>{CreateNewCard("43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98")}}>HALLO TRY THIS</button>
+          <CardsWrapper user_id="43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98" newCardId={lastCardCreated} />
         </div>
       </div>
     </>
