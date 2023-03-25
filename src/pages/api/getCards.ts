@@ -44,7 +44,6 @@ export default async function handler(
         console.log(JSON.stringify(element));
         element.itemsChecked = element.items.filter((i) => {
           if (i.checked === true) {
-            console.log("heyy, found one");
             return true;
           }
         }).length;
@@ -52,8 +51,6 @@ export default async function handler(
 
         delete element.items;
       });
-
-      console.log("data processed", JSON.stringify(userListsHttpRespond)),
       response.status(200).send(userListsHttpRespond);
     } else {
       return [{}];

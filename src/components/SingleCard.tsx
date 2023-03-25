@@ -9,24 +9,19 @@ import "react-swipeable-list/dist/styles.css";
 import clsx from "clsx";
 import { Trash, Bookmark } from "react-feather";
 import "react-swipeable-list/dist/styles.css";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useEffect } from "react";
 
-//Issues:
-//fixed position of the card description, no rounding
-//swip-right falls back automatically
-//no animation / user feedback after delete-Function triggered
-
 //Default values for the new Card:
-export const dummyCard = {
-  id: "defaultId",
-  listName: "My New List",
-  createdAt: "",
-  itemsTotal: 0,
-  itemsChecked: 0,
-  favorite: false,
-};
+// export const dummyCard = {
+//   id: "defaultId",
+//   listName: "My New List",
+//   createdAt: "",
+//   itemsTotal: 0,
+//   itemsChecked: 0,
+//   favorite: false,
+// };
 
 ///TYPES
 export type UserList = {
@@ -38,33 +33,21 @@ export type UserList = {
   favorite: boolean;
 };
 export type CardProps = {
-  data: UserList;
+  cardData: UserList;
   new_card: boolean;
-  user_id: string;
 };
 
 export type UserLists = Array<UserList>;
 
-export function SingleCard({ data, new_card, user_id }: CardProps) {
-  //current list Id
-  const listId = data.id;
-
-  //make prop "new_card" usable / changable
-  const [createNewCard, setCreateNewCard] = useState(false);
-
-  {
-    new_card &&
-      useEffect(() => {
-        setCreateNewCard(true);
-      });
-  }
-
-  console.log("Achieved 59, CreateNewCard = " + createNewCard);
-
-  // setCreateNewCard(new_card); //triggered infinited rerender, must be set onClick
-
+export function SingleCard({ cardData, new_card }: CardProps) {
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
+
+  //current list Id
+  const listId = cardData.id;
+
+  const [createNewCard, setCreateNewCard] = useState(false);
+
 
   //COMPONENT FUNCTIONS:
 
@@ -134,30 +117,7 @@ export function SingleCard({ data, new_card, user_id }: CardProps) {
   );
   //end of change Name>
 
-
-  //3. <create Card
-
-  function ApiCreateList(user_id: string) {
-    return fetch(`http://localhost:3000/api/createList?id=${user_id}`, {
-      method: "PATCH",
-    }).then((response) => {
-      return response.json();
-    });
-  }
-
-  const { mutate: createList } = useMutation(
-    (list_id: string) => ApiCreateList(user_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]),
-    }
-  );
-
-  function handleCreateNewCard() {
-    createList(user_id)
-  }
-  //
-
-  //4. <Pin List
+  //3. <Pin List
   function ApiPnList(list_id: string) {
     return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
       method: "PATCH",
@@ -225,62 +185,67 @@ export function SingleCard({ data, new_card, user_id }: CardProps) {
   );
   //> end of pin list part1
 
-  return (
-    <SwipeableListItem
-      listType={Type.IOS}
-      className="rounded-2xl"
-      leadingActions={leadingActions(PinOrUnpin, listId, data.favorite)}
-      trailingActions={trailingActions(listId)}
-      fullSwipe={true}
-    >
-      <div
-        className={clsx(
-          "border border-secondary-transparent flex flex-col gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
-          createNewCard
-            ? "text-primary-transparent"
-            : "text-primary-default-Solid"
-        )}
+  if (cardData) {
+    return (
+      <SwipeableListItem
+        listType={Type.IOS}
+        className="rounded-2xl"
+        leadingActions={leadingActions(PinOrUnpin, listId, cardData.favorite)}
+        trailingActions={trailingActions(listId)}
+        fullSwipe={true}
       >
-        <div className="flex flex-col gap-3 rounded-[14px]">
-          <p className="button-bold font-semibold">
-            {`${data.itemsChecked}/${data.itemsTotal} Items`}
-          </p>
-          {changingName === true ? (
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                {
-                  !createNewCard && ApiChangeListName(listId);
-                }
-                // {createNewCard&&handleCreateNewCard(userId)};
-              }}
-            >
-              <input
-                type="Text"
-                placeholder={clsx(!data.listName ? "New Name" : data.listName)}
-                className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-                onChange={(event) => {
-                  setInputName(event.target.value);
-                }} //change value every Type
-              />
-            </form>
-          ) : (
-            <p
-              onClick={() => setChangingName(true)}
-              className="cards-title uppercase font-heading "
-            >
-              {data.listName}
-            </p>
+        <div
+          className={clsx(
+            "border border-secondary-transparent flex flex-col gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
+            createNewCard
+              ? "text-primary-transparent"
+              : "text-primary-default-Solid"
           )}
-        </div>
-        <div className="flex justify-between">
-          <div className="text-primary">
-            {data.favorite && <Bookmark className="h-6 w-6" />}
+        >
+          <div className="flex flex-col gap-3 rounded-[14px]">
+            <p className="button-bold font-semibold">
+              {`${cardData.itemsChecked}/${cardData.itemsTotal} Items`}
+            </p>
+            {changingName === true ? (
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  {
+                    !createNewCard && ApiChangeListName(listId);
+                  }
+                  // {createNewCard&&handleCreateNewCard(userId)};
+                }}
+              >
+                <input
+                  type="Text"
+                  placeholder={clsx(
+                    !cardData.listName ? "New Name" : cardData.listName
+                  )}
+                  className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+                  onChange={(event) => {
+                    setInputName(event.target.value);
+                  }} //change value every Type
+                />
+              </form>
+            ) : (
+              <p
+                onClick={() => setChangingName(true)}
+                className="cards-title uppercase font-heading "
+              >
+                {cardData.listName}
+              </p>
+            )}
           </div>
-          <p>{data.createdAt.slice(0, 9)}</p>
+          <div className="flex justify-between">
+            <div className="text-primary">
+              {cardData.favorite && <Bookmark className="h-6 w-6" />}
+            </div>
+            <p>{cardData.createdAt && cardData.createdAt.slice(0, 9)}</p>
+          </div>
         </div>
-      </div>
-    </SwipeableListItem>
-  );
+      </SwipeableListItem>
+    );
+  } else {
+    return <>isLoading</>;
+  }
 }
-//> End of pin list part 2
