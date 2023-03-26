@@ -193,8 +193,6 @@ const patchItem = async (item: string, what: string, toWhat: string) => {
         ? Number(toWhat)
         : toWhat,
   };
-  console.log(object);
-
   axios.patch("http://localhost:3000/api/patchItem", object);
 };
 

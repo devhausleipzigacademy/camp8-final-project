@@ -109,8 +109,9 @@ async function main() {
     });
   }
   console.log(
-    "For bubble chart go to page:\n",
-    `http://localhost:3000/list/${John.lists[0].id}/bubble`
+    "Temporary User Created:\n",
+    `User ID : ${John.id}\n`,
+    `List ID: ${John.lists[0].id}`
   );
 }
 main();
