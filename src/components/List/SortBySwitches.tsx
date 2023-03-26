@@ -19,7 +19,7 @@ export function SortBySwitches(props: SortByProps) {
         {({ checked }) => (
           <p
             className={clsx(
-              "h-full w-full flex justify-center items-center rounded-listitem text-secondary",
+              "h-full w-full flex justify-center items-center rounded-listitem text-secondary py-2",
               checked && "bg-primary-default-Solid text-text-white"
             )}
           >

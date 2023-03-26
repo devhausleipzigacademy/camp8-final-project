@@ -2,15 +2,18 @@ import { useState, Fragment, ChangeEvent } from "react";
 import { Combobox } from "@headlessui/react";
 import { SmallButton } from "./SmallButton";
 import axios from "axios";
-import ListItem from "./ListItem";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getListData } from "@/pages/list/[slug]";
 
-type Items = Array<Item>;
 type Item = {
   id: number;
   name: string;
 };
+type InputProps = {
+  listID: string;
+};
 
-export function NewItemInput(): JSX.Element {
+export function NewItemInput({ listID }: InputProps) {
   const [query, setQuery] = useState("");
   const [list, setList] = useState<string[]>([""]);
   const onType = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,28 +24,33 @@ export function NewItemInput(): JSX.Element {
         setList(res.data.results.reverse().map((x: any) => x.name));
       });
   };
-
+  const queryClient = useQueryClient();
+  const { mutate: refresh } = useMutation(getListData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["data"]);
+    },
+  });
   const onSelect = async (value: string) => {
     try {
       // Send a POST request to your backend server to add the selected item to the database
       const response = await axios.post("http://localhost:3000/api/addItem", {
         query: value,
-        inputList: "6ce77b98-453c-40bb-b090-e41b92ed18b5",
+        inputList: listID,
       });
+      refresh(listID);
 
       // If the request was successful, show a success message
-      if (response.status === 201) {
+      if (response.status === 201 || 202) {
         alert(`Successfully added ${value} to the database!`);
       }
     } catch (error) {
       // If there was an error, show an error message
-      alert(`Failed to add ${value} to the database: ${error.message}`);
+      alert(`Failed to add ${value} to the database: ${error}`);
     }
   };
-
   return (
     <Combobox>
-      <div className=" relative mt-1">
+      <div className="w-full mt-1">
         <Combobox.Options className=" ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ">
           {list.map((listItem) => (
             <Combobox.Option
@@ -78,7 +86,7 @@ export function NewItemInput(): JSX.Element {
         </Combobox.Options>
         <div className="w-full flex cursor-default overflow-hidden rounded-md bg-white text-end">
           <Combobox.Input
-            className=" border border-secondary-default rounded-md w-80 h-14 ml-8 p-5 focus:outline-none focus-visible  focus:border-purple-700"
+            className=" border border-secondary-default rounded-md w-full h-14 p-5 focus:outline-none focus-visible  focus:border-purple-700"
             displayValue={(i: Item) => i.name}
             onChange={onType}
             placeholder={"Add an Item here"}
@@ -88,4 +96,7 @@ export function NewItemInput(): JSX.Element {
       </div>
     </Combobox>
   );
+}
+function useQueryClientlient() {
+  throw new Error("Function not implemented.");
 }

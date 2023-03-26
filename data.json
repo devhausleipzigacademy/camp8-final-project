@@ -570,7 +570,11 @@
   ],
   "baking": [
     {
-      "image": "https://spoonacular.com/cdn/ingredients_100x100/",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/white-bread.jpg",
+      "name": "bread"
+    },
+    {
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/flour.png",
       "name": "all-purpose flour"
     },
     {

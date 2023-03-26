@@ -65,17 +65,12 @@ export default function Home({ slug }: InputProps) {
   return (
     <div
       id="List-page"
-      className="p-6 flex flex-col justify-center gap-2 h-screen relative"
+      className="p-6 flex flex-col justify-between h-screen gap-2 relative"
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
       <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
       <ItemListMapper list={list} sortBy={sortBy} className="overflow-y-auto" />
-      <input
-        type="text"
-        className="absolute bottom-0 left-0 p-2 rounded-t-md bg-grad-default text-text-white w-full"
-        placeholder="This is where input will go"
-      />
-      <NewItemInput />
+      <NewItemInput listID={slug} />
     </div>
   );
 }
