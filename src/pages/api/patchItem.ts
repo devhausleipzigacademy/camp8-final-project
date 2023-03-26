@@ -11,7 +11,28 @@ export default async function handler(
 ) {
   if (request.method === "PATCH") {
     try {
-      const { toWhat, what, who } = inputQueryTest.parse(request.body);
+      let { toWhat, what, who } = inputQueryTest.parse(request.body);
+
+      if (what === "category") {
+        await prisma.item.update({
+          where: {
+            id: who,
+          },
+          data: {
+            defaultCategory: {
+              connect: {
+                id: toWhat as string,
+              },
+            },
+          },
+        });
+        response
+          .status(200)
+          .send(
+            `Successfully updated item ${who}, customCategory is now ${toWhat}`
+          );
+      }
+
       const item = await prisma.item.update({
         where: {
           id: who,

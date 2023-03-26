@@ -1,112 +1,107 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
+import clsx from "clsx";
+import { prisma } from "@/pages/api/prisma";
+import { Category } from "@prisma/client";
+import axios from "axios";
+import { capitalizeCategory } from "./CapitalizeFunctions";
+import {
+  UseMutateFunction,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { handleClick } from "./ListItem";
 
 type InputProps = {
   id: string;
+  setDetails: Dispatch<SetStateAction<boolean>>;
 };
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
-export default function EditModal({ id }: InputProps) {
-  let [quantityInput] = useState({
-    Quantity: [
-      {
-        id: 1,
-        title: "enter quantity",
-      },
-    ],
-  });
-  let [categories] = useState({
-    Category: [
-      //infinite categories can be created (somehow)
-      {
-        id: 1,
-        title: "Category A",
-      },
-      {
-        id: 2,
-        title: "Category B",
-      },
-      {
-        id: 3,
-        title: "Category C",
-      },
-      {
-        id: 4,
-        title: "Category D",
-      },
-      {
-        id: 5,
-        title: "endless ",
-      },
-      {
-        id: 6,
-        title: "amount",
-      },
-      {
-        id: 7,
-        title: "of categories",
-      },
-      {
-        id: 8,
-        title: "...",
-      },
-    ],
-    Quantity:
-      //NEW INPUT COMPONENT
-      [
+export default function EditModal({ id, setDetails }: InputProps) {
+  let [quantityInput, setQuantityInput] = useState<Category[]>([
+    { id: "0", name: "Placeholder" },
+  ]);
+  const { data } = useQuery(["categories"], () =>
+    getCategories(setQuantityInput)
+  );
+
+  let categories = [
+    {
+      name: "Quantity",
+      values: [
         {
-          id: 1,
-          title: "enter quantity",
+          id: "1",
+          name: "1",
+        },
+        {
+          id: "2",
+          name: "2",
+        },
+        {
+          id: "3",
+          name: "3",
+        },
+        {
+          id: "4",
+          name: "4",
+        },
+        {
+          id: "5",
+          name: "5",
+        },
+        {
+          id: "6",
+          name: "6",
         },
       ],
-    Units: [
-      {
-        id: 1,
-        title: "ml Mililiters)",
-      },
-      {
-        id: 2,
-        title: "l (Liters)",
-      },
-      {
-        id: 3,
-        title: "g (Grams)",
-      },
-      {
-        id: 4,
-        title: "kg (Kilograms)",
-      },
-      {
-        id: 5,
-        title: "cups",
-      },
-    ],
-  });
-  // FUNCTIONALITY FOR SELECTING UNITS MAYBE
-  const [selectedUnits, setSelectedUnits] = useState<string>("");
-
-  function clickUnit(toCheck: string) {
-    if (selectedUnits == toCheck) {
-      return setSelectedUnits("");
-    } else {
-      setSelectedUnits(toCheck);
-    }
-  }
+    },
+    { name: "ImageUrl", values: [] },
+    {
+      name: "Category",
+      values:
+        //infinite categories can be created (somehow)
+        quantityInput,
+    },
+    {
+      name: "Unit",
+      values: [
+        {
+          id: "1",
+          name: "ml (Mililiters)",
+        },
+        {
+          id: "2",
+          name: "l (Liters)",
+        },
+        {
+          id: "3",
+          name: "g (Grams)",
+        },
+        {
+          id: "4",
+          name: "kg (Kilograms)",
+        },
+        {
+          id: "5",
+          name: "cups",
+        },
+      ],
+    },
+  ];
 
   return (
-    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background">
+    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background px-3">
       <Tab.Group>
         <Tab.List className="flex rounded-xl bg-text-white px-3 py-3">
-          {Object.keys(categories).map((category) => (
+          {categories.map((category) => (
             <Tab
-              key={category}
+              key={category.name}
               className={({ selected }) =>
-                classNames(
+                clsx(
                   "w-full rounded-2xl py-2 font-medium leading-5 focus:outline-none",
                   selected
                     ? "bg-primary-default-Solid text-text-white"
@@ -114,32 +109,57 @@ export default function EditModal({ id }: InputProps) {
                 )
               }
             >
-              {category}
+              {category.name}
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="mt-2 w-full h-8 ">
-          {Object.values(categories).map((options, idx) => (
+        <Tab.Panels className="mt-2 w-full h-8">
+          {categories.map((category, idx) => (
             <Tab.Panel
               key={idx}
-              className={classNames(
-                "rounded-xl bg-text-white w-full bg-white px-3 py-0 outline-1 outline-primary-default-Solid font-sans text-text-typo",
-                "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
-              )}
+              className="rounded-xl w-full bg-white py-0 outline-1 outline-primary-default-Solid font-sans text-text-typo ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
             >
-              <ul className="rounded-xl outline outline-offset-2 outline-primary-default-Solid overflow-y-auto max-h-44">
-                {options.map((option) => (
-                  <li key={option.id} className=" rounded-md p-3">
-                    <h3 className="text-sm font-medium leading-5">
-                      {option.title}
-                    </h3>
-                    <a
-                      href="#"
-                      className={classNames(
-                        " inset-0 rounded-md",
-                        "focus:z-10 focus:outline-none focus:bg-primary-default-Solid focus:opacity-10"
-                      )}
+              <ul className="rounded-xl outline outline-offset-2 bg-text-white outline-primary-default-Solid overflow-y-auto max-h-44">
+                {category.name !== "Category" && (
+                  <li>
+                    <input
+                      type={category.name === "Quantity" ? "number" : "text"}
+                      className=" text-sm font-medium leading-5 w-full h-10 rounded-md bg-secondary-transparent p-3"
+                      placeholder="Placeholder"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          clickOnSelect(
+                            category.name,
+                            //@ts-ignore
+                            e.target.value,
+                            id,
+                            setDetails
+                          );
+                        }
+                      }}
                     />
+                  </li>
+                )}
+                {category.values.map((option) => (
+                  <li
+                    key={option.id}
+                    className=" rounded-md p-3 hover:bg-secondary-transparent"
+                  >
+                    <h3
+                      className="text-sm font-medium leading-5"
+                      onClick={() =>
+                        clickOnSelect(
+                          category.name,
+                          category.name === "Category"
+                            ? option.id
+                            : option.name,
+                          id,
+                          setDetails
+                        )
+                      }
+                    >
+                      {option.name}
+                    </h3>
                   </li>
                 ))}
               </ul>
@@ -150,3 +170,46 @@ export default function EditModal({ id }: InputProps) {
     </div>
   );
 }
+
+const clickOnSelect = (
+  what: string,
+  toWhat: string,
+  id: string,
+  setDetails: Dispatch<SetStateAction<boolean>>
+) => {
+  handleClick();
+  setDetails(false);
+  patchItem(id, what, toWhat);
+};
+
+const patchItem = async (item: string, what: string, toWhat: string) => {
+  const object = {
+    who: item,
+    what: what.charAt(0).toLowerCase() + what.slice(1),
+    toWhat:
+      what === "Unit"
+        ? (toWhat as string).split(" ")[0]
+        : what === "Quantity"
+        ? Number(toWhat)
+        : toWhat,
+  };
+  console.log(object);
+
+  axios.patch("http://localhost:3000/api/patchItem", object);
+};
+
+const getCategories = async (
+  setQuantityInput: Dispatch<SetStateAction<Category[]>>
+) => {
+  return await axios.get("http://localhost:3000/api/categories").then((res) => {
+    let test: Category[] = res.data;
+    setQuantityInput(
+      test.map((x) => {
+        return {
+          id: x.id,
+          name: capitalizeCategory(x.name),
+        };
+      })
+    );
+  });
+};

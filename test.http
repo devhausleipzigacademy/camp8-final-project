@@ -39,7 +39,7 @@ PATCH http://localhost:3000/api/patchItem
 Content-Type: application/json
 
 {
-  "who":"008a632b-ba81-44b1-a649-6774284646de",
+  "who":"36b77a00-9968-4f72-bae5-dc34ce2a839e",
   "what":"imageUrl",
-  "toWhat":"https://elephant.art/wp-content/uploads/2019/11/poop-emoji.jpg"
+  "toWhat":2
 }
