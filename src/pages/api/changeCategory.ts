@@ -28,14 +28,20 @@ export default async function handler(
       };
       const updated = await prisma.item.update({
         where: { id: customCategoryId },
-        data: { customCategoryId: customCategoryId },
+        data: { category: customCategoryId },
       });
-      response.status(200).send(`Successfully updated item ${updated.id}, customCategory is now ${updated.customCategoryId}`);
+      response
+        .status(200)
+        .send(
+          `Successfully updated item ${updated.id}, customCategory is now ${updated.category}`
+        );
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data sent: ${JSON.stringify(err)}`);
       } else {
-        response.status(500).send("Something went wrong, but I don't know what");
+        response
+          .status(500)
+          .send("Something went wrong, but I don't know what");
       }
     }
   }

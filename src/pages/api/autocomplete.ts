@@ -1,7 +1,7 @@
 import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { prisma } from "..";
+import { prisma } from "./prisma";
 var stringSimilarity = require("string-similarity");
 
 export function sortByRating(input: Array<{ target: string; rating: number }>) {
@@ -32,7 +32,7 @@ export default async function handler(
 
     const list = await prisma.masterItem.findMany({});
 
-    const item_names = list.map((item) => item.name);
+    const item_names = list.map((item: any) => item.name);
 
     const matches = stringSimilarity.findBestMatch(
       name.toLowerCase(),
