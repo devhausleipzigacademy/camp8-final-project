@@ -44,7 +44,8 @@
 		"react-icons": "^4.7.1",
 		"react-swipeable-list": "^1.7.2",
 		"string-similarity": "^4.0.4",
-		"zod": "^3.20.6"
+		"zod": "^3.20.6",
+		"zustand": "^4.3.6"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
