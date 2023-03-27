@@ -56,6 +56,80 @@
   }
 
   .text-title {
+    font-size: 58px;
+    line-height: 72px;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .text-links {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 17px;
+  }
+
+  .cards-title {
+    font-size: 40px;
+    line-height: 50px;
+    @apply font-heading;
+  }
+
+  .button-bold {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  .button-large {
+    font-size: 24pt;
+    line-height: 29px;
+  }
+  .text-title {
+    font-size: 58px;
+    line-height: 72px;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .text-links {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .cards-title {
+    font-size: 40px;
+    line-height: 50px;
+    @apply font-heading;
+  }
+
+  .text-splash {
+    font-family: Staatliches;
+    font-size: 3.625rem;
+    font-weight: 400;
+    line-height: 4.5rem;
+    text-align: center;
+  }
+  .button-large {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .text-title {
     font-size: 3.625rem;
     line-height: 4.5rem;
     @apply font-heading;
@@ -105,4 +179,8 @@
   #Tick_Action {
     justify-content: center;
   }
+}
+
+.dark {
+  background-color: #7751c7;
 }
