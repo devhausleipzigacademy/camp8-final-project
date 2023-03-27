@@ -1,7 +1,7 @@
 import console from "console";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-import { prisma } from "./prisma";
+import { prisma } from "../prisma";
 
 /*
 Gets the id of a user, returns an array of Type UserList

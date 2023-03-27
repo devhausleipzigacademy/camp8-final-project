@@ -1,6 +1,6 @@
 import { defineEndpoints } from "next-rest-framework/client";
 import { z } from "zod";
-import { prisma } from "./prisma";
+import { prisma } from "../prisma";
 
 export const seeListsInputSchema = z.object({
   id: z.string(),

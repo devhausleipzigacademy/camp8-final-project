@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { prisma } from "./prisma";
+import { prisma } from "../prisma";
 
 /* The point of this endpoint is to delete a list.
 It will receive an id, will find corresponding list and remove it.

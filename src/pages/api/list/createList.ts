@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { prisma } from "./prisma";
+import { prisma } from "../prisma";
 
 /* The point gets user id and should take name, if
 */
