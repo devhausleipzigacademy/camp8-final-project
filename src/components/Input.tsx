@@ -1,4 +1,3 @@
-import { SettingsProps } from "@/pages/account";
 import { inputField } from "@/stories/input.stories";
 import {
 	ChangeEventHandler,

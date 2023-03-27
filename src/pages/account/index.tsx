@@ -1,5 +1,5 @@
 import { LargeButton } from "@/components/LargeButton";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import axios from "axios";
@@ -7,7 +7,7 @@ import { User } from "@prisma/client";
 import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Input from "@/components/Input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type SettingsProps = {
