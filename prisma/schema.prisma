@@ -128,7 +128,8 @@ model Item {
 model MasterItem {
   id                  String @id @default(uuid())
   name                String @unique
-  imageUrl            String?
+  imageUrl            String
+
   category            String?
 
   approved            Boolean @default(true)
