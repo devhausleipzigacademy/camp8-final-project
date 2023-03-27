@@ -7,6 +7,7 @@ specifiers:
   '@babel/core': ^7.20.12
   '@headlessui/react': ^1.7.13
   '@heroicons/react': ^2.0.16
+  '@next-auth/prisma-adapter': ^1.0.5
   '@next/font': 13.1.6
   '@prisma/client': ^4.10.1
   '@storybook/addon-actions': ^6.5.16
@@ -56,6 +57,7 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.16_react@18.2.0
+  '@next-auth/prisma-adapter': 1.0.5_ouwcmbb7palpkwlagb7ozld3le
   '@next/font': 13.1.6
   '@prisma/client': 4.10.1_prisma@4.10.1
   '@types/react': 18.0.28
@@ -1970,6 +1972,16 @@ packages:
       uuid: 8.3.2
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@next-auth/prisma-adapter/1.0.5_ouwcmbb7palpkwlagb7ozld3le:
+    resolution: {integrity: sha512-VqMS11IxPXrPGXw6Oul6jcyS/n8GLOWzRMrPr3EMdtD6eOalM6zz05j08PcNiis8QzkfuYnCv49OvufTuaEwYQ==}
+    peerDependencies:
+      '@prisma/client': '>=2.26.0 || >=3'
+      next-auth: ^4
+    dependencies:
+      '@prisma/client': 4.10.1_prisma@4.10.1
+      next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
     dev: false
 
   /@next/env/13.1.6:
