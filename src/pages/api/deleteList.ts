@@ -2,11 +2,8 @@ import { defineEndpoints } from "next-rest-framework/client";
 import { z, ZodError } from "zod";
 import { prisma } from "./prisma";
 
-/* The point of this endpoint is to delete an item to a list.
-First check the name given against the database.
-Since there are multiple ways to spell something we are trying to remove 
-a couple of letters at a time and see if there is a match
-When shorter than 3 letters we just put it in the Other list
+/* The point of this endpoint is to delete a list.
+It will receive an id, will find corresponding list and remove it.
 */
 export const deleteListInputSchema = z.object({
   id: z.string(),
