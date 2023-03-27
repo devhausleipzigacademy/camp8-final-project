@@ -110,8 +110,8 @@ async function main() {
   }
   console.log(
     "Temporary User Created:\n",
-    `User ID : ${John.id}\n`,
-    `List ID: ${John.lists[0].id}`
+    `The User ID : ${John.id}\n`,
+    `The List ID: ${John.lists[0].id}`
   );
 }
 main();
