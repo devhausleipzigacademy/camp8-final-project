@@ -17,8 +17,8 @@
 		"build-storybook": "build-storybook"
 	},
 	"dependencies": {
-		"@heroicons/react": "^2.0.16",
 		"@headlessui/react": "^1.7.13",
+		"@heroicons/react": "^2.0.16",
 		"@next/font": "13.1.6",
 		"@prisma/client": "^4.10.1",
 		"@types/react": "18.0.28",
@@ -34,13 +34,14 @@
 		"feather-icons-react": "^0.6.2",
 		"headlessui": "^0.0.0",
 		"next": "13.1.6",
+		"next-auth": "^4.20.1",
 		"postcss-loader": "^7.0.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"string-similarity": "^4.0.4",
 		"react-feather": "^2.0.10",
 		"react-icons": "^4.7.1",
 		"react-swipeable-list": "^1.7.2",
+		"string-similarity": "^4.0.4",
 		"zod": "^3.20.6"
 	},
 	"devDependencies": {
