@@ -11,25 +11,35 @@ export const itemPostOutput = z.object({
   name: z.string(),
   imageUrl: z.nullable(z.string()),
   category: z.nullable(z.string()),
-  approved: z.boolean(),
 });
 
 export const itemGetSchema = z.object({
   name: z.string(),
 });
+export const itemPutOutput = z.array(
+  z.object({
+    id: z.string(),
+    name: z.nullable(z.string()),
+    imageUrl: z.nullable(z.string()),
+    category: z.nullable(z.string()),
+  })
+);
 export const itemGetOutput = z.object({
-  results: z.array(
-    z.object({
-      id: z.string(),
-      name: z.string(),
-      imageUrl: z.nullable(z.string()),
-      category: z.nullable(z.string()),
-      approved: z.boolean(),
-    })
-  ),
+  results: itemPutOutput,
   top_rating: z.number(),
 });
 
+export const itemPutSchema = z.object({
+  inputList: z.string(),
+});
+export const itemPatchSchema = z.object({
+  who: z.string(),
+  what: z.string(),
+  toWhat: z.union([z.string(), z.boolean(), z.number()]),
+});
+export const itemDeleteSchema = z.object({
+  id: z.string(),
+});
 export default defineEndpoints({
   POST: {
     openApiSpec: {
@@ -185,6 +195,133 @@ export default defineEndpoints({
         results: result,
         top_rating: sorted_matches[0].rating,
       });
+    },
+  },
+  PUT: {
+    input: {
+      query: itemPutSchema,
+    },
+    output: [
+      {
+        status: 200,
+        contentType: "application/json",
+        schema: itemPutOutput,
+      },
+      {
+        status: 418,
+        contentType: "application/json",
+        schema: z.string(),
+      },
+    ],
+    handler: async ({
+      res,
+      req: {
+        query: { inputList },
+      },
+    }) => {
+      try {
+        const list = await prisma.item.findMany({
+          where: {
+            listIdentifier: inputList,
+          },
+        });
+
+        const whatever = list;
+        res.status(200).send(list);
+      } catch (err) {
+        res.status(418).send(JSON.stringify(err));
+      }
+    },
+  },
+  PATCH: {
+    input: {
+      body: itemPatchSchema,
+    },
+    output: [
+      {
+        status: 200,
+        contentType: "application/json",
+        schema: z.string(),
+      },
+      {
+        status: 418,
+        contentType: "application/json",
+        schema: z.string(),
+      },
+    ],
+    handler: async ({
+      res,
+      req: {
+        body: { toWhat, what, who },
+      },
+    }) => {
+      try {
+        if (what === "category") {
+          await prisma.item.update({
+            where: {
+              id: who,
+            },
+            data: {
+              defaultCategory: {
+                connect: {
+                  id: toWhat as string,
+                },
+              },
+            },
+          });
+          res
+            .status(200)
+            .send(
+              `Successfully updated item ${who}, customCategory is now ${toWhat}`
+            );
+        }
+
+        const item = await prisma.item.update({
+          where: {
+            id: who,
+          },
+          data: {
+            [what]: toWhat,
+          },
+        });
+        res.status(200).send("Changed Correctly");
+      } catch (err) {
+        res.status(418).send(JSON.stringify(err));
+      }
+    },
+  },
+  DELETE: {
+    input: {
+      query: itemDeleteSchema,
+    },
+    output: [
+      {
+        status: 200,
+        contentType: "application/json",
+        schema: z.string(),
+      },
+      {
+        status: 418,
+        contentType: "application/json",
+        schema: z.string(),
+      },
+    ],
+    handler: async ({
+      res,
+      req: {
+        query: { id },
+      },
+    }) => {
+      try {
+        await prisma.item.delete({
+          where: {
+            id: id,
+          },
+        });
+        res.status(200).send("Removed Item");
+      } catch (err) {
+        res.status(418).send("Something is wrong");
+      }
     },
   },
 });
