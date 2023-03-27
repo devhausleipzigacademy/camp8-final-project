@@ -13,18 +13,18 @@ function askApiForCards(user_id: string) {
 }
 
 ////Function to sort by (favorite === true) or (favorite === false)
-function yesOrNo(dataArray: UserLists, yesOrNo: boolean, pushTo: UserLists) {
+function filterFavorites(dataArray: UserLists, isFavorite: boolean, pushTo: UserLists, firstListId: string) {
   dataArray.map((element: UserList) => {
-    if (element.favorite === yesOrNo) {
+    if (element.favorite === isFavorite) {
       pushTo.push(element);
     }
   });
 }
 
 ////Function to sort by (favorite === true) or (favorite === false)
-function takeThisFirst(dataArray: UserLists, pushTo: UserLists, firstId: string) {
+function takeThisFirst(dataArray: UserLists, pushTo: UserLists, firstListId: string) {
   dataArray.map((element: UserList) => {
-    if (element.id === firstId) {
+    if ((element.id === firstListId)&&(element.id !== firstListId)) {
       pushTo.push(element);
     }
   });
@@ -33,9 +33,9 @@ function takeThisFirst(dataArray: UserLists, pushTo: UserLists, firstId: string)
 ////Take all Data, call sorting algorithm on it, push to a new array, take each element of the array and return a Node
 const returnOrderedNodes = (allCardsData: UserLists, newCardId: string) => {
   const allCardsSorted: UserLists = [] as UserLists;
-  yesOrNo(allCardsData, false, allCardsSorted);
-  yesOrNo(allCardsData, true, allCardsSorted);
-  takeThisFirst(allCardsData, allCardsSorted, newCardId)
+  filterFavorites(allCardsData, false, allCardsSorted, newCardId);
+  filterFavorites(allCardsData, true, allCardsSorted, newCardId);
+  takeThisFirst(allCardsData, allCardsSorted, newCardId);
   if (allCardsData) {
     return allCardsSorted.map((element: UserList) => {
       return (
@@ -63,6 +63,7 @@ export default function CardsWrapper({ user_id, newCardId }: Props) {
     () => askApiForCards(user_id),
     {
       enabled: Boolean(user_id),
+
     }
   );
 

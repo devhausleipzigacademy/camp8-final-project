@@ -224,9 +224,8 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
                   )}
                   className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
                   onBlur={(event) => {
-                    console.log("BLUR");
-                    updateListName(listId)
-                    setInputName(event.target.value)
+                    setInputName(event.target.value);
+                    updateListName(listId);
                   }}
                   onChange={(event) => {
                     setInputName(event.target.value);
