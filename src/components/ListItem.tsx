@@ -40,9 +40,10 @@ export default function ListItem(props: ListItemProps) {
   }, [details]);
 
   const [swiped, setSwiped] = useState(true);
-  const onDelete = () => {
+  const onDelete = (slug: string) => {
     setSwiped(false);
     axios.delete(`http://localhost:3000/api/deleteItem?id=${props.id}`);
+    refresh(slug);
   };
   const checked = () => {
     axios.patch("http://localhost:3000/api/patchItem", {
@@ -67,7 +68,7 @@ export default function ListItem(props: ListItemProps) {
   );
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={onDelete} Tag="div">
+      <SwipeAction onClick={() => onDelete(slug as string)} Tag="div">
         <div
           id="Delete_Action"
           className=" bg-ux-error button-bold text-text-white flex items-center justify-center text-left"

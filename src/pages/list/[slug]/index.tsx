@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
 import {
@@ -10,7 +10,6 @@ import {
   sortByCategory,
 } from "@/components/List/SortFunctions";
 import { Item } from "@prisma/client";
-import { SearchBar } from "@/components/SearchBar";
 import { NewItemInput } from "@/components/NewItemInput";
 import { useQuery } from "@tanstack/react-query";
 

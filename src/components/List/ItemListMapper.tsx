@@ -20,7 +20,9 @@ export function ItemListMapper(props: ItemListMapperProps) {
 
         if (props.sortBy === "category" && product.category !== sectionName) {
           sectionName = product.category;
-          nameSection = true;
+          if (props.list.map((x) => x.category).includes(sectionName)) {
+            nameSection = true;
+          }
         }
         return (
           <div key={product.id}>
