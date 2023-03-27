@@ -14,7 +14,10 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start-docker": "docker compose up -d",
+    "all-dev": "pnpm install && pnpm run start-docker && pnpm prisma db push && pnpm run dev"
+
   },
   "dependencies": {
     "@next/font": "13.1.6",
