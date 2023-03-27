@@ -42,11 +42,11 @@ export default function ListItem(props: ListItemProps) {
   const [swiped, setSwiped] = useState(true);
   const onDelete = (slug: string) => {
     setSwiped(false);
-    axios.delete(`http://localhost:3000/api/deleteItem?id=${props.id}`);
+    axios.delete(`/api/deleteItem?id=${props.id}`);
     refresh(slug);
   };
   const checked = () => {
-    axios.patch("http://localhost:3000/api/patchItem", {
+    axios.patch("/api/patchItem", {
       who: props.id,
       what: "checked",
       toWhat: !props.checked,
