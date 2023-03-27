@@ -1,27 +1,50 @@
 import { LargeButton } from "@/components/LargeButton";
-import { SmallButton } from "@/components/SmallButton";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";
-import {
-	getSession,
-	SessionProvider,
-	signOut,
-	useSession,
-} from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Input from "@/components/Input";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-type buttonProps = {
-	variant: "primary";
-	label: string;
-	disable: boolean;
+export type SettingsProps = {
 	user: User;
 };
 
-export default function Settings(props: buttonProps) {
+export type UpdateNameResponse = {
+	name: string;
+	userId: string;
+};
+export default function Settings(props: SettingsProps) {
+	const { data, isLoading } = useQuery(["useInfo"], () =>
+		getUserInfo(props.user.email as string)
+	);
+	const queryClient = useQueryClient();
+
+	const { mutate: refresh } = useMutation(getUserInfo, {
+		onSuccess: () => {
+			queryClient.invalidateQueries(["useInfo"]);
+		},
+	});
+
+	const [inputName, setInputName] = useState("");
+
+	function clickHandler() {
+		updateName();
+		refresh(props.user.email as string);
+	}
+
+	async function updateName() {
+		const bla = await axios.patch("http://localhost:3000/api/changeNameUser", {
+			userId: data?.id,
+			name: inputName,
+		});
+		return bla;
+	}
+
 	const handleSignOut = () => {
 		signOut({ redirect: true, callbackUrl: "/auth/signIn" });
 	};
@@ -53,10 +76,17 @@ export default function Settings(props: buttonProps) {
 						</div>
 						<div className="text-primary-default-Solid font-heading text-4xl">
 							Hey,&nbsp;
-							{props.user.name ? props.user.name : props.user.email}
+							{data?.name ? data.name : data?.email}
 						</div>
 						<div className="w-full flex flex-col gap-5">
-							<Input type={"New name"}></Input>
+							<Input
+								type={"New name"}
+								name={inputName}
+								setValue={setInputName}
+								value={""}
+								placeholder={"New name"}
+								onClick={clickHandler}
+							></Input>
 							{/* <SmallButton label="Update" /> */}
 
 							<LargeButton
@@ -79,16 +109,18 @@ export default function Settings(props: buttonProps) {
 		</>
 	);
 }
+const getUserInfo = async (email: string) => {
+	const John: User = await axios
+		.get(`http://localhost:3000/api/userInfo?email=${email}`)
+		.then((res) => res.data);
+	return John;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const session = await getSession({ req: context.req });
-	const info: User = await axios
-		.get(`http://localhost:3000/api/userInfo?email=${session?.user?.email}`)
-		.then((res) => res.data);
-
 	return {
 		props: {
-			user: info,
+			user: session?.user,
 		},
 	};
 };

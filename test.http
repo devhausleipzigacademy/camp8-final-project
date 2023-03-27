@@ -39,3 +39,15 @@ Content-Type: application/json
     "name":"bla"
 }
 }
+
+###
+PATCH  http://localhost:3000/api/changeNameUser
+Content-Type: application/json
+
+{
+  "userId": "clf9koib200003h3xeqk5ikdt",
+  "name": "new nameee"
+}
+###
+
+GET http://localhost:3000/api/userInfo?email=franfonsecav@gmail.com
