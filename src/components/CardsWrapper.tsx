@@ -21,11 +21,21 @@ function yesOrNo(dataArray: UserLists, yesOrNo: boolean, pushTo: UserLists) {
   });
 }
 
+////Function to sort by (favorite === true) or (favorite === false)
+function takeThisFirst(dataArray: UserLists, pushTo: UserLists, firstId: string) {
+  dataArray.map((element: UserList) => {
+    if (element.id === firstId) {
+      pushTo.push(element);
+    }
+  });
+}
+
 ////Take all Data, call sorting algorithm on it, push to a new array, take each element of the array and return a Node
 const returnOrderedNodes = (allCardsData: UserLists, newCardId: string) => {
   const allCardsSorted: UserLists = [] as UserLists;
   yesOrNo(allCardsData, false, allCardsSorted);
   yesOrNo(allCardsData, true, allCardsSorted);
+  takeThisFirst(allCardsData, allCardsSorted, newCardId)
   if (allCardsData) {
     return allCardsSorted.map((element: UserList) => {
       return (
@@ -38,7 +48,7 @@ const returnOrderedNodes = (allCardsData: UserLists, newCardId: string) => {
 };
 
 ////Based on a user_id provided to You as prop while rendering
-////Component must first ask Api for all the Data, then pass them to 'returnOrderedNodes()'
+////Component must first ask Api for all the Data, then pass them to 'returnOrderedNodes()'.
 ///Api Call is wrapped into a mutation Hook, so we are going to call this mutation Hook instead of the Api itself
 ////Render a component with all Nodes included.
 type Props = {

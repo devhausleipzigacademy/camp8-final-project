@@ -223,6 +223,11 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
                     !cardData.listName ? "New Name" : cardData.listName
                   )}
                   className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+                  onBlur={(event) => {
+                    console.log("BLUR");
+                    updateListName(listId)
+                    setInputName(event.target.value)
+                  }}
                   onChange={(event) => {
                     setInputName(event.target.value);
                   }} //change value every Type
