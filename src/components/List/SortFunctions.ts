@@ -14,7 +14,7 @@ export function sortByDate(input: Item[]): Item[] {
     }
     return 0;
   });
-  return sorted;
+  return sorted.reverse();
 }
 
 export function sortByAlphabet(input: Item[]): Item[] {
