@@ -2,7 +2,7 @@ import { LargeButton } from "@/components/LargeButton";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import { getSession } from "next-auth/client";
+
 
 export default function Home() {
   return (
