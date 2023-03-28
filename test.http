@@ -21,8 +21,8 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "sage",
-  "inputList": "7ad3e6e6-81e9-4054-a951-286f598b89bd"
+  "query": "mozzarella cheese",
+  "inputList": "609df003-b3c1-4601-8053-cdc0d8c53e94"
 }
 
 ###

@@ -28,8 +28,18 @@ export default function ListItem(props: ListItemProps) {
   };
   const onDelete = () => {
     setSwiped(false);
-    props.onRemove();
+    axios.delete(`/api/deleteItem?id=${props.id}`);
+    refresh(slug);
   };
+  const checked = () => {
+    axios.patch("/api/patchItem", {
+      who: props.id,
+      what: "checked",
+      toWhat: !props.checked,
+    });
+    refresh(slug as string);
+  };
+
   const leadingActions = () => (
     <LeadingActions>
       <SwipeAction onClick={onCheck} Tag="div">
