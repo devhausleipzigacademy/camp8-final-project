@@ -1,4 +1,3 @@
-import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { prisma } from "src/pages/api/prisma";

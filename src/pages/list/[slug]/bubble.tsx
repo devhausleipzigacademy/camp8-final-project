@@ -225,36 +225,35 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params as Params;
   const items: Items[] = await axios
-    .get(`http://localhost:3000/api/ListItems?inputList=${slug}`)
-    .then((res) => res.data);
+    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
+    .then((res) => res.data.list.items)
+    .catch((err) => console.log(err));
+  console.log(items, "Print here");
 
-  const returnValue: Data = {
-    children: [],
-  };
-  const categories = items.map((x) => x.category);
-  const filtered = categories.filter(
-    (item, index) => categories.indexOf(item) === index
-  );
+  // const categories = items.map((x) => x.category);
+  // const filtered = categories.filter(
+  //   (item, index) => categories.indexOf(item) === index
+  // );
 
-  const children: Category[] = [];
-  filtered.map((categoryName) => {
-    const temp: Items[] = [];
-    items.map((item) => {
-      if (item.category === categoryName) {
-        temp.push(item);
-      }
-    });
-    children.push({
-      name: categoryName!,
-      children: temp,
-    });
-  });
-  const data = {
-    children: children,
-  };
+  // const children: Category[] = [];
+  // filtered.map((categoryName) => {
+  //   const temp: Items[] = [];
+  //   items.map((item) => {
+  //     if (item.category === categoryName) {
+  //       temp.push(item);
+  //     }
+  //   });
+  //   children.push({
+  //     name: categoryName!,
+  //     children: temp,
+  //   });
+  // });
+  // const data = {
+  //   children: children,
+  // };
   return {
     props: {
-      data,
+      // data,
       slug,
     },
   };

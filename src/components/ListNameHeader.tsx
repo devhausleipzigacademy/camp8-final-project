@@ -1,13 +1,13 @@
 import React from "react";
-import { FiChevronLeft } from "react-icons/fi"
+import { FiChevronLeft } from "react-icons/fi";
 import Link from "next/link";
 
 type ArrowButton = {
-  icon: string;
+  icon?: string;
   Listname: string;
 };
 
-export function ArrowButton(props: ArrowButton) {
+export function ListNameHeader(props: ArrowButton) {
   return (
     <div className="flex items-center gap-2">
       <Link href="/card">

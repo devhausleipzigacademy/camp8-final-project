@@ -61,10 +61,6 @@ async function main() {
       },
     });
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
   const John = await prisma.user.create({
     data: {
       name: "John Doe",
@@ -113,7 +109,7 @@ async function main() {
     });
   }
   console.log(
-  "Temporary User Created:\n",
+    "Temporary User Created:\n",
     `User ID : ${John.id}\n`,
     `List ID: ${John.lists[0].id}`
   );
