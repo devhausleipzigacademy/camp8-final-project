@@ -1,6 +1,7 @@
 import console from "console";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
+import { UserList, UserLists } from "../home/Types";
 import { prisma } from "./prisma";
 
 /*
@@ -40,18 +41,28 @@ export default async function handler(
     });
 
     if (userListsHttpRespond) {
+      const userLists: UserLists = [] as UserLists;
+
       userListsHttpRespond.forEach((element) => {
         console.log(JSON.stringify(element));
-        element.itemsChecked = element.items.filter((i) => {
-          if (i.checked === true) {
-            return true;
-          }
-        }).length;
-        element.itemsTotal = element.items.length;
 
-        delete element.items;
+
+        const newElement: UserList = {
+          id: element.id,
+          listName: element.listName as string,
+          createdAt: element.createdAt.toString(),
+          favorite: element.favorite,
+          itemsTotal: element.items.length,
+          itemsChecked: element.items.filter((i) => {
+            if (i.checked === true) {
+              return true;
+            }
+          }).length,
+        };
+        userLists.push({ ...newElement });
+        console.log(userLists);
       });
-      response.status(200).send(userListsHttpRespond);
+      response.status(200).send(userLists);
     } else {
       return [{}];
     }
