@@ -1,8 +1,8 @@
-import CardsWrapper from "@/components/CardsWrapper";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import CardsWrapper from "@/pages/home/CardsWrapper";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
 
 export default function Home() {
 
@@ -11,6 +11,7 @@ const queryClient = useQueryClient();
 
   const [lastCardCreated, setLastCardCreated] = useState("")
 
+  //create a binding to store the Name provided by event, obChange. Will be updated as typing. ApiChangeListName will be triggered when clicking enter
   const newCardId = (id_user: string) => {
     return axios
       .post(`http://localhost:3000/api/createList?id=${id_user}`)
@@ -30,12 +31,10 @@ const queryClient = useQueryClient();
 
   return (
     <>
-      <div className="max-w-screen-sm h-screen gap-2 justify-self-center">
+      <div className="max-w-screen-sm h-screen gap-2">
         <div className="">
-          {//TESTs:
-          }
           <button onClick={()=>{CreateNewCard("43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98")}}>HALLO TRY THIS</button>
-          <CardsWrapper user_id="43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98" newCardId={lastCardCreated} />
+          <CardsWrapper user_id="43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98" newCardId={lastCardCreated} setNewCardId={setLastCardCreated} />
         </div>
       </div>
     </>

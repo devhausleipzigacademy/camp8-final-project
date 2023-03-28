@@ -9,57 +9,61 @@ import "react-swipeable-list/dist/styles.css";
 import clsx from "clsx";
 import { Trash, Bookmark } from "react-feather";
 import "react-swipeable-list/dist/styles.css";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRef, useState } from "react";
+import {
+  ApiChangeListName,
+  ApiDeleteList,
+  ApiPnList,
+  ApiUnpinList,
+} from "../pages/home/apiCallsHome";
+import { CardProps } from "@/pages/home/homeTypes";
 
-//Default values for the new Card:
-// export const dummyCard = {
-//   id: "defaultId",
-//   listName: "My New List",
-//   createdAt: "",
-//   itemsTotal: 0,
-//   itemsChecked: 0,
-//   favorite: false,
-// };
-
-///TYPES
-export type UserList = {
-  id: string;
-  listName: string;
-  createdAt: string;
-  itemsTotal: number;
-  itemsChecked: number;
-  favorite: boolean;
-};
-export type CardProps = {
-  cardData: UserList;
-  newCardId: string;
-};
-
-export type UserLists = Array<UserList>;
-
-export function SingleCard({ cardData, newCardId }: CardProps) {
+export function SingleCard({
+  cardData,
+  newCardId,
+  setNewCardId,
+}: CardProps) {
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
   //current list Id
   const listId = cardData.id;
 
+  const isNewCard = (newCardId === cardData.id);
 
-  const thisIsANewCard = (newCardId === cardData.id)
-  console.log(cardData.id, thisIsANewCard)
+  //for clsx & functions for focus  / blur
+  const [isFocus, setIsFocus] = useState(false);
 
-  //COMPONENT FUNCTIONS:
+  //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
+  const [changingName, setChangingName] = useState(false);
 
-  //1. <Delete list
-  function ApiDeleteList(list_id: string) {
-    return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
-      method: "DELETE",
-    }).then((response) => {
-      return response;
-    });
-  }
+  const [inputName, setInputName] = useState("");
+
+  const inputWrapper = useRef(null);
+
+
+  //API CALLS WRAPPED IN MUTATIONS
+  const { mutate: updateListName } = useMutation(
+    (list_id: string) => ApiChangeListName(list_id, inputName),
+    {
+      onSuccess: () => queryClient.invalidateQueries(["cards"]), //how can I invalidate a single card?
+    }
+  );
+
+  const { mutate: pinList } = useMutation(
+    (list_id: string) => ApiPnList(list_id),
+    {
+      onSuccess: () => queryClient.invalidateQueries(["cards"]),
+    }
+  );
+
+  const { mutate: unpinList } = useMutation(
+    (list_id: string) => ApiUnpinList(list_id),
+    {
+      onSuccess: () => queryClient.invalidateQueries(["cards"]),
+    }
+  );
 
   const { mutate: deleteList } = useMutation(
     (list_id: string) => ApiDeleteList(list_id),
@@ -68,6 +72,21 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
     }
   );
 
+  //handling Pin/Unpin
+  function PinOrUnpin(list_id: string, pinned: boolean) {
+    pinned && pinList(list_id);
+    !pinned && unpinList(list_id);
+  }
+
+  const functionWrapper = (
+    passed_function: Function,
+    list_id: string,
+    pinned: boolean
+  ) => {
+    return passed_function(list_id, pinned);
+  };
+
+  //lirary Component
   const trailingActions = (list_id: string) => (
     <TrailingActions>
       <SwipeAction
@@ -86,81 +105,6 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
       </SwipeAction>
     </TrailingActions>
   ); //end of delete ist>
-
-  //2. <Change name
-
-  //create a binding to store the Name provided by event, obChange. Will be updated as typing. ApiChangeListName will be triggered when clicking enter
-  const [inputName, setInputName] = useState("");
-
-  //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
-  const [changingName, setChangingName] = useState(false);
-
-  function ApiChangeListName(list_id: string) {
-    return fetch("/api/updateListName", {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        newName: inputName,
-        id: list_id,
-      }),
-    }).then((response) => {
-      return response;
-    });
-  }
-
-  const { mutate: updateListName } = useMutation(
-    (list_id: string) => ApiChangeListName(list_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]), //how can I invalidate a single card?
-    }
-  );
-  //end of change Name>
-
-  //3. <Pin List
-  function ApiPnList(list_id: string) {
-    return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
-      method: "PATCH",
-    }).then((response) => {
-      return response.json();
-    });
-  }
-
-  const { mutate: pinList } = useMutation(
-    (list_id: string) => ApiPnList(list_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]),
-    }
-  );
-
-  function ApiUnpinList(list_id: string) {
-    return fetch(`http://localhost:3000/api/deleteList?id=${list_id}`, {
-      method: "PATCH",
-    }).then((response) => {
-      return response.json();
-    });
-  }
-
-  const { mutate: unpinList } = useMutation(
-    (list_id: string) => ApiUnpinList(list_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]),
-    }
-  );
-
-  function PinOrUnpin(list_id: string, pinned: boolean) {
-    pinned && pinList(list_id);
-    !pinned && unpinList(list_id);
-  }
-
-  const functionWrapper = (
-    passed_function: Function,
-    list_id: string,
-    pinned: boolean
-  ) => {
-    return passed_function(list_id, pinned);
-  };
 
   const leadingActions = (
     passed_function: Function,
@@ -197,13 +141,49 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
       >
         <div
           className={clsx(
-            "border border-secondary-transparent flex flex-col gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
-            thisIsANewCard
+            "border rounded-[14px] gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
+            isNewCard
               ? "text-primary-transparent"
-              : "text-primary-default-Solid"
+              : "text-primary-default-Solid",
+            isFocus
+              ? "border-primary-default-Solid"
+              : "border-secondary-transparent"
           )}
+          // onFocus={() => {setIsFocus(true)}}
+          onClick={() => {
+            console.log("217, your mouse clicked the component" + listId);
+            (inputWrapper.current! as HTMLInputElement).focus();
+            !isFocus && setIsFocus(true);
+            // !isNewCard && setNewCardId("");
+          }}
+          onBlur={() => {
+            console.log(
+              "204, your mouse did smth outside the component" + listId
+            );
+            (inputWrapper.current! as HTMLInputElement).focus();
+            setChangingName(false);
+            isFocus && setIsFocus(false);
+            (inputName!=="")&&updateListName(listId);
+            !isNewCard && setNewCardId("");
+          }}
+          onMouseLeave={() => {
+            console.log("210, your mouse left the component" + listId);
+            (inputWrapper.current! as HTMLInputElement).focus();
+            isFocus && setIsFocus(false);
+            (inputName!=="")&&updateListName(listId);
+            // !isNewCard && setNewCardId("");
+          }}
         >
-          <div className="flex flex-col gap-3 rounded-[14px]">
+          <div
+            className="flex flex-col gap-3 rounded-[14px]"
+            onFocus={() => {
+              !isFocus && setIsFocus(true);
+            }}
+            onClick={() => {
+              !isFocus && setIsFocus(true);
+            }}
+            ref={inputWrapper}
+          >
             <p className="button-bold font-semibold">
               {`${cardData.itemsChecked}/${cardData.itemsTotal} Items`}
             </p>
@@ -212,9 +192,8 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
                 onSubmit={(event) => {
                   event.preventDefault();
                   {
-                    !thisIsANewCard && ApiChangeListName(listId);
+                    updateListName(listId);
                   }
-                  // {createNewCard&&handleCreateNewCard(userId)};
                 }}
               >
                 <input
@@ -222,14 +201,10 @@ export function SingleCard({ cardData, newCardId }: CardProps) {
                   placeholder={clsx(
                     !cardData.listName ? "New Name" : cardData.listName
                   )}
-                  className="uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-                  onBlur={(event) => {
-                    setInputName(event.target.value);
-                    updateListName(listId);
-                  }}
+                  className={clsx("uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none")}
                   onChange={(event) => {
                     setInputName(event.target.value);
-                  }} //change value every Type
+                  }}
                 />
               </form>
             ) : (
