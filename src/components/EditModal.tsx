@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { prisma } from "@/pages/api/prisma";
 import { Category } from "@prisma/client";
 import axios from "axios";
-import { capitalizeCategory } from "./CapitalizeFunctions";
+import { capitalizeCategory } from "./";
 import {
   UseMutateFunction,
   useMutation,
@@ -139,7 +139,7 @@ const patchItem = async (item: string, what: string, toWhat: string) => {
         ? Number(toWhat)
         : toWhat,
   };
-  axios.patch("http://localhost:3000/api/patchItem", object);
+  axios.patch("http://localhost:3000/api/item", object);
 };
 
 const getCategories = async (

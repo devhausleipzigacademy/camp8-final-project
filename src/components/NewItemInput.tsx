@@ -45,7 +45,7 @@ export function NewItemInput(): JSX.Element {
     setInputValue(event.target.value);
     setQuery(event.target.value);
     await axios
-      .get(`http://localhost:3000/api/autocomplete?name=${query}`)
+      .get(`http://localhost:3000/api/item?name=${query}`)
       .then((res) => {
         setList(
           res.data.results.reverse().map((x: any) => capitalizeCategory(x.name))
@@ -62,7 +62,7 @@ export function NewItemInput(): JSX.Element {
       console.log(match);
 
       if (match) {
-        const response = await axios.post("http://localhost:3000/api/addItem", {
+        const response = await axios.post("http://localhost:3000/api/item", {
           query: match[3].toLowerCase(),
           number: match[1],
           units: match[2],

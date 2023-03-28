@@ -103,7 +103,7 @@ async function main() {
     "sfbaljsdhfljash",
   ];
   for (let i of exampleItems) {
-    await axios.post("http://localhost:3000/api/addItem", {
+    await axios.post("http://localhost:3000/api/item", {
       query: i,
       inputList: John.lists[0].id,
     });
