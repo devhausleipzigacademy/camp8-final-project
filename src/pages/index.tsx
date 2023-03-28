@@ -5,19 +5,6 @@ import Link from "next/link";
 import { getSession } from "next-auth/react";
 
 export default function Home() {
-	const { push } = useRouter();
-
-	const { data: session } = useSession();
-	useEffect(() => {
-		if (!session) {
-			push("/auth/signIn");
-		} else checkOrCreateUser(session);
-	}, [session]);
-
-	const handleSignOut = () => {
-		signOut({ redirect: true, callbackUrl: "/auth/signIn" });
-	};
-
 	return (
 		<>
 			<Head>
@@ -26,11 +13,26 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1 className="text-red-600 text-4xl font-bold flex justify-center">
-				Landing Page
+			<div className="flex flex-col pt-12 justify-center items-center">
+				<Image
+					src="/images/listfull-logo.png"
+					alt=""
+					width={218}
+					height={186}
+				/>
+			</div>
+			<h1 className=" text-text-typo text-splash px-8">
+				HI THERE! WELCOME TO SHOPPING HELPER
 			</h1>
-			<button onClick={() => push("/auth/signIn")}>Sign In</button>
-			<button onClick={handleSignOut}>Sign Out</button>
+			<div className="px-8 pt-10">
+				<Link href={"/auth/signIn"}>
+					<LargeButton
+						variant={"primary"}
+						label={"get started"}
+						disabled={false}
+					></LargeButton>
+				</Link>
+			</div>
 		</>
 	);
 }
