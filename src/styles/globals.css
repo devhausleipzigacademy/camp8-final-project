@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-slate-300:hover {
+  background-color: #cbd5e0;
+}
+
 :root {
   --ui-size: 14px;
   font-size: var(--ui-size);
