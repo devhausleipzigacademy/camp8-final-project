@@ -1,7 +1,7 @@
 import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { prisma } from "..";
+import { prisma } from "src/pages/api/prisma";
 var stringSimilarity = require("string-similarity");
 
 export function sortByRating(input: Array<{ target: string; rating: number }>) {
@@ -57,7 +57,7 @@ export default async function handler(
 
     response
       .status(200)
-      .json({ ...result, top_rating: sorted_matches[0].rating });
+      .json({ results: result, top_rating: sorted_matches[0].rating });
   }
   response.status(404).send(`Invalid method: ${request.method}`);
 }
