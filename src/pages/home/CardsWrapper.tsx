@@ -1,12 +1,9 @@
 //import functions that return mutation
-import { askApiForCards } from "@/pages/home/apiCallsHome";
-import { UserLists, UserList, CardsWrapperProps } from "@/pages/home/homeTypes";
+import { askApiForCards } from "@/pages/home/apiCalls";
+import { UserLists, UserList, CardsWrapperProps } from "@/pages/home/Types";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { SingleCard } from "../../components/SingleCard";
-
-//TO GET ALL THE LISTS
-////Send request to the backend
 
 ////Function to sort by (favorite === true) or (favorite === false)
 function takeThisFirst(
@@ -71,6 +68,9 @@ export default function CardsWrapper({
   newCardId,
   setNewCardId,
 }: CardsWrapperProps) {
+
+  const router = useRouter();
+
   const { data: allCards } = useQuery<UserLists>(
     ["cards"],
     () => askApiForCards(user_id),
@@ -78,8 +78,6 @@ export default function CardsWrapper({
       enabled: Boolean(user_id),
     }
   );
-
-  const router = useRouter();
 
   if (!allCards) {
     return <div>"Waiting for data"</div>;

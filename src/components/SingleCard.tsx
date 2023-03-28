@@ -16,8 +16,8 @@ import {
   ApiDeleteList,
   ApiPnList,
   ApiUnpinList,
-} from "../pages/home/apiCallsHome";
-import { CardProps } from "@/pages/home/homeTypes";
+} from "../pages/home/apiCalls";
+import { CardProps } from "@/pages/home/Types";
 
 export function SingleCard({ cardData, newCardId, setNewCardId }: CardProps) {
   //link to queryClient in app.tsx
