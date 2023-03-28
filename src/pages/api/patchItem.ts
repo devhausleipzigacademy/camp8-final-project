@@ -21,7 +21,7 @@ export default async function handler(
           data: {
             defaultCategory: {
               connect: {
-                id: toWhat as string,
+                name: toWhat as string,
               },
             },
           },

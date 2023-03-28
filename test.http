@@ -21,8 +21,8 @@ POST http://localhost:3000/api/addItem
 Content-Type: application/json
 
 {
-  "query": "sdflknkljasdfjkdsa",
-  "inputList": "d996354b-3ddc-49a9-92d7-37a90fed8a93"
+  "query": "mozzarella cheese",
+  "inputList": "609df003-b3c1-4601-8053-cdc0d8c53e94"
 }
 
 ###

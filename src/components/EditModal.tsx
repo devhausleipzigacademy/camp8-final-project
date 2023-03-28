@@ -20,11 +20,10 @@ type InputProps = {
   id: string;
   setDetails: Dispatch<SetStateAction<boolean>>;
 };
+export const units = ["ml", "l", "g", "kg", "cups"];
 
 export default function EditModal({ id, setDetails }: InputProps) {
-  let [quantityInput, setQuantityInput] = useState<Category[]>([
-    { id: "0", name: "Placeholder" },
-  ]);
+  let [quantityInput, setQuantityInput] = useState<string[]>(["Placeholder"]);
   const { data } = useQuery(["categories"], () =>
     getCategories(setQuantityInput)
   );
@@ -32,32 +31,7 @@ export default function EditModal({ id, setDetails }: InputProps) {
   let categories = [
     {
       name: "Quantity",
-      values: [
-        {
-          id: "1",
-          name: "1",
-        },
-        {
-          id: "2",
-          name: "2",
-        },
-        {
-          id: "3",
-          name: "3",
-        },
-        {
-          id: "4",
-          name: "4",
-        },
-        {
-          id: "5",
-          name: "5",
-        },
-        {
-          id: "6",
-          name: "6",
-        },
-      ],
+      values: ["1", "2", "3", "4", "5", "6"],
     },
     { name: "ImageUrl", values: [] },
     {
@@ -68,28 +42,7 @@ export default function EditModal({ id, setDetails }: InputProps) {
     },
     {
       name: "Unit",
-      values: [
-        {
-          id: "1",
-          name: "ml (Mililiters)",
-        },
-        {
-          id: "2",
-          name: "l (Liters)",
-        },
-        {
-          id: "3",
-          name: "g (Grams)",
-        },
-        {
-          id: "4",
-          name: "kg (Kilograms)",
-        },
-        {
-          id: "5",
-          name: "cups",
-        },
-      ],
+      values: units,
     },
   ];
 
@@ -142,23 +95,16 @@ export default function EditModal({ id, setDetails }: InputProps) {
                 )}
                 {category.values.map((option) => (
                   <li
-                    key={option.id}
+                    key={option}
                     className=" rounded-md p-3 hover:bg-secondary-transparent"
                   >
                     <h3
                       className="text-sm font-medium leading-5"
                       onClick={() =>
-                        clickOnSelect(
-                          category.name,
-                          category.name === "Category"
-                            ? option.id
-                            : option.name,
-                          id,
-                          setDetails
-                        )
+                        clickOnSelect(category.name, option, id, setDetails)
                       }
                     >
-                      {option.name}
+                      {option}
                     </h3>
                   </li>
                 ))}
@@ -197,17 +143,10 @@ const patchItem = async (item: string, what: string, toWhat: string) => {
 };
 
 const getCategories = async (
-  setQuantityInput: Dispatch<SetStateAction<Category[]>>
+  setQuantityInput: Dispatch<SetStateAction<string[]>>
 ) => {
   return await axios.get("http://localhost:3000/api/categories").then((res) => {
-    let test: Category[] = res.data;
-    setQuantityInput(
-      test.map((x) => {
-        return {
-          id: x.id,
-          name: capitalizeCategory(x.name),
-        };
-      })
-    );
+    let test: string[] = res.data;
+    setQuantityInput(test);
   });
 };

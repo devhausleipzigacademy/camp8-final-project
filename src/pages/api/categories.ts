@@ -13,7 +13,7 @@ export default async function handler(
   if (request.method === "GET") {
     try {
       const test = await prisma.category.findMany({});
-      response.status(200).send(test);
+      response.status(200).send(test.map((x) => x.name));
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
