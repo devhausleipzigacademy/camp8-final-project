@@ -44,7 +44,7 @@ export function NewItemInput({ listID }: InputProps) {
           res.data.results.reverse().map((x: any) => capitalizeCategory(x.name))
         );
       });
-    refresh(listID);
+    // refresh(listID);
   };
 
   const onSelect = async (value: string) => {
@@ -55,18 +55,27 @@ export function NewItemInput({ listID }: InputProps) {
       console.log(match);
 
       if (match) {
-        const response = await axios.post("http://localhost:3000/api/addItem", {
-          query: match[3].toLowerCase(),
-          number: match[1],
-          units: match[2],
-          inputList: listID,
-        });
+        const response = await axios
+          .post("http://localhost:3000/api/addItem", {
+            query: match[3].toLowerCase(),
+            number: match[1],
+            units: match[2],
+            inputList: listID,
+          })
+          .then((res) => res.data);
+
+        refresh(listID);
+
+        // Clear the value of the input state
+        setInputValue("");
+        console.log(String(response));
+
+        setTimeout(() => {
+          console.log("This is after some time");
+          const bla = document.getElementById(String(response));
+          bla?.scrollIntoView({ block: "end", behavior: "smooth" });
+        }, 500);
       }
-
-      refresh(listID);
-
-      // Clear the value of the input state
-      setInputValue("");
     } catch (error) {
       // If there was an error, show an error message
       alert(`Failed to add ${value} to the database: ${error}`);
