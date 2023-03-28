@@ -5,6 +5,7 @@ import { Transition } from "@headlessui/react";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import router from "next/router";
+import Link from "next/link";
 
 type buttonProps = {
 	variant: "primary";
@@ -14,14 +15,12 @@ type buttonProps = {
 
 export default function Settings(props: buttonProps) {
 	const [email, setEmail] = useState("");
+
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		signIn("email", { email });
+		signIn("email", { email: email, callbackURL: "http://localhost:3000/" });
 	};
-	const goBack = () => {
-		router.push("/account");
-	};
-	const emailCheck = new RegExp(`[A-z]+@[a-z]+.com`);
+	const emailCheck = new RegExp(`[A-z]+@[a-z]+.[a-zA-Z]{2,3}$`);
 
 	return (
 		<>
@@ -31,14 +30,13 @@ export default function Settings(props: buttonProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="px-8 flex flex-col bg-grad-frame">
+			<div className="px-8 flex flex-col">
 				<header className="w-full flex items-center h-10 pt-8">
-					<a href="" onClick={goBack}>
+					<Link href="/accountAndSettings">
 						<FiChevronLeft size={28} />
-					</a>
+					</Link>
 				</header>
 				<div className="w-full h-full flex-grow flex flex-col justify-around">
-					<div className="flex bg-slate-400 w-full ">Account vs settings</div>
 					<div className="flex h-full w-full flex-col items-center gap-5">
 						{/* This section will change depending on the account status of the User */}
 						<div>
@@ -73,7 +71,4 @@ export default function Settings(props: buttonProps) {
 			</div>
 		</>
 	);
-}
-function setEmail(value: string): void {
-	throw new Error("Function not implemented.");
 }

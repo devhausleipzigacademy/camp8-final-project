@@ -6,44 +6,30 @@
 
 /* Setting default text colour */
 @layer base {
-  html {
-    @apply text-text-typo;
-  }
+	html {
+		@apply text-text-typo;
+	}
 }
 
 @layer components {
 	.text-title {
-
-=========
 		font-size: 58px;
->>>>>>>>> Temporary merge branch 2
 		line-height: 72px;
 		@apply font-heading;
 	}
 	.text-primary {
-<<<<<<<<< Temporary merge branch 1
 		font-size: 18pt;
-=========
-		font-size: 18px;
->>>>>>>>> Temporary merge branch 2
 		line-height: 22px;
 	}
 
 	.text-links {
-<<<<<<<<< Temporary merge branch 1
-		font-size: 14pt;
-=========
 		font-size: 14px;
->>>>>>>>> Temporary merge branch 2
 		font-weight: 600;
 		line-height: 17px;
 	}
 	.text-secondary {
 		font-size: 14px;
-<<<<<<<<< Temporary merge branch 1
 		font-weight: 300;
-=========
->>>>>>>>> Temporary merge branch 2
 		line-height: 17px;
 	}
 

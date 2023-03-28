@@ -9,11 +9,11 @@ export default async function handler(
 ) {
 	if (request.method === "PATCH") {
 		try {
-			const { name, userId } = inputQuerySchema.parse(request.body);
+			const { name, email } = inputQuerySchema.parse(request.body);
 
 			const updateUser = await prisma.user.update({
 				where: {
-					id: userId,
+					email: email,
 				},
 				data: {
 					name: name,
@@ -31,5 +31,5 @@ export default async function handler(
 }
 const inputQuerySchema = z.object({
 	name: z.string(),
-	userId: z.string(),
+	email: z.string(),
 });

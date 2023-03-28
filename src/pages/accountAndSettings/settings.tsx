@@ -1,5 +1,10 @@
+import { ToggleDarkmode } from "@/components/ToggleDarkmode";
+import { ToggleView } from "@/components/ToggleView";
 import Head from "next/head";
-import TabAccountSetting from "@/layout/AccountSettingsLayout";
+import Link from "next/link";
+import { FiChevronLeft } from "react-icons/fi";
+
+//
 
 export default function Settings() {
 	return (
@@ -10,12 +15,10 @@ export default function Settings() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1 className="text-4xl font-bold flex justify-center">Settings </h1>
-			<div className="">
-				<div className="flex justify-center text-text-white">
-					<TabAccountSetting />
-				</div>
-			</div>
+
+			<hr className="my-5 bg-primary-transparent" />
+			<ToggleDarkmode />
+			<ToggleView />
 		</>
 	);
 }

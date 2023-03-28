@@ -17,7 +17,7 @@ export default function SignIn() {
 		e.preventDefault();
 		signIn("email", { email });
 	};
-	const emailCheck = new RegExp(`[A-z]+@[a-z]+.com`);
+	const emailCheck = new RegExp(`[A-z]+@[a-z]+.[a-zA-Z]{2,3}$`);
 	console.log(session);
 
 	if (session) {

@@ -33,7 +33,7 @@ export function LargeButton({
 			<div className="h-6 aspect-square"></div>
 			{label}
 			{variant === "primary" && (
-				<MdOutlineLock className="button-large aspect-square" />
+				<FiLock className="button-large aspect-square" />
 			)}
 		</button>
 	);
