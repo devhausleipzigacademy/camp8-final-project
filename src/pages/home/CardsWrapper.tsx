@@ -38,21 +38,21 @@ function filterFavorites(
 ////Take all Data, call sorting algorithm on it, push to a new array, take each element of the array and return a Node
 const returnOrderedNodes = (
   allCardsData: UserLists,
-  newCardId: string,
-  setNewCardId: Function
+  lastCardCreated: string,
+  setLastCardCreated: Function
 ) => {
   const allCardsSorted: UserLists = [] as UserLists;
-  filterFavorites(allCardsData, false, allCardsSorted, newCardId);
-  filterFavorites(allCardsData, true, allCardsSorted, newCardId);
-  takeThisFirst(allCardsData, allCardsSorted, newCardId);
+  filterFavorites(allCardsData, false, allCardsSorted, lastCardCreated);
+  filterFavorites(allCardsData, true, allCardsSorted, lastCardCreated);
+  takeThisFirst(allCardsData, allCardsSorted, lastCardCreated);
   if (allCardsData) {
     return allCardsSorted.map((element: UserList) => {
       return (
         <SingleCard
           cardData={element}
           key={element.id}
-          newCardId={newCardId}
-          setNewCardId={setNewCardId}
+          newCardId={lastCardCreated}
+          setNewCardId={setLastCardCreated}
         />
       );
     });

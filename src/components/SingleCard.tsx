@@ -19,18 +19,16 @@ import {
 } from "../pages/home/apiCallsHome";
 import { CardProps } from "@/pages/home/homeTypes";
 
-export function SingleCard({
-  cardData,
-  newCardId,
-  setNewCardId,
-}: CardProps) {
+export function SingleCard({ cardData, newCardId, setNewCardId }: CardProps) {
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
   //current list Id
   const listId = cardData.id;
 
-  const isNewCard = (newCardId === cardData.id);
+  const isNewCard = newCardId === cardData.id;
+
+  const [leftByUser, setLeftByUser] = useState("");
 
   //for clsx & functions for focus  / blur
   const [isFocus, setIsFocus] = useState(false);
@@ -41,7 +39,6 @@ export function SingleCard({
   const [inputName, setInputName] = useState("");
 
   const inputWrapper = useRef(null);
-
 
   //API CALLS WRAPPED IN MUTATIONS
   const { mutate: updateListName } = useMutation(
@@ -84,6 +81,22 @@ export function SingleCard({
     pinned: boolean
   ) => {
     return passed_function(list_id, pinned);
+  };
+
+  //handling microinteraction
+  //Deselecting a Card
+
+  const select = () => {
+    (inputWrapper.current! as HTMLInputElement).focus();
+    !isFocus && setIsFocus(true);
+  };
+
+  const deselect = () => {
+    (inputWrapper.current! as HTMLInputElement).focus();
+    isFocus && setIsFocus(false);
+    inputName !== "" && updateListName(listId);
+    setChangingName(false);
+    isNewCard && leftByUser && setNewCardId("");
   };
 
   //lirary Component
@@ -151,27 +164,14 @@ export function SingleCard({
           )}
           // onFocus={() => {setIsFocus(true)}}
           onClick={() => {
-            console.log("217, your mouse clicked the component" + listId);
-            (inputWrapper.current! as HTMLInputElement).focus();
-            !isFocus && setIsFocus(true);
+            select();
             // !isNewCard && setNewCardId("");
           }}
           onBlur={() => {
-            console.log(
-              "204, your mouse did smth outside the component" + listId
-            );
-            (inputWrapper.current! as HTMLInputElement).focus();
-            setChangingName(false);
-            isFocus && setIsFocus(false);
-            (inputName!=="")&&updateListName(listId);
-            !isNewCard && setNewCardId("");
+            deselect();
           }}
           onMouseLeave={() => {
-            console.log("210, your mouse left the component" + listId);
-            (inputWrapper.current! as HTMLInputElement).focus();
-            isFocus && setIsFocus(false);
-            (inputName!=="")&&updateListName(listId);
-            // !isNewCard && setNewCardId("");
+            deselect();
           }}
         >
           <div
@@ -193,6 +193,7 @@ export function SingleCard({
                   event.preventDefault();
                   {
                     updateListName(listId);
+                    deselect();
                   }
                 }}
               >
@@ -201,7 +202,9 @@ export function SingleCard({
                   placeholder={clsx(
                     !cardData.listName ? "New Name" : cardData.listName
                   )}
-                  className={clsx("uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none")}
+                  className={clsx(
+                    "uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
+                  )}
                   onChange={(event) => {
                     setInputName(event.target.value);
                   }}

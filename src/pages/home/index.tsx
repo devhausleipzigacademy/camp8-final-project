@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 
-
 export default function Home() {
 
 //link to queryClient in app.tsx
@@ -17,7 +16,7 @@ const queryClient = useQueryClient();
       .post(`http://localhost:3000/api/createList?id=${id_user}`)
       .then((res) => {
         setLastCardCreated(res.data.id);
-        return res.data.id;
+        // return res.data.id;
       });
   };
 
