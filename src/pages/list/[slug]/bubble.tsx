@@ -4,6 +4,8 @@ import { forceCollide, forceManyBody } from "d3-force";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
+import { ListNameHeader } from "@/components/ListNameHeader";
+import { prisma } from "@/pages/api/prisma";
 
 // create types
 
@@ -21,6 +23,7 @@ type Data = {
 interface Props {
   data: Data;
   slug: string;
+  name: string;
 }
 
 // create "Bubble" component. Props are defined at the bottom
@@ -33,7 +36,7 @@ const toggleButton = async (id: string, checked: boolean, slug: string) => {
   });
 };
 
-export default function Bubble({ data, slug }: Props) {
+export default function Bubble({ data, slug, name }: Props) {
   const d3Container = useRef(null);
   useEffect(() => {
     console.log(data + "data");
@@ -207,14 +210,19 @@ export default function Bubble({ data, slug }: Props) {
       .attr("class", "bar-text");
   }, []);
   return (
-    <div className="h-full w-full flex justify-center flex-col bg-grad-frame">
+    <div className="h-screen w-screen flex justify-center flex-col bg-grad-frame">
+      <ListNameHeader
+        Listname={name}
+        classNames="mt-4"
+        linkTo={`/list/${slug}`}
+      />
       <div>
         <svg ref={d3Container} width="100vw" height="100vh"></svg>
-        <div className="flex items-center justify-center">
+        {/* <div className="flex items-center justify-center">
           <button className="flex h-20 w-20 border-2 rounded-full justify-center items-center">
             Add item
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -226,35 +234,41 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params as Params;
   const items: Items[] = await axios
     .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
-    .then((res) => res.data.list.items)
-    .catch((err) => console.log(err));
-  console.log(items, "Print here");
+    .then((res) => res.data);
 
-  // const categories = items.map((x) => x.category);
-  // const filtered = categories.filter(
-  //   (item, index) => categories.indexOf(item) === index
-  // );
+  const categories = items.map((x) => x.category);
+  const filtered = categories.filter(
+    (item, index) => categories.indexOf(item) === index
+  );
 
-  // const children: Category[] = [];
-  // filtered.map((categoryName) => {
-  //   const temp: Items[] = [];
-  //   items.map((item) => {
-  //     if (item.category === categoryName) {
-  //       temp.push(item);
-  //     }
-  //   });
-  //   children.push({
-  //     name: categoryName!,
-  //     children: temp,
-  //   });
-  // });
-  // const data = {
-  //   children: children,
-  // };
+  const children: Category[] = [];
+  filtered.map((categoryName) => {
+    const temp: Items[] = [];
+    items.map((item) => {
+      if (item.category === categoryName) {
+        temp.push(item);
+      }
+    });
+    children.push({
+      name: categoryName!,
+      children: temp,
+    });
+  });
+  const data = {
+    children: children,
+  };
+
+  const list = await prisma.list.findFirst({
+    where: {
+      id: slug as string,
+    },
+  });
+  const name = list?.listName;
   return {
     props: {
-      // data,
+      data,
       slug,
+      name,
     },
   };
 };

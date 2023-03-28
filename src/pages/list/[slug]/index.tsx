@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { prisma } from "@/pages/api/prisma";
 import { FullHeader } from "@/components/FullHeader";
 import { ListNameHeader } from "@/components/ListNameHeader";
-import { Item } from "@prisma/client";
+import { Item, List } from "@prisma/client";
 
 export type Category = {
   id: string;
@@ -22,18 +22,7 @@ export type Category = {
   item: Item[];
 };
 
-export type List = {
-  id: string;
-  listName: string | null;
-  createdAt: Date;
-  userIdentifier: string;
-  favorite: boolean | null;
-  items: Item[];
-};
-
 export type InputProps = {
-  list: List;
-  category: Category[];
   slug: string;
   name: string;
 };
@@ -55,13 +44,13 @@ export default function Home({ slug, name }: InputProps) {
 
   switch (sortBy) {
     case "date":
-      list = sortByDate(data.list.items);
+      list = sortByDate(data);
       break;
     case "alphabetical":
-      list = sortByAlphabet(data.list.items);
+      list = sortByAlphabet(data);
       break;
     case "category":
-      list = sortByCategory(data.list.items);
+      list = sortByCategory(data);
       break;
   }
 
@@ -70,9 +59,14 @@ export default function Home({ slug, name }: InputProps) {
       id="List-page"
       className="p-6 flex flex-col justify-between h-screen gap-2 relative"
     >
-      <ListNameHeader Listname={name} />
+      <ListNameHeader Listname={name} classNames="" linkTo="home" />
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-      <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
+      <SortBySwitches
+        className=""
+        sortBy={sortBy}
+        setSort={setSortBy}
+        slug={slug}
+      />
       <ItemListMapper list={list} sortBy={sortBy} className="overflow-y-auto" />
       <NewItemInput listID={slug} />
     </div>
@@ -101,5 +95,5 @@ export { getServerSideProps };
 export const getListData = async (slug: string) => {
   return (await axios
     .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
-    .then((res) => res.data)) as InputProps;
+    .then((res) => res.data)) as Item[];
 };

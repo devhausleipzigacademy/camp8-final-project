@@ -21,20 +21,7 @@ export default async function handler(
         },
       });
 
-      const items = await prisma.category.findMany({
-        where: {
-          item: {
-            some: {
-              listIdentifier: inputList,
-            },
-          },
-        },
-        include: {
-          item: true,
-        },
-      });
-      const whatever = { list: list, category: items };
-      response.status(200).send(whatever);
+      response.status(200).send(list?.items);
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
