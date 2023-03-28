@@ -4,6 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-slate-300:hover {
+	background-color: #cbd5e0;
+}
+
+:root {
+	--ui-size: 14px;
+	font-size: var(--ui-size);
+}
+
+.bg-primary-default-background {
+	background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
+}
+
+.big {
+	font-size: 22px;
+}
+
+.bg-primary-frame {
+	background: linear-gradient(
+		179.79deg,
+		#e6e8ff 0.18%,
+		#eae7ff 18.44%,
+		#ebecff 40.25%,
+		#ebf4ff 60.18%,
+		#edf8ff 81.34%,
+		#f4fdfb 99.82%
+	);
+}
+
+.bg-ux-inactive {
+	background: linear-gradient(
+			114.19deg,
+			rgba(119, 81, 199, 0.2) 26.22%,
+			rgba(81, 107, 199, 0.2) 135.54%
+		),
+		rgba(190, 190, 190, 0.8);
+}
+
 /* Setting default text colour */
 @layer base {
 	html {
@@ -12,13 +50,21 @@
 }
 
 @layer components {
+	.text-splash {
+		font-family: Staatliches;
+		font-size: 3.625rem;
+		font-weight: 400;
+		line-height: 4.5rem;
+		text-align: center;
+	}
+
 	.text-title {
 		font-size: 58px;
 		line-height: 72px;
 		@apply font-heading;
 	}
 	.text-primary {
-		font-size: 18pt;
+		font-size: 18px;
 		line-height: 22px;
 	}
 
