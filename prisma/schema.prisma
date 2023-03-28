@@ -105,8 +105,14 @@ model List {
 
 model Item {
   id                  String  @id @default(uuid())
-  customName          String?
+
+  name                String
   createdAt           DateTime   @default(now())
+  imageUrl            String
+  
+  category            String
+  defaultCategory     Category @relation(fields: [category], references: [name])
+
   quantity            Float?
   unit                String?
   //entering correct listIdentifier will Link to a list
@@ -115,29 +121,26 @@ model Item {
   
   checked             Boolean @default(false)
 
-  //this userItem is based on
-  masterItemId        String?
-  masterItem          MasterItem ? @relation(fields: [masterItemId], references: [id])
-  customCategoryId    String?
-  customCategory      Category? @relation(fields: [customCategoryId], references: [id])
   @@map("Items")
 }
 
 model MasterItem {
   id                  String @id @default(uuid())
   name                String @unique
-  imageUrl            String?
+  imageUrl            String
+
   category            String?
-  defaultCategory     Category? @relation(fields: [category], references: [name])
-  approved            Boolean
-  item                Item[] //opposite Relation
+
+  approved            Boolean @default(true)
+
   @@map("MasterItems")
 }
 
 model Category {
   id                  String  @id @default(uuid())
   name                String  @unique
-  masterItem          MasterItem[] //opposite relation to defaultCategory in MasterItem
-  userItem            Item[] //opposite relation to customCategory in userItem
+  item          Item[] //opposite relation to defaultCategory in MasterItem
+
   @@map("Categories")
 }
+

@@ -1,41 +1,65 @@
 import { Transition } from "@headlessui/react";
-import Image from "next/image";
-import { useState } from "react";
-import { Tick } from "./Tick";
+import { useEffect, useState } from "react";
+import EditModal from "./EditModal";
 import {
   LeadingActions,
-  SwipeableList,
   SwipeableListItem,
   SwipeAction,
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
+import axios from "axios";
+import clsx from "clsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getListData } from "@/pages/list/[slug]";
+import { useRouter } from "next/router";
 
 type ListItemProps = {
   name: string;
   image: string;
-  quantity?: string;
+  id: string;
+  quantity?: number | null;
+  unit?: string | null;
   checked: boolean;
-  onRemove: () => void;
 };
-// onRemove is added so higher level page can trigger a function when an item is removed.
 export default function ListItem(props: ListItemProps) {
-  const [checked, setChecked] = useState(false);
+  const router = useRouter();
+  const { slug } = router.query;
+
+  const queryClient = useQueryClient();
+  const { mutate: refresh } = useMutation(getListData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["data"]);
+    },
+  });
+
+  const [details, setDetails] = useState(false);
+  useEffect(() => {
+    refresh(slug as string);
+  }, [details]);
+
   const [swiped, setSwiped] = useState(true);
-  const onCheck = () => {
-    setChecked(!checked);
-  };
-  const onDelete = () => {
+  const onDelete = (slug: string) => {
     setSwiped(false);
-    props.onRemove();
+    axios.delete(`/api/deleteItem?id=${props.id}`);
+    refresh(slug);
   };
+  const checked = () => {
+    axios.patch("/api/patchItem", {
+      who: props.id,
+      what: "checked",
+      toWhat: !props.checked,
+    });
+    refresh(slug as string);
+  };
+
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={onCheck} Tag="div">
+      <SwipeAction onClick={checked} Tag="div">
         <div
           id="Tick_Action"
-          className="w-full h-full bg-ux-success button-bold text-text-white flex items-center"
+          className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
         >
           Tick
         </div>
@@ -44,7 +68,7 @@ export default function ListItem(props: ListItemProps) {
   );
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={onDelete} Tag="div">
+      <SwipeAction onClick={() => onDelete(slug as string)} Tag="div">
         <div
           id="Delete_Action"
           className=" bg-ux-error button-bold text-text-white flex items-center justify-center text-left"
@@ -56,68 +80,94 @@ export default function ListItem(props: ListItemProps) {
   );
 
   return (
-    <Transition
-      show={swiped}
-      appear={true}
-      enter="transform transition duration-[400ms]"
-      enterFrom="opacity-0 scale-y-0"
-      enterTo="opacity-100 scale-y-100"
-      leave="transform duration-[400ms] transition ease-in-out"
-      leaveFrom="opacity-100 scale-y-100 "
-      leaveTo="opacity-0 scale-y-0 "
-    >
-      <SwipeableListItem
-        className="max-w-[334px] h-16 bg-primary-transparent border border-secondary-default rounded-md flex flex-row"
-        leadingActions={leadingActions()}
-        trailingActions={trailingActions()}
-        threshold={0.5}
+    <>
+      <Transition
+        show={swiped}
+        appear={true}
+        enter="transform transition duration-[400ms]"
+        enterFrom="opacity-0 scale-y-0"
+        enterTo="opacity-100 scale-y-100"
+        leave="transform duration-[800ms] transition ease-in-out"
+        leaveFrom="opacity-100 scale-y-100 "
+        leaveTo="opacity-0 scale-y-0"
+        className={clsx(details ? "z-20 relative" : "")}
       >
-        <img
-          className="h-full aspect-square"
-          src={
-            props.image
-              ? props.image
-              : "http://cdn.onlinewebfonts.com/svg/img_275679.png"
-          }
-          alt="http://cdn.onlinewebfonts.com/svg/img_275679.png"
-        />
-        <div className="flex p-2 justify-between items-center flex-grow">
-          <p className="text-text-typo text-primary">{props.name}</p>
-          <p className="text-secondary font-thin">{props.quantity}</p>
-          <div className="relative w-10 h-8">
-            <Transition
-              show={checked}
-              enter="transform transition duration-[400ms]"
-              enterFrom="opacity-0 rotate-[-120deg] scale-50"
-              enterTo="opacity-100 rotate-0 scale-100"
-              leave="transform duration-200 transition ease-in-out"
-              leaveFrom="opacity-100 rotate-0 scale-100 "
-              leaveTo="opacity-0 scale-95 "
-              className="absolute"
-            >
-              <FiCheckSquare
-                className="w-8 h-8 text-primary-default-Solid"
-                onClick={onCheck}
-              />
-            </Transition>
-            <Transition
-              show={!checked}
-              enter="transform transition duration-[400ms]"
-              enterFrom="opacity-0 rotate-[-120deg] scale-50"
-              enterTo="opacity-100 rotate-0 scale-100"
-              leave="transform duration-200 transition ease-in-out"
-              leaveFrom="opacity-100 rotate-0 scale-100 "
-              leaveTo="opacity-0 scale-95 "
-              className="absolute top-0 left-0"
-            >
-              <FiSquare
-                className="w-8 h-8 text-primary-default-Solid"
-                onClick={onCheck}
-              />
-            </Transition>
+        <SwipeableListItem
+          className="bg-primary-transparent max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
+          leadingActions={leadingActions()}
+          trailingActions={trailingActions()}
+          threshold={0.5}
+        >
+          <div className="flex justify-center items-center h-full bg-text-white p-2">
+            <img className="h-full aspect-square" src={props.image} />
           </div>
-        </div>
-      </SwipeableListItem>
-    </Transition>
+          <p className="text-text-typo text-primary pl-4">{props.name}</p>
+          <div className="flex p-2 justify-end gap-6 items-center flex-grow">
+            <div
+              className=" flex gap-2"
+              onClick={() => {
+                setDetails(!details);
+                handleClick();
+              }}
+            >
+              <p className="text-secondary font-thin">
+                {props.quantity ? props.quantity : "amount"}
+              </p>
+              {props.unit && (
+                <p className="text-secondary font-thin">{props.unit}</p>
+              )}
+            </div>
+            <div className="relative w-10 h-8">
+              <Transition
+                show={props.checked}
+                enter="transform transition duration-[400ms]"
+                enterFrom="opacity-0 rotate-[-120deg] scale-50"
+                enterTo="opacity-100 rotate-0 scale-100"
+                leave="transform duration-200 transition ease-in-out"
+                leaveFrom="opacity-100 rotate-0 scale-100 "
+                leaveTo="opacity-0 scale-95 "
+                className="absolute"
+              >
+                <FiCheckSquare
+                  className="w-8 h-8 text-primary-default-Solid"
+                  onClick={checked}
+                />
+              </Transition>
+              <Transition
+                show={!props.checked}
+                enter="transform transition duration-[400ms]"
+                enterFrom="opacity-0 rotate-[-120deg] scale-50"
+                enterTo="opacity-100 rotate-0 scale-100"
+                leave="transform duration-200 transition ease-in-out"
+                leaveFrom="opacity-100 rotate-0 scale-100 "
+                leaveTo="opacity-0 scale-95 "
+                className="absolute top-0 left-0"
+              >
+                <FiSquare
+                  className="w-8 h-8 text-primary-default-Solid"
+                  onClick={checked}
+                />
+              </Transition>
+            </div>
+          </div>
+        </SwipeableListItem>
+      </Transition>
+      <Transition
+        show={details}
+        enter="transform transition duration-[400ms]"
+        enterFrom="opacity-0 scale-y-50"
+        enterTo="opacity-100 scale-y-100"
+        leave="transform duration-200 transition ease-in-out"
+        leaveFrom="opacity-100 scale-y-100 "
+        leaveTo="opacity-0 scale-y-95 "
+        className="relative z-10"
+      >
+        <EditModal id={props.id} setDetails={setDetails} />
+      </Transition>
+    </>
   );
 }
+export const handleClick = () => {
+  const pageElement = document.getElementById("List-page") as HTMLElement;
+  pageElement.children[0].classList.toggle("z-10");
+};
