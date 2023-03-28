@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <div className="bg-grad-frame h-screen w-auto">
+    <div className="bg-grad-frame h-screen w-full px-8">
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           <Component {...pageProps} />
