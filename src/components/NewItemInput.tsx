@@ -34,7 +34,6 @@ export function NewItemInput({ listID }: InputProps) {
     if (event.key === "Enter") {
       onSelect(inputValue);
     }
-    console.log(event.target.value);
     setInputValue(event.target.value);
     setQuery(event.target.value);
     await axios
@@ -52,7 +51,6 @@ export function NewItemInput({ listID }: InputProps) {
       // Send a POST request to your backend server to add the selected item to the database
       const regex = new RegExp(`^(\\d+)?\\s?(${units.join("|")})?\\s?(.*)$`);
       const match = value.match(regex);
-      console.log(match);
 
       if (match) {
         const response = await axios
@@ -68,13 +66,11 @@ export function NewItemInput({ listID }: InputProps) {
 
         // Clear the value of the input state
         setInputValue("");
-        console.log(String(response));
 
         setTimeout(() => {
-          console.log("This is after some time");
           const bla = document.getElementById(String(response));
           bla?.scrollIntoView({ block: "end", behavior: "smooth" });
-        }, 500);
+        }, 200);
       }
     } catch (error) {
       // If there was an error, show an error message
