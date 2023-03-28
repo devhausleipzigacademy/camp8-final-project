@@ -4,6 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-slate-300:hover {
+  background-color: #cbd5e0;
+}
+
+:root {
+  --ui-size: 14px;
+  font-size: var(--ui-size);
+}
+
+.bg-primary-default-background {
+  background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
+}
+
+.big {
+  font-size: 22px;
+}
+
+.bg-primary-frame {
+  background: linear-gradient(
+    179.79deg,
+    #e6e8ff 0.18%,
+    #eae7ff 18.44%,
+    #ebecff 40.25%,
+    #ebf4ff 60.18%,
+    #edf8ff 81.34%,
+    #f4fdfb 99.82%
+  );
+}
+
+.bg-ux-inactive {
+  background: linear-gradient(
+      114.19deg,
+      rgba(119, 81, 199, 0.2) 26.22%,
+      rgba(81, 107, 199, 0.2) 135.54%
+    ),
+    rgba(190, 190, 190, 0.8);
+}
+
 /* Setting default text colour */
 @layer base {
   html {
@@ -11,41 +49,15 @@
   }
 }
 
-.bar-text {
-  pointer-events: none;
-  @apply fill-text-typo text-primary;
-}
-
-.bubble:hover {
-  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
-  }
-}
 @layer components {
+  .text-splash {
+    font-family: Staatliches;
+    font-size: 3.625rem;
+    font-weight: 400;
+    line-height: 4.5rem;
+    text-align: center;
+  }
+
   .text-title {
     font-size: 58px;
     line-height: 72px;
@@ -54,6 +66,90 @@
   .text-primary {
     font-size: 18px;
     line-height: 22px;
+  }
+
+  .text-links {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 17px;
+  }
+
+  .cards-title {
+    font-size: 40px;
+    line-height: 50px;
+    @apply font-heading;
+  }
+
+  .button-bold {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  .button-large {
+    font-size: 24pt;
+    line-height: 29px;
+  }
+  .text-title {
+    font-size: 58px;
+    line-height: 72px;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .text-links {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+  .text-secondary {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .cards-title {
+    font-size: 40px;
+    line-height: 50px;
+    @apply font-heading;
+  }
+
+  .text-splash {
+    font-family: Staatliches;
+    font-size: 3.625rem;
+    font-weight: 400;
+    line-height: 4.5rem;
+    text-align: center;
+  }
+  .button-large {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .text-title {
+    font-size: 3.625rem;
+    line-height: 4.5rem;
+    @apply font-heading;
+  }
+  .text-primary {
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+  }
+
+  .text-links {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.063rem;
+  }
+  .text-secondary {
+    font-size: 0.875rem;
+    line-height: 1.063rem;
   }
 
   .text-links {
@@ -86,4 +182,8 @@
   #Tick_Action {
     justify-content: center;
   }
+}
+
+.dark {
+  background-color: #7751c7;
 }

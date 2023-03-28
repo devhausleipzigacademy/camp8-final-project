@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
@@ -42,6 +43,9 @@ module.exports = {
     },
     extend: {
       transitionDuration: { 400: "400ms" },
+      borderRadius: {
+        listitem: ".5rem",
+      },
     },
   },
   plugins: [],

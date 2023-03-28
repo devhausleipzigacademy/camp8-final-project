@@ -12,14 +12,30 @@ export default async function handler(
   if (request.method === "GET") {
     try {
       const { inputList } = inputQueryTest.parse(request.query);
-      // Getting ID of list we will add product to.  If none there create one
 
-      const data = await prisma.item.findMany({
+      const list = await prisma.list.findFirst({
         where: {
-          listIdentifier: inputList,
+          id: inputList,
+        },
+        include: {
+          items: true,
         },
       });
-      response.status(200).send(data);
+
+      const items = await prisma.category.findMany({
+        where: {
+          item: {
+            some: {
+              listIdentifier: inputList,
+            },
+          },
+        },
+        include: {
+          item: true,
+        },
+      });
+      const whatever = { list: list, category: items };
+      response.status(200).send(whatever);
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);

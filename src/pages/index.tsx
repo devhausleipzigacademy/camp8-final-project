@@ -1,5 +1,8 @@
+import { LargeButton } from "@/components/LargeButton";
+import Image from "next/image";
 import Head from "next/head";
-import { PrismaClient } from "@prisma/client";
+import Link from "next/link";
+import { getSession } from "next-auth/react";
 
 export default function Home() {
   return (
@@ -10,9 +13,43 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-red-600 text-4xl font-bold flex justify-center">
-        Landing Page
+      <div className="flex flex-col pt-12 justify-center items-center">
+        <Image
+          src="/images/listfull-logo.png"
+          alt=""
+          width={218}
+          height={186}
+        />
+      </div>
+      <h1 className=" text-text-typo text-splash px-8">
+        HI THERE! WELCOME TO SHOPPING HELPER
       </h1>
+      <div className="px-8 pt-10">
+        <Link href={"/login"}>
+          <LargeButton
+            variant={"primary"}
+            label={"get started"}
+            disabled={false}
+          ></LargeButton>
+        </Link>
+      </div>
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
