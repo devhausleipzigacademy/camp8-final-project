@@ -1,4 +1,3 @@
-import console from "console";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { UserList, UserLists } from "../home/Types";
@@ -44,23 +43,15 @@ export default async function handler(
       const userLists: UserLists = [] as UserLists;
 
       userListsHttpRespond.forEach((element) => {
-        console.log(JSON.stringify(element));
-
-
         const newElement: UserList = {
           id: element.id,
           listName: element.listName as string,
           createdAt: element.createdAt.toString(),
           favorite: element.favorite,
           itemsTotal: element.items.length,
-          itemsChecked: element.items.filter((i) => {
-            if (i.checked === true) {
-              return true;
-            }
-          }).length,
+          itemsChecked: element.items.filter((i) => (i.checked === true)).length,
         };
         userLists.push({ ...newElement });
-        console.log(userLists);
       });
       response.status(200).send(userLists);
     } else {

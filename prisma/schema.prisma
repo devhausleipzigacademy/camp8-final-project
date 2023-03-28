@@ -18,7 +18,7 @@ model User {
 
 model List {
   id             String   @id @default(uuid())
-  listName       String?  @default("new list")
+  listName       String?
   createdAt      DateTime @default(now())
   userIdentifier String
   favorite       Boolean  @default(false)

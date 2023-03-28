@@ -10,105 +10,62 @@ import clsx from "clsx";
 import { Trash, Bookmark } from "react-feather";
 import "react-swipeable-list/dist/styles.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import React from "react";
 import {
-  ApiChangeListName,
-  ApiDeleteList,
-  ApiPnList,
-  ApiUnpinList,
+  apiChangeListName,
+  apiDeleteList,
+  apiPinList,
+  apiUnpinList,
 } from "../pages/home/apiCalls";
 import { CardProps } from "@/pages/home/Types";
 
-export function SingleCard({ cardData, newCardId, setNewCardId }: CardProps) {
+export function SingleCard({ cardData }: CardProps) {
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
-  //current list Id
-  const listId = cardData.id;
+  let {
+    id: listId,
+    listName,
+    createdAt,
+    itemsTotal,
+    itemsChecked,
+    favorite: pinned
+  } = cardData;
 
-  const isNewCard = newCardId === cardData.id;
+  let isDraftCard = (listName === "");  
 
-  const [leftByUser, setLeftByUser] = useState("");
+  //API CALLS
 
-  //for clsx & functions for focus  / blur
-  const [isFocus, setIsFocus] = useState(false);
+  const { mutate: updateListName } = useMutation({
+    mutationFn: (inputValue: string) => apiChangeListName(listId, inputValue),
+    onSuccess: () => queryClient.invalidateQueries(["cards"]),
+  });
 
-  //binding, to determine behavior of Card (Title turns into Inputfield, when changingName is set to true. changingName will be set to true on CLick.
-  const [changingName, setChangingName] = useState(false);
+  const { mutate: pinList } = useMutation({
+    mutationFn: () => apiPinList(listId),
+    onSuccess: () => queryClient.invalidateQueries(["cards"]),
+  });
 
-  const [inputName, setInputName] = useState("");
+  const { mutate: unpinList } = useMutation({
+    mutationFn: () => apiUnpinList(listId),
+    onSuccess: () => queryClient.invalidateQueries(["cards"]),
+  });
 
-  const inputWrapper = useRef(null);
+  const { mutate: deleteList } = useMutation({
+    mutationFn: () => apiDeleteList(listId),
+    onSuccess: () => queryClient.invalidateQueries(["cards"]),
+  });
 
-  //API CALLS WRAPPED IN MUTATIONS
-  const { mutate: updateListName } = useMutation(
-    (list_id: string) => ApiChangeListName(list_id, inputName),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]), //how can I invalidate a single card?
-    }
-  );
-
-  const { mutate: pinList } = useMutation(
-    (list_id: string) => ApiPnList(list_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]),
-    }
-  );
-
-  const { mutate: unpinList } = useMutation(
-    (list_id: string) => ApiUnpinList(list_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]),
-    }
-  );
-
-  const { mutate: deleteList } = useMutation(
-    (list_id: string) => ApiDeleteList(list_id),
-    {
-      onSuccess: () => queryClient.invalidateQueries(["cards"]),
-    }
-  );
-
-  //handling Pin/Unpin
-  function PinOrUnpin(list_id: string, pinned: boolean) {
-    pinned && pinList(list_id);
-    !pinned && unpinList(list_id);
+  function togglePinned() {
+    pinned ? unpinList(): pinList();
   }
 
-  const functionWrapper = (
-    passed_function: Function,
-    list_id: string,
-    pinned: boolean
-  ) => {
-    return passed_function(list_id, pinned);
-  };
-
-  //handling microinteraction
-  //Deselecting a Card
-
-  const select = () => {
-    (inputWrapper.current! as HTMLInputElement).focus();
-    !isFocus && setIsFocus(true);
-  };
-
-  const deselect = () => {
-    (inputWrapper.current! as HTMLInputElement).focus();
-    isFocus && setIsFocus(false);
-    inputName !== "" && updateListName(listId);
-    setChangingName(false);
-    isNewCard && leftByUser && setNewCardId("");
-  };
-
-  //lirary Component
-  const trailingActions = (list_id: string) => (
+  //library Component
+  const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction
-        onClick={() => {
-          deleteList(list_id);
-        }}
-      >
+      <SwipeAction onClick={() => deleteList()}>
         <div className="bg-ux-error flex justify-center content-center text-text-white place-items-center rounded-r-2xl">
-          <div className="flex justify-between fixed w-28 ml-7 mr-7 content-center">
+          <div className="flex justify-between w-28 ml-7 mr-7 content-center">
             <p className="bg-white text-links pt-[0.2rem]">Delete</p>
             <span className="h-6 w-6">
               <Trash className="stroke-text-white" />
@@ -117,113 +74,58 @@ export function SingleCard({ cardData, newCardId, setNewCardId }: CardProps) {
         </div>
       </SwipeAction>
     </TrailingActions>
-  ); //end of delete ist>
+  );
 
-  const leadingActions = (
-    passed_function: Function,
-    list_id: string,
-    pinned: boolean
-  ) => (
+  const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction
-        onClick={() => {
-          functionWrapper(passed_function, list_id, pinned);
-        }}
-      >
+      <SwipeAction onClick={togglePinned}>
         <div className="bg-primary-default-Solid flex justify-center content-center text-text-white place-items-center rounded-l-2xl">
-          <div className="flex justify-between fixed w-26 ml-7 mr-7 content-center">
-            <span className="h-6 w-6 m-0">{pinned && <Bookmark />}</span>
+          <div className="flex justify-between w-28 ml-7 mr-7 content-center">
+            <span className="h-6 w-6">{pinned && <Bookmark />}</span>
             <p className="bg-white text-links pt-[0.2rem]">
-              {clsx({ pinned } && "unpin", !{ pinned } && "pin")}
+              {pinned ? "Unpin" : "Pin"}
             </p>
           </div>
         </div>
       </SwipeAction>
     </LeadingActions>
   );
-  //> end of pin list part1
 
   if (cardData) {
     return (
       <SwipeableListItem
         listType={Type.IOS}
-        className="rounded-2xl"
-        leadingActions={leadingActions(PinOrUnpin, listId, cardData.favorite)}
-        trailingActions={trailingActions(listId)}
+        className={clsx(
+          "rounded-2xl ring-0 gap-2.5 w-full h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
+          isDraftCard
+            ? "text-primary-transparent"
+            : "text-primary-default-Solid"
+        )}
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
         fullSwipe={true}
       >
-        <div
-          className={clsx(
-            "border rounded-[14px] gap-[10px] w-full h-44 p-5 justify-between bg-secondary-transparent",
-            isNewCard
-              ? "text-primary-transparent"
-              : "text-primary-default-Solid",
-            isFocus
-              ? "border-primary-default-Solid"
-              : "border-secondary-transparent"
-          )}
-          // onFocus={() => {setIsFocus(true)}}
-          onClick={() => {
-            select();
-            // !isNewCard && setNewCardId("");
-          }}
-          onBlur={() => {
-            deselect();
-          }}
-          onMouseLeave={() => {
-            deselect();
-          }}
-        >
-          <div
-            className="flex flex-col gap-3 rounded-[14px]"
-            onFocus={() => {
-              !isFocus && setIsFocus(true);
-            }}
-            onClick={() => {
-              !isFocus && setIsFocus(true);
-            }}
-            ref={inputWrapper}
-          >
-            <p className="button-bold font-semibold">
-              {`${cardData.itemsChecked}/${cardData.itemsTotal} Items`}
-            </p>
-            {changingName === true ? (
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  {
-                    updateListName(listId);
-                    deselect();
-                  }
-                }}
-              >
-                <input
-                  type="Text"
-                  placeholder={clsx(
-                    !cardData.listName ? "New Name" : cardData.listName
-                  )}
-                  className={clsx(
-                    "uppercase cards-title font-heading bg-transparent placeholder:text-primary-transparent text-primary-default-Solid focus:outline-none"
-                  )}
-                  onChange={(event) => {
-                    setInputName(event.target.value);
-                  }}
-                />
-              </form>
-            ) : (
-              <p
-                onClick={() => setChangingName(true)}
-                className="cards-title uppercase font-heading "
-              >
-                {cardData.listName}
-              </p>
+        <div className="flex flex-col p-5 h-full w-full justify-around">
+          <p className="button-bold font-semibold">
+            {`${itemsChecked}/${itemsTotal} Items`}
+          </p>
+          <input
+            autoFocus
+            type="Text"
+            placeholder="New Name"
+            defaultValue={listName}
+            className={clsx(
+              "uppercase cards-title font-heading bg-transparent",
+              "focus:outline-none",
+              "placeholder:text-primary-transparent text-primary-default-Solid"
             )}
-          </div>
+            onBlur={(event) => updateListName(event.target.value)}
+          />
           <div className="flex justify-between">
             <div className="text-primary">
-              {cardData.favorite && <Bookmark className="h-6 w-6" />}
+              {pinned && <Bookmark className="h-6 w-6" />}
             </div>
-            <p>{cardData.createdAt && cardData.createdAt.slice(0, 9)}</p>
+            <p>{createdAt && createdAt.slice(0, 9)}</p>
           </div>
         </div>
       </SwipeableListItem>

@@ -11,12 +11,8 @@ export type UserLists = Array<UserList>;
 
 export type CardProps = {
   cardData: UserList;
-  newCardId: string;
-  setNewCardId: Function;
 };
 
 export type CardsWrapperProps = {
   user_id: string;
-  newCardId: string;
-  setNewCardId: Function;
 };
