@@ -51,13 +51,13 @@ export default function Home({ slug }: InputProps) {
 
   switch (sortBy) {
     case "date":
-      list = sortByDate(data.list.items);
+      list = sortByDate(data);
       break;
     case "alphabetical":
-      list = sortByAlphabet(data.list.items);
+      list = sortByAlphabet(data);
       break;
     case "category":
-      list = sortByCategory(data.list.items);
+      list = sortByCategory(data);
       break;
   }
 
@@ -88,6 +88,6 @@ export { getServerSideProps };
 
 export const getListData = async (slug: string) => {
   return (await axios
-    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
-    .then((res) => res.data)) as InputProps;
+    .put(`http://localhost:3000/api/item?inputList=${slug}`)
+    .then((res) => res.data)) as Item[];
 };
