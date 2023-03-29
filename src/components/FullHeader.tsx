@@ -1,6 +1,6 @@
 import React from "react";
 import { IconButton } from "./IconButton";
-import { HeaderTitle } from "./HeaderTitle";
+import clsx from "clsx";
 
 type FullHeader = {
   classes: string;
@@ -10,10 +10,11 @@ type FullHeader = {
 export function FullHeader(props: FullHeader) {
   return (
     <div className="flex items-center gap-24">
-      <HeaderTitle
-        classes="text-title text-primary-default-Solid "
-        name={""}
-      ></HeaderTitle>
+      <h1
+        className={clsx("text-title text-primary-default-Solid", props.classes)}
+      >
+        Hey, beautiful {props.name}!
+      </h1>
       <IconButton classes="w-12 h-12"></IconButton>
     </div>
   );

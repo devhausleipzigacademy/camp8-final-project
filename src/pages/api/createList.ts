@@ -24,11 +24,14 @@ export default async function handler(
           // createdAt: true,
         },
       });
-      if (newListData){response.status(200).json(newListData)}
+      if (newListData) {
+        response.status(200).json(newListData);
+      }
     } catch (err) {
       if (err instanceof ZodError) {
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
       } else {
+        console.log(err);
         response.status(418).send("Something is wrong");
       }
     }
