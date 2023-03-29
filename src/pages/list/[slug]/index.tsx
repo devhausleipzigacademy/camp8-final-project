@@ -12,6 +12,7 @@ import {
 import { Item } from "@prisma/client";
 import { NewItemInput } from "@/components/NewItemInput";
 import { useQuery } from "@tanstack/react-query";
+import { HeaderWithBack } from "@/components/HeaderWithBack";
 
 export type Category = {
   id: string;
@@ -61,15 +62,24 @@ export default function Home({ slug }: InputProps) {
       break;
   }
 
+  const router = useRouter();
+
   return (
-    <div
-      id="List-page"
-      className="py-6 flex flex-col justify-between h-screen gap-2 relative"
-    >
-      <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-      <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
-      <ItemListMapper list={list} sortBy={sortBy} className="overflow-y-auto" />
-      <NewItemInput listID={slug} />
+    <div>
+      <HeaderWithBack label={data.list.listName as string} sendTo={"/home"} />
+      <div
+        id="List-page"
+        className="py-6 flex flex-col justify-between h-screen gap-2 relative"
+      >
+        <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
+        <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
+        <ItemListMapper
+          list={list}
+          sortBy={sortBy}
+          className="overflow-y-auto"
+        />
+        <NewItemInput listID={slug} />
+      </div>
     </div>
   );
 }

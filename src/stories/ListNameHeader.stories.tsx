@@ -1,13 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ArrowButton } from "../components/ListNameHeader";
+import { HeaderWithBack } from "../components/HeaderWithBack";
 
-const meta: Meta<typeof ArrowButton> = {
-  title: "components/ArrowButton",
-  component: ArrowButton,
+const meta: Meta<typeof HeaderWithBack> = {
+  title: "components/HeaderWithBack",
+  component: HeaderWithBack,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof ArrowButton>;
+type Story = StoryObj<typeof HeaderWithBack>;
 
 export const Default: Story = {};
