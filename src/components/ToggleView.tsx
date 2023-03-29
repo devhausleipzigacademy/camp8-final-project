@@ -20,12 +20,7 @@ export function ToggleView(props: ToggleView) {
         <Switch
           checked={!size}
           onChange={setSize}
-          className={`w-full relative${
-            size
-              ? " text-primary-default-Solid  bg-secondary-transparent border-secondary-default"
-              : "bg-secondary-transparent  text-primary-default-Solid  border-secondary-default"
-          }
-          relative inline-flex h-full w-full content-center rounded-lg `}
+          className="w-full relative inline-flex h-full content-center rounded-lg text-primary-default-Solid bg-secondary-default border-secondary-default border-2 border-spacing-2"
         >
           <span className="sr-only ">Toggle size of components</span>
           <div className="flex justify-around w-full relative text-text-white z-10 px-4">
