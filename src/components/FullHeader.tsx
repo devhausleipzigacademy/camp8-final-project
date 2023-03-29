@@ -1,21 +1,32 @@
 import React from "react";
 import { IconButton } from "./IconButton";
+import { FiUser } from "react-icons/fi";
 import clsx from "clsx";
+import Link from "next/link";
 
 type FullHeader = {
-  classes: string;
-  name: string;
+	classes: string;
+	name: string;
 };
 
 export function FullHeader(props: FullHeader) {
-  return (
-    <div className="flex items-center gap-24">
-      <h1
-        className={clsx("text-title text-primary-default-Solid", props.classes)}
-      >
-        Hey, beautiful {props.name}!
-      </h1>
-      <IconButton classes="w-12 h-12"></IconButton>
-    </div>
-  );
+	return (
+		<div className="flex justify-between items-center p-3">
+			<h1
+				className={clsx(
+					"cards-title text-primary-default-Solid font-heading",
+					props.classes
+				)}
+			>
+				Hey, beautiful {props.name}!
+			</h1>
+			<Link href={"/account"}>
+				{/* LINK GOES TO PAGE "ACCOUT/SETTINGS" */}
+				<FiUser
+					size={28}
+					className="text-primary-default-Solid"
+				></FiUser>
+			</Link>
+		</div>
+	);
 }
