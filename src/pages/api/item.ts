@@ -100,7 +100,7 @@ export default defineEndpoints({
               name: query,
             },
           })) as MasterItem;
-          await prisma.item.create({
+          const item = await prisma.item.create({
             data: {
               defaultCategory: {
                 connect: {
@@ -118,14 +118,14 @@ export default defineEndpoints({
           });
           res.setHeader("content-type", "application/json");
 
-          res.status(200).json(product);
+          res.status(200).json(String(item.createdAt));
         } catch (err) {
           const other = await prisma.category.findFirst({
             where: {
               name: "other",
             },
           });
-          await prisma.item.create({
+          const item = await prisma.item.create({
             data: {
               name: query,
               defaultCategory: {
@@ -144,7 +144,7 @@ export default defineEndpoints({
           });
           res.setHeader("content-type", "text/plain");
 
-          res.status(201).send("Placed in Other");
+          res.status(201).send(item.id);
         }
       } catch (err) {
         if (err instanceof ZodError) {
