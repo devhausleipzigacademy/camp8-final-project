@@ -2,16 +2,23 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { ToggleDarkmode } from "./ToggleDarkmode";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
-
-export default function TabAccountSetting() {
-  let [categories] = useState({
+type InputProps = {
+  auth: boolean;
+};
+export default function TabAccountSetting({ auth }: InputProps) {
+  let [categories, setCategories] = useState<Record<string, Array<never>>>({
     Setting: [],
     Account: [],
   });
+  if (auth && Object.keys(categories).length === 2) {
+    setCategories({ ...categories, Review: [] });
+  }
 
   return (
     <div className="w-full max-w-md px-2 py-16 ">

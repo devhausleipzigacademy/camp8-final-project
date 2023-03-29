@@ -2,6 +2,7 @@ import { z, ZodError } from "zod";
 import { MasterItem, User } from "@prisma/client";
 import { defineEndpoints } from "../../next-rest-framework/client";
 import { prisma } from "../api/prisma";
+import { itemPutOutput } from "./item";
 
 const userPostSchema = z.object({
   expires: z.string(),
@@ -81,6 +82,24 @@ export default defineEndpoints({
       } catch (err) {
         res.status(418).send(JSON.stringify(err));
       }
+    },
+  },
+  PUT: {
+    output: [
+      {
+        contentType: "application/json",
+        status: 200,
+        schema: itemPutOutput,
+      },
+    ],
+    handler: async ({ res, req }) => {
+      const itemToReview = await prisma.item.findMany({
+        where: {
+          verified: false,
+          listIdentifier: null,
+        },
+      });
+      res.status(200).send(itemToReview);
     },
   },
 });

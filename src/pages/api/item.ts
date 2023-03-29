@@ -282,6 +282,7 @@ export default defineEndpoints({
               id: who,
             },
             data: {
+              verified: true ? false : false,
               defaultCategory: {
                 connect: {
                   name: toWhat as string,
@@ -289,19 +290,21 @@ export default defineEndpoints({
               },
             },
           });
-          res
+          return res
             .status(200)
             .send(
               `Successfully updated item ${who}, customCategory is now ${toWhat}`
             );
         }
 
+        console.log(what);
         const item = await prisma.item.update({
           where: {
             id: who,
           },
           data: {
             [what]: toWhat,
+            verified: what === "imageUrl" ? false : true,
           },
         });
         res.status(200).send("Changed Correctly");
@@ -333,6 +336,24 @@ export default defineEndpoints({
       },
     }) => {
       try {
+        const test = await prisma.item.findFirst({
+          where: {
+            id: id,
+          },
+        });
+        if (!test?.verified) {
+          await prisma.item.update({
+            where: {
+              id: test?.id,
+            },
+            data: {
+              inList: {
+                disconnect: true,
+              },
+            },
+          });
+          return res.status(200).send("Unlinked");
+        }
         await prisma.item.delete({
           where: {
             id: id,

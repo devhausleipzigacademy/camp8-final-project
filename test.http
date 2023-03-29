@@ -38,13 +38,13 @@ PATCH http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "who":"56ed2ab7-4b2e-4fd7-bee3-a086078b6d3f",
+  "who":"2c70a96b-def2-416b-835a-5e227438b220",
   "what":"category",
-  "toWhat":"fruits-and-vegetables"
+  "toWhat":"baking"
 }
 
 ###
 GET http://localhost:3000/api/categories
 
 ###
-
+PUT http://localhost:3000/api/user
