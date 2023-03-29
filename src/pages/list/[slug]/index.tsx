@@ -64,7 +64,7 @@ export default function Home({ slug }: InputProps) {
   return (
     <div
       id="List-page"
-      className="p-6 flex flex-col justify-between h-screen gap-2 relative"
+      className="py-6 flex flex-col justify-between h-screen gap-2 relative"
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
       <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
