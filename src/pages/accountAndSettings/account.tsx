@@ -45,44 +45,36 @@ export default function AccountView({ user, refresh }: SettingsProps) {
 
 	return (
 		<>
-			<div className="px-8 flex flex-col h-full">
-				<header className="w-full flex items-center h-10 pt-8"></header>
-				<div className="w-full flex-grow flex flex-col justify-around">
-					<div className="flex w-full flex-col items-center gap-5">
-						{/* This section will change depending on the account status of the User */}
-						<div>
-							<FiUser size={28} />
-						</div>
-						<div className="text-primary-default-Solid font-heading text-4xl">
-							Hey,&nbsp;
-							{user?.name ? user.name : user?.email}
-						</div>
-						<div className="w-full flex flex-col gap-5">
-							<Input
-								type={"New name"}
-								name={inputName}
-								setValue={setInputName}
-								value={""}
-								placeholder={"New name"}
-								onClick={clickHandler}
-							></Input>
-							{/* <SmallButton label="Update" /> */}
+			<div className="w-full flex-grow flex flex-col justify-around items-center gap-5 mt-5">
+				<div>
+					<FiUser size={28} />
+				</div>
+				<div className="text-primary-default-Solid font-heading text-4xl m-8">
+					Hey,&nbsp;
+					{user?.name ? user.name : user?.email}
+				</div>
+				<div className="w-full flex flex-col m-5 gap-5">
+					<Input
+						type={"New name"}
+						name={inputName}
+						setValue={setInputName}
+						value={""}
+						placeholder={"New name"}
+						onClick={clickHandler}
+					></Input>
 
-							<LargeButton
-								variant="primary"
-								label="Change E-Mail"
-								onClick={redirect}
-								disabled={false}
-							/>
-							<LargeButton
-								variant="secondary"
-								label="Log-Out"
-								onClick={handleSignOut}
-								disabled={false}
-							/>
-							<></>
-						</div>
-					</div>
+					<LargeButton
+						variant="primary"
+						label="Change E-Mail"
+						onClick={redirect}
+						disabled={false}
+					/>
+					<LargeButton
+						variant="secondary"
+						label="Log-Out"
+						onClick={handleSignOut}
+						disabled={false}
+					/>
 				</div>
 			</div>
 		</>

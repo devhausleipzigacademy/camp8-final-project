@@ -13,10 +13,9 @@ import AccountView from "./account";
 import Settings from "./settings";
 
 export const getUserInfo = async (email: string) => {
-	const John: User = await axios
+	return await axios
 		.get(`http://localhost:3000/api/userInfo?email=${email}`)
 		.then((res) => res.data);
-	return John;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -89,15 +88,15 @@ export default function AccountAndSettings({ user }: AccountAndSettingsProps) {
 						setSelected(optionLabels[index]);
 					}}
 				>
-					<Tab.List className="flex rounded-md bg-secondary-default text-sm ">
-						{optionLabels.map((label) => (
-							<Tab className="w-full flex" key={label as string}>
+					<Tab.List className="flex rounded-md bg-secondary-default text-lg mx-11 ">
+						{optionLabels.map((label, index) => (
+							<Tab className="w-full  flex " key={index}>
 								{({ selected }) => (
 									<label
 										className={clsx(
-											"rounded-md w-full",
+											"rounded-md w-full h-11 flex items-center justify-center",
 											selected
-												? "bg-primary-default-Solid text-text-white"
+												? "bg-primary-default-Solid text-text-white "
 												: "bg-secondary-default text-text-typo"
 										)}
 									>
@@ -109,9 +108,7 @@ export default function AccountAndSettings({ user }: AccountAndSettingsProps) {
 					</Tab.List>
 					<Tab.Panels>
 						{optionComponents.map((option, idx) => (
-							<Tab.Panel key={idx} className={""}>
-								{option}
-							</Tab.Panel>
+							<Tab.Panel key={idx}>{option}</Tab.Panel>
 						))}
 					</Tab.Panels>
 				</Tab.Group>

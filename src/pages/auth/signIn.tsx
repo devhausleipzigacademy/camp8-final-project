@@ -18,8 +18,6 @@ export default function SignIn() {
 		signIn("email", { email });
 	};
 	const emailCheck = new RegExp(`[A-z]+@[a-z]+.[a-zA-Z]{2,3}$`);
-	console.log(session);
-
 	if (session) {
 		push("/");
 	}

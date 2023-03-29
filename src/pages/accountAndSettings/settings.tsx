@@ -12,7 +12,7 @@ export default function Settings() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<hr className="my-5 bg-primary-transparent" />
+			<hr className="my-5 mx-8 bg-primary-transparent" />
 			<ToggleDarkmode />
 			<ToggleView />
 		</>
