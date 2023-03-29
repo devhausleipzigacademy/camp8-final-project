@@ -85,6 +85,9 @@ export default defineEndpoints({
     },
   },
   PUT: {
+    openApiSpec: {
+      description: "Will find all items that are in review.",
+    },
     output: [
       {
         contentType: "application/json",

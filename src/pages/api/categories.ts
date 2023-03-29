@@ -16,6 +16,9 @@ export const categoriesGetOutput = z.array(
 
 export default defineEndpoints({
   GET: {
+    openApiSpec: {
+      description: "Will get all the categories currently used",
+    },
     output: [
       {
         status: 418,

@@ -142,6 +142,9 @@ export default defineEndpoints({
     },
   },
   PATCH: {
+    openApiSpec: {
+      description: "Will update a list",
+    },
     input: {
       body: listsPatchSchema,
     },

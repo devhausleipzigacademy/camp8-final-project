@@ -160,8 +160,7 @@ export default defineEndpoints({
   },
   GET: {
     openApiSpec: {
-      description:
-        "Endpoint looks for words in the MasterItem table and returns the top 5 results.  Also returns a number of how much the first result matches.",
+      description: "Autocomplete function that will give 5 results",
     },
     input: {
       query: itemGetSchema,
@@ -217,6 +216,9 @@ export default defineEndpoints({
     },
   },
   PUT: {
+    openApiSpec: {
+      description: "Will give back all the items in a list",
+    },
     input: {
       query: itemPutSchema,
     },
@@ -245,7 +247,6 @@ export default defineEndpoints({
           },
         });
 
-        const whatever = list;
         res.status(200).send(list);
       } catch (err) {
         res.status(418).send(JSON.stringify(err));
@@ -253,6 +254,9 @@ export default defineEndpoints({
     },
   },
   PATCH: {
+    openApiSpec: {
+      description: "Will update any property on an item (not the name)",
+    },
     input: {
       contentType: "application/json",
       body: itemPatchSchema,
@@ -314,6 +318,9 @@ export default defineEndpoints({
     },
   },
   DELETE: {
+    openApiSpec: {
+      description: "Will delete Item",
+    },
     input: {
       query: itemDeleteSchema,
     },
