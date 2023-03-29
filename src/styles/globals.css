@@ -15,7 +15,6 @@
 
 .bg-primary-default-background {
   background: linear-gradient(134.32deg, #7751c7 26.96%, #5f62c7 73.13%);
-  position: fixed;
 }
 
 .big {
@@ -32,6 +31,7 @@
     #edf8ff 81.34%,
     #f4fdfb 99.82%
   );
+  background-repeat: no-repeat;
 }
 
 .bg-ux-inactive {
@@ -46,8 +46,13 @@
 /* Setting default text colour */
 @layer base {
   html {
-    @apply text-text-typo bg-primary-frame w-full h-full justify-center content-start;
+    @apply text-text-typo;
   }
+}
+
+#__next {
+  @apply h-full w-full pt-7 px-7 sm:pt-7 sm:px-7 md:px-80 md:py-7 bg-primary-frame;
+
 }
 
 @layer components {

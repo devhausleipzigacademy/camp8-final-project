@@ -32,7 +32,7 @@ export function SingleCard({ cardData }: CardProps) {
     favorite: pinned
   } = cardData;
 
-  let isDraftCard = (listName === "");  
+  let isDraftCard = (listName === "");
 
   //API CALLS
 
@@ -96,7 +96,7 @@ export function SingleCard({ cardData }: CardProps) {
       <SwipeableListItem
         listType={Type.IOS}
         className={clsx(
-          "rounded-2xl ring-0 gap-2.5 w-full h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
+          "rounded-2xl ring-0 gap-2.5 h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
           isDraftCard
             ? "text-primary-transparent"
             : "text-primary-default-Solid"
@@ -105,7 +105,7 @@ export function SingleCard({ cardData }: CardProps) {
         trailingActions={trailingActions()}
         fullSwipe={true}
       >
-        <div className="flex flex-col p-5 h-full w-full justify-around">
+        <div className="flex flex-col p-5 justify-around">
           <p className="button-bold font-semibold">
             {`${itemsChecked}/${itemsTotal} Items`}
           </p>

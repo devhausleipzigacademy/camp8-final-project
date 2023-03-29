@@ -7,9 +7,9 @@ import { SingleCard } from "../../components/SingleCard";
 const returnOrderedNodes = (allCardsData: UserLists) => {
   let allCardsSorted: UserLists = [] as UserLists;
 
-  // 1. alphabetical sort ascending, 
-  // 2. pinned get sorted to top, 
-  // 3. draft entries placed at top 
+  // 1. alphabetical sort ascending,
+  // 2. pinned get sorted to top,
+  // 3. draft entries placed at top
   allCardsSorted = allCardsData
     .sort((a, b) => b.listName < a.listName ? -1 : 1)
     .sort((a, b) => Number(a.favorite) - Number(b.favorite))
@@ -42,7 +42,7 @@ export default function CardsWrapper({ user_id }: CardsWrapperProps) {
     return <div>"Waiting for data"</div>;
   } else {
     return (
-      <div className="flex flex-col-reverse gap-3 pt-40">
+      <div className="flex flex-col-reverse gap-3">
         {returnOrderedNodes(allCards)}
       </div>
     );
