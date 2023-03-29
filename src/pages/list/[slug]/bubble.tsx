@@ -83,8 +83,8 @@ export default function Bubble({ data, slug, name }: Props) {
 
     // Set up the SVG element and its dimensions
     const svg = d3.select(d3Container.current);
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = window.innerWidth * 0.8;
+    const height = window.innerHeight * 0.8;
     svg.attr("width", width);
     svg.attr("height", height);
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
