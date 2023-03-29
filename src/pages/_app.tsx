@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div className="bg-grad-frame h-screen w-full flex justify-center items-center fixed p-[30px]">
-      <div className="flex max-w-md:20 m-[30px] overflow-y-scroll">
+      <div className="flex flex-col max-w-md:20 m-[30px] overflow-y-scroll">
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
             <Component {...pageProps} />
