@@ -1,26 +1,24 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
+import { useSzieStore } from "@/pages/stores/styleStore";
 
 type ToggleView = {};
 
 export function ToggleView(props: ToggleView) {
-  const [size, setSize] = useState(false);
+  const { size, setSize } = useSzieStore();
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const htmlElement = document.documentElement;
-    if (size) {
-      htmlElement.classList.add("big");
-    } else {
-      htmlElement.classList.remove("big");
-    }
+    setIsLoading(false);
   }, [size]);
 
+  if (loading) return null;
   return (
     <div className="py-2">
       <Switch.Group>
         <Switch
-          checked={size}
+          checked={!size}
           onChange={setSize}
           className={`w-full relative${
             size

@@ -26,6 +26,7 @@ specifiers:
   '@types/node': ^18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  all: ^0.0.0
   autoprefixer: ^10.4.13
   axios: ^1.3.4
   babel-loader: ^8.3.0
@@ -72,6 +73,7 @@ dependencies:
   '@types/d3-force': 3.0.4
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  all: 0.0.0
   clsx: 1.2.1
   cors: 2.8.5
   date-fns: 2.29.3
@@ -4760,6 +4762,10 @@ packages:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
       uri-js: 4.4.1
+    dev: false
+
+  /all/0.0.0:
+    resolution: {integrity: sha512-0oKlfNVv2d+d7c1gwjGspzgbwot47PGQ4b3v1ccx4mR8l9P/Y6E6Dr/yE8lNT63EcAKEbHo6UG3odDpC/NQcKw==}
     dev: false
 
   /ansi-align/3.0.1:

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { ToggleDarkmode } from "./ToggleDarkmode";
+import { ToggleView } from "./ToggleView";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -48,9 +49,10 @@ export default function TabAccountSetting() {
 
 function Setting() {
   return (
-    <div className="bg-primarydefault-Solid dark:bg-black">
+    <div className="bg-primarydefault-Solid">
       Setting
       <ToggleDarkmode />
+      <ToggleView />
     </div>
   );
 }
