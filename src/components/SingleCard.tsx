@@ -18,8 +18,11 @@ import {
   apiUnpinList,
 } from "../pages/home/apiCalls";
 import { CardProps } from "@/pages/home/Types";
+import { useRouter } from "next/router";
 
 export function SingleCard({ cardData }: CardProps) {
+
+  const router = useRouter()
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
@@ -35,7 +38,6 @@ export function SingleCard({ cardData }: CardProps) {
   let isDraftCard = (listName === "");
 
   //API CALLS
-
   const { mutate: updateListName } = useMutation({
     mutationFn: (inputValue: string) => apiChangeListName(listId, inputValue),
     onSuccess: () => queryClient.invalidateQueries(["cards"]),
@@ -96,7 +98,7 @@ export function SingleCard({ cardData }: CardProps) {
       <SwipeableListItem
         listType={Type.IOS}
         className={clsx(
-          "rounded-2xl ring-0 gap-2.5 h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
+          "rounded-2xl cursor:pointer ring-0 gap-2.5 h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
           isDraftCard
             ? "text-primary-transparent"
             : "text-primary-default-Solid"
@@ -104,6 +106,7 @@ export function SingleCard({ cardData }: CardProps) {
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
         fullSwipe={true}
+        onClick={()=>router.push(`/list/${listId}`)}
       >
         <div className="flex flex-col p-5 justify-around">
           <p className="button-bold font-semibold">
