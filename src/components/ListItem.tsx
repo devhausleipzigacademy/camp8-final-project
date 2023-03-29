@@ -98,10 +98,17 @@ export default function ListItem(props: ListItemProps) {
           trailingActions={trailingActions()}
           threshold={0.5}
         >
-          <div className="flex justify-center items-center h-full bg-text-white p-2">
+          <div className="flex justify-center items-center h-full aspect-square bg-text-white p-2">
             <img className="h-full aspect-square" src={props.image} />
           </div>
-          <p className="text-text-typo text-primary pl-4">{props.name}</p>
+          <div>
+            <p
+              className="text-text-typo text-primary pl-4"
+              style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+            >
+              {props.name}
+            </p>
+          </div>
           <div className="flex p-2 justify-end gap-6 items-center flex-grow">
             <div
               className=" flex gap-2"
@@ -110,11 +117,19 @@ export default function ListItem(props: ListItemProps) {
                 handleClick();
               }}
             >
-              <p className="text-secondary font-thin">
+              <p
+                className="text-secondary font-thin flex flex-shrink"
+                style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+              >
                 {props.quantity ? props.quantity : "amount"}
               </p>
               {props.unit && (
-                <p className="text-secondary font-thin">{props.unit}</p>
+                <p
+                  className="text-secondary font-thin"
+                  style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+                >
+                  {props.unit}
+                </p>
               )}
             </div>
             <div className="relative w-10 h-8">
