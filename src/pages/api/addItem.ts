@@ -1,7 +1,7 @@
 import { MasterItem } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
-import { prisma } from "..";
+import { prisma } from "src/pages/api/prisma";
 
 /*
  */
@@ -11,7 +11,9 @@ export default async function handler(
 ) {
   if (request.method === "POST") {
     try {
-      const { query, inputList } = inputQueryTest.parse(request.body);
+      const { query, units, number, inputList } = inputQueryTest.parse(
+        request.body
+      );
       // Getting ID of list we will add product to.  If none there create one
 
       let product: MasterItem;
@@ -31,25 +33,42 @@ export default async function handler(
           },
         })) as MasterItem;
 
-        await prisma.item.create({
+        await prisma.category.update({
+          where: {
+            name: product.category!,
+          },
           data: {
-            masterItemId: product.id,
-            listIdentifier: inputList,
+            item: {
+              create: {
+                imageUrl: product.imageUrl,
+                listIdentifier: list?.id,
+                name: product.name,
+                checked: false,
+                quantity: Number(number) ? Number(number) : 0,
+                unit: units ? units : "",
+              },
+            },
           },
         });
 
         response.status(200).send(product);
       } catch (err) {
-        const other = await prisma.category.findFirst({
+        console.log(err);
+        await prisma.category.update({
           where: {
-            category: "other",
+            name: "other",
           },
-        });
-        await prisma.item.create({
           data: {
-            customItemName: query,
-            listIdentifier: inputList,
-            customCategoryId: other?.id,
+            item: {
+              create: {
+                listIdentifier: list?.id,
+                name: query,
+                quantity: Number(number) ? Number(number) : 0,
+                unit: units ? units : "",
+                imageUrl:
+                  "https://a0.anyrgb.com/pngimg/1652/488/supermarket-lifelike-shopping-mall-realistic-shopping-bags-coffee-shop-shopping-bags-trolleys-shopping-bag-shopping-girl-shopping-cart-thumbnail.png",
+              },
+            },
           },
         });
         response.status(201).send("New User created in Other");
@@ -59,6 +78,7 @@ export default async function handler(
         response.status(400).send(`Wrong Data Sent =>${JSON.stringify(err)}`);
       } else {
         response.status(418).send(JSON.stringify(err));
+        console.log(err);
       }
     }
     response.status(404).send(`Invalid method, need POST: ${request.method}`);
@@ -67,5 +87,7 @@ export default async function handler(
 
 const inputQueryTest = z.object({
   query: z.string().regex(/[A-z]/, "No Numbers allowed"),
+  number: z.optional(z.string()),
+  units: z.optional(z.string()),
   inputList: z.string(),
 });
