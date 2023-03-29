@@ -1,5 +1,5 @@
 import { LargeButton } from "@/components/LargeButton";
-import { FiChevronLeft, FiUser } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import Input from "@/components/Input";
 import { useState } from "react";
 import { UseMutateFunction } from "@tanstack/react-query";
-import Link from "next/link";
 
 export type SettingsProps = {
 	user: User;

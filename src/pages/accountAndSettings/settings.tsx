@@ -1,10 +1,6 @@
 import { ToggleDarkmode } from "@/components/ToggleDarkmode";
 import { ToggleView } from "@/components/ToggleView";
 import Head from "next/head";
-import Link from "next/link";
-import { FiChevronLeft } from "react-icons/fi";
-
-//
 
 export default function Settings() {
 	return (

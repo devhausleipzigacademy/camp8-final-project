@@ -4,7 +4,6 @@ import { FiChevronLeft, FiUser } from "react-icons/fi";
 import { Transition } from "@headlessui/react";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
-import router from "next/router";
 import Link from "next/link";
 
 type buttonProps = {

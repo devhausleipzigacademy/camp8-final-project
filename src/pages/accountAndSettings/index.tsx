@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import { Account, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import clsx from "clsx";
@@ -11,8 +11,6 @@ import { useState } from "react";
 import { FiChevronLeft } from "react-icons/fi";
 import AccountView from "./account";
 import Settings from "./settings";
-// import { UserCircleIcon } from "@heroicons/react/24/outline";
-// import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export const getUserInfo = async (email: string) => {
 	const John: User = await axios
