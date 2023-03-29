@@ -37,7 +37,7 @@ export default async function handler(
           },
           data: {
             image: image,
-            name: name,
+            name: temp.name ? name : temp.name,
           },
         });
       }

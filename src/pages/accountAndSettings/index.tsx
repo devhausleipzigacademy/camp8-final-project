@@ -13,12 +13,6 @@ import { prisma } from "../api/prisma";
 import AccountView from "./account";
 import Settings from "./settings";
 
-export const getUserInfo = async (email: string) => {
-  return await axios
-    .get(`http://localhost:3000/api/userInfo?email=${email}`)
-    .then((res) => res.data);
-};
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req });
 
@@ -46,19 +40,9 @@ type AccountAndSettingsProps = {
 
 export default function AccountAndSettings({ user }: AccountAndSettingsProps) {
   // define queries & mutations here
-  const queryClient = useQueryClient();
-  const { data: player } = useQuery(["useInfo"], () =>
-    getUserInfo(user.email as string)
-  );
-
-  const { mutate: refresh } = useMutation(getUserInfo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["useInfo"]);
-    },
-  });
 
   const options = {
-    Account: <AccountView user={player as User} refresh={refresh} />,
+    Account: <AccountView user={user} />,
     Settings: <Settings />,
   };
 

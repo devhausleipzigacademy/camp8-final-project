@@ -6,11 +6,15 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Input from "@/components/Input";
 import { useState } from "react";
-import { UseMutateFunction } from "@tanstack/react-query";
+import {
+  UseMutateFunction,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 export type SettingsProps = {
   user: User;
-  refresh: UseMutateFunction<User, unknown, string, unknown>;
 };
 
 export type UpdateNameResponse = {
@@ -18,8 +22,19 @@ export type UpdateNameResponse = {
   userId: string;
 };
 
-export default function AccountView({ user, refresh }: SettingsProps) {
+export default function AccountView({ user }: SettingsProps) {
   const [inputName, setInputName] = useState("");
+
+  const queryClient = useQueryClient();
+  const { data: player } = useQuery(["useInfo"], () =>
+    getUserInfo(user.email as string)
+  );
+
+  const { mutate: refresh } = useMutation(getUserInfo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["useInfo"]);
+    },
+  });
 
   const handleSignOut = () => {
     signOut({ redirect: true, callbackUrl: "/auth/signIn" });
@@ -40,9 +55,8 @@ export default function AccountView({ user, refresh }: SettingsProps) {
   function clickHandler() {
     updateName();
     refresh(user.email as string);
-    console.log(user.name);
+    console.log("refreshing");
   }
-  console.log(user?.name);
 
   return (
     <>
@@ -52,7 +66,7 @@ export default function AccountView({ user, refresh }: SettingsProps) {
         </div>
         <div className="text-primary-default-Solid font-heading text-4xl m-8">
           Hey,&nbsp;
-          {user?.name ? user.name : user?.email}
+          {player?.name ? player.name : player?.email}
         </div>
         <div className="w-full flex flex-col m-5 gap-5">
           <Input
@@ -81,3 +95,9 @@ export default function AccountView({ user, refresh }: SettingsProps) {
     </>
   );
 }
+const getUserInfo = async (email: string) => {
+  const John: User = await axios
+    .get(`http://localhost:3000/api/userInfo?email=${email}`)
+    .then((res) => res.data);
+  return John;
+};
