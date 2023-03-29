@@ -18,7 +18,7 @@ export function ToggleDarkmode(props: ToggleView) {
 
   if (loading) return null;
   return (
-    <div className="py-2 ">
+    <div className="py-2">
       <Switch
         checked={!darkMode}
         onChange={toggleDarkMode}

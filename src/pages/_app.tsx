@@ -30,10 +30,17 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [size]);
 
   return (
-    <div className={clsx("bg-grad-frame h-screen w-auto", darkMode && "dark")}>
-      <SessionProvider>
-        <Component {...pageProps} />
-      </SessionProvider>
+    <div
+      className={clsx(
+        "bg-grad-frame h-screen w-auto dark:bg-primary-transparent",
+        darkMode && "dark"
+      )}
+    >
+      <div className="dark:bg-primary-transparent">
+        <SessionProvider>
+          <Component {...pageProps} />
+        </SessionProvider>
+      </div>
     </div>
   );
 }
