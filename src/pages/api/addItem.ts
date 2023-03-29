@@ -24,54 +24,64 @@ export default async function handler(
       });
       if (!list) {
         response.status(404).send("List not found");
-      }
+      } else {
+        try {
+          product = (await prisma.masterItem.findFirst({
+            where: {
+              name: query,
+            },
+          })) as MasterItem;
 
-      try {
-        product = (await prisma.masterItem.findFirst({
-          where: {
-            name: query,
-          },
-        })) as MasterItem;
-
-        await prisma.category.update({
-          where: {
-            name: product.category!,
-          },
-          data: {
-            item: {
-              create: {
-                imageUrl: product.imageUrl,
-                listIdentifier: list?.id,
-                name: product.name,
-                checked: false,
-                quantity: Number(number) ? Number(number) : 0,
-                unit: units ? units : "",
+          const test = await prisma.item.create({
+            data: {
+              imageUrl: product.imageUrl,
+              name: product.name,
+              checked: false,
+              quantity: Number(number) ? Number(number) : 0,
+              unit: units ? units : "",
+              defaultCategory: {
+                connect: {
+                  name: product.category as string,
+                },
+              },
+              inList: {
+                connect: {
+                  id: list.id,
+                },
               },
             },
-          },
-        });
+          });
 
-        response.status(200).send(product);
-      } catch (err) {
-        console.log(err);
-        await prisma.category.update({
-          where: {
-            name: "other",
-          },
-          data: {
-            item: {
-              create: {
-                listIdentifier: list?.id,
-                name: query,
-                quantity: Number(number) ? Number(number) : 0,
-                unit: units ? units : "",
-                imageUrl:
-                  "https://a0.anyrgb.com/pngimg/1652/488/supermarket-lifelike-shopping-mall-realistic-shopping-bags-coffee-shop-shopping-bags-trolleys-shopping-bag-shopping-girl-shopping-cart-thumbnail.png",
+          response.status(200).send(test.createdAt);
+        } catch (err) {
+          console.log("Find Me!", err);
+
+          const other = await prisma.category.findFirst({
+            where: {
+              name: "other",
+            },
+          });
+          const test = await prisma.item.create({
+            data: {
+              name: query,
+              quantity: Number(number) ? Number(number) : 0,
+              unit: units ? units : "",
+              imageUrl:
+                "https://a0.anyrgb.com/pngimg/1652/488/supermarket-lifelike-shopping-mall-realistic-shopping-bags-coffee-shop-shopping-bags-trolleys-shopping-bag-shopping-girl-shopping-cart-thumbnail.png",
+              defaultCategory: {
+                connect: {
+                  id: other?.id,
+                },
+              },
+              inList: {
+                connect: {
+                  id: list.id,
+                },
               },
             },
-          },
-        });
-        response.status(201).send("New User created in Other");
+          });
+          response.status(201).send(test.createdAt);
+        }
       }
     } catch (err) {
       if (err instanceof ZodError) {
