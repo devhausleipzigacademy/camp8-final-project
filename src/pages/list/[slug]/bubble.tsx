@@ -232,8 +232,11 @@ interface Params extends ParsedUrlQuery {
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params as Params;
+
   const items: Items[] = await axios
-    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
+    .put(`http://localhost:3000/api/item`, {
+      inputList: slug,
+    })
     .then((res) => res.data);
 
   const categories = items.map((x) => x.category);

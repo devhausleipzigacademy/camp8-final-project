@@ -52,11 +52,9 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-PATCH http://localhost:3000/api/user
+PUT http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "id": "clfu1hwgn0000vyregadyea8u",
-  "what": "name",
-  "toWhat": "William"
+  "inputList":"957e11ee-8a2e-411d-92e4-d855f29d9534"
 }
