@@ -46,7 +46,13 @@ export default function ListItem(props: ListItemProps) {
     refresh(slug);
   };
   const checked = () => {
-    axios.patch("/api/patchItem", {
+    console.log({
+      who: props.id,
+      what: "checked",
+      toWhat: !props.checked,
+    });
+
+    axios.patch("/api/item", {
       who: props.id,
       what: "checked",
       toWhat: !props.checked,

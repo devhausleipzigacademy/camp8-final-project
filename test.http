@@ -52,10 +52,11 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-POST  http://localhost:3000/api/item
+PATCH  http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "query": "apples",
-  "inputList": "894d18db-e0e6-4fa1-a014-1aa1e3bcff8e"
+ "who": "c52eb7e3-7ad7-4be6-8002-660ff7f97411",
+ "what": "checked",
+"toWhat": true
 }
