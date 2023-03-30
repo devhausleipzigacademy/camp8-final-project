@@ -1,3 +1,4 @@
+import { List } from "@prisma/client";
 import { z, ZodError } from "zod";
 import { defineEndpoints } from "../../next-rest-framework/client";
 import { prisma } from "../api/prisma";
@@ -14,6 +15,13 @@ export const listsGetSchema = z.array(
     favorite: z.nullable(z.boolean()),
   })
 );
+const listsPostOutput = z.object({
+  id: z.string(),
+  listName: z.nullable(z.string()),
+  createdAt: z.date(),
+  userIdentifier: z.string(),
+  favorite: z.boolean(),
+});
 
 export const listsPatchSchema = z.object({
   what: z.string(),
@@ -24,14 +32,13 @@ export const listsPatchSchema = z.object({
 export default defineEndpoints({
   POST: {
     input: {
-      contentType: "application/json",
-      body: listInputSchema,
+      query: listInputSchema,
     },
     output: [
       {
         status: 201,
         contentType: "application/json",
-        schema: z.string(),
+        schema: listsPostOutput,
       },
       {
         status: 418,
@@ -45,15 +52,16 @@ export default defineEndpoints({
         query: { id },
       },
     }) => {
-      try {
-        await prisma.list.create({
-          data: { userIdentifier: id },
-        });
-
-        res.status(201).json("List Created");
-      } catch (err) {
-        res.status(418).send("Something is wrong");
-      }
+      const John = await prisma.list.create({
+        data: {
+          belongsTo: {
+            connect: {
+              id: id,
+            },
+          },
+        },
+      });
+      return res.status(201).send(John);
     },
   },
   DELETE: {
@@ -145,6 +153,7 @@ export default defineEndpoints({
       description: "Will update a list",
     },
     input: {
+      contentType: "application/json",
       body: listsPatchSchema,
     },
     output: [
@@ -177,7 +186,7 @@ export default defineEndpoints({
               id: id,
             },
             data: {
-              favorite: item?.favorite ? false : true,
+              favorite: !item?.favorite,
             },
           });
           res.status(200).send("List favorite updated");
