@@ -18,7 +18,7 @@ export function SortByButton() {
   });
 
   return (
-    <div className="w-full h-full flex flex-col px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
+    <div className="flex flex-col px-2 py-16 font-sans sm:px-0 outline-1 outline-primary-default-background">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-secondary-transparent p-1">
           {Object.keys(categories).map((category) => (
