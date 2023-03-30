@@ -2,8 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { prisma } from "./prisma";
 
-/* The point gets user id and should take name, if
- */
 
 const inputQueryDelete = z.object({
   id: z.string(),
@@ -20,8 +18,6 @@ export default async function handler(
         data: { userIdentifier: id },
         select: {
           id: true,
-          // listName: true,
-          // createdAt: true,
         },
       });
       if (newListData) {

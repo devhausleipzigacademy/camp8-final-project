@@ -23,7 +23,6 @@ import { useRouter } from "next/router";
 export function SingleCard({ cardData }: CardProps) {
 
   const router = useRouter()
-  //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
   let {
@@ -37,7 +36,6 @@ export function SingleCard({ cardData }: CardProps) {
 
   let isDraftCard = (listName === "");
 
-  //API CALLS
   const { mutate: updateListName } = useMutation({
     mutationFn: (inputValue: string) => apiChangeListName(listId, inputValue),
     onSuccess: () => queryClient.invalidateQueries(["cards"]),
@@ -62,7 +60,6 @@ export function SingleCard({ cardData }: CardProps) {
     pinned ? unpinList(): pinList();
   }
 
-  //library Component
   const trailingActions = () => (
     <TrailingActions>
       <SwipeAction onClick={() => deleteList()}>
