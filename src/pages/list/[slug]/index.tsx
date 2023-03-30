@@ -60,8 +60,8 @@ export default function Home({ slug, name }: InputProps) {
       id="List-page"
       className="py-6 flex flex-col justify-between h-screen gap-2 relative"
     >
-      <ListNameHeader Listname={name} classNames="" linkTo="home" />
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
+      <ListNameHeader Listname={name} classNames="" linkTo="home" />
       <SortBySwitches
         className=""
         sortBy={sortBy}

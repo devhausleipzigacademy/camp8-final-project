@@ -189,6 +189,7 @@ export default function ListItem(props: ListItemProps) {
 }
 export const handleClick = (id: string) => {
   const pageElement = document.getElementById("List-page") as HTMLElement;
+  pageElement.classList.toggle("z-10");
   setTimeout(() => {
     const modal = document.getElementById(id + "modal") as HTMLElement;
     if (modal) {
