@@ -4,7 +4,6 @@ import { forceCollide, forceManyBody } from "d3-force";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
-import { ListNameHeader } from "@/components/ListNameHeader";
 import { prisma } from "@/pages/api/prisma";
 
 // create types
@@ -222,11 +221,6 @@ export default function Bubble({ data, slug, name }: Props) {
   }, []);
   return (
     <div className="p-6 flex flex-col justify-between h-full gap-2 w-full bg-grad-frame">
-      <ListNameHeader
-        Listname={name}
-        classNames="mt-4"
-        linkTo={`/list/${slug}`}
-      />
       <div className="flex justify-center overflow-y-auto">
         <svg ref={d3Container} width="100%" height="100%"></svg>
         {/* <div className="flex items-center justify-center">
