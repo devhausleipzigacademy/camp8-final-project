@@ -59,7 +59,7 @@ export default function Home({ slug, name }: InputProps) {
       className="py-6 flex flex-col justify-between items-center h-screen gap-2 relative"
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-      <ListNameHeader Listname={name} classNames="" linkTo="home" />
+      <ListNameHeader Listname={name} classNames="w-full" linkTo="home" />
       <SortBySwitches
         className=""
         sortBy={sortBy}

@@ -13,7 +13,7 @@ type SortByProps = {
 
 export function SortBySwitches(props: SortByProps) {
   return (
-    <div className="flex flex-grow justify-between items-center">
+    <div className="w-full flex flex-grow justify-between items-center">
       <RadioGroup
         className="w-full text-secondary flex flex-row justify-center items-center bg-secondary-transparent text-sm h-7 rounded-listitem"
         value={props.sortBy}
