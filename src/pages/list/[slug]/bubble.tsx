@@ -4,6 +4,7 @@ import { forceCollide, forceManyBody } from "d3-force";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
+import { ListNameHeader } from "@/components/ListNameHeader";
 import { prisma } from "@/pages/api/prisma";
 
 // create types

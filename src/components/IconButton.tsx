@@ -10,9 +10,7 @@ type IconButton = {
 export function IconButton(props: IconButton) {
   return (
     <Link href="/account">
-      <FiUser 
-        className={clsx(" text-primary-default-Solid", props.classes)}
-      />
+      <FiUser className={clsx(" text-primary-default-Solid", props.classes)} />
     </Link>
   );
 }

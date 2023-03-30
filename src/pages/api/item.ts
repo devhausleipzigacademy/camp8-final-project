@@ -5,6 +5,8 @@ import { prisma } from "../api/prisma";
 export const itemPostSchema = z.object({
   query: z.string().regex(/[A-z]/, "No Numbers allowed"),
   inputList: z.string(),
+  number: z.optional(z.string()),
+  units: z.optional(z.string()),
 });
 export const itemPostOutput = z.object({
   id: z.string(),
@@ -80,7 +82,7 @@ export default defineEndpoints({
     handler: async ({
       res,
       req: {
-        body: { inputList, query },
+        body: { inputList, query, number, units },
       },
     }) => {
       try {
@@ -116,9 +118,20 @@ export default defineEndpoints({
               name: product.name,
             },
           });
+          if (units || number) {
+            await prisma.item.update({
+              where: {
+                id: item.id,
+              },
+              data: {
+                unit: units ?? "",
+                quantity: Number(number) ?? 0,
+              },
+            });
+          }
           res.setHeader("content-type", "application/json");
 
-          res.status(200).json(String(item.createdAt));
+          res.status(200).json(String(item.id));
         } catch (err) {
           const other = await prisma.category.findFirst({
             where: {
@@ -142,6 +155,17 @@ export default defineEndpoints({
                 "https://as1.ftcdn.net/v2/jpg/02/07/83/10/1000_F_207831015_sXKAuf2tcsnrxOS1vfuvHSN2fDrdwtNf.jpg",
             },
           });
+          if (units || number) {
+            await prisma.item.update({
+              where: {
+                id: item.id,
+              },
+              data: {
+                unit: units ?? "",
+                quantity: Number(number) ?? 0,
+              },
+            });
+          }
           res.setHeader("content-type", "text/plain");
 
           res.status(201).send(item.id);

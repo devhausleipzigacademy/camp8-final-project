@@ -1,9 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import { ToggleDarkmode } from "./ToggleDarkmode";
-import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+import { ToggleView } from "./ToggleView";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -55,9 +54,10 @@ export default function TabAccountSetting({ auth }: InputProps) {
 
 function Setting() {
   return (
-    <div className="bg-primarydefault-Solid dark:bg-black">
+    <div className="bg-primarydefault-Solid">
       Setting
       <ToggleDarkmode />
+      <ToggleView />
     </div>
   );
 }

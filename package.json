@@ -41,6 +41,7 @@
     "headlessui": "^0.0.0",
     "next": "13.1.6",
     "next-auth": "^4.20.1",
+    "next-themes": "^0.2.1",
     "next-rest-framework": "^0.4.2",
     "nodemailer": "^6.9.1",
     "postcss-loader": "^7.0.2",
@@ -51,7 +52,8 @@
     "react-query": "^3.39.3",
     "react-swipeable-list": "^1.7.2",
     "string-similarity": "^4.0.4",
-    "zod": "^3.20.6"
+    "zod": "^3.20.6",
+    "zustand": "^4.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
