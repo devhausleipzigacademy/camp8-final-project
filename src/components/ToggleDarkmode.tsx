@@ -1,12 +1,6 @@
 import { Switch } from "@headlessui/react";
 import { useTheme } from "next-themes";
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
-type theme = {};
-
 type ToggleView = {};
 
 export function ToggleDarkmode(props: ToggleView) {

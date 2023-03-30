@@ -42,11 +42,11 @@ export default function ListItem(props: ListItemProps) {
   const [swiped, setSwiped] = useState(true);
   const onDelete = (slug: string) => {
     setSwiped(false);
-    axios.delete(`/api/deleteItem?id=${props.id}`);
+    axios.delete(`/api/item?id=${props.id}`);
     refresh(slug);
   };
   const checked = () => {
-    axios.patch("/api/patchItem", {
+    axios.patch("/api/item", {
       who: props.id,
       what: "checked",
       toWhat: !props.checked,
@@ -93,28 +93,47 @@ export default function ListItem(props: ListItemProps) {
         className={clsx(details ? "z-20 relative" : "")}
       >
         <SwipeableListItem
-          className="bg-primary-transparent max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
+          className="bg-primary-transparent h-16 border border-secondary-default rounded-md flex flex-row"
           leadingActions={leadingActions()}
           trailingActions={trailingActions()}
           threshold={0.5}
         >
-          <div className="flex justify-center items-center h-full bg-text-white p-2">
+          <div className="flex justify-center items-center h-full aspect-square bg-text-white p-2">
             <img className="h-full aspect-square" src={props.image} />
           </div>
-          <p className="text-text-typo text-primary pl-4">{props.name}</p>
+          <div>
+            <p
+              className="text-text-typo text-primary pl-4"
+              style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+            >
+              {props.name}
+            </p>
+          </div>
           <div className="flex p-2 justify-end gap-6 items-center flex-grow">
             <div
-              className=" flex gap-2"
+              className=" flex gap-2 underline text-primary-default-Solid"
               onClick={() => {
                 setDetails(!details);
-                handleClick();
+                handleClick(props.id);
               }}
             >
-              <p className="text-secondary font-thin">
-                {props.quantity ? props.quantity : "amount"}
+              <p
+                className="text-secondary font-thin flex flex-shrin"
+                style={{
+                  fontSize: "clamp(5px, 3.9vw, 1.125rem)",
+                }}
+              >
+                {props.quantity ? props.quantity : "edit"}
               </p>
               {props.unit && (
-                <p className="text-secondary font-thin">{props.unit}</p>
+                <p
+                  className="text-secondary font-thin"
+                  style={{
+                    fontSize: "clamp(5px, 3.9vw, 1.125rem)",
+                  }}
+                >
+                  {props.unit}
+                </p>
               )}
             </div>
             <div className="relative w-10 h-8">
@@ -161,13 +180,21 @@ export default function ListItem(props: ListItemProps) {
         leaveFrom="opacity-100 scale-y-100 "
         leaveTo="opacity-0 scale-y-95 "
         className="relative z-10"
+        id={props.id + "modal"}
       >
         <EditModal id={props.id} setDetails={setDetails} />
       </Transition>
     </>
   );
 }
-export const handleClick = () => {
+export const handleClick = (id: string) => {
   const pageElement = document.getElementById("List-page") as HTMLElement;
+  pageElement.classList.toggle("z-10");
+  setTimeout(() => {
+    const modal = document.getElementById(id + "modal") as HTMLElement;
+    if (modal) {
+      modal.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, 500);
   pageElement.children[0].classList.toggle("z-10");
 };

@@ -25,7 +25,7 @@ export function ItemListMapper(props: ItemListMapperProps) {
           }
         }
         return (
-          <div key={product.id}>
+          <div key={product.id} id={String(product.id)}>
             {nameSection && (
               <p className="pl-12 pt-2 pb-2 text-primary">
                 {capitalizeCategory(sectionName) + ":"}

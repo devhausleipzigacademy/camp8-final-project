@@ -3,7 +3,7 @@ import { IconButton } from "./IconButton";
 import clsx from "clsx";
 
 type FullHeader = {
-  classes: string;
+  classes?: string;
   name: string;
 };
 

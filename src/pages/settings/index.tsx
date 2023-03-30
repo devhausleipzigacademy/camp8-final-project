@@ -1,5 +1,7 @@
 import Head from "next/head";
 import TabAccountSetting from "@/components/TabAccountSetting";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 
 export default function Settings() {
   return (
