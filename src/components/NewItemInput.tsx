@@ -37,7 +37,7 @@ export function NewItemInput({ listID }: InputProps) {
     setInputValue(event.target.value);
     setQuery(event.target.value);
     await axios
-      .get(`http://localhost:3000/api/autocomplete?name=${query}`)
+      .get(`http://localhost:3000/api/item?name=${query}`)
       .then((res) => {
         setList(
           res.data.results.reverse().map((x: any) => capitalizeCategory(x.name))
@@ -54,7 +54,7 @@ export function NewItemInput({ listID }: InputProps) {
 
       if (match) {
         const response = await axios
-          .post("http://localhost:3000/api/addItem", {
+          .post("http://localhost:3000/api/item", {
             query: match[3].toLowerCase(),
             number: match[1],
             units: match[2],
@@ -68,8 +68,11 @@ export function NewItemInput({ listID }: InputProps) {
         setInputValue("");
 
         setTimeout(() => {
-          const bla = document.getElementById(String(response));
+          const bla = document.getElementById(response);
           bla?.scrollIntoView({ block: "end", behavior: "smooth" });
+          console.log(String(response));
+
+          console.log(bla);
         }, 200);
       }
     } catch (error) {

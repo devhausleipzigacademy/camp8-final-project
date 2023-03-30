@@ -120,6 +120,7 @@ model Item {
   inList              List?   @relation(fields: [listIdentifier], references: [id])
   
   checked             Boolean @default(false)
+  verified            Boolean @default(true)
 
   @@map("Items")
 }

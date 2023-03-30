@@ -17,29 +17,44 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/addItem
+POST http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "query": "mozzarella cheese",
-  "inputList": "609df003-b3c1-4601-8053-cdc0d8c53e94"
+  "query": "sfbaljsdhfljash",
+  "inputList": "6b07c3a6-f476-474f-94a8-975fe055c3e1"
 }
 
 ###
 
-GET http://localhost:3000/api/listItems?inputList=1e3e64e1-bbb4-4b31-b829-772694127995
+PUT http://localhost:3000/api/item?inputList=6b07c3a6-f476-474f-94a8-975fe055c3e1
 
 ###
 
 DELETE http://localhost:3000/api/deleteItem?id=1ae7a208-521a-4439-9ebb-94192ce4f521
 
 ###
-
-PATCH http://localhost:3000/api/patchItem
+PATCH http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "who":"36b77a00-9968-4f72-bae5-dc34ce2a839e",
-  "what":"imageUrl",
-  "toWhat":2
+  "who":"2c70a96b-def2-416b-835a-5e227438b220",
+  "what":"category",
+  "toWhat":"baking"
+}
+
+###
+GET http://localhost:3000/api/categories
+
+###
+PUT http://localhost:3000/api/user
+
+###
+PATCH http://localhost:3000/api/masterItem
+Content-Type: application/json
+
+{
+  "name": "apples",
+  "image": "https://elephant.art/wp-content/uploads/2019/11/poop-emoji.jpg",
+  "category": "baking"
 }
