@@ -2,10 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Switch } from "@headlessui/react";
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 type ToggleView = {};
 
 export function ToggleDarkmode(props: ToggleView) {

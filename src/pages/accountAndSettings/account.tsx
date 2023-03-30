@@ -6,12 +6,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Input from "@/components/Input";
 import { useState } from "react";
-import {
-  UseMutateFunction,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type SettingsProps = {
   user: User;

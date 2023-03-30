@@ -1,7 +1,5 @@
 import { Tab } from "@headlessui/react";
 import { User } from "@prisma/client";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import clsx from "clsx";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
@@ -9,7 +7,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { FiChevronLeft } from "react-icons/fi";
-import { prisma } from "../api/prisma";
 import AccountView from "./account";
 import Settings from "./settings";
 

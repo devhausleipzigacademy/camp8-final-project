@@ -3,8 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { z, ZodError } from "zod";
 import { prisma } from "src/pages/api/prisma";
 
-/*
- */
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse

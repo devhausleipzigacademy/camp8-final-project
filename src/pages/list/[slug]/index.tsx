@@ -1,17 +1,16 @@
-import { GetServerSideProps } from "next";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
 import {
-  sortByDate,
   sortByAlphabet,
   sortByCategory,
+  sortByDate,
 } from "@/components/List/SortFunctions";
-import { Item } from "@prisma/client";
 import { NewItemInput } from "@/components/NewItemInput";
+import { Item } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { GetServerSideProps } from "next";
+import { useState } from "react";
 
 export type Category = {
   id: string;

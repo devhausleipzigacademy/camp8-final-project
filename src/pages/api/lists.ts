@@ -1,5 +1,4 @@
 import { z, ZodError } from "zod";
-import { MasterItem } from "@prisma/client";
 import { defineEndpoints } from "../../next-rest-framework/client";
 import { prisma } from "../api/prisma";
 
