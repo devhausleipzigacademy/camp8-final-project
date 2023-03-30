@@ -4,9 +4,7 @@ import { useTheme } from "next-themes";
 type ToggleView = {};
 
 export function ToggleDarkmode(props: ToggleView) {
-
   const { theme, setTheme } = useTheme();
-
 
   return (
     <div className="py-2">
@@ -21,7 +19,7 @@ export function ToggleDarkmode(props: ToggleView) {
             data-headlessui-state="on"
             className={`${
               theme === "dark"
-                ? " text-primary-default-Solid dark:text-text-white"
+                ? " text-primary-default-Solid dark:text-white"
                 : "text-text-white"
             }`}
           >

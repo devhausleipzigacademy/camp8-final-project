@@ -57,7 +57,7 @@ export default function AccountView({ user }: SettingsProps) {
         <div>
           <FiUser size={28} />
         </div>
-        <div className="text-primary-default-Solid font-heading text-4xl m-8">
+        <div className="text-primary-default-Solid dark:text-white font-heading text-4xl m-8">
           Hey,&nbsp;
           {player?.name ? player.name : player?.email}
         </div>
