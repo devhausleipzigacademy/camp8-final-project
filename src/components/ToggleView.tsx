@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import { Switch } from "@headlessui/react";
 import { useSzieStore } from "@/pages/stores/styleStore";
 
@@ -7,13 +6,6 @@ type ToggleView = {};
 
 export function ToggleView(props: ToggleView) {
   const { isFontSizeBig, setSize } = useSzieStore();
-  const [loading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, [isFontSizeBig]);
-
-  if (loading) return null;
   return (
     <div className="py-2">
       <Switch.Group>
@@ -49,7 +41,7 @@ export function ToggleView(props: ToggleView) {
             className={`absolute ${
               isFontSizeBig ? "translate-x-full" : "-translate-x-0"
             }
-            pointer-events-none text-text-white inline-block h-full w-[50%] py-2 transform rounded-md bg-primary-default-Solid transition duration-300 ease-in-out `}
+            pointer-events-none text-text-white inline-block h-full w-1/2 py-2 transform rounded-md bg-primary-default-Solid transition duration-300 ease-in-out `}
           ></span>
         </Switch>
       </Switch.Group>

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
-import { useStyleStore } from "@/pages/stores/styleStore";
 import { useTheme } from "next-themes";
 
 function classNames(...classes: string[]) {
@@ -12,16 +10,9 @@ type theme = {};
 type ToggleView = {};
 
 export function ToggleDarkmode(props: ToggleView) {
-  // const { isDarkMode, toggleDarkMode } = useTheme();
-  // const [loading, setIsLoading] = useState(true);
 
   const { theme, setTheme } = useTheme();
 
-  // useEffect(() => {
-  //   setIsLoading(false);
-  // }, [isDarkMode]);
-
-  // if (loading) return null;
 
   return (
     <div className="py-2">
