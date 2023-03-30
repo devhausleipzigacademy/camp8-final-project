@@ -20,12 +20,14 @@ GET http://localhost:3000/api/autocomplete?name=ban
 
 POST http://localhost:3000/api/createANewUser
 
+###
+
 POST http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "query": "sfbaljsdhfljash",
-  "inputList": "6b07c3a6-f476-474f-94a8-975fe055c3e1"
+  "query": "apples",
+  "inputList": "f3bcfc7d-c7bb-4f80-8545-f82a7013d876"
 }
 
 ###
@@ -55,5 +57,5 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-POST http://localhost:3000/api/lists?id=clfvcu38y0000y80asud55v3k
+POST http://localhost:3000/api/lists?id=clfvlqvx80000vysjvl06e0bz
 

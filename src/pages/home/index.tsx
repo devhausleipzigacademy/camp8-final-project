@@ -6,9 +6,10 @@ import { newCardId } from "./apiCalls";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { User } from "@prisma/client";
+import axios from "axios";
 
 type InputProps = {
-  user: string;
+  user: User;
 };
 export default function Home({ user }: InputProps) {
   //link to queryClient in app.tsx
@@ -23,14 +24,17 @@ export default function Home({ user }: InputProps) {
   return (
     <div className="grid grid-row-2 h-full relative">
       <div className="row-span-1">
-        <FullHeader classes={""} name={""}></FullHeader>
+        <FullHeader
+          classes={""}
+          name={(user.name as string).split(" ")[0]}
+        ></FullHeader>
       </div>
       <div className="row-span-1 h-full overflow-y-scroll">
-        <CardsWrapper user_id={user} />
+        <CardsWrapper user_id={user.id} />
       </div>
       <PlusButton
         onClick={() => {
-          createNewCard(user);
+          createNewCard(user.id);
         }}
       ></PlusButton>
     </div>
@@ -45,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      user: user.id,
+      user: user,
     },
   };
 };

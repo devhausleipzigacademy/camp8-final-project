@@ -221,14 +221,14 @@ export default function Bubble({ data, slug, name }: Props) {
       .attr("class", "bar-text");
   }, []);
   return (
-    <div className="p-6 flex flex-col justify-between h-full gap-2 w-full bg-grad-frame">
+    <div className=" flex flex-col justify-between h-full gap-2 w-full bg-grad-frame">
+      <ListNameHeader
+        Listname="List View"
+        classNames="w-full pb-8"
+        linkTo={`list/${slug}`}
+      />
       <div className="flex justify-center overflow-y-auto">
         <svg ref={d3Container} width="100%" height="100%"></svg>
-        {/* <div className="flex items-center justify-center">
-          <button className="flex h-20 w-20 border-2 rounded-full justify-center items-center">
-            Add item
-          </button>
-        </div> */}
       </div>
     </div>
   );

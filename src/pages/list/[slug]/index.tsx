@@ -56,17 +56,27 @@ export default function Home({ slug, name }: InputProps) {
   return (
     <div
       id="List-page"
-      className="py-6 flex flex-col justify-between items-center h-screen gap-2 relative"
+      className=" pb-10 flex flex-col justify-between items-center h-full gap-2 relative"
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-      <ListNameHeader Listname={name} classNames="w-full" linkTo="home" />
-      <SortBySwitches
-        className=""
+      <div className="w-full">
+        <ListNameHeader
+          Listname={name}
+          classNames="w-full pb-8"
+          linkTo="home"
+        />
+        <SortBySwitches
+          className=""
+          sortBy={sortBy}
+          setSort={setSortBy}
+          slug={slug}
+        />
+      </div>
+      <ItemListMapper
+        list={list}
         sortBy={sortBy}
-        setSort={setSortBy}
-        slug={slug}
+        className="w-full h-full flex flex-col overflow-y-auto"
       />
-      <ItemListMapper list={list} sortBy={sortBy} className="overflow-y-auto" />
       <NewItemInput listID={slug} />
     </div>
   );

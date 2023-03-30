@@ -40,9 +40,10 @@ export default function AccountView({ user }: SettingsProps) {
   };
 
   async function updateName() {
-    return await axios.patch("http://localhost:3000/api/changeNameUser", {
-      email: user.email,
-      name: inputName,
+    return await axios.patch("http://localhost:3000/api/user", {
+      id: player?.id,
+      what: "name",
+      toWhat: inputName,
     });
   }
 

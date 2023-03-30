@@ -54,11 +54,7 @@ export default defineEndpoints({
     }) => {
       const John = await prisma.list.create({
         data: {
-          belongsTo: {
-            connect: {
-              id: id,
-            },
-          },
+          userIdentifier: id,
         },
       });
       return res.status(201).send(John);

@@ -18,7 +18,7 @@ export default async function handler(
       const { id, checked, slug } = inputQuerySchema.parse(request.body);
 
       if (checked) {
-        await prisma.item.update({
+        const item = await prisma.item.update({
           where: {
             id: id,
           },
@@ -30,8 +30,16 @@ export default async function handler(
             },
           },
         });
+        await prisma.list.update({
+          where: {
+            id: slug,
+          },
+          data: {
+            checked: { increment: item.checked ? 1 : -1 },
+          },
+        });
       } else {
-        const John = await prisma.item.update({
+        const item = await prisma.item.update({
           where: {
             id: id,
           },
@@ -41,7 +49,14 @@ export default async function handler(
             },
           },
         });
-        console.log(John);
+        await prisma.list.update({
+          where: {
+            id: slug,
+          },
+          data: {
+            checked: { increment: item.checked ? -1 : 1 },
+          },
+        });
       }
     } catch (err) {
       if (err instanceof ZodError) {

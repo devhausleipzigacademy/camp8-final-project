@@ -86,6 +86,20 @@ export default defineEndpoints({
       },
     }) => {
       try {
+        try {
+          const test = await prisma.list.update({
+            where: {
+              id: inputList,
+            },
+            data: {
+              total: { increment: 1 },
+            },
+          });
+          console.log(test, "FindMe");
+        } catch (err) {
+          return res.status(400).send(String(err));
+        }
+
         const list = await prisma.list.findFirst({
           where: {
             id: inputList,
@@ -326,7 +340,6 @@ export default defineEndpoints({
             );
         }
 
-        console.log(what);
         const item = await prisma.item.update({
           where: {
             id: who,
@@ -336,6 +349,19 @@ export default defineEndpoints({
             verified: what === "imageUrl" ? false : true,
           },
         });
+
+        if (what === "checked") {
+          await prisma.list.update({
+            where: {
+              id: item.listIdentifier as string,
+            },
+            data: {
+              checked: {
+                increment: toWhat ? 1 : -1,
+              },
+            },
+          });
+        }
         res.status(200).send("Changed Correctly");
       } catch (err) {
         res.status(418).send(JSON.stringify(err));
@@ -373,19 +399,15 @@ export default defineEndpoints({
             id: id,
           },
         });
-        if (!test?.verified) {
-          await prisma.item.update({
-            where: {
-              id: test?.id,
-            },
-            data: {
-              inList: {
-                disconnect: true,
-              },
-            },
-          });
-          return res.status(200).send("Unlinked");
-        }
+        await prisma.list.update({
+          where: {
+            id: test?.listIdentifier as string,
+          },
+          data: {
+            total: { decrement: 1 },
+            checked: { decrement: test?.checked ? 1 : 0 },
+          },
+        });
         await prisma.item.delete({
           where: {
             id: id,

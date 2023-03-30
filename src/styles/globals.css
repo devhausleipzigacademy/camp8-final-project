@@ -37,6 +37,10 @@
   );
   background-repeat: no-repeat;
 }
+.bar-text {
+  pointer-events: none;
+  @apply fill-text-typo text-primary;
+}
 
 .bg-ux-inactive {
   background: linear-gradient(
