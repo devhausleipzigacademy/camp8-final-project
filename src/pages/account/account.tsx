@@ -90,6 +90,6 @@ export default function AccountView({ user }: SettingsProps) {
 }
 const getUserInfo = async (email: string) => {
   return (await axios
-    .get(`http://localhost:3000/api/userInfo?email=${email}`)
+    .get(`http://localhost:3000/api/user?email=${email}`)
     .then((res) => res.data)) as User;
 };

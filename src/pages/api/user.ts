@@ -80,7 +80,7 @@ export default defineEndpoints({
             },
             data: {
               image: image,
-              name: temp.name ? name : temp.name,
+              name: temp.name ?? name
             },
           });
         }
@@ -153,7 +153,7 @@ export default defineEndpoints({
       description: "Will fetch a user based on their email",
     },
     input: {
-      query: z.object({ email: z.string() }),
+      query: z.object({ email: z.string() })
     },
     output: [
       {
@@ -166,7 +166,7 @@ export default defineEndpoints({
       req: {
         query: { email },
       },
-      res,
+      res
     }) => {
       const user = await prisma.user.findFirst({
         where: {

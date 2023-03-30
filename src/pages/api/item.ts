@@ -124,8 +124,8 @@ export default defineEndpoints({
                 id: item.id,
               },
               data: {
-                unit: units ? units : "",
-                quantity: number ? Number(number) : 0,
+                unit: units ?? "",
+                quantity: Number(number) ?? 0,
               },
             });
           }
@@ -161,8 +161,8 @@ export default defineEndpoints({
                 id: item.id,
               },
               data: {
-                unit: units ? units : "",
-                quantity: number ? Number(number) : 0,
+                unit: units ?? "",
+                quantity: Number(number) ?? 0,
               },
             });
           }
