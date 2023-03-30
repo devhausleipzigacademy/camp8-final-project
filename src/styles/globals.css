@@ -21,6 +21,10 @@
   font-size: 22px;
 }
 
+.dark-background {
+  background: rgba(19, 18, 29, 0.8);
+}
+
 .bg-primary-frame {
   background: linear-gradient(
     179.79deg,

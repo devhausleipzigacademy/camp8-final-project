@@ -40,8 +40,10 @@ specifiers:
   fastify-zod: ^1.2.0
   feather-icons-react: ^0.6.2
   headlessui: ^0.0.0
+  install: ^0.13.0
   next: 13.1.6
   next-auth: ^4.20.1
+  next-themes: ^0.2.1
   nodemailer: ^6.9.1
   postcss: ^8.4.21
   postcss-loader: ^7.0.2
@@ -84,8 +86,10 @@ dependencies:
   fastify-zod: 1.2.0_fastify@4.13.0
   feather-icons-react: 0.6.2_react@18.2.0
   headlessui: 0.0.0
+  install: 0.13.0
   next: 13.1.6_pjwopsidmaokadturxaafygjp4
   next-auth: 4.20.1_phzvn2nhb6zk7o4ds4z4gvqlei
+  next-themes: 0.2.1_3vryta7zmbcsw4rrqf4axjqggm
   nodemailer: 6.9.1
   postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
   react: 18.2.0
@@ -8750,6 +8754,11 @@ packages:
       through: 2.3.8
     dev: false
 
+  /install/0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: false
+
   /internal-slot/1.0.5:
     resolution: {integrity: sha512-Y+R5hJrzs52QCG2laLn4udYVnxsfny9CpOhNhUvk/SSSVyF6T27FzRbF0sroPidSu3X8oEAkOn2K804mjpt6UQ==}
     engines: {node: '>= 0.4'}
@@ -10169,6 +10178,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
+    dev: false
+
+  /next-themes/0.2.1_3vryta7zmbcsw4rrqf4axjqggm:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.1.6_pjwopsidmaokadturxaafygjp4
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next/13.1.6_pjwopsidmaokadturxaafygjp4:

@@ -1,46 +1,29 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { QueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import { SessionProvider } from "next-auth/react";
 import { useStyleStore, useSzieStore } from "./stores/styleStore";
-import clsx from "clsx";
 import { useEffect } from "react";
+import { ThemeProvider } from "next-themes";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { darkMode } = useStyleStore();
-  const { size } = useSzieStore();
+  const { isFontSizeBig } = useSzieStore();
 
   useEffect(() => {
-    const htmlElement = document.getElementsByTagName("html")[0];
-    if (darkMode) {
-      htmlElement.classList.add("dark");
+    const htmlElement = document.querySelector("html");
+    if (isFontSizeBig) {
+      htmlElement && htmlElement.classList.add("big");
     } else {
-      htmlElement.classList.remove("dark");
+      htmlElement && htmlElement.classList.remove("big");
     }
-  }, [darkMode]);
-
-  useEffect(() => {
-    const htmlElement = document.getElementsByTagName("html")[0];
-    if (size) {
-      htmlElement.classList.add("big");
-    } else {
-      htmlElement.classList.remove("big");
-    }
-  }, [size]);
+  }, [isFontSizeBig]);
 
   return (
-    <div
-      className={clsx(
-        "bg-grad-frame h-screen w-auto dark:bg-primary-transparent",
-        darkMode && "dark"
-      )}
-    >
-      <div className="dark:bg-primary-transparent">
+    <div>
+      <ThemeProvider>
         <SessionProvider>
           <Component {...pageProps} />
         </SessionProvider>
-      </div>
+      </ThemeProvider>
     </div>
   );
 }

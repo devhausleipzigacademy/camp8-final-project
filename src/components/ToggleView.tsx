@@ -6,27 +6,29 @@ import { useSzieStore } from "@/pages/stores/styleStore";
 type ToggleView = {};
 
 export function ToggleView(props: ToggleView) {
-  const { size, setSize } = useSzieStore();
+  const { isFontSizeBig, setSize } = useSzieStore();
   const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(false);
-  }, [size]);
+  }, [isFontSizeBig]);
 
   if (loading) return null;
   return (
     <div className="py-2">
       <Switch.Group>
         <Switch
-          checked={!size}
+          checked={!isFontSizeBig}
           onChange={setSize}
-          className="w-full relative inline-flex h-full content-center rounded-lg text-primary-default-Solid bg-secondary-default border-secondary-default border-2 border-spacing-2"
+          className="w-full relative inline-flex h-full content-center rounded-lg text-primary-default-Solid bg-secondary-default border-secondary-default border-2 border-spacing-2 dark:bg-secondary-transparent dark:border-secondary-transparent"
         >
           <span className="sr-only ">Toggle size of components</span>
           <div className="flex justify-around w-full relative text-text-white z-10 px-4">
             <span
               className={`${
-                size ? " text-primary-default-Solid" : "text-text-white"
+                isFontSizeBig
+                  ? " text-primary-default-Solid dark:text-text-white"
+                  : "text-text-white"
               }`}
             >
               Normal
@@ -34,7 +36,9 @@ export function ToggleView(props: ToggleView) {
 
             <span
               className={`${
-                !size ? " text-primary-default-Solid" : "text-text-white"
+                !isFontSizeBig
+                  ? " text-primary-default-Solid dark:text-text-white"
+                  : "text-text-white"
               }`}
             >
               Big
@@ -42,7 +46,9 @@ export function ToggleView(props: ToggleView) {
           </div>
           <span
             aria-hidden="true"
-            className={`absolute ${size ? "translate-x-full" : "-translate-x-0"}
+            className={`absolute ${
+              isFontSizeBig ? "translate-x-full" : "-translate-x-0"
+            }
             pointer-events-none text-text-white inline-block h-full w-[50%] py-2 transform rounded-md bg-primary-default-Solid transition duration-300 ease-in-out `}
           ></span>
         </Switch>
