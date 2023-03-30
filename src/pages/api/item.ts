@@ -220,7 +220,8 @@ export default defineEndpoints({
       description: "Will give back all the items in a list",
     },
     input: {
-      query: itemPutSchema,
+      contentType: "application/json",
+      body: itemPutSchema,
     },
     output: [
       {
@@ -237,7 +238,7 @@ export default defineEndpoints({
     handler: async ({
       res,
       req: {
-        query: { inputList },
+        body: { inputList },
       },
     }) => {
       try {
