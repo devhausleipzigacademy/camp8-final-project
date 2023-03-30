@@ -8,6 +8,7 @@ module.exports = {
       heading: ["Staatliches", "sans-serif"],
     },
     colors: {
+      white: "#FFFFFF",
       primary: {
         default: {
           Solid: "#5F62C7",

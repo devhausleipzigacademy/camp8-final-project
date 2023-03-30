@@ -46,13 +46,6 @@
     rgba(190, 190, 190, 0.8);
 }
 
-/* Setting default text colour */
-@layer base {
-  html {
-    @apply text-text-typo;
-  }
-}
-
 @layer components {
   .text-splash {
     font-family: Staatliches;
