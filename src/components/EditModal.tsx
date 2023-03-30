@@ -47,7 +47,7 @@ export default function EditModal({ id, setDetails }: InputProps) {
   ];
 
   return (
-    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background">
+    <div className="absolute right-0 left-0 h-full gap-0 flex flex-col font-sans outline-primary-default-background">
       <Tab.Group>
         <Tab.List className="flex rounded-xl bg-text-white px-3 py-3">
           {categories.map((category) => (

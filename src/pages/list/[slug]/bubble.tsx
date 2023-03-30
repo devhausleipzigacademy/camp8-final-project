@@ -84,7 +84,7 @@ export default function Bubble({ data, slug, name }: Props) {
     // Set up the SVG element and its dimensions
     const svg = d3.select(d3Container.current);
     const width = window.innerWidth * 0.8;
-    const height = window.innerHeight * 0.8;
+    const height = window.innerHeight * 1.3;
     svg.attr("width", width);
     svg.attr("height", height);
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
@@ -105,13 +105,13 @@ export default function Bubble({ data, slug, name }: Props) {
     // Can maybe set this to depend on number of circles.  Also depends on collision force (see later)
 
     // Scaling function to scale the padding with the number of circles
-    // const paddingScale = d3.scaleLinear().domain([1, 50]).range([50, -200]);
+    // // const paddingScale = d3.scaleLinear().domain([1, 50]).range([50, -200]);
 
     const pack = d3
       .pack()
       .size([chartWidth, chartHeight])
       // .padding(paddingScale(count(data)));
-      .padding(-5);
+      .padding(-11);
 
     // Generate the hierarchy data structure
     const root = d3.hierarchy(data).sum((d) => 1);
@@ -166,10 +166,15 @@ export default function Bubble({ data, slug, name }: Props) {
 
     const heightScale = d3.scaleLinear().domain([300, 1000]).range([0, -0.01]);
 
+    const strengthScale = d3
+      .scaleLinear()
+      .domain([0, width / 2])
+      .range([1, 0]); // Scale to map distance from center to force strength
+
     // Define a simulation with a collision force
     const simulation = d3
       .forceSimulation(nodes.slice(data.children.length + 1))
-      .force("charge", d3.forceManyBody().strength(1)) // a positive value will cause elements to attract one another while a negative value causes elements to repel each other. The default value is -30
+      .force("charge", d3.forceManyBody().strength(0.1)) // a positive value will cause elements to attract one another while a negative value causes elements to repel each other. The default value is -30
       .force(
         "collide",
         d3
@@ -178,7 +183,13 @@ export default function Bubble({ data, slug, name }: Props) {
           //Strength at which circles will push away from eachother
           .strength(0.1)
       ) // add a collision force to prevent circles from overlapping
-      .force("y", d3.forceY(height / 2).strength(heightScale(height)));
+      // .force("y", d3.forceY(height / 2).strength(1 / height))
+      .force(
+        "x",
+        d3
+          .forceX(width / 2)
+          .strength((d) => strengthScale(Math.abs(d.x - width / 2)))
+      );
 
     // Add tick function to update circle and text positions
     simulation.on("tick", () => {
@@ -216,7 +227,7 @@ export default function Bubble({ data, slug, name }: Props) {
         classNames="mt-4"
         linkTo={`/list/${slug}`}
       />
-      <div>
+      <div className="flex justify-center overflow-y-auto">
         <svg ref={d3Container} width="100%" height="100%"></svg>
         {/* <div className="flex items-center justify-center">
           <button className="flex h-20 w-20 border-2 rounded-full justify-center items-center">

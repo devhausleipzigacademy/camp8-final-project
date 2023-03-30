@@ -42,7 +42,7 @@ export default function ListItem(props: ListItemProps) {
   const [swiped, setSwiped] = useState(true);
   const onDelete = (slug: string) => {
     setSwiped(false);
-    axios.delete(`/api/deleteItem?id=${props.id}`);
+    axios.delete(`/api/item?id=${props.id}`);
     refresh(slug);
   };
   const checked = () => {
@@ -90,10 +90,13 @@ export default function ListItem(props: ListItemProps) {
         leave="transform duration-[800ms] transition ease-in-out"
         leaveFrom="opacity-100 scale-y-100 "
         leaveTo="opacity-0 scale-y-0"
-        className={clsx(details ? "z-20 relative" : "")}
+        className={clsx(
+          details ? "z-20 relative" : "",
+          "w-full flex justify-center"
+        )}
       >
         <SwipeableListItem
-          className="bg-primary-transparent max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
+          className="bg-primary-transparent h-16 border border-secondary-default rounded-md flex flex-row"
           leadingActions={leadingActions()}
           trailingActions={trailingActions()}
           threshold={0.5}
@@ -111,14 +114,14 @@ export default function ListItem(props: ListItemProps) {
           </div>
           <div className="flex p-2 justify-end gap-6 items-center flex-grow">
             <div
-              className=" flex gap-2"
+              className=" flex gap-2 underline text-primary-default-Solid"
               onClick={() => {
                 setDetails(!details);
                 handleClick(props.id);
               }}
             >
               <p
-                className="text-secondary font-thin flex flex-shrink underline text-primary-default-Solid"
+                className="text-secondary font-thin flex flex-shrink "
                 style={{
                   fontSize: "clamp(5px, 3.9vw, 1.125rem)",
                 }}

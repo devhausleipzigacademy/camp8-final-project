@@ -20,6 +20,10 @@
 .big {
   font-size: 22px;
 }
+.bar-text {
+  pointer-events: none;
+  @apply fill-text-typo text-primary;
+}
 
 .bg-primary-frame {
   background: linear-gradient(

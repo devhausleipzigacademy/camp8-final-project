@@ -5,6 +5,8 @@ import { prisma } from "../api/prisma";
 export const itemPostSchema = z.object({
   query: z.string().regex(/[A-z]/, "No Numbers allowed"),
   inputList: z.string(),
+  number: z.optional(z.string()),
+  units: z.optional(z.string()),
 });
 export const itemPostOutput = z.object({
   id: z.string(),
@@ -80,7 +82,7 @@ export default defineEndpoints({
     handler: async ({
       res,
       req: {
-        body: { inputList, query },
+        body: { inputList, query, number, units },
       },
     }) => {
       try {
@@ -100,7 +102,7 @@ export default defineEndpoints({
               name: query,
             },
           })) as MasterItem;
-          const item = await prisma.item.create({
+          let item = await prisma.item.create({
             data: {
               defaultCategory: {
                 connect: {
@@ -116,6 +118,17 @@ export default defineEndpoints({
               name: product.name,
             },
           });
+          if (number && units) {
+            item = await prisma.item.update({
+              where: {
+                id: item.id,
+              },
+              data: {
+                quantity: Number(number),
+                unit: units,
+              },
+            });
+          }
           res.setHeader("content-type", "application/json");
 
           res.status(200).json(String(item.createdAt));
@@ -125,7 +138,7 @@ export default defineEndpoints({
               name: "other",
             },
           });
-          const item = await prisma.item.create({
+          let item = await prisma.item.create({
             data: {
               name: query,
               defaultCategory: {
@@ -142,6 +155,18 @@ export default defineEndpoints({
                 "https://as1.ftcdn.net/v2/jpg/02/07/83/10/1000_F_207831015_sXKAuf2tcsnrxOS1vfuvHSN2fDrdwtNf.jpg",
             },
           });
+
+          if (number && units) {
+            item = await prisma.item.update({
+              where: {
+                id: item.id,
+              },
+              data: {
+                quantity: Number(number),
+                unit: units,
+              },
+            });
+          }
           res.setHeader("content-type", "text/plain");
 
           res.status(201).send(item.id);
@@ -238,7 +263,7 @@ export default defineEndpoints({
     handler: async ({
       res,
       req: {
-        query: { inputList },
+        body: { inputList },
       },
     }) => {
       try {
@@ -247,7 +272,6 @@ export default defineEndpoints({
             listIdentifier: inputList,
           },
         });
-
         res.status(200).send(list);
       } catch (err) {
         res.status(418).send(JSON.stringify(err));
