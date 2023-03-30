@@ -11,11 +11,9 @@ export default function Settings() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HeaderWithBack label={""} sendTo={"/home"} />
-      <div className="">
-        <div className="flex justify-center text-text-white">
-          <TabAccountSetting />
-        </div>
+      <HeaderWithBack sendTo={"/home"} />
+      <div className="flex justify-center text-text-white dark:text-primary-default-Solid">
+        <TabAccountSetting />
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
@@ -40,8 +39,7 @@ export default function Home({ slug }: InputProps) {
 
   const {
     data: bigList,
-    status,
-    isLoading,
+    isLoading
   } = useQuery(["data"], () => getListData(slug));
   if (isLoading) {
     return <p>...Loading</p>;
@@ -62,17 +60,15 @@ export default function Home({ slug }: InputProps) {
       break;
   }
 
-  const router = useRouter();
-
   return (
-    <div>
+    <>
       <HeaderWithBack label={data.list.listName as string} sendTo={"/home"} />
       <div
         id="List-page"
         className="py-6 flex flex-col justify-between h-screen gap-2 relative"
       >
         <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-        <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
+        <SortBySwitches sortBy={sortBy} setSort={setSortBy} />
         <ItemListMapper
           list={list}
           sortBy={sortBy}
@@ -80,12 +76,12 @@ export default function Home({ slug }: InputProps) {
         />
         <NewItemInput listID={slug} />
       </div>
-    </div>
+    </>
   );
 }
 
 const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug; // slug = listId
+  const slug = params?.slug;
 
   return {
     props: {

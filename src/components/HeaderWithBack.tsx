@@ -3,14 +3,14 @@ import { FiChevronLeft } from "react-icons/fi";
 import Link from "next/link";
 
 type Props = {
-  label: string;
-  sendTo: string;
+  label?: string;
+  sendTo?: string;
 };
 
 export function HeaderWithBack(props: Props) {
   return (
     <div className="flex items-center gap-2">
-      <Link href={props.sendTo}>
+      <Link href={props.sendTo ?? "/"}>
         <FiChevronLeft className="w-6 h-6 text-text-typo" />
       </Link>
       <h1 className="text-text-typo text-primary text-links">{props.label}</h1>
