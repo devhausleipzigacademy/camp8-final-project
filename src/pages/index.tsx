@@ -25,7 +25,7 @@ export default function Home() {
         HI THERE! WELCOME TO SHOPPING HELPER
       </h1>
       <div className="px-8 pt-10">
-        <Link href={"/login"}>
+        <Link href={"/auth/signIn"}>
           <LargeButton
             variant={"primary"}
             label={"get started"}

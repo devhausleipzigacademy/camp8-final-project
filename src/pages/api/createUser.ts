@@ -1,8 +1,6 @@
-import { User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { z, ZodError } from "zod";
 import { prisma } from "src/pages/api/prisma";
-import { type } from "os";
+import { z, ZodError } from "zod";
 
 /*
  */
@@ -37,7 +35,7 @@ export default async function handler(
           },
           data: {
             image: image,
-            name: name,
+            name: temp.name ? name : temp.name,
           },
         });
       }

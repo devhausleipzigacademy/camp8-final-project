@@ -1,7 +1,14 @@
 import Head from "next/head";
 import TabAccountSetting from "@/components/TabAccountSetting";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 
-export default function Settings() {
+type InputProps = {
+  auth: boolean;
+};
+export default function Settings({ auth }: InputProps) {
+  console.log(auth);
+
   return (
     <>
       <Head>
@@ -13,9 +20,20 @@ export default function Settings() {
       <h1 className="text-4xl font-bold flex justify-center">Settings </h1>
       <div className="">
         <div className="flex justify-center text-text-white">
-          <TabAccountSetting />
+          <TabAccountSetting auth={auth} />
         </div>
       </div>
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+
+  const auth = "kirjava.bae@gmail.com" === session?.user?.email;
+
+  return {
+    props: {
+      auth: auth,
+    },
+  };
+};
