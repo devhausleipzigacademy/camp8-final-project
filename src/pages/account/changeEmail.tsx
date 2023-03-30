@@ -17,7 +17,6 @@ export default function Settings(props: ButtonProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //If I'm not mistaken, doesn't this just log someone into another email addess? And not send their data
     signIn("email", { email: email, callbackURL: "http://localhost:3000/" });
   };
   const emailCheck = new RegExp(`[A-z]+@[a-z]+.[a-zA-Z]{2,3}$`);
@@ -32,15 +31,13 @@ export default function Settings(props: ButtonProps) {
       </Head>
       <div className="px-8 flex flex-col">
         <header className="w-full flex items-center h-10 pt-8">
-          <Link href="/accountAndSettings">
+          <Link href="/account">
             <FiChevronLeft size={28} />
           </Link>
         </header>
         <div className="flex-grow flex flex-col justify-around items-center gap-5">
           {/* This section will change depending on the account status of the User */}
-          <div>
-            <FiUser size={28} />
-          </div>
+          <FiUser size={28} />
           <form onSubmit={handleSubmit} className="flex flex-col">
             <input
               type="text"

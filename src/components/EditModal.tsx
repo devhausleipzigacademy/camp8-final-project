@@ -1,19 +1,10 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
-import { prisma } from "@/pages/api/prisma";
-import { Category } from "@prisma/client";
+
 import axios from "axios";
-import { capitalizeCategory } from "./CapitalizeFunctions";
-import {
-  UseMutateFunction,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+
+import { useQuery } from "@tanstack/react-query";
 import { handleClick } from "./ListItem";
 
 type InputProps = {

@@ -6,12 +6,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Input from "@/components/Input";
 import { useState } from "react";
-import {
-  UseMutateFunction,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type SettingsProps = {
   user: User;
@@ -41,24 +36,19 @@ export default function AccountView({ user }: SettingsProps) {
   };
   const router = useRouter();
   const redirect = () => {
-    router.push("/accountAndSettings/changeEmail");
+    router.push("/account/changeEmail");
   };
 
   async function updateName() {
-    const bla = await axios
-      .patch("http://localhost:3000/api/user", {
-        id: player?.id,
-        what: "name",
-        toWhat: inputName,
-      })
-      .then((res) => res.data);
-    return bla;
+    return await axios.patch("http://localhost:3000/api/changeNameUser", {
+      email: user.email,
+      name: inputName,
+    });
   }
 
   function clickHandler() {
     updateName();
     refresh(user.email as string);
-    console.log("refreshing");
   }
 
   return (
@@ -99,8 +89,7 @@ export default function AccountView({ user }: SettingsProps) {
   );
 }
 const getUserInfo = async (email: string) => {
-  const John: User = await axios
-    .get(`http://localhost:3000/api/user?email=${email}`)
-    .then((res) => res.data);
-  return John;
+  return (await axios
+    .get(`http://localhost:3000/api/userInfo?email=${email}`)
+    .then((res) => res.data)) as User;
 };

@@ -4,13 +4,13 @@ import Link from "next/link";
 import clsx from "clsx";
 
 type IconButton = {
-	classes: string;
+  classes: string;
 };
 
 export function IconButton(props: IconButton) {
-	return (
-		<Link href="/account">
-			<FiUser className={clsx(" text-primary-default-Solid", props.classes)} />
-		</Link>
-	);
+  return (
+    <Link href="/account">
+      <FiUser className={clsx(" text-primary-default-Solid", props.classes)} />
+    </Link>
+  );
 }

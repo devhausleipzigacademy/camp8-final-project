@@ -1,7 +1,5 @@
-import { Category } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { z } from "zod";
 import { defineEndpoints } from "../../next-rest-framework/client";
-import { z, ZodError } from "zod";
 import { prisma } from "./prisma";
 
 /* The point of this endpoint is to delete a list.

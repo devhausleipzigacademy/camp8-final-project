@@ -1,6 +1,8 @@
+import { ToggleDarkmode } from "@/components/ToggleDarkmode";
+import { ToggleView } from "@/components/ToggleView";
 import Head from "next/head";
 
-export default function Receipe() {
+export default function Settings() {
   return (
     <>
       <Head>
@@ -9,9 +11,10 @@ export default function Receipe() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-red-600 text-4xl font-bold flex justify-center">
-        Receipe
-      </h1>
+
+      <hr className="my-5 mx-8 bg-primary-transparent" />
+      <ToggleDarkmode />
+      <ToggleView />
     </>
   );
 }

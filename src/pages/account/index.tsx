@@ -1,7 +1,5 @@
 import { Tab } from "@headlessui/react";
 import { User } from "@prisma/client";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import clsx from "clsx";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
@@ -9,7 +7,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { FiChevronLeft } from "react-icons/fi";
-import { prisma } from "../api/prisma";
 import AccountView from "./account";
 import Settings from "./settings";
 
@@ -75,11 +72,11 @@ export default function AccountAndSettings({ user }: AccountAndSettingsProps) {
         >
           <Tab.List className="flex rounded-md bg-secondary-default text-lg mx-11 ">
             {optionLabels.map((label, index) => (
-              <Tab className="w-full  flex " key={index}>
+              <Tab className=" flex w-full" key={index}>
                 {({ selected }) => (
                   <label
                     className={clsx(
-                      "rounded-md w-full h-11 flex items-center justify-center",
+                      "w-full rounded-md h-11 flex items-center justify-center",
                       selected
                         ? "bg-primary-default-Solid text-text-white "
                         : "bg-secondary-default text-text-typo"
