@@ -3,8 +3,14 @@ import { PlusButton } from "@/components/PlusButton";
 import CardsWrapper from "@/pages/home/CardsWrapper";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { newCardId } from "./apiCalls";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import { User } from "@prisma/client";
 
-export default function Home(id_user: string) {
+type InputProps = {
+  user: string;
+};
+export default function Home({ user }: InputProps) {
   //link to queryClient in app.tsx
   const queryClient = useQueryClient();
 
@@ -20,13 +26,26 @@ export default function Home(id_user: string) {
         <FullHeader classes={""} name={""}></FullHeader>
       </div>
       <div className="row-span-1 h-full overflow-y-scroll">
-        <CardsWrapper user_id={id_user} />
+        <CardsWrapper user_id={user} />
       </div>
       <PlusButton
-    onClick={() => {
-      createNewCard(id_user);
-    }}
-  ></PlusButton>
+        onClick={() => {
+          createNewCard(user);
+        }}
+      ></PlusButton>
     </div>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+
+  const user: User = await axios
+    .get(`http://localhost:3000/api/user?email=${session?.user?.email}`)
+    .then((z) => z.data);
+
+  return {
+    props: {
+      user: user.id,
+    },
+  };
+};

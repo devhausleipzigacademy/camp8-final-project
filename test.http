@@ -55,9 +55,5 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-PUT http://localhost:3000/api/item
-Content-Type: application/json
+POST http://localhost:3000/api/lists?id=clfvcu38y0000y80asud55v3k
 
-{
-  "inputList":"957e11ee-8a2e-411d-92e4-d855f29d9534"
-}

@@ -15,7 +15,6 @@ import {
   apiChangeListName,
   apiDeleteList,
   apiPinList,
-  apiUnpinList,
 } from "../pages/home/apiCalls";
 import { CardProps } from "@/pages/home/Types";
 import { useRouter } from "next/router";
@@ -47,7 +46,7 @@ export function SingleCard({ cardData }: CardProps) {
   });
 
   const { mutate: unpinList } = useMutation({
-    mutationFn: () => apiUnpinList(listId),
+    mutationFn: () => apiPinList(listId),
     onSuccess: () => queryClient.invalidateQueries(["cards"]),
   });
 
