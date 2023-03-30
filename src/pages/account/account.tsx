@@ -36,7 +36,7 @@ export default function AccountView({ user }: SettingsProps) {
   };
   const router = useRouter();
   const redirect = () => {
-    router.push("/accountAndSettings/changeEmail");
+    router.push("/account/changeEmail");
   };
 
   async function updateName() {

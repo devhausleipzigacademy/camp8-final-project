@@ -31,7 +31,7 @@ export default function Settings(props: ButtonProps) {
       </Head>
       <div className="px-8 flex flex-col">
         <header className="w-full flex items-center h-10 pt-8">
-          <Link href="/accountAndSettings">
+          <Link href="/account">
             <FiChevronLeft size={28} />
           </Link>
         </header>
