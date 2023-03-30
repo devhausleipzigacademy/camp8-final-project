@@ -93,7 +93,7 @@ export default function ListItem(props: ListItemProps) {
         className={clsx(details ? "z-20 relative" : "")}
       >
         <SwipeableListItem
-          className="bg-primary-transparent max-w-[354px] h-16 border border-secondary-default rounded-md flex flex-row"
+          className="bg-primary-transparent h-16 border border-secondary-default rounded-md flex flex-row"
           leadingActions={leadingActions()}
           trailingActions={trailingActions()}
           threshold={0.5}
@@ -111,22 +111,26 @@ export default function ListItem(props: ListItemProps) {
           </div>
           <div className="flex p-2 justify-end gap-6 items-center flex-grow">
             <div
-              className=" flex gap-2"
+              className=" flex gap-2 underline text-primary-default-Solid"
               onClick={() => {
                 setDetails(!details);
-                handleClick();
+                handleClick(props.id);
               }}
             >
               <p
-                className="text-secondary font-thin flex flex-shrink"
-                style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+                className="text-secondary font-thin flex flex-shrin"
+                style={{
+                  fontSize: "clamp(5px, 3.9vw, 1.125rem)",
+                }}
               >
-                {props.quantity ? props.quantity : "amount"}
+                {props.quantity ? props.quantity : "edit"}
               </p>
               {props.unit && (
                 <p
                   className="text-secondary font-thin"
-                  style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+                  style={{
+                    fontSize: "clamp(5px, 3.9vw, 1.125rem)",
+                  }}
                 >
                   {props.unit}
                 </p>
@@ -176,13 +180,21 @@ export default function ListItem(props: ListItemProps) {
         leaveFrom="opacity-100 scale-y-100 "
         leaveTo="opacity-0 scale-y-95 "
         className="relative z-10"
+        id={props.id + "modal"}
       >
         <EditModal id={props.id} setDetails={setDetails} />
       </Transition>
     </>
   );
 }
-export const handleClick = () => {
+export const handleClick = (id: string) => {
   const pageElement = document.getElementById("List-page") as HTMLElement;
+  pageElement.classList.toggle("z-10");
+  setTimeout(() => {
+    const modal = document.getElementById(id + "modal") as HTMLElement;
+    if (modal) {
+      modal.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, 500);
   pageElement.children[0].classList.toggle("z-10");
 };

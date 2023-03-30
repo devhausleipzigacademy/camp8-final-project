@@ -20,6 +20,14 @@ const userPostOutput = z.object({
   image: z.nullable(z.string()),
 });
 
+const userGetSchema = z.object({
+  id: z.string(),
+  name: z.nullable(z.string()),
+  email: z.nullable(z.string()),
+  emailVerified: z.nullable(z.date()),
+  image: z.nullable(z.string()),
+});
+
 export default defineEndpoints({
   POST: {
     openApiSpec: {
@@ -52,7 +60,6 @@ export default defineEndpoints({
     }) => {
       try {
         // Getting ID of list we will add product to.  If none there create one
-
         let temp = await prisma.user.findFirst({
           where: {
             email: email,
@@ -73,7 +80,7 @@ export default defineEndpoints({
             },
             data: {
               image: image,
-              name: temp.name ?? name,
+              name: temp.name ?? name
             },
           });
         }
@@ -105,31 +112,68 @@ export default defineEndpoints({
       res.status(200).send(itemToReview);
     },
   },
-  GET: {
+  PATCH: {
+    openApiSpec: {
+      description: "Will update the values of either email of name of a user",
+    },
     input: {
-      query: z.object({
-        email: z.string(),
+      contentType: "application/json",
+      body: z.object({
+        id: z.string(),
+        what: z.string(),
+        toWhat: z.string(),
       }),
     },
     output: [
       {
-        contentType: "application/json",
+        contentType: "text/plain",
         status: 200,
-        schema: userPostOutput,
+        schema: z.string(),
       },
     ],
     handler: async ({
       res,
       req: {
+        body: { id, what, toWhat },
+      },
+    }) => {
+      await prisma.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          [what]: toWhat,
+        },
+      });
+      res.status(200).send("Change made succesfully");
+    },
+  },
+  GET: {
+    openApiSpec: {
+      description: "Will fetch a user based on their email",
+    },
+    input: {
+      query: z.object({ email: z.string() })
+    },
+    output: [
+      {
+        contentType: "application/json",
+        status: 200,
+        schema: userGetSchema,
+      },
+    ],
+    handler: async ({
+      req: {
         query: { email },
       },
+      res
     }) => {
       const user = await prisma.user.findFirst({
         where: {
           email: email,
         },
       });
-      res.status(200).send(user!);
+      res.status(200).send(user as User);
     },
   },
 });

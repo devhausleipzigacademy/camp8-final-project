@@ -5,7 +5,9 @@ import {
   sortByCategory,
   sortByDate,
 } from "@/components/List/SortFunctions";
+import { ListNameHeader } from "@/components/ListNameHeader";
 import { NewItemInput } from "@/components/NewItemInput";
+import { prisma } from "@/pages/api/prisma";
 import { Item } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -18,22 +20,12 @@ export type Category = {
   item: Item[];
 };
 
-export type List = {
-  id: string;
-  listName: string | null;
-  createdAt: Date;
-  userIdentifier: string;
-  favorite: boolean | null;
-  items: Item[];
-};
-
 export type InputProps = {
-  list: List;
-  category: Category[];
   slug: string;
+  name: string;
 };
 
-export default function Home({ slug }: InputProps) {
+export default function Home({ slug, name }: InputProps) {
   const [sortBy, setSortBy] = useState("category");
 
   const {
@@ -67,7 +59,13 @@ export default function Home({ slug }: InputProps) {
       className="py-6 flex flex-col justify-between items-center h-screen gap-2 relative"
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-      <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />
+      <ListNameHeader Listname={name} classNames="w-full" linkTo="home" />
+      <SortBySwitches
+        className=""
+        sortBy={sortBy}
+        setSort={setSortBy}
+        slug={slug}
+      />
       <ItemListMapper list={list} sortBy={sortBy} className="overflow-y-auto" />
       <NewItemInput listID={slug} />
     </div>
@@ -76,10 +74,17 @@ export default function Home({ slug }: InputProps) {
 
 const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug; // slug = listId
+  const list = await prisma.list.findFirst({
+    where: {
+      id: slug as string,
+    },
+  });
+  const name = list?.listName;
 
   return {
     props: {
       slug,
+      name,
     },
   };
 };
