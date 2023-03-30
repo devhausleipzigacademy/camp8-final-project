@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { ReactNode } from "react";
 
 interface PlusButtonProps
@@ -10,10 +11,11 @@ interface PlusButtonProps
 
 export function PlusButton(props: PlusButtonProps) {
   return (
-    <div className="flex justify-center w-full overflow-y-visible fixed bottom-[75px] right-2">
+    <div className={clsx("flex justify-center w-full overflow-y-visible fixed bottom-3 right-2")}
+    >
       <button
         {...props}
-        className="text-text-white text-2xl bg-primary-default-Solid  py-2 px-4 rounded-full h-20 w-20"
+        className="text-text-white text-2xl  bg-grad-default py-2 px-4 rounded-full h-20 w-20"
       >
         +
       </button>
