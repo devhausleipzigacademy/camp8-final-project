@@ -1,4 +1,3 @@
-import type { AppProps } from "next/app";
 import clsx from "clsx";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { FiLock } from "react-icons/fi";

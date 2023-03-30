@@ -1,17 +1,16 @@
-import { GetServerSideProps } from "next";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
 import {
-  sortByDate,
   sortByAlphabet,
   sortByCategory,
+  sortByDate,
 } from "@/components/List/SortFunctions";
-import { Item } from "@prisma/client";
 import { NewItemInput } from "@/components/NewItemInput";
+import { Item } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { GetServerSideProps } from "next";
+import { useState } from "react";
 
 export type Category = {
   id: string;
@@ -65,7 +64,7 @@ export default function Home({ slug }: InputProps) {
   return (
     <div
       id="List-page"
-      className="py-6 flex flex-col justify-between h-screen gap-2 relative"
+      className="py-6 flex flex-col justify-between items-center h-screen gap-2 relative"
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
       <SortBySwitches className="" sortBy={sortBy} setSort={setSortBy} />

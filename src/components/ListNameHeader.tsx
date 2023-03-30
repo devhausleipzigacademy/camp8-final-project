@@ -1,5 +1,5 @@
 import React from "react";
-import { FiChevronLeft } from "react-icons/fi"
+import { FiChevronLeft } from "react-icons/fi";
 import Link from "next/link";
 
 type ArrowButton = {

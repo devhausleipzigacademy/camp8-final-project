@@ -1,17 +1,13 @@
 const path = require("path");
 
 module.exports = {
-	stories: [
-		"../src/**/*.stories.mdx",
-		"../src/**/*.stories.@(js|jsx|ts|tsx)",
-	],
+	stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
 	/** Expose public folder to storybook as static */
 	staticDirs: ["../public"],
 	addons: [
 		"@storybook/addon-links",
 		"@storybook/addon-essentials",
 		"@storybook/addon-interactions",
-		"@storybook-addon-pseudo-states",
 		{
 			/**
 			 * Fix Storybook issue with PostCSS@8
@@ -35,10 +31,7 @@ module.exports = {
 		 */
 		config.resolve.alias = {
 			...config.resolve?.alias,
-			"@": [
-				path.resolve(__dirname, "../src/"),
-				path.resolve(__dirname, "../"),
-			],
+			"@": [path.resolve(__dirname, "../src/"), path.resolve(__dirname, "../")],
 		};
 
 		/**
@@ -49,17 +42,6 @@ module.exports = {
 			path.resolve(__dirname, "../public"),
 			"node_modules",
 		];
-    
-    config.module.rules.push({
-			test: /\.css$/i,
-			use: [
-				{
-					loader: "postcss-loader",
-					options: { implementation: require.resolve("postcss") },
-				},
-			],
-			include: path.resolve(__dirname, "../"),
-		});
 
 		return config;
 	},

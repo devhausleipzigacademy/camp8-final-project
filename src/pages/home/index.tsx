@@ -1,7 +1,4 @@
-import AddListCard from "@/components/AddListCard";
 import Head from "next/head";
-// import { UserCircleIcon } from "@heroicons/react/24/outline";
-// import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   const date = new Date();
