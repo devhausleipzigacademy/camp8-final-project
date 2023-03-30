@@ -21,6 +21,10 @@
   font-size: 22px;
 }
 
+.dark-background {
+  background: rgba(19, 18, 29, 0.8);
+}
+
 .bg-primary-frame {
   background: linear-gradient(
     179.79deg,
@@ -50,7 +54,6 @@
 }
 
 @layer components {
-
   .text-splash {
     font-family: Staatliches;
     font-size: 3.625rem;
@@ -183,8 +186,4 @@
   #Tick_Action {
     justify-content: center;
   }
-}
-
-.dark {
-  background-color: #7751c7;
 }

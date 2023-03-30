@@ -1,4 +1,3 @@
-import type { AppProps } from "next/app";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 export interface SmallButtonProps

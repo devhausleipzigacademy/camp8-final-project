@@ -1,19 +1,10 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
-import { prisma } from "@/pages/api/prisma";
-import { Category } from "@prisma/client";
+
 import axios from "axios";
-import { capitalizeCategory } from "./CapitalizeFunctions";
-import {
-  UseMutateFunction,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+
+import { useQuery } from "@tanstack/react-query";
 import { handleClick } from "./ListItem";
 
 type InputProps = {
@@ -33,7 +24,6 @@ export default function EditModal({ id, setDetails }: InputProps) {
       name: "Quantity",
       values: ["1", "2", "3", "4", "5", "6"],
     },
-    { name: "ImageUrl", values: [] },
     {
       name: "Category",
       values:
@@ -44,10 +34,11 @@ export default function EditModal({ id, setDetails }: InputProps) {
       name: "Unit",
       values: units,
     },
+    { name: "ImageUrl", values: [] },
   ];
 
   return (
-    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background px-3">
+    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background">
       <Tab.Group>
         <Tab.List className="flex rounded-xl bg-text-white px-3 py-3">
           {categories.map((category) => (
@@ -77,14 +68,13 @@ export default function EditModal({ id, setDetails }: InputProps) {
                   <li>
                     <input
                       type={category.name === "Quantity" ? "number" : "text"}
-                      className=" text-sm font-medium leading-5 w-full h-10 rounded-md bg-secondary-transparent p-3"
-                      placeholder="Placeholder"
+                      className=" text-sm font-medium leading-5 w-full h-10 rounded-md bg-secondary-transparent p-3 outline-primary-default-Solid"
+                      placeholder="Enter custom input here"
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           clickOnSelect(
                             category.name,
-                            //@ts-ignore
-                            e.target.value,
+                            e.currentTarget.value,
                             id,
                             setDetails
                           );
@@ -123,7 +113,7 @@ const clickOnSelect = (
   id: string,
   setDetails: Dispatch<SetStateAction<boolean>>
 ) => {
-  handleClick();
+  handleClick(id);
   setDetails(false);
   patchItem(id, what, toWhat);
 };
@@ -139,14 +129,14 @@ const patchItem = async (item: string, what: string, toWhat: string) => {
         ? Number(toWhat)
         : toWhat,
   };
-  axios.patch("http://localhost:3000/api/patchItem", object);
+  axios.patch("http://localhost:3000/api/item", object);
 };
 
 const getCategories = async (
   setQuantityInput: Dispatch<SetStateAction<string[]>>
 ) => {
   return await axios.get("http://localhost:3000/api/categories").then((res) => {
-    let test: string[] = res.data;
+    let test: string[] = res.data.map((x: any) => x.name);
     setQuantityInput(test);
   });
 };

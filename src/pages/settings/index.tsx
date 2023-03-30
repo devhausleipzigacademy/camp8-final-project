@@ -1,5 +1,7 @@
 import Head from "next/head";
 import TabAccountSetting from "@/components/TabAccountSetting";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 
 export default function Settings() {
   return (
@@ -11,10 +13,8 @@ export default function Settings() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-4xl font-bold flex justify-center">Settings </h1>
-      <div className="">
-        <div className="flex justify-center text-text-white">
+      <div className="dark:bg-primary-default-Dark flex justify-center text-text-white ">
           <TabAccountSetting />
-        </div>
       </div>
     </>
   );

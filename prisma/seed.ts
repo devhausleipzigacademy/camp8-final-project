@@ -33,8 +33,7 @@ const stockValues: Record<string, string> = {
     "https://cdn.pixabay.com/photo/2016/09/14/11/35/beer-1669273_1280.png",
   beverages:
     "https://cdn.pixabay.com/photo/2018/02/15/11/20/water-glass-3155018_1280.png",
-  other:
-    "https://a0.anyrgb.com/pngimg/1652/488/supermarket-lifelike-shopping-mall-realistic-shopping-bags-coffee-shop-shopping-bags-trolleys-shopping-bag-shopping-girl-shopping-cart-thumbnail.png",
+  other: "https://i.imgur.com/vo44wpR.png",
 };
 const unknown = new RegExp(/.*unknown/);
 type Data = Record<string, Array<Input>>;
@@ -103,7 +102,7 @@ async function main() {
     "sfbaljsdhfljash",
   ];
   for (let i of exampleItems) {
-    await axios.post("http://localhost:3000/api/addItem", {
+    await axios.post("http://localhost:3000/api/item", {
       query: i,
       inputList: John.lists[0].id,
     });

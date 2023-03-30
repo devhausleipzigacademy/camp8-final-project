@@ -5,8 +5,8 @@ import clsx from "clsx";
 import Link from "next/link";
 
 type FullHeader = {
-	classes: string;
-	name: string;
+  classes?: string;
+  name: string;
 };
 
 export function FullHeader(props: FullHeader) {
