@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { z } from "zod";
 import { defineEndpoints } from "../../next-rest-framework/client";
 import { prisma } from "../api/prisma";
@@ -72,7 +73,7 @@ export default defineEndpoints({
             },
             data: {
               image: image,
-              name: name,
+              name: temp.name ?? name,
             },
           });
         }
@@ -102,6 +103,33 @@ export default defineEndpoints({
         },
       });
       res.status(200).send(itemToReview);
+    },
+  },
+  GET: {
+    input: {
+      query: z.object({
+        email: z.string(),
+      }),
+    },
+    output: [
+      {
+        contentType: "application/json",
+        status: 200,
+        schema: userPostOutput,
+      },
+    ],
+    handler: async ({
+      res,
+      req: {
+        query: { email },
+      },
+    }) => {
+      const user = await prisma.user.findFirst({
+        where: {
+          email: email,
+        },
+      });
+      res.status(200).send(user!);
     },
   },
 });
