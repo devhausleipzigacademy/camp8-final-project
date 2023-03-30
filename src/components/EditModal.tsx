@@ -24,7 +24,6 @@ export default function EditModal({ id, setDetails }: InputProps) {
       name: "Quantity",
       values: ["1", "2", "3", "4", "5", "6"],
     },
-    { name: "ImageUrl", values: [] },
     {
       name: "Category",
       values:
@@ -35,10 +34,11 @@ export default function EditModal({ id, setDetails }: InputProps) {
       name: "Unit",
       values: units,
     },
+    { name: "ImageUrl", values: [] },
   ];
 
   return (
-    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background px-3">
+    <div className="absolute w-full h-full gap-0 flex flex-col font-sans outline-primary-default-background">
       <Tab.Group>
         <Tab.List className="flex rounded-xl bg-text-white px-3 py-3">
           {categories.map((category) => (
@@ -68,14 +68,13 @@ export default function EditModal({ id, setDetails }: InputProps) {
                   <li>
                     <input
                       type={category.name === "Quantity" ? "number" : "text"}
-                      className=" text-sm font-medium leading-5 w-full h-10 rounded-md bg-secondary-transparent p-3"
-                      placeholder="Placeholder"
+                      className=" text-sm font-medium leading-5 w-full h-10 rounded-md bg-secondary-transparent p-3 outline-primary-default-Solid"
+                      placeholder="Enter custom input here"
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           clickOnSelect(
                             category.name,
-                            //@ts-ignore
-                            e.target.value,
+                            e.currentTarget.value,
                             id,
                             setDetails
                           );
@@ -114,10 +113,9 @@ const clickOnSelect = (
   id: string,
   setDetails: Dispatch<SetStateAction<boolean>>
 ) => {
-  console.log(id, what, toWhat);
-  handleClick();
+  handleClick(id);
   setDetails(false);
-  patchItem(id, what, toWhat.toLowerCase());
+  patchItem(id, what, toWhat);
 };
 
 const patchItem = async (item: string, what: string, toWhat: string) => {

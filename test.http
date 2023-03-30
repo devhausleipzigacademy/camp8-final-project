@@ -30,7 +30,9 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/item?inputList=6b07c3a6-f476-474f-94a8-975fe055c3e1
+GET http://localhost:3000/api/listItems?inputList=ed1d992e-2ca8-468c-ba50-e1dbfd699bb1
+
+
 
 ###
 
@@ -53,11 +55,9 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-PATCH http://localhost:3000/api/masterItem
+PUT http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "name": "apples",
-  "image": "https://elephant.art/wp-content/uploads/2019/11/poop-emoji.jpg",
-  "category": "baking"
+  "inputList":"957e11ee-8a2e-411d-92e4-d855f29d9534"
 }
