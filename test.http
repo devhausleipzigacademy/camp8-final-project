@@ -50,11 +50,11 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-PATCH http://localhost:3000/api/masterItem
+PATCH http://localhost:3000/api/user
 Content-Type: application/json
 
 {
-  "name": "apples",
-  "image": "https://elephant.art/wp-content/uploads/2019/11/poop-emoji.jpg",
-  "category": "baking"
+  "id": "clfu1hwgn0000vyregadyea8u",
+  "what": "name",
+  "toWhat": "William"
 }

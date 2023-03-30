@@ -45,10 +45,13 @@ export default function AccountView({ user }: SettingsProps) {
   };
 
   async function updateName() {
-    const bla = await axios.patch("http://localhost:3000/api/changeNameUser", {
-      email: user.email,
-      name: inputName,
-    });
+    const bla = await axios
+      .patch("http://localhost:3000/api/user", {
+        id: player?.id,
+        what: "name",
+        toWhat: inputName,
+      })
+      .then((res) => res.data);
     return bla;
   }
 
@@ -97,7 +100,7 @@ export default function AccountView({ user }: SettingsProps) {
 }
 const getUserInfo = async (email: string) => {
   const John: User = await axios
-    .get(`http://localhost:3000/api/userInfo?email=${email}`)
+    .get(`http://localhost:3000/api/user?email=${email}`)
     .then((res) => res.data);
   return John;
 };
