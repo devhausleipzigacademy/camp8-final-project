@@ -1,7 +1,7 @@
 import { Category } from "@/pages/list/[slug]";
 import { Item } from "@prisma/client";
 import clsx from "clsx";
-import { capitalizeCategory, capitalizeWord } from "../CapitalizeFunctions";
+import { capitalize } from "../CapitalizeFunctions";
 import ListItem from "../ListItem";
 
 type ItemListMapperProps = {
@@ -28,11 +28,11 @@ export function ItemListMapper(props: ItemListMapperProps) {
           <div key={product.id} id={String(product.id)}>
             {nameSection && (
               <p className="pl-12 pt-2 pb-2 text-primary">
-                {capitalizeCategory(sectionName) + ":"}
+                {capitalize(sectionName) + ":"}
               </p>
             )}
             <ListItem
-              name={capitalizeWord(product.name)}
+              name={capitalize(product.name)}
               image={product.imageUrl}
               checked={product.checked}
               id={product.id}

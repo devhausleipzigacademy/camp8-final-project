@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { prisma } from "@/pages/api/prisma";
 import { Category } from "@prisma/client";
 import axios from "axios";
-import { capitalizeCategory } from "./CapitalizeFunctions";
+import { capitalize } from "./CapitalizeFunctions";
 import {
   UseMutateFunction,
   useMutation,

@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
