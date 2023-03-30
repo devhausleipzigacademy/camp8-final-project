@@ -87,8 +87,7 @@ export default function EditModal({ id, setDetails }: InputProps) {
 												if (e.key === "Enter") {
 													clickOnSelect(
 														category.name,
-														//@ts-ignore
-														e.target.value,
+														e.currentTarget.value,
 														id,
 														setDetails
 													);
