@@ -1,17 +1,32 @@
 import "@/styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
+import { useSzieStore } from "./stores/styleStore";
+import { useEffect } from "react";
+import { ThemeProvider } from "next-themes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-  return (
-        <QueryClientProvider client={queryClient}>
-          <SessionProvider>
-            <Component {...pageProps} />
-          </SessionProvider>
+  const { isFontSizeBig } = useSzieStore();
 
-        </QueryClientProvider>
+  useEffect(() => {
+    const htmlElement = document.querySelector("html");
+    if (isFontSizeBig) {
+      htmlElement && htmlElement.classList.add("big");
+    } else {
+      htmlElement && htmlElement.classList.remove("big");
+    }
+  }, [isFontSizeBig]);
+
+  return (
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>
+         <Component {...pageProps} />
+        </SessionProvider>
+       </QueryClientProvider>
+    </ThemeProvider>
   );
 }

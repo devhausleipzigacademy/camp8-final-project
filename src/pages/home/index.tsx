@@ -1,12 +1,7 @@
+import { FullHeader } from "@/components/FullHeader";
+import { PlusButton } from "@/components/PlusButton";
 import CardsWrapper from "@/pages/home/CardsWrapper";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { useState } from "react";
-import AddListCard from "@/components/AddListCard";
-import Head from "next/head";
-import { PlusButton } from "@/components/PlusButton";
-import { SearchBar } from "@/components/SearchBar";
-import { FullHeader } from "@/components/FullHeader";
 import { newCardId } from "./apiCalls";
 
 export default function Home(id_user: string) {

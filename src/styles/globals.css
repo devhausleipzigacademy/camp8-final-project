@@ -21,6 +21,10 @@
   font-size: 22px;
 }
 
+.dark-background {
+  background: rgba(19, 18, 29, 0.8);
+}
+
 .bg-primary-frame {
   background: linear-gradient(
     179.79deg,
@@ -43,16 +47,8 @@
     rgba(190, 190, 190, 0.8);
 }
 
-/* Setting default text colour */
-@layer base {
-  html {
-    @apply text-text-typo;
-  }
-}
-
 #__next {
   @apply h-full w-full pt-7 px-7 sm:pt-7 sm:px-7 md:px-80 md:py-7 bg-primary-frame;
-
 }
 
 @layer components {
@@ -190,8 +186,4 @@
   #Tick_Action {
     justify-content: center;
   }
-}
-
-.dark {
-  background-color: #7751c7;
 }

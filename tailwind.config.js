@@ -8,9 +8,11 @@ module.exports = {
       heading: ["Staatliches", "sans-serif"],
     },
     colors: {
+      white: "#FFFFFF",
       primary: {
         default: {
           Solid: "#5F62C7",
+          Dark: "rgba(19, 18, 29, 0.8)",
         },
         transparent: "rgba(66, 17, 169, 0.1)",
       },
