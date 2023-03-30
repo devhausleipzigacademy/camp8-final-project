@@ -94,6 +94,6 @@ export { getServerSideProps };
 
 export const getListData = async (slug: string) => {
   return (await axios
-    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
+    .put(`http://localhost:3000/api/item?inputList=${slug}`)
     .then((res) => res.data)) as Item[];
 };
