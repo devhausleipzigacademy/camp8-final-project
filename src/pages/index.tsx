@@ -21,7 +21,7 @@ export default function Home() {
           height={186}
         />
       </div>
-      <h1 className=" text-text-typo text-splash px-8">
+      <h1 className="text-text-typo dark:text-white text-splash px-8">
         HI THERE! WELCOME TO SHOPPING HELPER
       </h1>
       <div className="px-8 pt-10">

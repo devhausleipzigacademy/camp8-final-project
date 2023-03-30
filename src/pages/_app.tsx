@@ -21,12 +21,12 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [isFontSizeBig]);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider attribute="class">
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
-         <Component {...pageProps} />
+          <Component {...pageProps} />
         </SessionProvider>
-       </QueryClientProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }
