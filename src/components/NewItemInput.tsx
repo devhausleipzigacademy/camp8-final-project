@@ -69,10 +69,7 @@ export function NewItemInput({ listID }: InputProps) {
 
         setTimeout(() => {
           const bla = document.getElementById(response);
-          bla?.scrollIntoView({ block: "end", behavior: "smooth" });
-          console.log(String(response));
-
-          console.log(bla);
+          bla?.scrollIntoView({ block: "center", behavior: "smooth" });
         }, 200);
       }
     } catch (error) {
