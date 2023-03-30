@@ -1,17 +1,18 @@
-import { GetServerSideProps } from "next";
-import axios from "axios";
-import { useState } from "react";
+import { HeaderWithBack } from "@/components/HeaderWithBack";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
 import {
-  sortByDate,
   sortByAlphabet,
   sortByCategory,
+  sortByDate
 } from "@/components/List/SortFunctions";
-import { Item } from "@prisma/client";
 import { NewItemInput } from "@/components/NewItemInput";
+import { prisma } from "@/pages/api/prisma";
+import { Item } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { HeaderWithBack } from "@/components/HeaderWithBack";
+import axios from "axios";
+import { GetServerSideProps } from "next";
+import { useState } from "react";
 
 export type Category = {
   id: string;
@@ -19,56 +20,45 @@ export type Category = {
   item: Item[];
 };
 
-export type List = {
-  id: string;
-  listName: string | null;
-  createdAt: Date;
-  userIdentifier: string;
-  favorite: boolean | null;
-  items: Item[];
-};
-
 export type InputProps = {
-  list: List;
-  category: Category[];
   slug: string;
+  name: string;
 };
 
-export default function Home({ slug }: InputProps) {
+export default function Home({ slug, name }: InputProps) {
   const [sortBy, setSortBy] = useState("category");
 
   const {
-    data: bigList,
+    data,
     isLoading
   } = useQuery(["data"], () => getListData(slug));
   if (isLoading) {
     return <p>...Loading</p>;
   }
 
-  let data = bigList!;
   let list: Item[] = [];
-
+  
   switch (sortBy) {
     case "date":
-      list = sortByDate(data.list.items);
+      list = sortByDate(data!);
       break;
     case "alphabetical":
-      list = sortByAlphabet(data.list.items);
+      list = sortByAlphabet(data!);
       break;
     case "category":
-      list = sortByCategory(data.list.items);
+      list = sortByCategory(data!);
       break;
   }
 
   return (
     <>
-      <HeaderWithBack label={data.list.listName as string} sendTo={"/home"} />
+      <HeaderWithBack label={name as string} sendTo={"/home"} />
       <div
         id="List-page"
         className="py-6 flex flex-col justify-between h-screen gap-2 relative"
       >
         <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-        <SortBySwitches sortBy={sortBy} setSort={setSortBy} />
+        <SortBySwitches sortBy={sortBy} setSort={setSortBy} slug={slug} />
         <ItemListMapper
           list={list}
           sortBy={sortBy}
@@ -82,10 +72,17 @@ export default function Home({ slug }: InputProps) {
 
 const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug;
+  const list = await prisma.list.findFirst({
+    where: {
+      id: slug as string,
+    },
+  });
+  const name = list?.listName;
 
   return {
     props: {
       slug,
+      name,
     },
   };
 };
@@ -94,6 +91,8 @@ export { getServerSideProps };
 
 export const getListData = async (slug: string) => {
   return (await axios
-    .get(`http://localhost:3000/api/listItems?inputList=${slug}`)
-    .then((res) => res.data)) as InputProps;
+    .put(`http://localhost:3000/api/item`, {
+      inputList: slug,
+    })
+    .then((res) => res.data)) as Item[];
 };
