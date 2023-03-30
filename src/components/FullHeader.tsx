@@ -14,7 +14,8 @@ export function FullHeader(props: FullHeader) {
 		<div className="flex justify-between items-center p-3">
 			<h1
 				className={clsx(
-					"cards-title text-primary-default-Solid font-heading",
+					"cards-title text-primary-default-Solid font-heading flex items-center",
+					"flex justify-between items-center h-12",
 					props.classes
 				)}
 			>

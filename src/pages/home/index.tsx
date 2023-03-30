@@ -21,45 +21,32 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="w-[414]px h-[736]px flex flex-col">
-				<div className=" flex justify-between items-center h-12 mt-4">
-					<FullHeader classes={""} name={""} />
-				</div>
 
-				<div className="relative w-screen mt-3">
-					<input
-						type="text"
-						placeholder="Search"
-						className=" border border-indigo-700 rounded-lg w-full p-3"
-					/>
-					<div className=" absolute top-0 right-0 p-3">
-						{/* <MagnifyingGlassIcon className="w-6 h-6" /> */}
-					</div>
-				</div>
+			<FullHeader classes={""} name={""} />
 
-				<div className="flex flex-col bg-indigo-700 rounded-3xl h-60 mt-4">
-					<h5 className="text-white mt-10 ml-6">18/19 items</h5>
-					<h3 className=" text-white text-3xl  ml-6 mt-6">
-						WEIHNACHTEN
-					</h3>
-					<p className="text-white text-end mt-10 mr-20">
-						12.23.2023
-					</p>
-				</div>
-				<div className="flex flex-col  bg-indigo-700 rounded-3xl h-60 mt-4">
-					<h5 className="text-white mt-10 ml-6">18/19 items</h5>
-					<h3 className=" text-white text-3xl  ml-6 mt-6">
-						WEIHNACHTEN
-					</h3>
-					<p className="text-white text-end mt-10 mr-20">
-						12.23.2023
-					</p>
-				</div>
-				<div className=" flex items-center justify-center mt-3">
-					<button className="border rounded-full w-20 h-20 text-4xl text-white bg-indigo-800">
-						+
-					</button>
-				</div>
+			<div className="relative w-screen mt-3">
+				<input
+					type="text"
+					placeholder="Search"
+					className=" border border-indigo-700 rounded-lg w-full p-3"
+				/>
+				<div className=" absolute top-0 right-0 p-3"></div>
+			</div>
+
+			<div className="flex flex-col bg-indigo-700 rounded-3xl h-60 mt-4">
+				<h5 className="text-white mt-10 ml-6">18/19 items</h5>
+				<h3 className=" text-white text-3xl  ml-6 mt-6">WEIHNACHTEN</h3>
+				<p className="text-white text-end mt-10 mr-20">12.23.2023</p>
+			</div>
+			<div className="flex flex-col  bg-indigo-700 rounded-3xl h-60 mt-4">
+				<h5 className="text-white mt-10 ml-6">18/19 items</h5>
+				<h3 className=" text-white text-3xl  ml-6 mt-6">WEIHNACHTEN</h3>
+				<p className="text-white text-end mt-10 mr-20">12.23.2023</p>
+			</div>
+			<div className=" flex items-center justify-center mt-3">
+				<button className="border rounded-full w-20 h-20 text-4xl text-white bg-indigo-800">
+					+
+				</button>
 			</div>
 		</>
 	);
