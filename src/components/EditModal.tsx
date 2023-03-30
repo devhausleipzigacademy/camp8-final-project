@@ -123,9 +123,10 @@ const clickOnSelect = (
   id: string,
   setDetails: Dispatch<SetStateAction<boolean>>
 ) => {
+  console.log(id, what, toWhat);
   handleClick();
   setDetails(false);
-  patchItem(id, what, toWhat);
+  patchItem(id, what, toWhat.toLowerCase());
 };
 
 const patchItem = async (item: string, what: string, toWhat: string) => {
@@ -139,14 +140,14 @@ const patchItem = async (item: string, what: string, toWhat: string) => {
         ? Number(toWhat)
         : toWhat,
   };
-  axios.patch("http://localhost:3000/api/patchItem", object);
+  axios.patch("http://localhost:3000/api/item", object);
 };
 
 const getCategories = async (
   setQuantityInput: Dispatch<SetStateAction<string[]>>
 ) => {
   return await axios.get("http://localhost:3000/api/categories").then((res) => {
-    let test: string[] = res.data;
+    let test: string[] = res.data.map((x: any) => x.name);
     setQuantityInput(test);
   });
 };
