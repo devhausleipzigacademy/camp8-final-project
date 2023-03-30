@@ -5,7 +5,7 @@ import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getListData } from "@/pages/list/[slug]";
 import clsx from "clsx";
-import { capitalizeCategory, capitalizeWord } from "./CapitalizeFunctions";
+import { capitalize } from "./CapitalizeFunctions";
 import { handleClick } from "./ListItem";
 import { units } from "./EditModal";
 
@@ -39,9 +39,7 @@ export function NewItemInput({ listID }: InputProps) {
     await axios
       .get(`http://localhost:3000/api/item?name=${query}`)
       .then((res) => {
-        setList(
-          res.data.results.reverse().map((x: any) => capitalizeCategory(x.name))
-        );
+        setList(res.data.results.reverse().map((x: any) => capitalize(x.name)));
       });
     // refresh(listID);
   };

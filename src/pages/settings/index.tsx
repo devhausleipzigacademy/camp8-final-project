@@ -1,9 +1,11 @@
 import Head from "next/head";
 import TabAccountSetting from "@/components/TabAccountSetting";
-import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+import { HeaderWithBack } from "@/components/HeaderWithBack";
+import { useSession } from "next-auth/react";
+
 
 export default function Settings() {
+  const session = useSession();
   return (
     <>
       <Head>
@@ -12,9 +14,10 @@ export default function Settings() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <HeaderWithBack sendTo={"/home"} />
       <h1 className="text-4xl font-bold flex justify-center">Settings </h1>
       <div className="dark:bg-primary-default-Dark flex justify-center text-text-white ">
-          <TabAccountSetting />
+          <TabAccountSetting auth={(session.status === "authenticated")} />
       </div>
     </>
   );

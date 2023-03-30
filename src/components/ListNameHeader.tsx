@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 type ArrowButton = {
   icon?: string;
-  Listname: string;
+  listName: string;
   classNames?: string;
   linkTo: string;
 };
@@ -16,7 +16,7 @@ export function ListNameHeader(props: ArrowButton) {
       <Link href={`/${props.linkTo}`}>
         <FiChevronLeft className="w-6 h-6 text-text-typo" />
       </Link>
-      <h1 className="text-text-typo text-links">{props.Listname}</h1>
+      <h1 className="text-text-typo text-links">{props.listName}</h1>
     </div>
   );
 }
