@@ -54,10 +54,8 @@ export default function AccountView({ user }: SettingsProps) {
 
   return (
     <>
-      <div className="w-full flex-grow flex flex-col justify-around items-center gap-5 mt-5">
-        <div>
-          <FiUser size={28} />
-        </div>
+      <div className="w-full flex-grow flex flex-col justify-around items-center gap-5 mt-12">
+        <FiUser size={28} />
         <div className="text-primary-default-Solid font-heading text-4xl m-8">
           Hey,&nbsp;
           {player?.name ? player.name : player?.email}
