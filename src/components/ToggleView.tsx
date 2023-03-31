@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch } from "@headlessui/react";
-import { useSzieStore } from "@/pages/stores/styleStore";
+import { useSizeStore } from "@/pages/stores/styleStore";
 
 type ToggleView = {};
 
 export function ToggleView(props: ToggleView) {
-  const { isFontSizeBig, setSize } = useSzieStore();
+  const { isFontSizeBig, setSize } = useSizeStore();
   return (
     <div className="py-2">
       <Switch.Group>

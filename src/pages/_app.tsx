@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { useSzieStore } from "./stores/styleStore";
-import { useEffect, useState } from "react";
+import { useSizeStore } from "./stores/styleStore";
+import { useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Head from "next/head";
@@ -10,8 +10,7 @@ import Head from "next/head";
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-
-  const { isFontSizeBig } = useSzieStore();
+  const { isFontSizeBig } = useSizeStore();
 
   useEffect(() => {
     const htmlElement = document.querySelector("html");
