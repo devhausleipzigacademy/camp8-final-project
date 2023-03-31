@@ -52,7 +52,7 @@ export default function Home({ slug, name }: InputProps) {
       id="List-page"
       className=" pb-10 flex flex-col justify-between items-center h-full gap-2 relative"
     >
-      <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
+      <div className="-z-10 fixed dark:bg-primary-default-Dark inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
       <div className="w-full">
         <HeaderWithBack label={name} classNames="w-full pb-8" sendTo="/home" />
         <SortBySwitches

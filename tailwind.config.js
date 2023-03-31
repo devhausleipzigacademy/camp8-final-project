@@ -38,6 +38,8 @@ module.exports = {
         "linear-gradient(134.32deg, #7751C7 26.96%, #5F62C7 73.13%)",
       "grad-frame":
         "linear-gradient(179.79deg, #E6E8FF 0.18%, #EAE7FF 18.44%, #EBECFF 40.25%, #EBF4FF 60.18%, #EDF8FF 81.34%, #F4FDFB 99.82%)",
+      "dark-primary-frame":
+        "linear-gradient(0deg, rgba(19, 18, 29, 0.8), rgba(19, 18, 29, 0.8), rgba(19, 18, 29, 0.8))",
     },
     boxShadow: {
       primaryButtonShadow: "inset 3px 4px 0px rgba(54, 38, 83, 0.5);",
