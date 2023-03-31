@@ -14,7 +14,7 @@ export interface Input
 
 export default function Input({ value, onChange, placeholder, className }: Input) {
   return (
-    <div className="flex items-center relative mb-3">
+    <div className="gap-4 flex items-center relative mb-3">
       <input
         type="text"
         className={clsx(className, "py-3 px-5 rounded-md border border-primary-default-Solid bg-transparent text-center focus:outline-none")}

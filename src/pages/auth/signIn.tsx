@@ -22,7 +22,7 @@ export default function SignIn() {
 
       <div className="flex flex-col justify-around items-center">
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Input className="w-72 sm:w-96" value={email} placeholder="Your email here..." onChange={(e) => setEmail(e.target.value)} />
 
           <Transition
             show={new RegExp(`[A-z]+@[a-z]+.[a-zA-Z]{2,3}$`).test(email)}
@@ -33,8 +33,8 @@ export default function SignIn() {
             leaveFrom="opacity-100 scale-y-100"
             leaveTo="opacity-0 scale-y-0"
           >
-            <LargeButton variant={"primary"} disabled={false} type="submit">
-              get Link
+            <LargeButton className="mb-4" variant={"primary"} disabled={false} type="submit">
+              Get Magic Link
             </LargeButton>
           </Transition>
         </form>

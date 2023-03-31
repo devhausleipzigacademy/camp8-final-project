@@ -62,7 +62,7 @@ export default function AccountView({ user }: SettingsProps) {
           Hey,&nbsp;
           {player?.name ? player.name : player?.email}
         </div>
-        <div className="w-full flex flex-col m-5 gap-5">
+        <div className="w-full flex flex-col m-5 gap-8">
           <Input
             type={"New name"}
             name={inputName}

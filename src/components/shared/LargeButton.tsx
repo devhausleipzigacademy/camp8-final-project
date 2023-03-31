@@ -9,12 +9,14 @@ export interface LargeButtonProps
   > {
   variant: "primary" | "secondary";
   disabled: boolean;
+  className?: string;
 }
 
-export function LargeButton({ variant, disabled, ...props }: LargeButtonProps) {
+export function LargeButton({ variant, disabled, className, ...props }: LargeButtonProps) {
   return (
     <button
       className={clsx(
+        className,
         "flex items-center w-full text-center border-box rounded-md disabled:cursor-not-allowed",
         variant == "primary"
           ? "enabled:bg-grad-default text-button-large px-5 py-3 justify-between text-text-white disabled:bg-ux-inactive enabled:active:shadow-primaryButtonShadow"
