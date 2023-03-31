@@ -65,8 +65,6 @@ export default function AccountView({ user }: SettingsProps) {
         </div>
         <div className="w-full flex flex-col m-5 gap-5">
           <Input
-            type={"New name"}
-            name={inputName}
             placeholder={"New name"}
             onChange={(e) => setInputName(e.target.value)}
             value={inputName}

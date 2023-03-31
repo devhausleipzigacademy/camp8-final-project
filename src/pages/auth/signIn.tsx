@@ -41,16 +41,21 @@ export default function SignIn() {
             leaveFrom="opacity-100 scale-y-100"
             leaveTo="opacity-0 scale-y-0"
           >
-            <LargeButton variant={"primary"} disabled={false} type="submit">
-              get Link
+            <LargeButton
+              className="mb-4"
+              variant={"primary"}
+              disabled={false}
+              type="submit"
+            >
+              Get Magic Link
             </LargeButton>
           </Transition>
         </form>
 
         <div className="flex items-center gap-1 ">
-          <div className="h-[2px] w-10 bg-secondary-default"></div>
+          <div className="h-0.5 w-10 bg-secondary-default"></div>
           or
-          <div className="h-[2px] w-10 bg-secondary-default"></div>
+          <div className="h-0.5 w-10 bg-secondary-default"></div>
         </div>
 
         <button
