@@ -1,5 +1,9 @@
-import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from "react";
-import { Edit } from "react-feather";
+import {
+  ChangeEvent,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  ReactNode,
+} from "react";
 
 export interface Input
   extends DetailedHTMLProps<
@@ -8,19 +12,25 @@ export interface Input
   > {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  component: ReactNode;
 }
 
-export default function Input({ value, onChange }: Input) {
+export default function Input({
+  value,
+  onChange,
+  component,
+  placeholder,
+}: Input) {
   return (
     <div className="flex items-center relative mb-3">
       <input
         type="text"
         className="w-96 py-3 px-5 rounded-md border border-primary-default-Solid bg-transparent text-center focus:outline-none"
-        placeholder="Email"
+        placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e)}
       />
-      <Edit className="absolute top-1/2 -translate-y-1/2 right-4 text-primary-default-Solid pointer-events-none" />
+      {component}
     </div>
   );
 }

@@ -4,9 +4,10 @@ import axios from "axios";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import Input from "@/components/Input";
+import Input from "@/components/shared/Input";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { SmallButton } from "@/components/SmallButton";
 
 export type SettingsProps = {
   user: User;
@@ -47,7 +48,7 @@ export default function AccountView({ user }: SettingsProps) {
     });
   }
 
-  function clickHandler() {
+  function updateNameHandler() {
     updateName();
     refresh(user.email as string);
   }
@@ -66,21 +67,22 @@ export default function AccountView({ user }: SettingsProps) {
           <Input
             type={"New name"}
             name={inputName}
-            setValue={setInputName}
-            value={""}
             placeholder={"New name"}
-            onClick={clickHandler}
+            onChange={(e) => setInputName(e.target.value)}
+            value={inputName}
+            component={
+              <div className="absolute flex self-center right-1 items-center justify-center rounded-lg">
+                <SmallButton
+                  label="Update"
+                  onClick={() => updateNameHandler()}
+                />
+              </div>
+            }
           ></Input>
 
-          <LargeButton
-            variant="primary"
-            label="Change E-Mail"
-            onClick={redirect}
-            disabled={false}
-          />
+          <LargeButton variant="primary" onClick={redirect} disabled={false} />
           <LargeButton
             variant="secondary"
-            label="Log-Out"
             onClick={handleSignOut}
             disabled={false}
           />

@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import { getSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
+import { Edit } from "react-feather";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,14 @@ export default function SignIn() {
 
       <div className="flex flex-col justify-around items-center">
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            component={
+              <Edit className="absolute top-1/2 -translate-y-1/2 right-4 text-primary-default-Solid pointer-events-none" />
+            }
+          />
 
           <Transition
             show={new RegExp(`[A-z]+@[a-z]+.[a-zA-Z]{2,3}$`).test(email)}
