@@ -83,7 +83,7 @@ export function NewItemInput({ listID }: InputProps) {
       <div className="w-full mt-1">
         <Combobox.Options
           className={clsx(
-            "ui-absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base",
+            "ui-absolute mt-1 max-h-60 w-full overflow-auto dark:bg-text-white_transparent rounded-md bg-white py-1 text-base",
             list.length > 1 && "border-2 border-primary-default-Solid"
           )}
         >
@@ -120,7 +120,7 @@ export function NewItemInput({ listID }: InputProps) {
               </Combobox.Option>
             ))}
         </Combobox.Options>
-        <div className="w-full flex cursor-default overflow-hidden rounded-md bg-white text-end">
+        <div className="w-full flex cursor-default overflow-hidden rounded-md bg-white dark:bg-primary-default-Dark text-end">
           <Combobox.Input
             className=" border border-secondary-default rounded-md w-full h-14 p-5 focus:outline-none focus-visible  focus:border-purple-700"
             displayValue={(i: Item) => i.name}

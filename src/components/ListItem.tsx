@@ -104,7 +104,7 @@ export default function ListItem(props: ListItemProps) {
           </div>
           <div>
             <p
-              className="text-text-typo text-primary pl-4"
+              className="text-text-typo text-primary pl-4 dark:text-white"
               style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
             >
               {props.name}
@@ -119,7 +119,7 @@ export default function ListItem(props: ListItemProps) {
               }}
             >
               <p
-                className="text-secondary font-thin flex flex-shrin"
+                className="text-secondary dark:text-white font-thin flex flex-shrin"
                 style={{
                   fontSize: "clamp(5px, 3.9vw, 1.125rem)",
                 }}
@@ -149,7 +149,7 @@ export default function ListItem(props: ListItemProps) {
                 className="absolute"
               >
                 <FiCheckSquare
-                  className="w-8 h-8 text-primary-default-Solid"
+                  className="w-8 h-8 text-primary-default-Solid dark:text-white"
                   onClick={() => refresh("check")}
                 />
               </Transition>
@@ -164,7 +164,7 @@ export default function ListItem(props: ListItemProps) {
                 className="absolute top-0 left-0"
               >
                 <FiSquare
-                  className="w-8 h-8 text-primary-default-Solid"
+                  className="w-8 h-8 text-primary-default-Solid dark:text-white"
                   onClick={() => refresh("check")}
                 />
               </Transition>

@@ -48,7 +48,7 @@ export default function Home({ slug, name }: InputProps) {
   }
 
   return (
-    <div className=" pb-10 flex flex-col justify-between items-center h-screen gap-2 relative">
+    <div className="pb-10 flex flex-col justify-between items-center h-screen gap-2 relative">
       <div className="w-full">
         <HeaderWithBack label={name} classNames="w-full pb-8" sendTo="/home" />
         <SortBySwitches
