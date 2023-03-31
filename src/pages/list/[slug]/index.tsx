@@ -91,10 +91,9 @@ const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
 export { getServerSideProps };
 
-export const getListData = async (slug: string) => {
-  return (await axios
-    .put(`http://localhost:3000/api/item`, {
-      inputList: slug,
-    })
-    .then((res) => res.data)) as Item[];
+export const getListData = (slug: string) => {
+  console.log("Data fetched");
+  return axios
+    .get<Item[]>(`http://localhost:3000/api/item?inputList=${slug}`)
+    .then((res) => res.data);
 };

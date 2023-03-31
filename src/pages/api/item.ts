@@ -95,7 +95,6 @@ export default defineEndpoints({
               total: { increment: 1 },
             },
           });
-          console.log(test, "FindMe");
         } catch (err) {
           return res.status(400).send(String(err));
         }
@@ -195,70 +194,69 @@ export default defineEndpoints({
       }
     },
   },
+  // GET: {
+  //   openApiSpec: {
+  //     description: "Autocomplete function that will give 5 results",
+  //   },
+  //   input: {
+  //     query: itemGetSchema,
+  //   },
+  //   output: [
+  //     {
+  //       status: 404,
+  //       contentType: "text/plain",
+  //       schema: z.string(),
+  //     },
+  //     {
+  //       status: 200,
+  //       contentType: "application/json",
+  //       schema: itemGetOutput,
+  //     },
+  //   ],
+  //   handler: async ({
+  //     res,
+  //     req: {
+  //       query: { name },
+  //     },
+  //   }) => {
+  //     const list = await prisma.masterItem.findMany({});
+
+  //     const item_names = list.map((item) => item.name);
+
+  //     const matches = stringSimilarity.findBestMatch(
+  //       name.toLowerCase(),
+  //       item_names
+  //     );
+
+  //     const sorted_matches = sortByRating(matches.ratings);
+  //     const result: MasterItem[] = await prisma.masterItem.findMany({
+  //       where: {
+  //         name: {
+  //           in: sorted_matches
+  //             .filter((x, i) => x.rating > 0 && i < 5)
+  //             .map((x) => x.target),
+  //         },
+  //       },
+  //     });
+  //     result.sort(
+  //       (a, b) =>
+  //         sorted_matches.map((x) => x.target).indexOf(a.name) -
+  //         sorted_matches.map((x) => x.target).indexOf(b.name)
+  //     );
+  //     res.setHeader("content-type", "application/json");
+
+  //     res.status(200).send({
+  //       results: result,
+  //       top_rating: sorted_matches[0].rating,
+  //     });
+  //   },
+  // },
   GET: {
-    openApiSpec: {
-      description: "Autocomplete function that will give 5 results",
-    },
-    input: {
-      query: itemGetSchema,
-    },
-    output: [
-      {
-        status: 404,
-        contentType: "text/plain",
-        schema: z.string(),
-      },
-      {
-        status: 200,
-        contentType: "application/json",
-        schema: itemGetOutput,
-      },
-    ],
-    handler: async ({
-      res,
-      req: {
-        query: { name },
-      },
-    }) => {
-      const list = await prisma.masterItem.findMany({});
-
-      const item_names = list.map((item) => item.name);
-
-      const matches = stringSimilarity.findBestMatch(
-        name.toLowerCase(),
-        item_names
-      );
-
-      const sorted_matches = sortByRating(matches.ratings);
-      const result: MasterItem[] = await prisma.masterItem.findMany({
-        where: {
-          name: {
-            in: sorted_matches
-              .filter((x, i) => x.rating > 0 && i < 5)
-              .map((x) => x.target),
-          },
-        },
-      });
-      result.sort(
-        (a, b) =>
-          sorted_matches.map((x) => x.target).indexOf(a.name) -
-          sorted_matches.map((x) => x.target).indexOf(b.name)
-      );
-      res.setHeader("content-type", "application/json");
-
-      res.status(200).send({
-        results: result,
-        top_rating: sorted_matches[0].rating,
-      });
-    },
-  },
-  PUT: {
     openApiSpec: {
       description: "Will give back all the items in a list",
     },
     input: {
-      contentType: "application/json",
-      body: itemPutSchema,
+      query: itemPutSchema,
     },
     output: [
       {
@@ -275,7 +273,7 @@ export default defineEndpoints({
     handler: async ({
       res,
       req: {
-        body: { inputList },
+        query: { inputList },
       },
     }) => {
       try {
@@ -318,6 +316,8 @@ export default defineEndpoints({
       },
     }) => {
       try {
+        console.log(toWhat, what, who, "FindMe!!");
+
         if (what === "category") {
           await prisma.item.update({
             where: {
@@ -339,27 +339,33 @@ export default defineEndpoints({
             );
         }
 
-        const item = await prisma.item.update({
-          where: {
-            id: who,
-          },
-          data: {
-            [what]: toWhat,
-            verified: what === "imageUrl" ? false : true,
-          },
-        });
-
-        if (what === "checked") {
-          await prisma.list.update({
+        try {
+          const item = await prisma.item.update({
             where: {
-              id: item.listIdentifier as string,
+              id: who,
             },
             data: {
-              checked: {
-                increment: toWhat ? 1 : -1,
-              },
+              [what]: toWhat,
+              verified: what === "imageUrl" ? false : true,
             },
           });
+
+          if (what === "checked") {
+            const test = await prisma.list.update({
+              where: {
+                id: item.listIdentifier as string,
+              },
+              data: {
+                checked: {
+                  increment: toWhat ? 1 : -1,
+                },
+              },
+            });
+            console.log("Check-work", item);
+          }
+        } catch (err) {
+          console.log(err, "Error!");
+          return res.status(418).send(String(err));
         }
         res.status(200).send("Changed Correctly");
       } catch (err) {

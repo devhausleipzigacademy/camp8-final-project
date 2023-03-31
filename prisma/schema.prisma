@@ -99,7 +99,7 @@ model List {
   favorite       Boolean  @default(false)
   checked Float @default(0)
   total Float @default(0)
-  items          Item[]
+  items          Item[]       
 
   @@map("Lists")
 }

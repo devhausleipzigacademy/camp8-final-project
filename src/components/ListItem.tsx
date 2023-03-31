@@ -28,35 +28,43 @@ export default function ListItem(props: ListItemProps) {
   const { slug } = router.query;
 
   const queryClient = useQueryClient();
-  const { mutate: refresh } = useMutation(getListData, {
+  const { mutate: refresh } = useMutation({
+    mutationFn: (doing: "patch" | "delete") => {
+      if (doing === "delete") {
+        return onDelete(slug as string);
+      }
+      return checked();
+    },
     onSuccess: () => {
+      console.log("Success!");
+
       queryClient.invalidateQueries(["data"]);
     },
   });
 
   const [details, setDetails] = useState(false);
-  useEffect(() => {
-    refresh(slug as string);
-  }, [details]);
+  // useEffect(() => {
+  //   console.log("Closed Modal");
+  //   refresh(slug as string);
+  // }, [details, slug, refresh]);
 
   const [swiped, setSwiped] = useState(true);
+
   const onDelete = (slug: string) => {
     setSwiped(false);
-    axios.delete(`/api/item?id=${props.id}`);
-    refresh(slug);
+    return axios.delete(`/api/item?id=${props.id}`);
   };
   const checked = () => {
-    axios.patch("/api/item", {
+    return axios.patch("/api/item", {
       who: props.id,
       what: "checked",
       toWhat: !props.checked,
     });
-    refresh(slug as string);
   };
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={checked} Tag="div">
+      <SwipeAction onClick={() => refresh("patch")} Tag="div">
         <div
           id="Tick_Action"
           className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
@@ -68,7 +76,7 @@ export default function ListItem(props: ListItemProps) {
   );
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => onDelete(slug as string)} Tag="div">
+      <SwipeAction onClick={() => refresh("delete")} Tag="div">
         <div
           id="Delete_Action"
           className=" bg-ux-error button-bold text-text-white flex items-center justify-center text-left"
@@ -149,7 +157,7 @@ export default function ListItem(props: ListItemProps) {
               >
                 <FiCheckSquare
                   className="w-8 h-8 text-primary-default-Solid"
-                  onClick={checked}
+                  onClick={() => refresh("patch")}
                 />
               </Transition>
               <Transition

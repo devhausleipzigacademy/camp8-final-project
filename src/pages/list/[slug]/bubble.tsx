@@ -226,7 +226,7 @@ export default function Bubble({ data, slug, name }: Props) {
       <HeaderWithBack
         label="List View"
         classNames="w-full pb-8"
-        sendTo={`list/${slug}`}
+        sendTo={`/list/${slug}`}
       />
       <div className="flex justify-center overflow-y-auto">
         <svg ref={d3Container} width="100%" height="100%"></svg>
