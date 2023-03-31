@@ -69,7 +69,7 @@ export default function AccountView({ user }: SettingsProps) {
             onChange={(e) => setInputName(e.target.value)}
             value={inputName}
             component={
-              <div className="absolute flex self-center right-1 items-center justify-center rounded-lg">
+              <div className="absolute flex self-center right-0 items-center justify-center rounded-lg">
                 <SmallButton
                   label="Update"
                   onClick={() => updateNameHandler()}
@@ -78,12 +78,17 @@ export default function AccountView({ user }: SettingsProps) {
             }
           ></Input>
 
-          <LargeButton variant="primary" onClick={redirect} disabled={false} />
+          <LargeButton variant="primary" onClick={redirect} disabled={false}>
+            Change E-Mail
+          </LargeButton>
+
           <LargeButton
             variant="secondary"
             onClick={handleSignOut}
             disabled={false}
-          />
+          >
+            Log-Out
+          </LargeButton>
         </div>
       </div>
     </>
