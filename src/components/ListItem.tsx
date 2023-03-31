@@ -190,12 +190,11 @@ export default function ListItem(props: ListItemProps) {
 }
 export const handleClick = (id: string) => {
   const pageElement = document.getElementById("List-page") as HTMLElement;
-  pageElement.classList.toggle("z-10");
+  pageElement.children[0].classList.toggle("hidden");
   setTimeout(() => {
     const modal = document.getElementById(id + "modal") as HTMLElement;
     if (modal) {
       modal.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, 500);
-  pageElement.children[0].classList.toggle("z-10");
 };

@@ -36,6 +36,7 @@
     #f4fdfb 99.82%
   );
   background-repeat: no-repeat;
+  opacity: 100;
 }
 .bar-text {
   pointer-events: none;
