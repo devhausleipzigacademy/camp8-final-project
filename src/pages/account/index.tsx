@@ -65,18 +65,19 @@ export default function AccountAndSettings({ user }: AccountAndSettingsProps) {
         <Link href="/home">
           <FiChevronLeft size={28} />
         </Link>
+
         <Tab.Group
           onChange={(index) => {
             setSelected(optionLabels[index]);
           }}
         >
-          <Tab.List className="flex rounded-md bg-secondary-default text-lg mx-11 ">
+          <Tab.List className="flex w-full rounded-md bg-secondary-default text-lg mt-4">
             {optionLabels.map((label, index) => (
               <Tab className=" flex w-full" key={index}>
                 {({ selected }) => (
                   <label
                     className={clsx(
-                      "w-full rounded-md h-11 flex items-center justify-center",
+                      "w-full rounded-md h-8 flex items-center justify-center",
                       selected
                         ? "bg-primary-default-Solid text-text-white "
                         : "bg-secondary-default text-text-typo"

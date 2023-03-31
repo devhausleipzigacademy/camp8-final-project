@@ -6,7 +6,7 @@ type fontStore = {
   setSize: () => void;
 };
 
-export const useSzieStore = create<fontStore>()(
+export const useSizeStore = create<fontStore>()(
   persist(
     (set, get) => ({
       isFontSizeBig: false,

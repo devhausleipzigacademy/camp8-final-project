@@ -7,6 +7,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { User } from "@prisma/client";
 import axios from "axios";
+import { useSizeStore } from "../stores/styleStore";
 
 type InputProps = {
   user: User;
