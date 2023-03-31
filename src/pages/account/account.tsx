@@ -4,9 +4,10 @@ import axios from "axios";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import Input from "@/components/Input";
+import Input from "@/components/shared/Input";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { SmallButton } from "@/components/SmallButton";
 
 export type SettingsProps = {
   user: User;
@@ -47,7 +48,7 @@ export default function AccountView({ user }: SettingsProps) {
     });
   }
 
-  function clickHandler() {
+  function updateNameHandler() {
     updateName();
     refresh(user.email as string);
   }
@@ -60,26 +61,32 @@ export default function AccountView({ user }: SettingsProps) {
           Hey,&nbsp;
           {player?.name ? player.name : player?.email}
         </div>
-        <div className="w-full flex flex-col m-5 gap-8">
+        <div className="w-full flex flex-col m-5 gap-5">
           <Input
-            type={"New name"}
-            name={inputName}
-            setValue={setInputName}
-            value={""}
             placeholder={"New name"}
-            onClick={clickHandler}
+            onChange={(e) => setInputName(e.target.value)}
+            value={inputName}
+            component={
+              <div className="absolute flex self-center right-0 items-center justify-center rounded-lg">
+                <SmallButton
+                  label="Update"
+                  onClick={() => updateNameHandler()}
+                />
+              </div>
+            }
           ></Input>
 
-          <LargeButton
-            variant="primary"
-            onClick={redirect}
-            disabled={false}
-          >Change E-Mail</LargeButton>
+          <LargeButton variant="primary" onClick={redirect} disabled={false}>
+            Change E-Mail
+          </LargeButton>
+
           <LargeButton
             variant="secondary"
             onClick={handleSignOut}
             disabled={false}
-          >Log-Out</LargeButton>
+          >
+            Log-Out
+          </LargeButton>
         </div>
       </div>
     </>
