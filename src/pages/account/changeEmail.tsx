@@ -1,4 +1,4 @@
-import { LargeButton } from "@/components/LargeButton";
+import { LargeButton } from "@/components/shared/LargeButton";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import { Transition } from "@headlessui/react";
