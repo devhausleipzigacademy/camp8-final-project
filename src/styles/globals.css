@@ -51,10 +51,6 @@
     rgba(190, 190, 190, 0.8);
 }
 
-#__next {
-  @apply h-full w-full pt-7 px-7 sm:pt-7 sm:px-7 md:px-80 md:py-7 bg-primary-frame;
-}
-
 @layer components {
   .text-splash {
     font-family: Staatliches;

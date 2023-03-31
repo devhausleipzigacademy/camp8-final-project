@@ -1,5 +1,4 @@
 import React from "react";
-import { IconButton } from "./IconButton";
 import { FiUser } from "react-icons/fi";
 import clsx from "clsx";
 import Link from "next/link";

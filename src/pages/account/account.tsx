@@ -1,4 +1,4 @@
-import { LargeButton } from "@/components/LargeButton";
+import { LargeButton } from "@/components/shared/LargeButton";
 import { FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";

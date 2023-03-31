@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+/* import { Dispatch, SetStateAction } from "react";
 import { SmallButton } from "./SmallButton";
 
 export type UpdateInputProps = {
@@ -33,3 +33,4 @@ export default function Input(props: UpdateInputProps) {
     </>
   );
 }
+ */

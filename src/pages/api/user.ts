@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { z } from "zod";
 import { defineEndpoints } from "../../next-rest-framework/client";
-import { prisma } from "../api/prisma";
+import { prisma } from "./prisma";
 import { itemPutOutput } from "./item";
 
 const userPostSchema = z.object({
@@ -80,7 +80,7 @@ export default defineEndpoints({
             },
             data: {
               image: image,
-              name: temp.name ?? name
+              name: temp.name ?? name,
             },
           });
         }
@@ -153,7 +153,7 @@ export default defineEndpoints({
       description: "Will fetch a user based on their email",
     },
     input: {
-      query: z.object({ email: z.string() })
+      query: z.object({ email: z.string() }),
     },
     output: [
       {
@@ -166,9 +166,9 @@ export default defineEndpoints({
       req: {
         query: { email },
       },
-      res
+      res,
     }) => {
-      const user = await prisma.user.findFirst({
+      const user = await prisma.user.findUnique({
         where: {
           email: email,
         },
