@@ -33,7 +33,7 @@ export function SingleCard({ cardData }: InputProps) {
     createdAt,
     favorite: pinned,
     checked: itemsChecked,
-    total: itemsTotal,
+    total: itemsTotal
   } = cardData;
 
   let isDraftCard = listName === "";
@@ -130,7 +130,7 @@ export function SingleCard({ cardData }: InputProps) {
             defaultValue={listName as string}
             className={clsx(
               "uppercase cards-title font-heading bg-transparent",
-              "focus:outline-none",
+              "focus:outline-none active:animate-pulse active:bg-primary-transparent active:rounded-lg",
               "placeholder:text-primary-transparent text-primary-default-Solid"
             )}
             onBlur={(event) => updateListName(event.target.value)}

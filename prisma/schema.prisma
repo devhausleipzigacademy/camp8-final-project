@@ -97,8 +97,8 @@ model List {
   userIdentifier String
   belongsTo      User @relation(fields: [userIdentifier], references: [id])
   favorite       Boolean  @default(false)
-  checked Float @default(0)
-  total Float @default(0)
+  checked Float  @default(0)
+  total Float    @default(0)
   items          Item[]       
 
   @@map("Lists")
