@@ -119,9 +119,7 @@ export default function ListItem(props: ListItemProps) {
           <div className="flex p-2 justify-end gap-6 items-center flex-grow">
             <div
               className={clsx(
-                isFontSizeBig
-                  ? "hidden "
-                  : "flex gap-2 underline text-primary-default-Solid"
+                "flex gap-2 underline text-primary-default-Solid"
               )}
               onClick={() => {
                 setDetails(!details);
@@ -129,7 +127,7 @@ export default function ListItem(props: ListItemProps) {
               }}
             >
               <p
-                className="text-secondary dark:text-white font-thin flex flex-shrin"
+                className={clsx("justify-end text-secondary dark:text-white font-thin flex flex-shrin", isFontSizeBig && "mr-16")}
                 style={{
                   fontSize: "clamp(5px, 3.9vw, 1.125rem)",
                 }}
