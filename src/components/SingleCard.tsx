@@ -130,7 +130,7 @@ export function SingleCard({ cardData }: InputProps) {
             defaultValue={listName as string}
             className={clsx(
               "uppercase cards-title font-heading bg-transparent",
-              "focus:outline-none active:animate-pulse active:bg-primary-transparent active:rounded-lg",
+              "focus:outline-none active:animate-pulse active:bg-primary-transparent active:rounded-lg transition-all",
               "placeholder:text-primary-transparent text-primary-default-Solid"
             )}
             onBlur={(event) => updateListName(event.target.value)}
