@@ -14,6 +14,7 @@ import clsx from "clsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getListData } from "@/pages/list/[slug]";
 import { useRouter } from "next/router";
+import { useSizeStore } from "@/pages/stores/styleStore";
 
 type ListItemProps = {
   name: string;
@@ -79,6 +80,7 @@ export default function ListItem(props: ListItemProps) {
     </TrailingActions>
   );
 
+  const { isFontSizeBig, setSize } = useSizeStore();
   return (
     <>
       <Transition
@@ -103,15 +105,23 @@ export default function ListItem(props: ListItemProps) {
           </div>
           <div>
             <p
-              className="text-text-typo text-primary pl-4"
-              style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
+              className={clsx(
+                isFontSizeBig
+                  ? "text-text-typo text-primary pl-4"
+                  : "text-text-typo text-lg pl-4"
+              )}
+              // style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
             >
               {props.name}
             </p>
           </div>
           <div className="flex p-2 justify-end gap-6 items-center flex-grow">
             <div
-              className=" flex gap-2 underline text-primary-default-Solid"
+              className={clsx(
+                isFontSizeBig
+                  ? "hidden "
+                  : "flex gap-2 underline text-primary-default-Solid"
+              )}
               onClick={() => {
                 setDetails(!details);
                 handleClick(props.id);
@@ -136,7 +146,11 @@ export default function ListItem(props: ListItemProps) {
                 </p>
               )}
             </div>
-            <div className="relative w-10 h-8">
+            <div
+              className={clsx(
+                isFontSizeBig ? " fixed w-10 h-8" : "relative w-10 h-8"
+              )}
+            >
               <Transition
                 show={props.checked}
                 enter="transform transition duration-[400ms]"
