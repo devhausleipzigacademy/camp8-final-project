@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { LargeButton } from "../components/LargeButton";
+import { LargeButton } from "../components/shared/LargeButton";
 
 export default {
   title: "components/LargeButton",

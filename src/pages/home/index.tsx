@@ -1,4 +1,4 @@
-import { FullHeader } from "@/components/FullHeader";
+import { FullHeader } from "@/components/shared/FullHeader";
 import { PlusButton } from "@/components/PlusButton";
 import CardsWrapper from "@/pages/home/CardsWrapper";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -24,10 +24,7 @@ export default function Home({ user }: InputProps) {
   return (
     <div className="grid grid-row-2 h-full relative">
       <div className="row-span-1">
-        <FullHeader
-          classes={""}
-          name={(user.name as string).split(" ")[0]}
-        ></FullHeader>
+        <FullHeader name={(user.name as string).split(" ")[0]}></FullHeader>
       </div>
       <div className="row-span-1 h-full overflow-y-scroll">
         <CardsWrapper user_id={user.id} />
@@ -42,6 +39,15 @@ export default function Home({ user }: InputProps) {
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth/signIn",
+        permanent: true,
+      },
+    };
+  }
 
   const user: User = await axios
     .get(`http://localhost:3000/api/user?email=${session?.user?.email}`)

@@ -6,7 +6,7 @@ import clsx from "clsx";
 type Props = {
   label?: string;
   sendTo?: string;
-  classNames: string;
+  classNames?: string;
 };
 
 export function HeaderWithBack(props: Props) {

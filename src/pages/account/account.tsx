@@ -1,4 +1,4 @@
-import { LargeButton } from "@/components/LargeButton";
+import { LargeButton } from "@/components/shared/LargeButton";
 import { FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";
@@ -62,7 +62,7 @@ export default function AccountView({ user }: SettingsProps) {
           Hey,&nbsp;
           {player?.name ? player.name : player?.email}
         </div>
-        <div className="w-full flex flex-col m-5 gap-5">
+        <div className="w-full flex flex-col m-5 gap-8">
           <Input
             type={"New name"}
             name={inputName}
@@ -74,16 +74,14 @@ export default function AccountView({ user }: SettingsProps) {
 
           <LargeButton
             variant="primary"
-            label="Change E-Mail"
             onClick={redirect}
             disabled={false}
-          />
+          >Change E-Mail</LargeButton>
           <LargeButton
             variant="secondary"
-            label="Log-Out"
             onClick={handleSignOut}
             disabled={false}
-          />
+          >Log-Out</LargeButton>
         </div>
       </div>
     </>

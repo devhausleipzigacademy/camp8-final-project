@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { FullHeader } from "../components/FullHeader";
+import { FullHeader } from "../components/shared/FullHeader";
 
 const meta: Meta<typeof FullHeader> = {
   title: "components/FullHeader",
