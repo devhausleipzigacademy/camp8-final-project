@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import EditModal from "./EditModal";
+import EditModal, { patchItem } from "./EditModal";
 import {
   LeadingActions,
   SwipeableListItem,
@@ -29,28 +29,21 @@ export default function ListItem(props: ListItemProps) {
 
   const queryClient = useQueryClient();
   const { mutate: refresh } = useMutation({
-    mutationFn: (doing: "patch" | "delete") => {
+    mutationFn: (doing: "check" | "delete") => {
       if (doing === "delete") {
-        return onDelete(slug as string);
-      }
-      return checked();
+        return onDelete();
+      } else return checked();
     },
     onSuccess: () => {
-      console.log("Success!");
-
       queryClient.invalidateQueries(["data"]);
     },
   });
 
   const [details, setDetails] = useState(false);
-  // useEffect(() => {
-  //   console.log("Closed Modal");
-  //   refresh(slug as string);
-  // }, [details, slug, refresh]);
 
   const [swiped, setSwiped] = useState(true);
 
-  const onDelete = (slug: string) => {
+  const onDelete = () => {
     setSwiped(false);
     return axios.delete(`/api/item?id=${props.id}`);
   };
@@ -64,7 +57,7 @@ export default function ListItem(props: ListItemProps) {
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => refresh("patch")} Tag="div">
+      <SwipeAction onClick={() => refresh("check")} Tag="div">
         <div
           id="Tick_Action"
           className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
@@ -157,7 +150,7 @@ export default function ListItem(props: ListItemProps) {
               >
                 <FiCheckSquare
                   className="w-8 h-8 text-primary-default-Solid"
-                  onClick={() => refresh("patch")}
+                  onClick={() => refresh("check")}
                 />
               </Transition>
               <Transition
@@ -172,7 +165,7 @@ export default function ListItem(props: ListItemProps) {
               >
                 <FiSquare
                   className="w-8 h-8 text-primary-default-Solid"
-                  onClick={checked}
+                  onClick={() => refresh("check")}
                 />
               </Transition>
             </div>

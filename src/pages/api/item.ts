@@ -194,69 +194,70 @@ export default defineEndpoints({
       }
     },
   },
-  // GET: {
-  //   openApiSpec: {
-  //     description: "Autocomplete function that will give 5 results",
-  //   },
-  //   input: {
-  //     query: itemGetSchema,
-  //   },
-  //   output: [
-  //     {
-  //       status: 404,
-  //       contentType: "text/plain",
-  //       schema: z.string(),
-  //     },
-  //     {
-  //       status: 200,
-  //       contentType: "application/json",
-  //       schema: itemGetOutput,
-  //     },
-  //   ],
-  //   handler: async ({
-  //     res,
-  //     req: {
-  //       query: { name },
-  //     },
-  //   }) => {
-  //     const list = await prisma.masterItem.findMany({});
-
-  //     const item_names = list.map((item) => item.name);
-
-  //     const matches = stringSimilarity.findBestMatch(
-  //       name.toLowerCase(),
-  //       item_names
-  //     );
-
-  //     const sorted_matches = sortByRating(matches.ratings);
-  //     const result: MasterItem[] = await prisma.masterItem.findMany({
-  //       where: {
-  //         name: {
-  //           in: sorted_matches
-  //             .filter((x, i) => x.rating > 0 && i < 5)
-  //             .map((x) => x.target),
-  //         },
-  //       },
-  //     });
-  //     result.sort(
-  //       (a, b) =>
-  //         sorted_matches.map((x) => x.target).indexOf(a.name) -
-  //         sorted_matches.map((x) => x.target).indexOf(b.name)
-  //     );
-  //     res.setHeader("content-type", "application/json");
-
-  //     res.status(200).send({
-  //       results: result,
-  //       top_rating: sorted_matches[0].rating,
-  //     });
-  //   },
-  // },
   GET: {
+    openApiSpec: {
+      description: "Autocomplete function that will give 5 results",
+    },
+    input: {
+      query: itemGetSchema,
+    },
+    output: [
+      {
+        status: 404,
+        contentType: "text/plain",
+        schema: z.string(),
+      },
+      {
+        status: 200,
+        contentType: "application/json",
+        schema: itemGetOutput,
+      },
+    ],
+    handler: async ({
+      res,
+      req: {
+        query: { name },
+      },
+    }) => {
+      const list = await prisma.masterItem.findMany({});
+
+      const item_names = list.map((item) => item.name);
+
+      const matches = stringSimilarity.findBestMatch(
+        name.toLowerCase(),
+        item_names
+      );
+
+      const sorted_matches = sortByRating(matches.ratings);
+      const result: MasterItem[] = await prisma.masterItem.findMany({
+        where: {
+          name: {
+            in: sorted_matches
+              .filter((x, i) => x.rating > 0 && i < 5)
+              .map((x) => x.target),
+          },
+        },
+      });
+      result.sort(
+        (a, b) =>
+          sorted_matches.map((x) => x.target).indexOf(a.name) -
+          sorted_matches.map((x) => x.target).indexOf(b.name)
+      );
+      res.setHeader("content-type", "application/json");
+
+      res.status(200).send({
+        results: result,
+        top_rating: sorted_matches[0].rating,
+      });
+    },
+  },
+  PUT: {
     openApiSpec: {
       description: "Will give back all the items in a list",
     },
     input: {
-      query: itemPutSchema,
+      contentType: "application/json",
+      body: itemPutSchema,
     },
     output: [
       {
@@ -273,7 +274,7 @@ export default defineEndpoints({
     handler: async ({
       res,
       req: {
-        query: { inputList },
+        body: { inputList },
       },
     }) => {
       try {

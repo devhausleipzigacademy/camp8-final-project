@@ -94,6 +94,8 @@ export { getServerSideProps };
 export const getListData = (slug: string) => {
   console.log("Data fetched");
   return axios
-    .get<Item[]>(`http://localhost:3000/api/item?inputList=${slug}`)
+    .put<Item[]>(`http://localhost:3000/api/item`, {
+      inputList: slug,
+    })
     .then((res) => res.data);
 };
