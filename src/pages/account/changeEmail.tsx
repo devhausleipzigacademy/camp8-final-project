@@ -1,4 +1,4 @@
-import { LargeButton } from "@/components/LargeButton";
+import { LargeButton } from "@/components/shared/LargeButton";
 import Head from "next/head";
 import { FiChevronLeft, FiUser } from "react-icons/fi";
 import { Transition } from "@headlessui/react";
@@ -58,11 +58,9 @@ export default function Settings(props: ButtonProps) {
               leaveFrom="opacity-100 scale-y-100"
               leaveTo="opacity-0 scale-y-0"
             >
-              <LargeButton
-                variant="primary"
-                label="Get new link"
-                disabled={false}
-              />
+              <LargeButton variant="primary" disabled={false}>
+                Get new link
+              </LargeButton>
             </Transition>
           </form>
         </div>

@@ -1,15 +1,17 @@
 import React from "react";
 import { FiChevronLeft } from "react-icons/fi";
 import Link from "next/link";
+import clsx from "clsx";
 
 type Props = {
   label?: string;
   sendTo?: string;
+  classNames?: string;
 };
 
 export function HeaderWithBack(props: Props) {
   return (
-    <div className="flex items-center gap-2">
+    <div className={clsx(props.classNames, "flex items-center gap-2")}>
       <Link href={props.sendTo ?? "/"}>
         <FiChevronLeft className="w-6 h-6 text-text-typo" />
       </Link>

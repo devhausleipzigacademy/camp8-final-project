@@ -6,8 +6,12 @@ The idea is a shopping list App with catagorizations depending on type.
 
 ## INSTALLATION
 
-`pnpm install`
-`pnpm run dev`
+##
+To start to develop:
+- Make sure You have an .env file in root-Folder \* (!)
+- Stop other projects in Docker, if any are running.
+- run "pnpm all-dev" (see package.json)
+
 
 ## FIGMA FILE
 
@@ -24,12 +28,7 @@ Link to the Figma file: https://www.figma.com/file/MwSsIVfA5KQIZCdhIcASnC/Grocer
 
 ## BACK_END
 
-0. Make sure You have an .env file in root-Folder \* (!)
 
-1. Stop other projects in Docker, if any are running.
-
-2. Docker (requires to start the docker Application)
-   `docker compose up -d`
 
 3. Prototype your schema according to :
    `pnpx prisma db push`

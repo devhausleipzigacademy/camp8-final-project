@@ -2,9 +2,7 @@ import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import { Dispatch, SetStateAction, useState } from "react";
 
-import {
-  useQuery
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { handleClick } from "./ListItem";
 
@@ -13,12 +11,38 @@ type InputProps = {
   setDetails: Dispatch<SetStateAction<boolean>>;
 };
 export const units = ["ml", "l", "g", "kg", "cups"];
+type Test = {
+  id: string;
+  what: string;
+  toWhat: string;
+};
 
 export default function EditModal({ id, setDetails }: InputProps) {
   let [quantityInput, setQuantityInput] = useState<string[]>(["Placeholder"]);
   const { data } = useQuery(["categories"], () =>
     getCategories(setQuantityInput)
   );
+  const queryClient = useQueryClient();
+
+  const { mutate: reload } = useMutation({
+    mutationFn: (input: Test) => {
+      return patchItem(input.id, input.what, input.toWhat);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["data"]);
+    },
+  });
+
+  const clickOnSelect = (
+    id: string,
+    what: string,
+    toWhat: string,
+    setDetails: Dispatch<SetStateAction<boolean>>
+  ) => {
+    handleClick(id);
+    setDetails(false);
+    reload({ id: id, what: what, toWhat: toWhat });
+  };
 
   let categories = [
     {
@@ -74,9 +98,9 @@ export default function EditModal({ id, setDetails }: InputProps) {
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           clickOnSelect(
+                            id,
                             category.name,
                             e.currentTarget.value,
-                            id,
                             setDetails
                           );
                         }
@@ -92,7 +116,7 @@ export default function EditModal({ id, setDetails }: InputProps) {
                     <h3
                       className="text-sm font-medium leading-5"
                       onClick={() =>
-                        clickOnSelect(category.name, option, id, setDetails)
+                        clickOnSelect(id, category.name, option, setDetails)
                       }
                     >
                       {option}
@@ -108,18 +132,7 @@ export default function EditModal({ id, setDetails }: InputProps) {
   );
 }
 
-const clickOnSelect = (
-  what: string,
-  toWhat: string,
-  id: string,
-  setDetails: Dispatch<SetStateAction<boolean>>
-) => {
-  handleClick(id);
-  setDetails(false);
-  patchItem(id, what, toWhat);
-};
-
-const patchItem = async (item: string, what: string, toWhat: string) => {
+export const patchItem = (item: string, what: string, toWhat: string) => {
   const object = {
     who: item,
     what: what.charAt(0).toLowerCase() + what.slice(1),
@@ -130,7 +143,7 @@ const patchItem = async (item: string, what: string, toWhat: string) => {
         ? Number(toWhat)
         : toWhat,
   };
-  axios.patch("http://localhost:3000/api/item", object);
+  return axios.patch("http://localhost:3000/api/item", object);
 };
 
 const getCategories = async (

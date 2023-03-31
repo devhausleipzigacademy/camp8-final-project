@@ -1,19 +1,24 @@
 
-GET http://localhost:3000/api/test
+# GET http://localhost:3000/api/test
 
-###
+# ###
+# GET http://localhost:3000/api/autocomplete?name=pear
 
 GET http://localhost:3000/api/autocomplete?name=ban
 
 
 ###
+# PATCH http://localhost:3000/api/updateListName
+# Content-Type: application/json
 
-DELETE http://localhost:3000/api/deleteList
-Content-Type: application/json
+# {
+#   "id": "52d01211-1eb1-403d-9be3-ade3cf91a2f5",
+#   "newName": "brand new list name"
+# }
 
-{
-  "id": "123456789"
-}
+# PATCH http://localhost:3000/api/createList?id=43b20ffc-ceea-43d5-b08c-9a1a6e4a1f98
+
+POST http://localhost:3000/api/createANewUser
 
 ###
 
@@ -21,8 +26,8 @@ POST http://localhost:3000/api/item
 Content-Type: application/json
 
 {
-  "query": "sfbaljsdhfljash",
-  "inputList": "6b07c3a6-f476-474f-94a8-975fe055c3e1"
+  "query": "apples",
+  "inputList": "f3bcfc7d-c7bb-4f80-8545-f82a7013d876"
 }
 
 ###
@@ -52,9 +57,5 @@ GET http://localhost:3000/api/categories
 PUT http://localhost:3000/api/user
 
 ###
-PUT http://localhost:3000/api/item
-Content-Type: application/json
+POST http://localhost:3000/api/lists?id=clfvlqvx80000vysjvl06e0bz
 
-{
-  "inputList":"957e11ee-8a2e-411d-92e4-d855f29d9534"
-}

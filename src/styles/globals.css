@@ -35,6 +35,11 @@
     #edf8ff 81.34%,
     #f4fdfb 99.82%
   );
+  background-repeat: no-repeat;
+}
+.bar-text {
+  pointer-events: none;
+  @apply fill-text-typo text-primary;
 }
 
 .bg-ux-inactive {
@@ -60,6 +65,7 @@
     line-height: 72px;
     @apply font-heading;
   }
+
   .text-primary {
     font-size: 18px;
     line-height: 22px;
@@ -70,6 +76,7 @@
     font-weight: 600;
     line-height: 17px;
   }
+
   .text-secondary {
     font-size: 14px;
     font-weight: 300;
@@ -89,7 +96,7 @@
   }
 
   .button-large {
-    font-size: 24pt;
+    font-size: 24px;
     line-height: 29px;
   }
   .text-title {

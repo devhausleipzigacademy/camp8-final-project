@@ -86,6 +86,19 @@ export default defineEndpoints({
       },
     }) => {
       try {
+        try {
+          const test = await prisma.list.update({
+            where: {
+              id: inputList,
+            },
+            data: {
+              total: { increment: 1 },
+            },
+          });
+        } catch (err) {
+          return res.status(400).send(String(err));
+        }
+
         const list = await prisma.list.findFirst({
           where: {
             id: inputList,
@@ -151,8 +164,7 @@ export default defineEndpoints({
                   id: inputList,
                 },
               },
-              imageUrl:
-                "https://as1.ftcdn.net/v2/jpg/02/07/83/10/1000_F_207831015_sXKAuf2tcsnrxOS1vfuvHSN2fDrdwtNf.jpg",
+              imageUrl: "https://i.imgur.com/vo44wpR.png",
             },
           });
           if (units || number) {
@@ -305,6 +317,8 @@ export default defineEndpoints({
       },
     }) => {
       try {
+        console.log(toWhat, what, who, "FindMe!!");
+
         if (what === "category") {
           await prisma.item.update({
             where: {
@@ -326,16 +340,34 @@ export default defineEndpoints({
             );
         }
 
-        console.log(what);
-        const item = await prisma.item.update({
-          where: {
-            id: who,
-          },
-          data: {
-            [what]: toWhat,
-            verified: what === "imageUrl" ? false : true,
-          },
-        });
+        try {
+          const item = await prisma.item.update({
+            where: {
+              id: who,
+            },
+            data: {
+              [what]: toWhat,
+              verified: what === "imageUrl" ? false : true,
+            },
+          });
+
+          if (what === "checked") {
+            const test = await prisma.list.update({
+              where: {
+                id: item.listIdentifier as string,
+              },
+              data: {
+                checked: {
+                  increment: toWhat ? 1 : -1,
+                },
+              },
+            });
+            console.log("Check-work", item);
+          }
+        } catch (err) {
+          console.log(err, "Error!");
+          return res.status(418).send(String(err));
+        }
         res.status(200).send("Changed Correctly");
       } catch (err) {
         res.status(418).send(JSON.stringify(err));
@@ -373,19 +405,15 @@ export default defineEndpoints({
             id: id,
           },
         });
-        if (!test?.verified) {
-          await prisma.item.update({
-            where: {
-              id: test?.id,
-            },
-            data: {
-              inList: {
-                disconnect: true,
-              },
-            },
-          });
-          return res.status(200).send("Unlinked");
-        }
+        await prisma.list.update({
+          where: {
+            id: test?.listIdentifier as string,
+          },
+          data: {
+            total: { decrement: 1 },
+            checked: { decrement: test?.checked ? 1 : 0 },
+          },
+        });
         await prisma.item.delete({
           where: {
             id: id,

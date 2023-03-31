@@ -4,7 +4,7 @@ import { SortBySwitches } from "@/components/List/SortBySwitches";
 import {
   sortByAlphabet,
   sortByCategory,
-  sortByDate
+  sortByDate,
 } from "@/components/List/SortFunctions";
 import { NewItemInput } from "@/components/NewItemInput";
 import { prisma } from "@/pages/api/prisma";
@@ -28,16 +28,13 @@ export type InputProps = {
 export default function Home({ slug, name }: InputProps) {
   const [sortBy, setSortBy] = useState("category");
 
-  const {
-    data,
-    isLoading
-  } = useQuery(["data"], () => getListData(slug));
+  const { data, isLoading } = useQuery(["data"], () => getListData(slug));
   if (isLoading) {
     return <p>...Loading</p>;
   }
 
   let list: Item[] = [];
-  
+
   switch (sortBy) {
     case "date":
       list = sortByDate(data!);
@@ -51,22 +48,27 @@ export default function Home({ slug, name }: InputProps) {
   }
 
   return (
-    <>
-      <HeaderWithBack label={name as string} sendTo={"/home"} />
-      <div
-        id="List-page"
-        className="py-6 flex flex-col justify-between h-screen gap-2 relative"
-      >
-        <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
-        <SortBySwitches sortBy={sortBy} setSort={setSortBy} slug={slug} />
-        <ItemListMapper
-          list={list}
+    <div
+      id="List-page"
+      className=" pb-10 flex flex-col justify-between items-center h-full gap-2 relative"
+    >
+      <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
+      <div className="w-full">
+        <HeaderWithBack label={name} classNames="w-full pb-8" sendTo="/home" />
+        <SortBySwitches
+          className=""
           sortBy={sortBy}
-          className="overflow-y-auto"
+          setSort={setSortBy}
+          slug={slug}
         />
-        <NewItemInput listID={slug} />
       </div>
-    </>
+      <ItemListMapper
+        list={list}
+        sortBy={sortBy}
+        className="w-full h-full flex flex-col overflow-y-auto"
+      />
+      <NewItemInput listID={slug} />
+    </div>
   );
 }
 
@@ -89,10 +91,11 @@ const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
 export { getServerSideProps };
 
-export const getListData = async (slug: string) => {
-  return (await axios
-    .put(`http://localhost:3000/api/item`, {
+export const getListData = (slug: string) => {
+  console.log("Data fetched");
+  return axios
+    .put<Item[]>(`http://localhost:3000/api/item`, {
       inputList: slug,
     })
-    .then((res) => res.data)) as Item[];
+    .then((res) => res.data);
 };

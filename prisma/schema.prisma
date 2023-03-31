@@ -28,8 +28,8 @@
 
 
 generator client {
-  provider = "prisma-client-js"
-    previewFeatures = ["fullTextSearch"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -78,7 +78,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  lists   List[]
+  lists         List[]
 }
 
 model VerificationToken {
@@ -91,15 +91,16 @@ model VerificationToken {
 
 
 model List {
-  id                  String @id @default(uuid())
-  listName            String?    @default("new list")
-  createdAt           DateTime   @default(now())
-  userIdentifier      String //entering correct listIdentifier will Link to user
-  belongsTo           User @relation(fields: [userIdentifier], references: [id])
-  
-  favorite            Boolean    @default(false)
+  id             String   @id @default(uuid())
+  listName       String?
+  createdAt      DateTime @default(now())
+  userIdentifier String
+  belongsTo      User @relation(fields: [userIdentifier], references: [id])
+  favorite       Boolean  @default(false)
+  checked Float @default(0)
+  total Float @default(0)
+  items          Item[]       
 
-  items               Item[] ///opposite relation to Items related to this List.
   @@map("Lists")
 }
 

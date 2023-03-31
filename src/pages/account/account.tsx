@@ -1,12 +1,13 @@
-import { LargeButton } from "@/components/LargeButton";
+import { LargeButton } from "@/components/shared/LargeButton";
 import { FiUser } from "react-icons/fi";
 import axios from "axios";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import Input from "@/components/Input";
+import Input from "@/components/shared/Input";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { SmallButton } from "@/components/SmallButton";
 
 export type SettingsProps = {
   user: User;
@@ -40,49 +41,52 @@ export default function AccountView({ user }: SettingsProps) {
   };
 
   async function updateName() {
-    return await axios.patch("http://localhost:3000/api/changeNameUser", {
-      email: user.email,
-      name: inputName,
+    return await axios.patch("http://localhost:3000/api/user", {
+      id: player?.id,
+      what: "name",
+      toWhat: inputName,
     });
   }
 
-  function clickHandler() {
+  function updateNameHandler() {
     updateName();
     refresh(user.email as string);
   }
 
   return (
     <>
-      <div className="w-full flex-grow flex flex-col justify-around items-center gap-5 mt-5">
-        <div>
-          <FiUser size={28} />
-        </div>
-        <div className="text-primary-default-Solid dark:text-white font-heading text-4xl m-8">
+      <div className="w-full flex-grow flex flex-col justify-around items-center gap-5 mt-12">
+        <FiUser size={28} />
+        <div className="text-primary-default-Solid font-heading text-4xl m-8">
           Hey,&nbsp;
           {player?.name ? player.name : player?.email}
         </div>
         <div className="w-full flex flex-col m-5 gap-5">
           <Input
-            type={"New name"}
-            name={inputName}
-            setValue={setInputName}
-            value={""}
             placeholder={"New name"}
-            onClick={clickHandler}
+            onChange={(e) => setInputName(e.target.value)}
+            value={inputName}
+            component={
+              <div className="absolute flex self-center right-0 items-center justify-center rounded-lg">
+                <SmallButton
+                  label="Update"
+                  onClick={() => updateNameHandler()}
+                />
+              </div>
+            }
           ></Input>
 
-          <LargeButton
-            variant="primary"
-            label="Change E-Mail"
-            onClick={redirect}
-            disabled={false}
-          />
+          <LargeButton variant="primary" onClick={redirect} disabled={false}>
+            Change E-Mail
+          </LargeButton>
+
           <LargeButton
             variant="secondary"
-            label="Log-Out"
             onClick={handleSignOut}
             disabled={false}
-          />
+          >
+            Log-Out
+          </LargeButton>
         </div>
       </div>
     </>
