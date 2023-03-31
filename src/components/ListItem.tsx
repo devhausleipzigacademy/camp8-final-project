@@ -104,7 +104,7 @@ export default function ListItem(props: ListItemProps) {
           </div>
           <div>
             <p
-              className="text-text-typo text-primary pl-4"
+              className="text-text-typo text-primary pl-4 dark:text-white"
               style={{ fontSize: "clamp(5px, 3.9vw, 1.125rem)" }}
             >
               {props.name}
