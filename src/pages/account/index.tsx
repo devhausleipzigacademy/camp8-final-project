@@ -63,7 +63,7 @@ export default function AccountAndSettings({ user }: AccountAndSettingsProps) {
       </Head>
       <div className="w-full">
         <Link href="/home">
-          <FiChevronLeft size={28} />
+          <FiChevronLeft className="mb-6" size={28} />
         </Link>
         <Tab.Group
           onChange={(index) => {
