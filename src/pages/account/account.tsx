@@ -74,16 +74,14 @@ export default function AccountView({ user }: SettingsProps) {
 
           <LargeButton
             variant="primary"
-            label="Change E-Mail"
             onClick={redirect}
             disabled={false}
-          />
+          >Change E-Mail</LargeButton>
           <LargeButton
             variant="secondary"
-            label="Log-Out"
             onClick={handleSignOut}
             disabled={false}
-          />
+          >Log-Out</LargeButton>
         </div>
       </div>
     </>

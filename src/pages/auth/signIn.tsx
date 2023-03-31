@@ -40,9 +40,9 @@ export default function SignIn() {
         </form>
 
         <div className="flex items-center gap-1 ">
-          <div className="h-[2px] w-10 bg-secondary-default"></div>
+          <div className="h-0.5 w-10 bg-secondary-default"></div>
           or
-          <div className="h-[2px] w-10 bg-secondary-default"></div>
+          <div className="h-0.5 w-10 bg-secondary-default"></div>
         </div>
 
         <button

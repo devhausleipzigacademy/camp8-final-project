@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { Edit } from "react-feather";
 
@@ -6,17 +7,18 @@ export interface Input
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  value: string;
+  value?: string;
+  placeholder?: string,
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Input({ value, onChange }: Input) {
+export default function Input({ value, onChange, placeholder, className }: Input) {
   return (
     <div className="flex items-center relative mb-3">
       <input
         type="text"
-        className="w-96 py-3 px-5 rounded-md border border-primary-default-Solid bg-transparent text-center focus:outline-none"
-        placeholder="Email"
+        className={clsx(className, "py-3 px-5 rounded-md border border-primary-default-Solid bg-transparent text-center focus:outline-none")}
+        placeholder={placeholder ?? "Type here..."}
         value={value}
         onChange={(e) => onChange(e)}
       />
