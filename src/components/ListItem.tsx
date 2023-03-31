@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import EditModal from "./EditModal";
+import EditModal, { patchItem } from "./EditModal";
 import {
   LeadingActions,
   SwipeableListItem,
@@ -28,35 +28,36 @@ export default function ListItem(props: ListItemProps) {
   const { slug } = router.query;
 
   const queryClient = useQueryClient();
-  const { mutate: refresh } = useMutation(getListData, {
+  const { mutate: refresh } = useMutation({
+    mutationFn: (doing: "check" | "delete") => {
+      if (doing === "delete") {
+        return onDelete();
+      } else return checked();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries(["data"]);
     },
   });
 
   const [details, setDetails] = useState(false);
-  useEffect(() => {
-    refresh(slug as string);
-  }, [details]);
 
   const [swiped, setSwiped] = useState(true);
-  const onDelete = (slug: string) => {
+
+  const onDelete = () => {
     setSwiped(false);
-    axios.delete(`/api/item?id=${props.id}`);
-    refresh(slug);
+    return axios.delete(`/api/item?id=${props.id}`);
   };
   const checked = () => {
-    axios.patch("/api/item", {
+    return axios.patch("/api/item", {
       who: props.id,
       what: "checked",
       toWhat: !props.checked,
     });
-    refresh(slug as string);
   };
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={checked} Tag="div">
+      <SwipeAction onClick={() => refresh("check")} Tag="div">
         <div
           id="Tick_Action"
           className="w-full h-full bg-grad-default button-bold text-text-white flex items-center"
@@ -68,7 +69,7 @@ export default function ListItem(props: ListItemProps) {
   );
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => onDelete(slug as string)} Tag="div">
+      <SwipeAction onClick={() => refresh("delete")} Tag="div">
         <div
           id="Delete_Action"
           className=" bg-ux-error button-bold text-text-white flex items-center justify-center text-left"
@@ -149,7 +150,7 @@ export default function ListItem(props: ListItemProps) {
               >
                 <FiCheckSquare
                   className="w-8 h-8 text-primary-default-Solid"
-                  onClick={checked}
+                  onClick={() => refresh("check")}
                 />
               </Transition>
               <Transition
@@ -164,7 +165,7 @@ export default function ListItem(props: ListItemProps) {
               >
                 <FiSquare
                   className="w-8 h-8 text-primary-default-Solid"
-                  onClick={checked}
+                  onClick={() => refresh("check")}
                 />
               </Transition>
             </div>

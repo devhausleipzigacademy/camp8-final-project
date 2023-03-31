@@ -95,7 +95,6 @@ export default defineEndpoints({
               total: { increment: 1 },
             },
           });
-          console.log(test, "FindMe");
         } catch (err) {
           return res.status(400).send(String(err));
         }
@@ -318,6 +317,8 @@ export default defineEndpoints({
       },
     }) => {
       try {
+        console.log(toWhat, what, who, "FindMe!!");
+
         if (what === "category") {
           await prisma.item.update({
             where: {
@@ -339,27 +340,33 @@ export default defineEndpoints({
             );
         }
 
-        const item = await prisma.item.update({
-          where: {
-            id: who,
-          },
-          data: {
-            [what]: toWhat,
-            verified: what === "imageUrl" ? false : true,
-          },
-        });
-
-        if (what === "checked") {
-          await prisma.list.update({
+        try {
+          const item = await prisma.item.update({
             where: {
-              id: item.listIdentifier as string,
+              id: who,
             },
             data: {
-              checked: {
-                increment: toWhat ? 1 : -1,
-              },
+              [what]: toWhat,
+              verified: what === "imageUrl" ? false : true,
             },
           });
+
+          if (what === "checked") {
+            const test = await prisma.list.update({
+              where: {
+                id: item.listIdentifier as string,
+              },
+              data: {
+                checked: {
+                  increment: toWhat ? 1 : -1,
+                },
+              },
+            });
+            console.log("Check-work", item);
+          }
+        } catch (err) {
+          console.log(err, "Error!");
+          return res.status(418).send(String(err));
         }
         res.status(200).send("Changed Correctly");
       } catch (err) {
