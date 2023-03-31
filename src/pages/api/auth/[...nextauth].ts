@@ -28,6 +28,12 @@ export const authOptions: NextAuthOptions = {
     verifyRequest: "/auth/verify-request",
   },
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url === "/auth/signIn") return "/";
+      else return `/home`;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
