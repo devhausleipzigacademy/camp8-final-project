@@ -1,3 +1,4 @@
+import { HeaderWithBack } from "@/components/HeaderWithBack";
 import { ItemListMapper } from "@/components/List/ItemListMapper";
 import { SortBySwitches } from "@/components/List/SortBySwitches";
 import {
@@ -5,7 +6,6 @@ import {
   sortByCategory,
   sortByDate,
 } from "@/components/List/SortFunctions";
-import { ListNameHeader } from "@/components/ListNameHeader";
 import { NewItemInput } from "@/components/NewItemInput";
 import { prisma } from "@/pages/api/prisma";
 import { Item } from "@prisma/client";
@@ -28,30 +28,24 @@ export type InputProps = {
 export default function Home({ slug, name }: InputProps) {
   const [sortBy, setSortBy] = useState("category");
 
-  const {
-    data: bigList,
-    status,
-    isLoading,
-  } = useQuery(["data"], () => getListData(slug));
+  const { data, isLoading } = useQuery(["data"], () => getListData(slug));
   if (isLoading) {
     return <p>...Loading</p>;
   }
 
-  let data = bigList!;
   let list: Item[] = [];
 
   switch (sortBy) {
     case "date":
-      list = sortByDate(data);
+      list = sortByDate(data!);
       break;
     case "alphabetical":
-      list = sortByAlphabet(data);
+      list = sortByAlphabet(data!);
       break;
     case "category":
-      list = sortByCategory(data);
+      list = sortByCategory(data!);
       break;
   }
-  //This is a comment
 
   return (
     <div
@@ -60,11 +54,7 @@ export default function Home({ slug, name }: InputProps) {
     >
       <div className="-z-10 fixed inset-0 bg-text-typo bg-opacity-40 backdrop-blur-sm"></div>
       <div className="w-full">
-        <ListNameHeader
-          Listname={name}
-          classNames="w-full pb-8"
-          linkTo="home"
-        />
+        <HeaderWithBack label={name} classNames="w-full pb-8" linkTo="home" />
         <SortBySwitches
           className=""
           sortBy={sortBy}
@@ -83,7 +73,7 @@ export default function Home({ slug, name }: InputProps) {
 }
 
 const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug; // slug = listId
+  const slug = params?.slug;
   const list = await prisma.list.findFirst({
     where: {
       id: slug as string,

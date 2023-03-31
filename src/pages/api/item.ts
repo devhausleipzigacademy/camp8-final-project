@@ -165,8 +165,7 @@ export default defineEndpoints({
                   id: inputList,
                 },
               },
-              imageUrl:
-                "https://as1.ftcdn.net/v2/jpg/02/07/83/10/1000_F_207831015_sXKAuf2tcsnrxOS1vfuvHSN2fDrdwtNf.jpg",
+              imageUrl: "https://i.imgur.com/vo44wpR.png",
             },
           });
           if (units || number) {

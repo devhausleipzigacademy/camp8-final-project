@@ -95,7 +95,7 @@ export function SingleCard({ cardData }: InputProps) {
       <SwipeableListItem
         listType={Type.IOS}
         className={clsx(
-          "rounded-2xl border border-primary-transparent p-5 cursor:pointer ring-0 gap-2.5 h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
+          "rounded-2xl border border-primary-transparent cursor:pointer ring-0 gap-2.5 h-44 justify-between bg-secondary-transparent focus:ring-primary-default-Solid focus:ring-4",
           isDraftCard
             ? "text-primary-transparent"
             : "text-primary-default-Solid"
@@ -105,7 +105,7 @@ export function SingleCard({ cardData }: InputProps) {
         fullSwipe={true}
       >
         <div
-          className="flex flex-col justify-around w-full"
+          className="flex flex-col justify-around w-full p-5"
           onMouseDown={(e) => setXPos(e.clientX)}
           onMouseUp={(e) => {
             if (Math.abs(e.clientX - xpos!) < 5) {
@@ -113,6 +113,8 @@ export function SingleCard({ cardData }: InputProps) {
 
               router.push(`/list/${listId}`);
             } else {
+              console.log("Registered click");
+
               setXPos(NaN);
             }
           }}

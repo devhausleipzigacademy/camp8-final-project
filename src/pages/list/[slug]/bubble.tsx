@@ -6,6 +6,7 @@ import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
 import { ListNameHeader } from "@/components/ListNameHeader";
 import { prisma } from "@/pages/api/prisma";
+import { HeaderWithBack } from "@/components/HeaderWithBack";
 
 // create types
 
@@ -222,10 +223,10 @@ export default function Bubble({ data, slug, name }: Props) {
   }, []);
   return (
     <div className=" flex flex-col justify-between h-full gap-2 w-full bg-grad-frame">
-      <ListNameHeader
-        Listname="List View"
+      <HeaderWithBack
+        label="List View"
         classNames="w-full pb-8"
-        linkTo={`list/${slug}`}
+        sendTo={`list/${slug}`}
       />
       <div className="flex justify-center overflow-y-auto">
         <svg ref={d3Container} width="100%" height="100%"></svg>
